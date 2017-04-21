@@ -13,8 +13,22 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    SimulationEngine.cpp \
+    SpecimensModel.cpp \
+    BoardModel.cpp \
+    BoardView.cpp \
+    Specimen.cpp \
+    Board.cpp \
+    BoardViewObject.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    SimulationEngine.h \
+    SpecimensModel.h \
+    BoardModel.h \
+    BoardView.h \
+    Specimen.h \
+    Board.h \
+    BoardViewObject.h
 
 FORMS    += mainwindow.ui
