@@ -10,11 +10,10 @@
 class BoardModel : public QAbstractTableModel
 {
 public:
-    BoardModel();
     BoardModel(const SimulationEngine& engine);
     void linkEngine(const SimulationEngine& engine);
 private:
-    Board* board_handle;
+    Board* board_handle_;
 };
 
 #endif // BOARDMODEL_H

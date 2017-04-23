@@ -1,10 +1,5 @@
 #include "BoardModel.h"
 
-BoardModel::BoardModel()
-{
-
-}
-
 BoardModel::BoardModel(const SimulationEngine &engine)
 {
 

@@ -1,6 +1,6 @@
 #include "SpecimensModel.h"
 
-SpecimensModel::SpecimensModel()
+SpecimensModel::SpecimensModel(const SimulationEngine &engine)
 {
 
 }

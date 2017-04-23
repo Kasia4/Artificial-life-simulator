@@ -11,18 +11,18 @@ class SimulationEngine: public QObject
 {
     Q_OBJECT
 public:
-    SimulationEngine();
+    SimulationEngine(Board& board);
     Board& getBoard();
     QList<Specimen>& getSpecimens();
-
 public slots:
     void pause();
     void resume();
 
 
 private:
-    QList<Specimen> specimens;
-    Board           board;
+    QList<Specimen> specimens_;
+    Board&          board_;
+
 
 
 };

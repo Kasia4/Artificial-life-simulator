@@ -11,10 +11,10 @@
 class SpecimensModel : public QAbstractItemModel
 {
 public:
-    SpecimensModel();
+    SpecimensModel(const SimulationEngine& engine);
     void linkEngine(const SimulationEngine& engine);
 private:
-    QList<Specimen> *specimens_handle;
+    QList<Specimen> *specimens_handle_;
 };
 
 #endif // SPECIMENSMODEL_H
