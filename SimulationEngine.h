@@ -3,7 +3,8 @@
 
 #include <QObject>
 #include <QList>
-
+#include <QGraphicsScene>
+#include <iostream>
 #include "Board.h"
 #include "Specimen.h"
 
@@ -13,15 +14,18 @@ class SimulationEngine: public QObject
 public:
     SimulationEngine(Board& board);
     Board* getBoard() const;
-    QList<Specimen>& getSpecimens();
+    QGraphicsScene& getScene();
+    QList<Specimen*>& getSpecimens();
 public slots:
     void pause();
     void resume();
 
-
+    void updateBoardSize(const QPoint& size);
 private:
-    QList<Specimen> specimens_;
+    QList<Specimen*> specimens_;
     Board* board_;
+
+    QGraphicsScene scene_;
 
 
 

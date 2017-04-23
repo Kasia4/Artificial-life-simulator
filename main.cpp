@@ -1,5 +1,7 @@
 #include "MainWindow.h"
+
 #include <QApplication>
+#include <QGraphicsView>
 
 #include "SimulationEngine.h"
 #include "Board.h"
@@ -9,10 +11,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
-    Board board(QPoint(5,5));
+    Board board(QPoint(30,30));
+    board.setFieldSize(3);
     SimulationEngine engine(board);
-    BoardModel board_model(engine);
+    QGraphicsView sceneView(&engine.getScene());
+    sceneView.show();
 
     return a.exec();
 }

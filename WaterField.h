@@ -7,7 +7,8 @@ class WaterField : public BoardField
 {
 public:
     WaterField();
-    FieldType type() const { return FieldType::WATER; }
+    FieldType getType() const { return FieldType::WATER; }
+    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
 
 };
 
