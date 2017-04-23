@@ -37,15 +37,21 @@ int Board::getFieldSize() const
     return field_size_;
 }
 
-BoardField &Board::getField(const QPoint& position)
+BoardField& Board::getField(const QPoint& position)
 {
-    return fields_[fieldsIndex(position)];
+    return *fields_[fieldsIndex(position)];
 }
 
 
 void Board::resize(const QPoint& size)
 {
+    for(BoardField* temp: fields_){
+        delete temp;
+    }
     fields_.resize(size.x() * size.y());
+    for(BoardField* temp: fields_){
+        temp = new GroundField();
+    }
 }
 
 int Board::fieldsIndex(const QPoint& position)

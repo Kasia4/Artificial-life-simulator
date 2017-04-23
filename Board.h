@@ -5,7 +5,8 @@
 #include <QVector>
 #include <QPoint>
 
-#include "BoardField.h"
+#include "WaterField.h"
+#include "GroundField.h"
 
 class Board : public QObject
 {
@@ -29,7 +30,7 @@ private:
 
     QPoint size_;
     int field_size_;
-    QVector<BoardField> fields_;
+    QVector<BoardField*> fields_;
 public:
 signals:
     void fieldSizeChanged(int new_value);

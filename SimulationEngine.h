@@ -12,7 +12,7 @@ class SimulationEngine: public QObject
     Q_OBJECT
 public:
     SimulationEngine(Board& board);
-    Board& getBoard();
+    Board* getBoard() const;
     QList<Specimen>& getSpecimens();
 public slots:
     void pause();
@@ -21,7 +21,7 @@ public slots:
 
 private:
     QList<Specimen> specimens_;
-    Board&          board_;
+    Board* board_;
 
 
 

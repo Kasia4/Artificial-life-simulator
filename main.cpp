@@ -3,6 +3,8 @@
 
 #include "SimulationEngine.h"
 #include "Board.h"
+#include "BoardModel.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -10,7 +12,7 @@ int main(int argc, char *argv[])
     w.show();
     Board board(QPoint(5,5));
     SimulationEngine engine(board);
-
+    BoardModel board_model(engine);
 
     return a.exec();
 }

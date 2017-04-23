@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     Board.cpp \
     BoardViewObject.cpp \
     MainWindow.cpp \
-    BoardField.cpp
+    BoardField.cpp \
+    GroundField.cpp \
+    WaterField.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -32,6 +34,8 @@ HEADERS  += \
     Board.h \
     BoardViewObject.h \
     MainWindow.h \
-    BoardField.h
+    BoardField.h \
+    GroundField.h \
+    WaterField.h
 
 FORMS    += mainwindow.ui
