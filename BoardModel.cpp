@@ -8,11 +8,13 @@ BoardModel::BoardModel(const SimulationEngine &engine, QObject *parent)
 
 int BoardModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return board_handle_->getHeight();
 }
 
 int BoardModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return board_handle_->getWidth();
 }
 
@@ -42,6 +44,7 @@ QVariant BoardModel::data(const QModelIndex &index, int role) const
 
 QVariant BoardModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    Q_UNUSED(orientation);
     if (role != Qt::DisplayRole)
         return QVariant();
     return int(section);
