@@ -72,6 +72,7 @@ void SimulationEngine::removeSpecimen(Specimen *specimen)
 
 void SimulationEngine::updateBoardSize(const QPoint &size)
 {
+    Q_UNUSED(size);
     const MapTable& map = board_->getFields();
     for(MapColumn column : map)
     {
