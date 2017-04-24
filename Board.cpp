@@ -55,6 +55,7 @@ void Board::replaceField(const QPoint &position, FieldType type)
     fields_[position.x()][position.y()] = new_field;
     placeField(position);
     emit fieldReplaced(old_field, new_field);
+    delete old_field;
 }
 
 

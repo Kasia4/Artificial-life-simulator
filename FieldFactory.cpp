@@ -19,7 +19,7 @@ void FieldFactory::registerField(FieldType type, BoardField *prototype)
 
 BoardField* FieldFactory::create(FieldType type)
 {
-    if(!prototypes_.take(type))std::cout<<"yoooo"<<std::endl;
-    return prototypes_.take(type)->clone();
+    if(!prototypes_.value(type))std::cout<<"yoooo"<<std::endl;
+    return prototypes_.value(type)->clone();
 }
 
