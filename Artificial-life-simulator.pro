@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG      += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,7 +20,6 @@ SOURCES += main.cpp\
     BoardView.cpp \
     Specimen.cpp \
     Board.cpp \
-    BoardViewObject.cpp \
     MainWindow.cpp \
     BoardField.cpp \
     GroundField.cpp \
@@ -36,7 +36,6 @@ HEADERS  += \
     BoardView.h \
     Specimen.h \
     Board.h \
-    BoardViewObject.h \
     MainWindow.h \
     BoardField.h \
     GroundField.h \

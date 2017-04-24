@@ -10,7 +10,6 @@
 #include <QAbstractItemView>
 
 #include "SpecimensModel.h"
-#include "BoardViewObject.h"
 
 class BoardView : public QGraphicsView
 {
