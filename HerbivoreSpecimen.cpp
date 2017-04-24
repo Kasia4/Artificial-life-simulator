@@ -8,6 +8,8 @@ HerbivoreSpecimen::HerbivoreSpecimen()
 
 void HerbivoreSpecimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
     QPainterPath circle_path;
     circle_path.addEllipse(boundingRect());
     painter->setPen(QPen(QColor(0, 160, 0),2));
