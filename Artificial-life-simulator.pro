@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     WaterField.cpp \
     FieldFactory.cpp \
     HerbivoreSpecimen.cpp \
-    CarnivoreSpecimen.cpp
+    CarnivoreSpecimen.cpp \
+    SpecimenFactory.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -42,6 +43,7 @@ HEADERS  += \
     WaterField.h \
     FieldFactory.h \
     HerbivoreSpecimen.h \
-    CarnivoreSpecimen.h
+    CarnivoreSpecimen.h \
+    SpecimenFactory.h
 
 FORMS    += mainwindow.ui

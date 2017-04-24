@@ -1,11 +1,13 @@
 #include "MainWindow.h"
-
 #include <QApplication>
 #include <QGraphicsView>
-
+#include <QDebug>
 #include "SimulationEngine.h"
 #include "Board.h"
 #include "BoardModel.h"
+#include "HerbivoreSpecimen.h"
+#include "CarnivoreSpecimen.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +21,8 @@ int main(int argc, char *argv[])
         board.replaceField(QPoint(i,i), FieldType::WATER);
         board.replaceField(QPoint(i,i+1), FieldType::WATER);
     }
+
+
     sceneView.show();
 
     return a.exec();
