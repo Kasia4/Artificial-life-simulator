@@ -2,7 +2,7 @@
 #define GROUNDFIELD_H
 
 #include "BoardField.h"
-
+#include <iostream>
 class GroundField : public BoardField
 {
 public:

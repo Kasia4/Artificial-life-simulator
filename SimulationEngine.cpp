@@ -3,8 +3,11 @@
 SimulationEngine::SimulationEngine(Board& board)
    :board_(&board)
 {
+    is_started_=false;
     connect(&board, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
     connect(&board, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
+    connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
+
 
     updateBoardSize(board_->getSize());
 
@@ -25,6 +28,26 @@ QList<Specimen*>& SimulationEngine::getSpecimens()
     return specimens_;
 }
 
+void SimulationEngine::startWork()
+{
+    if(is_started_)return;
+    is_started_ = true;
+    timer_.start(1000 / 33);
+    /*
+    while(true)
+    {
+        if((deltaTime = timer->nsecsElapsed()) < STEP_TIME)continue;
+        timer->restart();
+        deltaTimeSec = (double)deltaTime/TIME_DIVISOR;
+        for(Specimen* specimen : specimens_){
+
+            specimen->move(deltaTimeSec);
+        }
+        if(!is_started_)break;
+    }*/
+
+}
+
 void SimulationEngine::pause()
 {
 
@@ -37,11 +60,13 @@ void SimulationEngine::resume()
 
 void SimulationEngine::addSpecimen(Specimen *specimen)
 {
+    specimens_.append(specimen);
     scene_.addItem(specimen);
 }
 
 void SimulationEngine::removeSpecimen(Specimen *specimen)
 {
+    specimens_.removeOne(specimen);
     scene_.removeItem(specimen);
 }
 
