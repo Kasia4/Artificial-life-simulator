@@ -32,6 +32,7 @@ public:
     int getFieldSize() const;
     BoardField& getField(const QPoint& position);
     const MapTable& getFields() const;
+    void replaceField(const QPoint& position, BoardField* field);
 
 
 private:
@@ -46,6 +47,7 @@ private:
 
 signals:
     void fieldSizeChanged(const QPoint& size);
+    void fieldReplaced(BoardField* old_field, BoardField* new_field);
 };
 
 

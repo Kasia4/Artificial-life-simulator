@@ -20,7 +20,10 @@ public slots:
     void pause();
     void resume();
 
+private slots:
     void updateBoardSize(const QPoint& size);
+    void fieldAdded(const QPoint& position);
+    void fieldRemoved(const QPoint& position);
 private:
     QList<Specimen*> specimens_;
     Board* board_;

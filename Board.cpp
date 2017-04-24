@@ -48,6 +48,22 @@ const MapTable& Board::getFields() const
     return fields_;
 }
 
+void Board::replaceField(const QPoint &position, BoardField *field)
+{
+    if(!field)return;
+    BoardField* prev_field = &getField(position);
+    if(prev_field)
+    {
+       delete prev_field;
+    }
+    fields_[position.x()][position.y()] = field;
+    std::cout<<"p"<<position.x()<<" "<<position.y()<<"\n";
+    placeField(position);
+    std::cout<<"size "<<field->getSize()<<"\n";
+    std::cout<<"pos"<<field->x()<<", "<<field->y()<<"\n";
+    std::cout<<"type "<<(int)(field->getType())<<"\n";
+}
+
 
 void Board::resize(const QPoint& size)
 {

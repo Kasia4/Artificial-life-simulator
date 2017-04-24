@@ -4,7 +4,9 @@ SimulationEngine::SimulationEngine(Board& board)
    :board_(&board)
 {
     connect(&board, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
+
     updateBoardSize(board_->getSize());
+
 }
 
 Board* SimulationEngine::getBoard() const
