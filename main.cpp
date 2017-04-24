@@ -18,11 +18,16 @@ void setCustomBoard(Board& board)
 }
 
 void createSpecimans(SimulationEngine& engine){
-    HerbivoreSpecimen* spec = new HerbivoreSpecimen;
-    spec->setPos(20,20);
-    spec->setSize(20);
-    spec->setVelocity(QVector2D(1,1));
-    engine.addSpecimen(spec);
+    HerbivoreSpecimen* spec1 = new HerbivoreSpecimen;
+    CarnivoreSpecimen* spec2 = new CarnivoreSpecimen;
+    spec1->setPos(20,20);
+    spec1->setSize(20);
+    spec1->setVelocity(QVector2D(0.4,0.4));
+    engine.addSpecimen(spec1);
+    spec2->setPos(220,220);
+    spec2->setSize(30);
+    spec2->setVelocity(QVector2D(-0.6,0.3));
+    engine.addSpecimen(spec2);
 }
 
 int main(int argc, char *argv[])
