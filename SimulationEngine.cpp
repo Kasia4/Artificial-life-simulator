@@ -35,6 +35,16 @@ void SimulationEngine::resume()
 
 }
 
+void SimulationEngine::addSpecimen(Specimen *specimen)
+{
+    scene_.addItem(specimen);
+}
+
+void SimulationEngine::removeSpecimen(Specimen *specimen)
+{
+    scene_.removeItem(specimen);
+}
+
 void SimulationEngine::updateBoardSize(const QPoint &size)
 {
     const MapTable& map = board_->getFields();

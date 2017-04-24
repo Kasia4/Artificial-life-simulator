@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     SimulationEngine engine(board);
     QGraphicsView sceneView(&engine.getScene());
     for(int i = 0; i<board.getWidth()-1; ++i){
-        std::cout<<"elo"<<i<<"\n";
         board.replaceField(QPoint(i,i), FieldType::WATER);
         board.replaceField(QPoint(i,i+1), FieldType::WATER);
     }

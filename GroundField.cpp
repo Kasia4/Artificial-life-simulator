@@ -18,7 +18,9 @@ void GroundField::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 BoardField *GroundField::clone() const
 {
-    return new GroundField;
+    GroundField* temp = new GroundField;
+    temp->overgrow_level_ = overgrow_level_;
+    return temp;
 }
 
 void GroundField::setOvergrow(int overgrow_level)
