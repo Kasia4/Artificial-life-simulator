@@ -8,6 +8,7 @@
 
 #include "WaterField.h"
 #include "GroundField.h"
+#include "FieldFactory.h"
 
 typedef QVector< BoardField*> MapColumn;
 typedef QVector< MapColumn > MapTable;
@@ -32,7 +33,7 @@ public:
     int getFieldSize() const;
     BoardField& getField(const QPoint& position);
     const MapTable& getFields() const;
-    void replaceField(const QPoint& position, BoardField* field);
+    void replaceField(const QPoint& position, FieldType type);
 
 
 private:

@@ -22,8 +22,7 @@ public slots:
 
 private slots:
     void updateBoardSize(const QPoint& size);
-    void fieldAdded(const QPoint& position);
-    void fieldRemoved(const QPoint& position);
+    void replaceField(BoardField* old_field, BoardField* new_field);
 private:
     QList<Specimen*> specimens_;
     Board* board_;

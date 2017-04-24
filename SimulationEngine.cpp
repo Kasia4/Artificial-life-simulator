@@ -4,6 +4,7 @@ SimulationEngine::SimulationEngine(Board& board)
    :board_(&board)
 {
     connect(&board, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
+    connect(&board, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
 
     updateBoardSize(board_->getSize());
 
@@ -44,4 +45,10 @@ void SimulationEngine::updateBoardSize(const QPoint &size)
             scene_.addItem(field);
         }
     }
+}
+
+void SimulationEngine::replaceField(BoardField *old_field, BoardField *new_field)
+{
+    scene_.removeItem(old_field);
+    scene_.addItem(new_field);
 }

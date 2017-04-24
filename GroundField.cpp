@@ -13,7 +13,12 @@ int GroundField::getOvergrow() const
 
 void GroundField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(), QColor(200-overgrow_level_*2,180,0));
+    painter->fillRect(boundingRect(), QColor(200-overgrow_level_*2,150,0));
+}
+
+BoardField *GroundField::clone() const
+{
+    return new GroundField;
 }
 
 void GroundField::setOvergrow(int overgrow_level)

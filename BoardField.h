@@ -16,9 +16,9 @@ class BoardField : public QGraphicsItem
 public:
     BoardField();
     virtual FieldType getType() const = 0;
+    virtual BoardField* clone() const = 0;
     QRectF boundingRect() const;
     virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
-
     void setSize(float size);
     float getSize() const;
 

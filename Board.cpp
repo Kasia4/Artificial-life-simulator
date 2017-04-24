@@ -48,20 +48,13 @@ const MapTable& Board::getFields() const
     return fields_;
 }
 
-void Board::replaceField(const QPoint &position, BoardField *field)
+void Board::replaceField(const QPoint &position, FieldType type)
 {
-    if(!field)return;
-    BoardField* prev_field = &getField(position);
-    if(prev_field)
-    {
-       delete prev_field;
-    }
-    fields_[position.x()][position.y()] = field;
-    std::cout<<"p"<<position.x()<<" "<<position.y()<<"\n";
+    BoardField* old_field = &getField(position);
+    BoardField* new_field = FieldFactory::getInstance().create(type);
+    fields_[position.x()][position.y()] = new_field;
     placeField(position);
-    std::cout<<"size "<<field->getSize()<<"\n";
-    std::cout<<"pos"<<field->x()<<", "<<field->y()<<"\n";
-    std::cout<<"type "<<(int)(field->getType())<<"\n";
+    emit fieldReplaced(old_field, new_field);
 }
 
 
@@ -87,7 +80,7 @@ void Board::resize(const QPoint& size)
             }
             else{
                 GroundField* temp = new GroundField();
-                temp->setOvergrow(x*2);
+                temp->setOvergrow(x*5 + y*5);
                 field = temp;
             }fields_[x][y] = field;
             placeField(QPoint(x,y));

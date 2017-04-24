@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     MainWindow.cpp \
     BoardField.cpp \
     GroundField.cpp \
-    WaterField.cpp
+    WaterField.cpp \
+    FieldFactory.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -36,6 +37,7 @@ HEADERS  += \
     MainWindow.h \
     BoardField.h \
     GroundField.h \
-    WaterField.h
+    WaterField.h \
+    FieldFactory.h
 
 FORMS    += mainwindow.ui

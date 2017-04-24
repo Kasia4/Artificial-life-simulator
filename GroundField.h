@@ -9,6 +9,7 @@ public:
     GroundField();
     FieldType getType() const { return FieldType::GROUND; }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    BoardField* clone() const;
     void setOvergrow( int overgrow_level );
     void modifyOvergrow( int value );
 
