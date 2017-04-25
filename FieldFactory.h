@@ -1,3 +1,8 @@
+/* FieldFactory.h
+ * author: Karol Checinski
+ * The FieldFactory class provides Factory to create default fields by cloning prototypes
+ */
+
 #ifndef FIELDFACTORY_H
 #define FIELDFACTORY_H
 
@@ -20,8 +25,6 @@ private:
     FieldFactory();
     FieldFactory( const FieldFactory & ) = delete;
     FieldFactory& operator=(const FieldFactory&) = delete;
-
-
 };
 
 #endif // FIELDFACTORY_H

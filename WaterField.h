@@ -1,3 +1,8 @@
+/* WaterField.h
+ * author: Karol Checinski
+ * The WaterField class provides water field type
+ */
+
 #ifndef WATERFIELD_H
 #define WATERFIELD_H
 
@@ -7,9 +12,9 @@ class WaterField : public BoardField
 {
 public:
     WaterField();
-    FieldType getType() const { return FieldType::WATER; }
-    BoardField* clone() const;
-    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+    FieldType getType() const override { return FieldType::WATER; }
+    BoardField* clone() const override;
+    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0) override;
 
 };
 
