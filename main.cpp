@@ -15,6 +15,15 @@ void setCustomBoard(Board& board)
         board.replaceField(QPoint(i,i), FieldType::WATER);
         board.replaceField(QPoint(i,i+1), FieldType::WATER);
     }
+    for(int i = 0; i<board.getWidth(); ++i){
+        for(int j = 0; j<board.getHeight(); ++j){
+            BoardField* field = &board.getField(QPoint(i,j));
+            if(field->getType()==FieldType::GROUND)
+            {
+                dynamic_cast<GroundField*>(field)->setOvergrow(i*5);
+            }
+        }
+    }
 }
 
 void createSpecimans(SimulationEngine& engine){
@@ -24,9 +33,9 @@ void createSpecimans(SimulationEngine& engine){
     spec1->setSize(20);
     spec1->setVelocity(QVector2D(0.4,0.4));
     engine.addSpecimen(spec1);
-    spec2->setPos(220,220);
+    spec2->setPos(220,60);
     spec2->setSize(30);
-    spec2->setVelocity(QVector2D(-0.6,0.3));
+    spec2->setVelocity(QVector2D(-0.5,0.4));
     engine.addSpecimen(spec2);
 }
 
@@ -34,8 +43,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    Board board(QPoint(15,15));
-    board.setFieldSize(20);
+    Board board(QPoint(30,30));
+    board.setFieldSize(10);
     SimulationEngine engine(board);
     QGraphicsView sceneView(&engine.getScene());
     sceneView.setFixedSize(602,602);
