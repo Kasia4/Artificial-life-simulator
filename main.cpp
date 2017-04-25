@@ -31,11 +31,15 @@ void createSpecimans(SimulationEngine& engine){
     CarnivoreSpecimen* spec2 = new CarnivoreSpecimen;
     spec1->setPos(20,20);
     spec1->setSize(20);
-    spec1->setVelocity(QVector2D(0.4,0.7));
+    spec1->setRotation(qDegreesToRadians(30.0));
+
+    spec1->setVelocity(0.6);
     engine.addSpecimen(spec1);
     spec2->setPos(220,60);
-    spec2->setSize(30);
-    spec2->setVelocity(QVector2D(-0.5,0.4));
+    spec2->setSize(25);
+    spec2->setRotation(qDegreesToRadians(90.0));
+    spec2->setAngularVelocity(qDegreesToRadians(3.0));
+    spec2->setVelocity(0.7);
     engine.addSpecimen(spec2);
 }
 

@@ -24,9 +24,14 @@ void Specimen::setSize(float size)
     size_=size;
 }
 
-void Specimen::setVelocity(QVector2D velocity)
+void Specimen::setVelocity(float velocity)
 {
     velocity_ = velocity;
+}
+
+void Specimen::setAngularVelocity(float velocity)
+{
+    angular_velocity_ = velocity;
 }
 
 float Specimen::getSize() const
@@ -34,15 +39,22 @@ float Specimen::getSize() const
     return size_;
 }
 
-QVector2D Specimen::getVelocity() const
+float Specimen::getVelocity() const
 {
     return velocity_;
+}
+
+float Specimen::getAngularVelocity() const
+{
+    return angular_velocity_;
 }
 
 void Specimen::advance(int step)
 {
     if(!step)return;
-    moveBy(velocity_.x(), velocity_.y());
+    float dx = qCos(rotation())*velocity_;
+    float dy = qSin(rotation())*velocity_;
+    moveBy(dx, dy);
     std::cout<<pos().x()<<", "<<pos().y()<<std::endl;
     setRotation(rotation() + angular_velocity_);
 }

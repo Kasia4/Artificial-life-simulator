@@ -4,6 +4,7 @@
 #include <QGraphicsItem>
 #include <QVector2D>
 #include <QPainter>
+#include <QtMath>
 #include <iostream>
 
 enum class SpecimenType : unsigned {
@@ -21,14 +22,16 @@ public:
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     void setSize(float size);
-    void setVelocity(QVector2D velocity);
+    void setVelocity(float velocity);
+    void setAngularVelocity(float velocity);
     float getSize() const;
-    QVector2D getVelocity() const;
+    float getVelocity() const;
+    float getAngularVelocity() const;
 protected:
     void advance(int step);
 private:
     float size_;
-    QVector2D velocity_;
+    float velocity_;
     float angular_velocity_;
 
 };
