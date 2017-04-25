@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     SimulationEngine.cpp \
     SpecimensModel.cpp \
     BoardModel.cpp \
-    BoardView.cpp \
     Specimen.cpp \
     Board.cpp \
     MainWindow.cpp \
@@ -33,7 +32,6 @@ HEADERS  += \
     SimulationEngine.h \
     SpecimensModel.h \
     BoardModel.h \
-    BoardView.h \
     Specimen.h \
     Board.h \
     MainWindow.h \
