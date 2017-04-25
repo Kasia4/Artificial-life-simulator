@@ -1,3 +1,7 @@
+/* Specimen.h
+ * author: Katarzyna Rybacka
+ * The Specimen class provides abstract base for concrete specimens types
+ */
 #ifndef SPECIMEN_H
 #define SPECIMEN_H
 

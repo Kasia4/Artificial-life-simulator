@@ -1,3 +1,9 @@
+/* SpecimensModel.h
+ * author: Karol Checinski
+ * The SpecimensModel class provides communication
+ * between SimulatorEngine and QTableView. Provides information
+ * about specimens on board.
+ */
 #ifndef SPECIMENSMODEL_H
 #define SPECIMENSMODEL_H
 

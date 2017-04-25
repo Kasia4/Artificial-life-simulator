@@ -1,3 +1,9 @@
+/* SimulatorEngine.h
+ * author: Karol Chęciński
+ * The SimulatorEngine class is main class managing simulation
+ */
+
+
 #ifndef SIMULATIONENGINE_H
 #define SIMULATIONENGINE_H
 

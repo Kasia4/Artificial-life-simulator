@@ -1,3 +1,9 @@
+/* CarnivoreSpecimen.h
+ * author: Katarzyna Rybacka
+ * The CarnivoreSpecimen class provides
+ * carnivore type specimen
+ */
+
 #ifndef CARNIVORESPECIMEN_H
 #define CARNIVORESPECIMEN_H
 

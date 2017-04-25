@@ -1,3 +1,7 @@
+/* MainWindow.h
+ * author: Karol Checinski
+ * The MainWindow class responsibles for main application GUI
+ */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

@@ -1,3 +1,8 @@
+/* SpecimenFactory.h
+ * author: Katarzyna Rybacka
+ * The SpecimenFactory class provides Factory to create default fields by cloning prototypes
+ */
+
 #ifndef SPECIMENFACTORY_H
 #define SPECIMENFACTORY_H
 
