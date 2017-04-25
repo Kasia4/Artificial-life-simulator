@@ -48,6 +48,20 @@
         return fields_;
     }
 
+    void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+    {
+        Q_UNUSED(painter);
+        Q_UNUSED(option);
+        Q_UNUSED(widget);
+    }
+
+    QRectF Board::boundingRect() const
+    {
+        return QRectF(0,0, size_.x()*field_size_, size_.y()*field_size_);
+    }
+
+
+
     void Board::replaceField(const QPoint &position, FieldType type)
     {
         BoardField* old_field = &getField(position);

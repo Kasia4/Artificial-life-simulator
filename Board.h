@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QVector>
 #include <QPoint>
+#include <QGraphicsItem>
 #include <iostream>
 
 #include "WaterField.h"
@@ -20,7 +21,7 @@ typedef QVector< MapColumn > MapTable;
 
 
 
-class Board : public QObject
+class Board : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 
@@ -38,6 +39,9 @@ public:
     int getFieldSize() const;
     BoardField& getField(const QPoint& position);
     const MapTable& getFields() const;
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QRectF boundingRect() const override;
 
     /* Sets field with given type at given position. Creates new field object and destroys old one */
     void replaceField(const QPoint& position, FieldType type);
