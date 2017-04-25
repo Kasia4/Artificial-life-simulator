@@ -1,3 +1,8 @@
+/* Board.h
+ * author: Karol Checinski
+ * The Board class provides grid board for simulator.
+ */
+
 #ifndef BOARD_H
 #define BOARD_H
 
@@ -33,13 +38,16 @@ public:
     int getFieldSize() const;
     BoardField& getField(const QPoint& position);
     const MapTable& getFields() const;
+
+    /* Sets field with given type at given position. Creates new field object and destroys old one */
     void replaceField(const QPoint& position, FieldType type);
 
 
 private:
     void resize(const QPoint& size);
-    int fieldIndex(const QPoint& position);
+    /* Sets properly QGraphicsItem properties for field at given position */
     void placeField(QPoint position);
+    /* Calls placeField for every field */
     void placeFields();
 
     QPoint size_;

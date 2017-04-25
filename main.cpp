@@ -31,7 +31,7 @@ void createSpecimans(SimulationEngine& engine){
     CarnivoreSpecimen* spec2 = new CarnivoreSpecimen;
     spec1->setPos(20,20);
     spec1->setSize(20);
-    spec1->setVelocity(QVector2D(0.4,0.4));
+    spec1->setVelocity(QVector2D(0.4,0.7));
     engine.addSpecimen(spec1);
     spec2->setPos(220,60);
     spec2->setSize(30);
