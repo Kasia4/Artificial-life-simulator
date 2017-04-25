@@ -6,6 +6,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsView>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void setBoardView(QGraphicsScene *scene);
     ~MainWindow();
 
 private:
