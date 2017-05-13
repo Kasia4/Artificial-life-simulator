@@ -14,7 +14,7 @@ void BoardField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 QRectF BoardField::boundingRect() const
 {
-    return QRectF(x(), y(), size_*2, size_*2);
+    return QRectF(0,0, size_, size_);
 }
 
 void BoardField::setSize(float size)

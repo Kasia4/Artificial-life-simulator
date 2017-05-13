@@ -44,15 +44,24 @@ void createSpecimans(SimulationEngine& engine){
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    MainWindow main_window;
+
+    /* board properties setting */
     Board board(QPoint(15,15));
-    board.setFieldSize(20);
+    board.setFieldSize(40);
+
+    /* simulation engine creating */
     SimulationEngine engine(board);
+
+    /* example tests demonstrating implemented features */
     setCustomBoard(board);
     createSpecimans(engine);
+
     engine.startWork();
-    MainWindow main_window;
+
     main_window.setBoardView(&(engine.getScene()));
     main_window.show();
+
     return a.exec();
 }
 

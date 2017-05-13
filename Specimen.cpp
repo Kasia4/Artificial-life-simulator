@@ -8,7 +8,7 @@ Specimen::Specimen()
 
 QRectF Specimen::boundingRect() const
 {
-    return QRectF(x() - size_, y() - size_, size_*2, size_*2);
+    return QRectF(size_/2,  - size_/2, size_, size_);
 
 }
 
