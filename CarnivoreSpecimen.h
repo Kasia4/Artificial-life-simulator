@@ -14,7 +14,6 @@ class CarnivoreSpecimen : public Specimen
 public:
     CarnivoreSpecimen();
     SpecimenType getType() const { return SpecimenType::CARNIVORE; }
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     Specimen* clone() const;
 };
 

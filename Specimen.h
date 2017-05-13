@@ -28,14 +28,20 @@ public:
     void setSize(float size);
     void setVelocity(float velocity);
     void setAngularVelocity(float velocity);
+
     float getSize() const;
+    float getEyesSize() const;
+    float getEyesDist() const;
     float getVelocity() const;
     float getAngularVelocity() const;
+    QColor getSkinColor() const;
 protected:
     void advance(int step);
     float size_;
     float eyes_size_;
     float eyes_dist_;
+    QColor skin_color_;
+
 
 private:
     float velocity_;
