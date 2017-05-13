@@ -33,10 +33,14 @@ public:
     float getAngularVelocity() const;
 protected:
     void advance(int step);
-private:
     float size_;
+    float eyes_size_;
+    float eyes_dist_;
+
+private:
     float velocity_;
     float angular_velocity_;
+
 
 };
 

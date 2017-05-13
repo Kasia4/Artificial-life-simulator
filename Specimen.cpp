@@ -8,7 +8,7 @@ Specimen::Specimen()
 
 QRectF Specimen::boundingRect() const
 {
-    return QRectF(size_/2,  - size_/2, size_, size_);
+    return QRectF(-size_/2,  -size_/2, size_, size_);
 
 }
 
@@ -21,7 +21,9 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 void Specimen::setSize(float size)
 {
-    size_=size;
+    size_ = size;
+    eyes_dist_ = size/2;
+    eyes_size_ = size/5;
 }
 
 void Specimen::setVelocity(float velocity)
