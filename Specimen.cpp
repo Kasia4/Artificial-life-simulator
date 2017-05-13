@@ -8,7 +8,7 @@ Specimen::Specimen()
 
 QRectF Specimen::boundingRect() const
 {
-    return QRectF(-size_/2,  -size_/2, size_, size_);
+    return QRectF(-size_/2,-size_/2, size_, size_);
 
 }
 
@@ -75,9 +75,8 @@ QColor Specimen::getSkinColor() const
 void Specimen::advance(int step)
 {
     if(!step)return;
-    float dx = qCos(rotation())*velocity_;
-    float dy = qSin(rotation())*velocity_;
-    moveBy(dx, dy);
+    setPos(mapToParent(velocity_,0));
+
     std::cout<<pos().x()<<", "<<pos().y()<<std::endl;
     setRotation(rotation() + angular_velocity_);
 }
