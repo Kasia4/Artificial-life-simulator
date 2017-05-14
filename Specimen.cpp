@@ -1,6 +1,10 @@
 #include "Specimen.h"
 
 Specimen::Specimen()
+    :target_(nullptr)
+    ,velocity_(0)
+    ,angular_velocity_(0)
+
 {
 
 }
@@ -42,6 +46,16 @@ void Specimen::setAngularVelocity(float velocity)
     angular_velocity_ = velocity;
 }
 
+void Specimen::setTarget(const QGraphicsItem* target)
+{
+    target_ = target;
+}
+
+void Specimen::disableTracking()
+{
+    target_ = nullptr;
+}
+
 float Specimen::getSize() const
 {
     return size_;
@@ -67,6 +81,11 @@ float Specimen::getAngularVelocity() const
     return angular_velocity_;
 }
 
+const QGraphicsItem *Specimen::getTarget() const
+{
+    return target_;
+}
+
 QColor Specimen::getSkinColor() const
 {
     return skin_color_;
@@ -75,8 +94,21 @@ QColor Specimen::getSkinColor() const
 void Specimen::advance(int step)
 {
     if(!step)return;
-    setPos(mapToParent(velocity_,0));
-
-    std::cout<<pos().x()<<", "<<pos().y()<<std::endl;
-    setRotation(rotation() + angular_velocity_);
+    if(target_)
+    {
+        QPointF dist_v = target_->pos() - pos();
+        qreal dist = qSqrt(dist_v.x()*dist_v.x() + dist_v.y()*dist_v.y());
+        qreal angle = qRadiansToDegrees( qAtan2(dist_v.y(), dist_v.x()) );
+        setRotation(angle);
+        on_target_ = dist<TRACKING_DISTANCE_THRESHOLD;
+        if(!on_target_)
+        {
+            setPos(mapToParent(velocity_,0));
+        }
+    }
+    else
+    {
+        setRotation(rotation() + angular_velocity_);
+        setPos(mapToParent(velocity_,0));
+    }
 }

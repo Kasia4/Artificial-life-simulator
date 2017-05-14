@@ -29,17 +29,23 @@ void setCustomBoard(Board& board)
 void createSpecimans(SimulationEngine& engine){
     HerbivoreSpecimen* spec1 = new HerbivoreSpecimen;
     CarnivoreSpecimen* spec2 = new CarnivoreSpecimen;
-    spec1->setPos(40,40);
+    CarnivoreSpecimen* spec3 = new CarnivoreSpecimen;
+    spec1->setPos(280,40);
     spec1->setSize(20);
-    spec1->setRotation(qDegreesToRadians(30.0));
-    spec1->setVelocity(0.7);
-    spec1->setAngularVelocity(0.8);
+    //spec1->setVelocity(1);
+    spec1->setAngularVelocity(0.3);
     engine.addSpecimen(spec1);
     spec2->setPos(40,80);
     spec2->setSize(20);
-    spec2->setVelocity(0.15);
-    spec2->setAngularVelocity(1);
+    spec2->setVelocity(0.7);
+    //spec2->setAngularVelocity(1);
+    spec2->setTarget(spec1);
     engine.addSpecimen(spec2);
+    spec3->setPos(20,240);
+    spec3->setSize(40);
+    spec3->setVelocity(3);
+    spec3->setTarget(spec2);
+    engine.addSpecimen(spec3);
 }
 
 int main(int argc, char *argv[])

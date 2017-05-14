@@ -19,6 +19,7 @@ enum class SpecimenType : unsigned {
 
 class Specimen : public QGraphicsItem
 {
+    static constexpr float TRACKING_DISTANCE_THRESHOLD = 5;
 public:
     Specimen();
     virtual SpecimenType getType() const = 0;
@@ -28,12 +29,15 @@ public:
     void setSize(float size);
     void setVelocity(float velocity);
     void setAngularVelocity(float velocity);
+    void setTarget(const QGraphicsItem* target);
+    void disableTracking();
 
     float getSize() const;
     float getEyesSize() const;
     float getEyesDist() const;
     float getVelocity() const;
     float getAngularVelocity() const;
+    const QGraphicsItem *getTarget() const;
     QColor getSkinColor() const;
 protected:
     void advance(int step);
@@ -42,6 +46,8 @@ protected:
     float eyes_dist_;
     QColor skin_color_;
 
+    const QGraphicsItem* target_;
+    bool on_target_;
 
 private:
     float velocity_;
