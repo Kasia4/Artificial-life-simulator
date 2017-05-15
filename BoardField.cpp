@@ -5,6 +5,12 @@ BoardField::BoardField()
 
 }
 
+int BoardField::type() const
+{
+    return ItemType :: FIELD;
+
+}
+
 void BoardField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);

@@ -8,7 +8,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
-
+#include "ItemType.h"
 
 enum class FieldType : unsigned{
     GROUND = 0,
@@ -20,8 +20,10 @@ class BoardField : public QGraphicsItem
 {
 public:
     BoardField();
-    virtual FieldType getType() const = 0;
+    virtual FieldType getFieldType() const = 0;
     virtual BoardField* clone() const = 0;
+    int type() const;
+
     QRectF boundingRect() const override;
     virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0) override;
     void setSize(float size);

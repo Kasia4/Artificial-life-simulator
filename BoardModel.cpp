@@ -25,7 +25,7 @@ QVariant BoardModel::data(const QModelIndex &index, int role) const
     BoardField& field = board_handle_->getField(QPoint(index.column(), index.row()));
     if( role == FIELD_TYPE_ROLE )
     {
-        return int(field.getType());
+        return int(field.getFieldType());
     }
     if( index.column() > board_handle_->getWidth() || index.row() > board_handle_->getHeight() )
     {
@@ -33,7 +33,7 @@ QVariant BoardModel::data(const QModelIndex &index, int role) const
     }
     else if( role == FIELD_VALUE_ROLE )
     {
-        if(field.getType() == FieldType::GROUND)
+        if(field.getFieldType() == FieldType::GROUND)
         {
             return (dynamic_cast<GroundField&>(field)).getOvergrow();
         }

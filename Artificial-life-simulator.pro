@@ -26,7 +26,9 @@ SOURCES += main.cpp\
     FieldFactory.cpp \
     HerbivoreSpecimen.cpp \
     CarnivoreSpecimen.cpp \
-    SpecimenFactory.cpp
+    SpecimenFactory.cpp \
+    Collider.cpp \
+    Border.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -42,6 +44,8 @@ HEADERS  += \
     HerbivoreSpecimen.h \
     CarnivoreSpecimen.h \
     SpecimenFactory.h \
-    ItemType.h
+    ItemType.h \
+    Collider.h \
+    Border.h
 
 FORMS    += mainwindow.ui

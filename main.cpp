@@ -18,7 +18,7 @@ void setCustomBoard(Board& board)
     for(int i = 0; i<board.getWidth(); ++i){
         for(int j = 0; j<board.getHeight(); ++j){
             BoardField* field = &board.getField(QPoint(i,j));
-            if(field->getType()==FieldType::GROUND)
+            if(field->getFieldType()==FieldType::GROUND)
             {
                 dynamic_cast<GroundField*>(field)->setOvergrow(i*5);
             }

@@ -12,7 +12,7 @@ class WaterField : public BoardField
 {
 public:
     WaterField();
-    FieldType getType() const override { return FieldType::WATER; }
+    FieldType getFieldType() const override { return FieldType::WATER; }
     BoardField* clone() const override;
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0) override;
 

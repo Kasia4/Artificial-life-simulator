@@ -11,7 +11,7 @@ class GroundField : public BoardField
 {
 public:
     GroundField();
-    FieldType getType() const { return FieldType::GROUND; }
+    FieldType getFieldType() const { return FieldType::GROUND; }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     BoardField* clone() const;
     void setOvergrow( int overgrow_level );
