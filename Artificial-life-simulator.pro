@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     CarnivoreSpecimen.cpp \
     SpecimenFactory.cpp \
     Collider.cpp \
-    Border.cpp
+    Border.cpp \
+    ConeCollider.cpp \
+    CircleCollider.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -46,6 +48,8 @@ HEADERS  += \
     SpecimenFactory.h \
     ItemType.h \
     Collider.h \
-    Border.h
+    Border.h \
+    ConeCollider.h \
+    CircleCollider.h
 
 FORMS    += mainwindow.ui

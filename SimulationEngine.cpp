@@ -10,6 +10,16 @@ SimulationEngine::SimulationEngine(Board& board)
 
 
     updateBoardSize(board_->getSize());
+    //scene_.setSceneRect(0,0,598,598);
+    scene_.setSceneRect(board_->boundingRect());
+    border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());
+    QPen pen = QPen(Qt::black);
+
+    scene_.addLine(*(border->getTopLine()),pen);
+    scene_.addLine(*(border->getLeftLine()),pen);
+    scene_.addLine(*(border->getRightLine()),pen);
+    scene_.addLine(*(border->getBottomLine()),pen);
+
 
 }
 

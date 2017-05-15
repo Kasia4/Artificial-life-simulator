@@ -15,6 +15,7 @@
 
 #include "Board.h"
 #include "Specimen.h"
+#include "Border.h"
 
 class SimulationEngine: public QObject
 {
@@ -44,7 +45,7 @@ private:
     Board* board_;
     bool is_started_;
     QGraphicsScene scene_;
-
+    Border* border;
 
 
 };
