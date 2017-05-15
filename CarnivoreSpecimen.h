@@ -13,7 +13,7 @@ class CarnivoreSpecimen : public Specimen
 {
 public:
     CarnivoreSpecimen();
-    SpecimenType getType() const { return SpecimenType::CARNIVORE; }
+    SpecimenType getSpec() const { return SpecimenType::CARNIVORE; }
     Specimen* clone() const;
 };
 

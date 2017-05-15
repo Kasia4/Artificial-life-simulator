@@ -10,6 +10,8 @@
 #include <QPainter>
 #include <QtMath>
 #include <iostream>
+#include "ItemType.h"
+
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,
@@ -22,8 +24,10 @@ class Specimen : public QGraphicsItem
     static constexpr float TRACKING_DISTANCE_THRESHOLD = 5;
 public:
     Specimen();
-    virtual SpecimenType getType() const = 0;
+    virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
+    int type() const;
+
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     void setSize(float size);

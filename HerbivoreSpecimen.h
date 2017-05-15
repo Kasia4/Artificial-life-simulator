@@ -11,7 +11,7 @@ class HerbivoreSpecimen : public Specimen
 {
 public:
     HerbivoreSpecimen();
-    SpecimenType getType() const { return SpecimenType::HERBIVORE; }
+    SpecimenType getSpec() const { return SpecimenType::HERBIVORE; }
     Specimen* clone() const;
 };
 

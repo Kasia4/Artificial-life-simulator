@@ -41,6 +41,7 @@ HEADERS  += \
     FieldFactory.h \
     HerbivoreSpecimen.h \
     CarnivoreSpecimen.h \
-    SpecimenFactory.h
+    SpecimenFactory.h \
+    ItemType.h
 
 FORMS    += mainwindow.ui

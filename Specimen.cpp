@@ -9,6 +9,12 @@ Specimen::Specimen()
 
 }
 
+int Specimen::type() const
+{
+    return ItemType::SPECIMEN;
+
+}
+
 
 QRectF Specimen::boundingRect() const
 {
