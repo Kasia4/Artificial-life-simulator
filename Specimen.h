@@ -34,6 +34,7 @@ public:
     void setVelocity(float velocity);
     void setAngularVelocity(float velocity);
     void setTarget(const QGraphicsItem* target);
+    void setEscape(bool escape);
     void disableTracking();
 
     float getSize() const;
@@ -42,6 +43,7 @@ public:
     float getVelocity() const;
     float getAngularVelocity() const;
     const QGraphicsItem *getTarget() const;
+    bool  getEscape() const;
     QColor getSkinColor() const;
 protected:
     void advance(int step);
@@ -51,6 +53,7 @@ protected:
     QColor skin_color_;
 
     const QGraphicsItem* target_;
+    bool escape_;
     bool on_target_;
 
 private:
