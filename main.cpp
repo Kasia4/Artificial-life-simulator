@@ -43,10 +43,7 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setEscape(true);
     engine.addSpecimen(spec2);
 
-    CircleCollider* coll1 = new CircleCollider(30);
-    coll1->setPos(120,120);
-    coll1->setVisiblity(false);
-    engine.getScene().addItem(coll1);
+
     /*
     spec3->setPos(20,240);
     spec3->setSize(40);
