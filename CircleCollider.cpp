@@ -15,6 +15,7 @@ CircleCollider::CircleCollider(qreal radius)
 void CircleCollider::setRadius(qreal radius)
 {
     radius_ = radius;
+    generateShape();
 }
 
 qreal CircleCollider::getRadius() const

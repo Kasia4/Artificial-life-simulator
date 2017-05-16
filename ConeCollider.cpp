@@ -17,11 +17,13 @@ ConeCollider::ConeCollider(qreal radius, qreal apex_angle)
 void ConeCollider::setRadius(qreal radius)
 {
     radius_ = radius;
+    generateShape();
 }
 
 void ConeCollider::setApexAngle(qreal apex_angle)
 {
     apex_angle_ = apex_angle;
+    generateShape();
 }
 
 qreal ConeCollider::getRadius() const

@@ -10,8 +10,9 @@
 #include <QPainter>
 #include <QtMath>
 #include <iostream>
-#include "ItemType.h"
 
+#include "ItemType.h"
+#include "CircleCollider.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,
@@ -35,13 +36,17 @@ public:
     void setAngularVelocity(float velocity);
     void setTarget(const QGraphicsItem* target);
     void setEscape(bool escape);
+    void setHearingRange(qreal range);
     void disableTracking();
+
 
     float getSize() const;
     float getEyesSize() const;
     float getEyesDist() const;
     float getVelocity() const;
     float getAngularVelocity() const;
+    qreal getHearingRange() const;
+
     const QGraphicsItem *getTarget() const;
     bool  getEscape() const;
     QColor getSkinColor() const;
@@ -56,9 +61,14 @@ protected:
     bool escape_;
     bool on_target_;
 
+
+
 private:
     float velocity_;
     float angular_velocity_;
+
+    qreal hearing_range_;
+    CircleCollider hearing_;
 
 
 };

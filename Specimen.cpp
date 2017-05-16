@@ -6,7 +6,9 @@ Specimen::Specimen()
     ,velocity_(0)
     ,angular_velocity_(0)
 {
-
+    hearing_.setParentItem(this);
+    setHearingRange(50);
+    hearing_.setVisiblity(true);
 }
 
 int Specimen::type() const
@@ -62,6 +64,12 @@ void Specimen::setEscape(bool escape)
     escape_ = escape;
 }
 
+void Specimen::setHearingRange(qreal range)
+{
+    hearing_range_ = range;
+    hearing_.setRadius(range);
+}
+
 void Specimen::disableTracking()
 {
     target_ = nullptr;
@@ -90,6 +98,11 @@ float Specimen::getVelocity() const
 float Specimen::getAngularVelocity() const
 {
     return angular_velocity_;
+}
+
+qreal Specimen::getHearingRange() const
+{
+    return hearing_range_;
 }
 
 const QGraphicsItem *Specimen::getTarget() const
