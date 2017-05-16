@@ -7,8 +7,15 @@ Specimen::Specimen()
     ,angular_velocity_(0)
 {
     hearing_.setParentItem(this);
+    sight_.setParentItem(this);
+
+    /*Example values*/
     setHearingRange(50);
+    setSightRange(200);
+    setSightAngle(40);
+
     hearing_.setVisiblity(true);
+    sight_.setVisiblity(true);
 }
 
 int Specimen::type() const
@@ -66,8 +73,17 @@ void Specimen::setEscape(bool escape)
 
 void Specimen::setHearingRange(qreal range)
 {
-    hearing_range_ = range;
     hearing_.setRadius(range);
+}
+
+void Specimen::setSightRange(qreal range)
+{
+    sight_.setRadius(range);
+}
+
+void Specimen::setSightAngle(qreal angle)
+{
+    sight_.setApexAngle(angle);
 }
 
 void Specimen::disableTracking()
@@ -102,7 +118,17 @@ float Specimen::getAngularVelocity() const
 
 qreal Specimen::getHearingRange() const
 {
-    return hearing_range_;
+    return hearing_.getRadius();
+}
+
+qreal Specimen::getSightRange() const
+{
+    return sight_.getRadius();
+}
+
+qreal Specimen::getSightAngle() const
+{
+    return sight_.getApexAngle();
 }
 
 const QGraphicsItem *Specimen::getTarget() const

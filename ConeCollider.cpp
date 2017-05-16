@@ -38,10 +38,11 @@ qreal ConeCollider::getApexAngle() const
 
 void ConeCollider::generateShape()
 {
-    shape_.arcTo(QRectF(-radius_,-radius_,radius_*2, radius_*2),-apex_angle_/2, apex_angle_);
+    shape_.arcTo(QRectF(-radius_,-radius_,radius_*2, radius_*2), apex_angle_/2, -apex_angle_);
+    shape_.closeSubpath();
 }
 
-QRectF CircleCollider::boundingRect() const
+QRectF ConeCollider::boundingRect() const
 {
     return QRectF(-radius_,-radius_,radius_*2,radius_*2);
 }

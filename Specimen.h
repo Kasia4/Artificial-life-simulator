@@ -13,6 +13,7 @@
 
 #include "ItemType.h"
 #include "CircleCollider.h"
+#include "ConeCollider.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,
@@ -37,6 +38,8 @@ public:
     void setTarget(const QGraphicsItem* target);
     void setEscape(bool escape);
     void setHearingRange(qreal range);
+    void setSightRange(qreal range);
+    void setSightAngle(qreal angle);
     void disableTracking();
 
 
@@ -46,6 +49,8 @@ public:
     float getVelocity() const;
     float getAngularVelocity() const;
     qreal getHearingRange() const;
+    qreal getSightRange() const;
+    qreal getSightAngle() const;
 
     const QGraphicsItem *getTarget() const;
     bool  getEscape() const;
@@ -67,8 +72,10 @@ private:
     float velocity_;
     float angular_velocity_;
 
-    qreal hearing_range_;
     CircleCollider hearing_;
+    ConeCollider sight_;
+
+
 
 
 };
