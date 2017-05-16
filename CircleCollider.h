@@ -11,8 +11,11 @@ public:
     void setRadius(qreal radius);
 
     qreal getRadius() const;
+    void generateShape();
+    QRectF boundingRect() const;
 private:
     qreal radius_;
+
 };
 
 #endif // CIRCLECOLLIDER_H
