@@ -8,6 +8,8 @@ class Collider : public QGraphicsItem
 public:
     Collider();
     int type() const;
+private:
+    virtual QPainterPath getShape() = 0;
 };
 
 #endif // COLLIDER_H
