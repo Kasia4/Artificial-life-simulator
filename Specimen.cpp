@@ -12,7 +12,7 @@ Specimen::Specimen()
     /*Example values*/
     setHearingRange(50);
     setSightRange(200);
-    setSightAngle(40);
+    setSightAngle(30);
 
     hearing_.setVisiblity(true);
     sight_.setVisiblity(true);

@@ -32,3 +32,13 @@ void Collider::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setBrush(QColor(0,120,0));
     painter->drawPath(shape_);
 }
+
+QList<QGraphicsItem*> Collider::collidingItems(ItemType type)
+{
+    QList<QGraphicsItem*> items;
+    for(QGraphicsItem* item : collidingItems())
+    {
+        if(item->type() == type) items.append(item);
+    }
+    return items;
+}

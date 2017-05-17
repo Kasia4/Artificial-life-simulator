@@ -13,6 +13,7 @@ public:
     QPainterPath getShape() const;
     void setVisiblity(bool is_visible);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QList<QGraphicsItem *> collidingItems(ItemType type);
 protected:
     QPainterPath shape_;
     virtual void generateShape() = 0;
