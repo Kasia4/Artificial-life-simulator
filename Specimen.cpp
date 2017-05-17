@@ -5,6 +5,9 @@ Specimen::Specimen()
     ,escape_(false)
     ,velocity_(0)
     ,angular_velocity_(0)
+    ,on_target_(false)
+    ,see_target_(false)
+    ,hear_target_(false)
 {
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
@@ -61,7 +64,7 @@ void Specimen::setAngularVelocity(float velocity)
     angular_velocity_ = velocity;
 }
 
-void Specimen::setTarget(const QGraphicsItem* target)
+void Specimen::setTarget(QGraphicsItem* target)
 {
     target_ = target;
 }
@@ -131,7 +134,7 @@ qreal Specimen::getSightAngle() const
     return sight_.getApexAngle();
 }
 
-const QGraphicsItem *Specimen::getTarget() const
+QGraphicsItem *Specimen::getTarget() const
 {
     return target_;
 }
@@ -151,14 +154,26 @@ void Specimen::advance(int step)
     if(!step)return;
     if(target_)
     {
-        QPointF dist_v = target_->pos() - pos();
-        qreal dist = qSqrt(dist_v.x()*dist_v.x() + dist_v.y()*dist_v.y());
-        qreal angle = qRadiansToDegrees( qAtan2(dist_v.y(), dist_v.x()) );
-        if(escape_)angle+=180;
-        setRotation(angle);
-        on_target_ = dist<TRACKING_DISTANCE_THRESHOLD;
-        if(!on_target_)
+        QList<QGraphicsItem*> seen_specimens = sight_.collidingItems(ItemType::SPECIMEN);
+        see_target_ = seen_specimens.contains(target_);
+        hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
+        //if(seen_specimens.count()>1)std::cout<<"Widze "<<seen_specimens.count()<<" osobnikow\n";
+        if(see_target_ || hear_target_)
         {
+            QPointF dist_v = target_->pos() - pos();
+            qreal dist = qSqrt(dist_v.x()*dist_v.x() + dist_v.y()*dist_v.y());
+            qreal angle = qRadiansToDegrees( qAtan2(dist_v.y(), dist_v.x()) );
+            if(escape_)angle+=180;
+            setRotation(angle);
+            on_target_ = dist<TRACKING_DISTANCE_THRESHOLD;
+            if(!on_target_)
+            {
+                setPos(mapToParent(velocity_,0));
+            }
+        }
+        else
+        {
+            setRotation(rotation() + angular_velocity_);
             setPos(mapToParent(velocity_,0));
         }
     }
@@ -167,4 +182,5 @@ void Specimen::advance(int step)
         setRotation(rotation() + angular_velocity_);
         setPos(mapToParent(velocity_,0));
     }
+    if(DEBUG)std::cout<<pos().x()<<", "<<pos().y()<<"|\t on_target_ "<<on_target_<<"\t"<<"see "<<see_target_<<"\t hear"<<hear_target_<<std::endl;
 }

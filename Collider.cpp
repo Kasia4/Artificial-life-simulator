@@ -12,7 +12,7 @@ int Collider::type() const
     return ItemType :: COLLIDER;
 }
 
-QPainterPath Collider::getShape() const
+QPainterPath Collider::shape() const
 {
     return shape_;
 }
@@ -30,13 +30,13 @@ void Collider::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     if(!is_visible_)return;
     painter->setPen(QPen(QColor(0, 0, 0),2));
     painter->setBrush(QColor(0,120,0));
-    painter->drawPath(shape_);
+    painter->drawPath(shape());
 }
 
 QList<QGraphicsItem*> Collider::collidingItems(ItemType type)
 {
     QList<QGraphicsItem*> items;
-    for(QGraphicsItem* item : collidingItems())
+    for(QGraphicsItem* item : QGraphicsItem::collidingItems())
     {
         if(item->type() == type) items.append(item);
     }

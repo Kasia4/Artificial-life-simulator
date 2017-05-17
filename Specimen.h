@@ -35,7 +35,7 @@ public:
     void setSize(float size);
     void setVelocity(float velocity);
     void setAngularVelocity(float velocity);
-    void setTarget(const QGraphicsItem* target);
+    void setTarget(QGraphicsItem *target);
     void setEscape(bool escape);
     void setHearingRange(qreal range);
     void setSightRange(qreal range);
@@ -52,9 +52,11 @@ public:
     qreal getSightRange() const;
     qreal getSightAngle() const;
 
-    const QGraphicsItem *getTarget() const;
+    QGraphicsItem *getTarget() const;
     bool  getEscape() const;
     QColor getSkinColor() const;
+
+    bool DEBUG;
 protected:
     void advance(int step);
     float size_;
@@ -62,10 +64,11 @@ protected:
     float eyes_dist_;
     QColor skin_color_;
 
-    const QGraphicsItem* target_;
+    QGraphicsItem* target_;
     bool escape_;
     bool on_target_;
-
+    bool see_target_;
+    bool hear_target_;
 
 
 private:

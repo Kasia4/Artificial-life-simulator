@@ -10,10 +10,12 @@ class Collider : public QGraphicsItem
 public:
     Collider();
     int type() const;
-    QPainterPath getShape() const;
+    QPainterPath shape() const;
     void setVisiblity(bool is_visible);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QList<QGraphicsItem *> collidingItems(ItemType type);
+
+
 protected:
     QPainterPath shape_;
     virtual void generateShape() = 0;

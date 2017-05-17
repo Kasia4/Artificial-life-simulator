@@ -33,16 +33,19 @@ void createSpecimans(SimulationEngine& engine){
     //CarnivoreSpecimen* spec3 = new CarnivoreSpecimen;
     spec1->setPos(280,40);
     spec1->setSize(20);
-    spec1->setVelocity(5);
+    spec1->setVelocity(1);
     spec1->setAngularVelocity(1);
+    spec1->setTarget(spec2);
     engine.addSpecimen(spec1);
-    spec2->setPos(280,280);
+    spec2->setPos(280,350);
     spec2->setSize(20);
     spec2->setVelocity(0.7);
+    spec2->setAngularVelocity(-1);
     spec2->setTarget(spec1);
-    spec2->setEscape(true);
     engine.addSpecimen(spec2);
-
+    spec2->setEscape(true);
+    spec1->DEBUG = false;
+    spec2->DEBUG = true;
 
     /*
     spec3->setPos(20,240);
