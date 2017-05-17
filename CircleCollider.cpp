@@ -25,7 +25,7 @@ qreal CircleCollider::getRadius() const
 
 void CircleCollider::generateShape()
 {
-    //TODO czyszczenie przy zmianie
+    shape_ = QPainterPath();
     shape_.addEllipse(QPointF(0,0), radius_, radius_);
 }
 

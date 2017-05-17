@@ -38,6 +38,7 @@ qreal ConeCollider::getApexAngle() const
 
 void ConeCollider::generateShape()
 {
+    shape_ = QPainterPath();
     shape_.arcTo(QRectF(-radius_,-radius_,radius_*2, radius_*2), apex_angle_/2, -apex_angle_);
     shape_.closeSubpath();
 }
