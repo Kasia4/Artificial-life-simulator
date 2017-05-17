@@ -115,7 +115,8 @@ void Specimen::advance(int step)
         QPointF dist_v = target_->pos() - pos();
         qreal dist = qSqrt(dist_v.x()*dist_v.x() + dist_v.y()*dist_v.y());
         qreal angle = qRadiansToDegrees( qAtan2(dist_v.y(), dist_v.x()) );
-        if(escape_)angle+=180;
+        if(escape_)
+            angle+=180;
         setRotation(angle);
         on_target_ = dist<TRACKING_DISTANCE_THRESHOLD;
         if(!on_target_)
