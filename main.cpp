@@ -44,8 +44,6 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setTarget(spec1);
     engine.addSpecimen(spec2);
     spec2->setEscape(true);
-    spec1->DEBUG = false;
-    spec2->DEBUG = true;
 
     /*
     spec3->setPos(20,240);

@@ -47,19 +47,19 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->drawPath(circle_path);
 }
 
-void Specimen::setSize(float size)
+void Specimen::setSize(qreal size)
 {
     size_ = size;
     eyes_dist_ = size/2;
     eyes_size_ = size/5;
 }
 
-void Specimen::setVelocity(float velocity)
+void Specimen::setVelocity(qreal velocity)
 {
     velocity_ = velocity;
 }
 
-void Specimen::setAngularVelocity(float velocity)
+void Specimen::setAngularVelocity(qreal velocity)
 {
     angular_velocity_ = velocity;
 }
@@ -94,27 +94,27 @@ void Specimen::disableTracking()
     target_ = nullptr;
 }
 
-float Specimen::getSize() const
+qreal Specimen::getSize() const
 {
     return size_;
 }
 
-float Specimen::getEyesSize() const
+qreal Specimen::getEyesSize() const
 {
     return eyes_size_;
 }
 
-float Specimen::getEyesDist() const
+qreal Specimen::getEyesDist() const
 {
     return eyes_dist_;
 }
 
-float Specimen::getVelocity() const
+qreal Specimen::getVelocity() const
 {
     return velocity_;
 }
 
-float Specimen::getAngularVelocity() const
+qreal Specimen::getAngularVelocity() const
 {
     return angular_velocity_;
 }
@@ -157,7 +157,6 @@ void Specimen::advance(int step)
         QList<QGraphicsItem*> seen_specimens = sight_.collidingItems(ItemType::SPECIMEN);
         see_target_ = seen_specimens.contains(target_);
         hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
-        //if(seen_specimens.count()>1)std::cout<<"Widze "<<seen_specimens.count()<<" osobnikow\n";
         if(see_target_ || hear_target_)
         {
             QPointF dist_v = target_->pos() - pos();
@@ -182,5 +181,4 @@ void Specimen::advance(int step)
         setRotation(rotation() + angular_velocity_);
         setPos(mapToParent(velocity_,0));
     }
-    if(DEBUG)std::cout<<pos().x()<<", "<<pos().y()<<"|\t on_target_ "<<on_target_<<"\t"<<"see "<<see_target_<<"\t hear"<<hear_target_<<std::endl;
 }
