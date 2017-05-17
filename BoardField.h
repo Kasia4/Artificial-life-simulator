@@ -26,11 +26,11 @@ public:
 
     QRectF boundingRect() const override;
     virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0) override;
-    void setSize(float size);
-    float getSize() const;
+    void setSize(qreal size);
+    qreal getSize() const;
 
 private:
-    float size_;
+    qreal size_;
 };
 
 #endif // BOARDFIELD_H

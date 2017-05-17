@@ -10,8 +10,10 @@
 #include <QPainter>
 #include <QtMath>
 #include <iostream>
-#include "ItemType.h"
 
+#include "ItemType.h"
+#include "CircleCollider.h"
+#include "ConeCollider.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,
@@ -19,46 +21,75 @@ enum class SpecimenType : unsigned {
 };
 
 
-class Specimen : public QGraphicsItem
+class Specimen :  public QGraphicsItem
 {
-    static constexpr float TRACKING_DISTANCE_THRESHOLD = 5;
+
+
+    static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
+    static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
+    static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
     Specimen();
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
     int type() const;
 
+
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
-    void setSize(float size);
-    void setVelocity(float velocity);
-    void setAngularVelocity(float velocity);
-    void setTarget(const QGraphicsItem* target);
+    void setSize(qreal size);
+    void setVelocity(qreal velocity);
+    void setAngularVelocity(qreal velocity);
+    void setTarget(QGraphicsItem *target);
+    void setMove(bool move);
     void setEscape(bool escape);
+    void setHearingRange(qreal range);
+    void setSightRange(qreal range);
+    void setSightAngle(qreal angle);
+
+    void release();
+
+    qreal getSize() const;
+    qreal getEyesSize() const;
+    qreal getEyesDist() const;
+    qreal getVelocity() const;
+    qreal getAngularVelocity() const;
+    qreal getHearingRange() const;
+    qreal getSightRange() const;
+    qreal getSightAngle() const;
+
+    QGraphicsItem *getTarget() const;
+    bool getMove() const;
+    bool  getEscape() const;
+
+    QColor getSkinColor() const;
+
     void disableTracking();
 
-    float getSize() const;
-    float getEyesSize() const;
-    float getEyesDist() const;
-    float getVelocity() const;
-    float getAngularVelocity() const;
-    const QGraphicsItem *getTarget() const;
-    bool  getEscape() const;
-    QColor getSkinColor() const;
 protected:
     void advance(int step);
-    float size_;
-    float eyes_size_;
-    float eyes_dist_;
+    qreal size_;
+    qreal eyes_size_;
+    qreal eyes_dist_;
     QColor skin_color_;
 
-    const QGraphicsItem* target_;
+    QGraphicsItem* target_;
+    bool move_;
     bool escape_;
     bool on_target_;
+    bool see_target_;
+    bool hear_target_;
+
 
 private:
-    float velocity_;
-    float angular_velocity_;
+    qreal velocity_;
+    qreal angular_velocity_;
+
+    CircleCollider hearing_;
+    ConeCollider sight_;
+
+    void rotateTo(qreal angle);
+    void move();
 
 
 };
