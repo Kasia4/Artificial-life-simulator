@@ -40,5 +40,6 @@ QList<QGraphicsItem*> Collider::collidingItems(ItemType type)
     {
         if(item->type() == type) items.append(item);
     }
+    items.removeOne(parentItem());
     return items;
 }

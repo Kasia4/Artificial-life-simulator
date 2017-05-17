@@ -69,6 +69,12 @@ void Specimen::setTarget(QGraphicsItem* target)
     target_ = target;
 }
 
+
+void Specimen::setMove(bool move)
+{
+    move_ = move;
+}
+
 void Specimen::setEscape(bool escape)
 {
     escape_ = escape;
@@ -139,6 +145,11 @@ QGraphicsItem *Specimen::getTarget() const
     return target_;
 }
 
+bool Specimen::getMove() const
+{
+    return move_;
+}
+
 bool Specimen::getEscape() const
 {
     return escape_;
@@ -154,31 +165,52 @@ void Specimen::advance(int step)
     if(!step)return;
     if(target_)
     {
-        QList<QGraphicsItem*> seen_specimens = sight_.collidingItems(ItemType::SPECIMEN);
-        see_target_ = seen_specimens.contains(target_);
-        hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
+        see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
+        hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
         if(see_target_ || hear_target_)
         {
-            QPointF dist_v = target_->pos() - pos();
-            qreal dist = qSqrt(dist_v.x()*dist_v.x() + dist_v.y()*dist_v.y());
-            qreal angle = qRadiansToDegrees( qAtan2(dist_v.y(), dist_v.x()) );
-            if(escape_)angle+=180;
-            setRotation(angle);
-            on_target_ = dist<TRACKING_DISTANCE_THRESHOLD;
-            if(!on_target_)
+            QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
+            qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
+            std::cout<<angle<<std::endl;
+            qreal dist = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+            if(escape_)
             {
-                setPos(mapToParent(velocity_,0));
+                angle+=180;
+            }
+            if(dist < TRACKING_DISTANCE_THRESHOLD)
+            {
+                on_target_ = true;
+            }
+            setRotation(angle);
+            if(move_ && !on_target_)
+            {
+                move();
             }
         }
         else
         {
-            setRotation(rotation() + angular_velocity_);
-            setPos(mapToParent(velocity_,0));
+            if(move_)
+            {
+                setRotation(rotation() + angular_velocity_);
+                move();
+            }
         }
     }
     else
     {
-        setRotation(rotation() + angular_velocity_);
-        setPos(mapToParent(velocity_,0));
+        if(move_)
+        {
+            setRotation(rotation() + angular_velocity_);
+            move();
+        }
     }
+}
+
+
+void Specimen::rotateTo(qreal angle)
+{
+
+}
+void Specimen::move(){
+    setPos(mapToParent(velocity_,0));
 }

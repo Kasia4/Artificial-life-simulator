@@ -23,12 +23,12 @@ QRectF BoardField::boundingRect() const
     return QRectF(0,0, size_, size_);
 }
 
-void BoardField::setSize(float size)
+void BoardField::setSize(qreal size)
 {
     size_ = size;
 }
 
-float BoardField::getSize() const
+qreal BoardField::getSize() const
 {
     return size_;
 }

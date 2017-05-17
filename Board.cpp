@@ -12,7 +12,7 @@
     }
 
 
-    void Board::setFieldSize(float field_size)
+    void Board::setFieldSize(qreal field_size)
     {
         field_size_ = field_size;
         placeFields();

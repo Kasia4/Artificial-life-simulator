@@ -27,11 +27,11 @@ class Board : public QObject, public QGraphicsItem
 
 
 public:
-    static constexpr float DEFAULT_FIELD_SIZE = 30.0;
+    static constexpr qreal DEFAULT_FIELD_SIZE = 30.0;
     Board(const QPoint& size);
     virtual ~Board();
 
-    void setFieldSize(float field_size);
+    void setFieldSize(qreal field_size);
 
     int getWidth() const;
     int getHeight() const;
@@ -55,7 +55,7 @@ private:
     void placeFields();
 
     QPoint size_;
-    float field_size_;
+    qreal field_size_;
     MapTable fields_;
 
 signals:

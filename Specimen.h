@@ -21,9 +21,12 @@ enum class SpecimenType : unsigned {
 };
 
 
-class Specimen : public QGraphicsItem
+class Specimen :  public QGraphicsItem
 {
+
+
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
+    static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
     Specimen();
@@ -31,18 +34,20 @@ public:
     virtual Specimen* clone() const = 0;
     int type() const;
 
+
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     void setSize(qreal size);
     void setVelocity(qreal velocity);
     void setAngularVelocity(qreal velocity);
     void setTarget(QGraphicsItem *target);
+    void setMove(bool move);
     void setEscape(bool escape);
     void setHearingRange(qreal range);
     void setSightRange(qreal range);
     void setSightAngle(qreal angle);
-    void disableTracking();
 
+    void release();
 
     qreal getSize() const;
     qreal getEyesSize() const;
@@ -54,8 +59,12 @@ public:
     qreal getSightAngle() const;
 
     QGraphicsItem *getTarget() const;
+    bool getMove() const;
     bool  getEscape() const;
+
     QColor getSkinColor() const;
+
+    void disableTracking();
 
 protected:
     void advance(int step);
@@ -65,6 +74,7 @@ protected:
     QColor skin_color_;
 
     QGraphicsItem* target_;
+    bool move_;
     bool escape_;
     bool on_target_;
     bool see_target_;
@@ -78,7 +88,8 @@ private:
     CircleCollider hearing_;
     ConeCollider sight_;
 
-
+    void rotateTo(qreal angle);
+    void move();
 
 
 };
