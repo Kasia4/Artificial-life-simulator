@@ -2,12 +2,14 @@
 
 Specimen::Specimen()
     :target_(nullptr)
-    ,escape_(false)
-    ,velocity_(0)
-    ,angular_velocity_(0)
-    ,on_target_(false)
+    ,chaser_(nullptr)
+    ,move_(false)
+    ,caught_target_(false)
     ,see_target_(false)
     ,hear_target_(false)
+    ,escaped_from_chaser_(true)
+    ,velocity_(0)
+    ,angular_velocity_(0)
 {
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
@@ -75,10 +77,6 @@ void Specimen::setMove(bool move)
     move_ = move;
 }
 
-void Specimen::setEscape(bool escape)
-{
-    escape_ = escape;
-}
 
 void Specimen::setHearingRange(qreal range)
 {
@@ -98,6 +96,8 @@ void Specimen::setSightAngle(qreal angle)
 void Specimen::disableTracking()
 {
     target_ = nullptr;
+    see_target_ = false;
+    hear_target_ = false;
 }
 
 qreal Specimen::getSize() const
@@ -150,11 +150,6 @@ bool Specimen::getMove() const
     return move_;
 }
 
-bool Specimen::getEscape() const
-{
-    return escape_;
-}
-
 QColor Specimen::getSkinColor() const
 {
     return skin_color_;
@@ -163,7 +158,23 @@ QColor Specimen::getSkinColor() const
 void Specimen::advance(int step)
 {
     if(!step)return;
-    if(target_)
+    if(chaser_)
+    {
+        QLine dist_line(pos().x(), pos().y(), chaser_->pos().x(), chaser_->pos().y());
+        qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx())) + 180;
+        dist_to_chaser_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+        if(dist_to_chaser_ > ESCAPING_DISTANCE)
+        {
+            escaped_from_chaser_ = true;
+        }
+        else
+            setRotation(rotation() + angle);
+        if(move_)
+        {
+            move();
+        }
+    }
+    else if(target_)
     {
         see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
         hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
@@ -171,18 +182,14 @@ void Specimen::advance(int step)
         {
             QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
             qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
-            std::cout<<angle<<std::endl;
-            qreal dist = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
-            if(escape_)
+            dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+            if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
             {
-                angle+=180;
+                caught_target_ = true;
             }
-            if(dist < TRACKING_DISTANCE_THRESHOLD)
-            {
-                on_target_ = true;
-            }
-            setRotation(angle);
-            if(move_ && !on_target_)
+            else
+                setRotation(angle);
+            if(move_)
             {
                 move();
             }
@@ -206,9 +213,40 @@ void Specimen::advance(int step)
     }
 }
 
+bool Specimen::getEscapedFromChaser() const
+{
+    return escaped_from_chaser_;
+}
+
+
+qreal Specimen::getDistToChaser() const
+{
+    return dist_to_chaser_;
+}
+
+QGraphicsItem* Specimen::getChaser() const
+{
+    return chaser_;
+}
+
+void Specimen::setChaser(QGraphicsItem *chaser)
+{
+    chaser_ = chaser;
+    escaped_from_chaser_ = false;
+}
+
 
 void Specimen::rotateTo(qreal angle)
 {
+    //    qreal rot = fmod(rotation(), 360) - 180;
+    //    if(rot<-180)rot+=360;
+    //    qreal diff = rot - angle;
+//    std::cout<<diff<<" = "<<rot <<" - "<<angle<<std::endl;
+//    if(qAbs(diff) < ROTATING_DISTANCE_THRESHOLD)
+//        return;
+//    qreal vel = (diff <= 180) ? qAbs(angular_velocity_) :
+//                                -qAbs(angular_velocity_);
+//    setRotation(rotation() + vel);
 
 }
 void Specimen::move(){
