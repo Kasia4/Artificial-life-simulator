@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QtMath>
 #include <iostream>
+#include <cmath>
 
 #include "ItemType.h"
 #include "CircleCollider.h"
@@ -23,8 +24,6 @@ enum class SpecimenType : unsigned {
 
 class Specimen :  public QGraphicsItem
 {
-
-
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ESCAPING_DISTANCE = 50;
@@ -42,7 +41,6 @@ public:
     void setAngularVelocity(qreal velocity);
     void setTarget(QGraphicsItem *target);
     void setMove(bool move);
-    void setEscape(bool escape);
     void setHearingRange(qreal range);
     void setSightRange(qreal range);
     void setSightAngle(qreal angle);
@@ -58,28 +56,38 @@ public:
     qreal getSightRange() const;
     qreal getSightAngle() const;
 
-    QGraphicsItem *getTarget() const;
+    QGraphicsItem* getTarget() const;
     bool getMove() const;
-    bool  getEscape() const;
 
     QColor getSkinColor() const;
 
     void disableTracking();
+
+    QGraphicsItem* getChaser() const;
+    void setChaser(QGraphicsItem *chaser);
+
+    qreal getDistToChaser() const;
+
+    bool getEscapedFromChaser() const;
 
 protected:
     void advance(int step);
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
+
     QColor skin_color_;
 
     QGraphicsItem* target_;
+    QGraphicsItem* chaser_;
+
     bool move_;
-    bool escape_;
-    bool on_target_;
+    bool caught_target_;
     bool see_target_;
     bool hear_target_;
-
+    bool escaped_from_chaser_;
+    qreal dist_to_target_;
+    qreal dist_to_chaser_;
 
 private:
     qreal velocity_;
