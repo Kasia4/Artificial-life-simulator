@@ -8,6 +8,7 @@
 #include "HerbivoreSpecimen.h"
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
+#include "Gene.h"
 
 void setCustomBoard(Board& board)
 {
@@ -56,6 +57,14 @@ void createSpecimans(SimulationEngine& engine){
 
 }
 
+void testGenes(){
+    Gene a, b;
+    a.print(15);
+    b.print(15);
+    Gene c(a, b);
+    c.print(15);
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -77,6 +86,7 @@ int main(int argc, char *argv[])
     main_window.setBoardView(&(engine.getScene()));
     main_window.show();
 
+    testGenes();
     return a.exec();
 }
 

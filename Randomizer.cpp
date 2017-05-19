@@ -6,8 +6,13 @@ Randomizer &Randomizer::getInstance()
     return instance;
 }
 
+std::mt19937 &Randomizer::rand_gen()
+{
+    return getInstance().gen_;
+}
+
 Randomizer::Randomizer()
-    :gen(rd())
+    :gen_(rd_())
 {
 
 }

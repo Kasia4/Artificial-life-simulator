@@ -8,16 +8,15 @@ class Randomizer
 
 public:
     static Randomizer& getInstance();
-
-    std::mt19937 getGenerator();
+    static std::mt19937& rand_gen();
 
 private:
     Randomizer();
     Randomizer(const Randomizer&) = delete;
     Randomizer& operator=(const Randomizer&) = delete;
 
-    std::random_device rd;
-    std::mt19937 gen;
+    std::random_device rd_;
+    std::mt19937 gen_;
 };
 
 #endif // RANDOMIZER_H

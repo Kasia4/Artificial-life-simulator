@@ -31,7 +31,7 @@ SOURCES += main.cpp\
     Border.cpp \
     ConeCollider.cpp \
     CircleCollider.cpp \
-    #Gene.cpp \
+    Gene.cpp \
     Randomizer.cpp
 
 HEADERS  += \
@@ -53,7 +53,7 @@ HEADERS  += \
     Border.h \
     ConeCollider.h \
     CircleCollider.h \
-    #Gene.h \
+    Gene.h \
     Randomizer.h
 
 FORMS    += mainwindow.ui
