@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     Collider.cpp \
     Border.cpp \
     ConeCollider.cpp \
-    CircleCollider.cpp
+    CircleCollider.cpp \
+    Gene.cpp \
+    Randomizer.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -50,6 +52,8 @@ HEADERS  += \
     Collider.h \
     Border.h \
     ConeCollider.h \
-    CircleCollider.h
+    CircleCollider.h \
+    Gene.h \
+    Randomizer.h
 
 FORMS    += mainwindow.ui
