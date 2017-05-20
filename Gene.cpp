@@ -1,5 +1,19 @@
 #include "Gene.h"
 
+Gene Gene::crossing(const Gene &a, const Gene &b)
+{
+    Gene new_gene;
+    qreal new_sigma = (a.sigma_ + b.sigma_)/2;
+    std::normal_distribution<double> g_dis(0, new_sigma);
+    GenePosition dominant = rand()%2 ? GenePosition::A : GenePosition::B;
+    qreal base_value = rand()%2 ? a.getValue(dominant) : b.getValue(dominant);
+    new_gene.setSigma(new_sigma);
+    new_gene.setBase( base_value, dominant);
+    new_gene.setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
+    new_gene.setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
+    return new_gene;
+}
+
 Gene::Gene()
     :sigma_(DEFAULT_SIGMA)
 {
@@ -7,83 +21,49 @@ Gene::Gene()
 }
 
 Gene::Gene(const Gene &other)
-    :base_value_(other.base_value_)
-    ,enhancement_A_(other.enhancement_A_)
-    ,enhancement_B_(other.enhancement_B_)
-    ,sigma_(other.sigma_)
+    :sigma_(other.sigma_)
 {
-
+    setBase( other.getBase(GenePosition::A) , GenePosition::A);
+    setEnhancement(other.getEnhancement(GenePosition::A), GenePosition::A);
+    setEnhancement(other.getEnhancement(GenePosition::B), GenePosition::B);
 }
 
 Gene::Gene(const Gene &a, const Gene &b)
-    :sigma_(DEFAULT_SIGMA)
+    :Gene(Gene::crossing(a, b))
 {
 
-    std::normal_distribution<double> g_dis(0, sigma_);
-    std::cout<<"Krzyzowanie \t"<<std::endl;
-    if(rand()%2)
-    {
-        std::cout<<"Na podstawie A"<<std::endl;
-        setBaseA( rand()%2 ? a.getValueA() : b.getValueA() );
-    }
-    else
-    {
-        std::cout<<"Na podstawie B"<<std::endl;
-        setBaseB( rand()%2 ? a.getValueB() : b.getValueB() );
-    }
-    enhancement_A_ = g_dis(Randomizer::rand_gen());
-    enhancement_B_ = g_dis(Randomizer::rand_gen());
 }
 
-qreal Gene::getBaseA() const
+qreal Gene::getBase(GenePosition pos) const
 {
-    return base_value_;
+    return base_[pos];
 }
 
-qreal Gene::getBaseB() const
+qreal Gene::getEnhancement(GenePosition pos) const
 {
-    return 1 - base_value_;
+    return enhancement_[pos];
 }
 
-qreal Gene::getEnhancementA() const
+qreal Gene::getValue(GenePosition pos) const
 {
-    return enhancement_A_;
+    return base_[pos] + enhancement_[pos];
 }
 
-qreal Gene::getEnhancementB() const
+void Gene::setBase(const qreal &value, GenePosition pos = GenePosition::A)
 {
-    return enhancement_B_;
+    base_[pos] = value;
 }
 
-qreal Gene::getValueA() const
+void Gene::setEnhancement(const qreal &value, GenePosition pos)
 {
-    return getBaseA() + enhancement_A_;
+    enhancement_[pos] = value;
 }
 
-qreal Gene::getValueB() const
+void Gene::setSigma(const qreal &value)
 {
-    return getBaseB() + enhancement_B_;
+    sigma_ = value;
 }
 
-void Gene::setBaseA(const qreal &value)
-{
-    base_value_ = value;
-}
-
-void Gene::setBaseB(const qreal &value)
-{
-    base_value_ = 1 - value;
-}
-
-void Gene::setEnhancementA(const qreal &value)
-{
-    enhancement_A_ = value;
-}
-
-void Gene::setEnhancementB(const qreal &value)
-{
-    enhancement_B_ = value;
-}
 
 qreal Gene::getMutationChance() const
 {
@@ -99,17 +79,15 @@ void Gene::randomize()
 {
     std::uniform_real_distribution<> dis(0,1);
     std::normal_distribution<double> g_dis(0, sigma_);
-    base_value_ = dis(Randomizer::rand_gen());
-    enhancement_A_ = g_dis(Randomizer::rand_gen());
-    enhancement_B_ = g_dis(Randomizer::rand_gen());
+    setBase(dis(Randomizer::rand_gen()));
+    setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
+    setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
 }
 
 void Gene::print(int length)
 {
-    float att1 = base_value_+ enhancement_A_;
-    float att2 = 1 - base_value_+ enhancement_B_;
-    int ast1 = (int)(att1*length);
-    int ast2 = (int)(att2*length);
+    int ast1 = (int)(getValue(GenePosition::A)*length);
+    int ast2 = (int)(getValue(GenePosition::B)*length);
     int i;
     std::cout<<"cecha1\t|";
     for(i = 0; i < ast1 && i < length-1; ++i)
@@ -117,14 +95,14 @@ void Gene::print(int length)
     std::cout<<"*";
     for(++i; i < length; ++i)
         std::cout<<"-";
-    std::cout<<"|\n base: "<<base_value_<<"\t odchylenie: "<<enhancement_A_<<"\t wartosc: "<<base_value_+ enhancement_A_<<std::endl;
+    std::cout<<"|\n base: "<<getBase(GenePosition::A)<<"\t odchylenie: "<<enhancement_[GenePosition::A]<<"\t wartosc: "<<getValue(GenePosition::A)<<std::endl;
     std::cout<<"cecha2\t|";
     for(i = 0; i < ast2 && i < length-1; ++i)
         std::cout<<"-";
     std::cout<<"*";
     for(++i; i < length; ++i)
         std::cout<<"-";
-    std::cout<<"|\n base: "<<1 - base_value_<<"\t odchylenie: "<<enhancement_B_<<"\t wartosc: "<<1 - base_value_+ enhancement_B_<<std::endl;
+    std::cout<<"|\n base: "<<getBase(GenePosition::B)<<"\t odchylenie: "<<enhancement_[GenePosition::B]<<"\t wartosc: "<<getValue(GenePosition::B)<<std::endl;
 
 }
 
@@ -132,4 +110,5 @@ qreal Gene::getSigma() const
 {
     return sigma_;
 }
+
 

@@ -4,28 +4,28 @@
 #include <QtGlobal>
 #include "Randomizer.h"
 #include <iostream>
+
+enum GenePosition : unsigned {A = 0, B};
+
 class Gene
 {
 public:
 
     static qreal constexpr DEFAULT_SIGMA = 0.4;
+    static Gene crossing(const Gene& a, const Gene& b);
     Gene();
     Gene(const Gene& other);
     Gene(const Gene& a, const Gene& b);
 
-    qreal getBaseA() const;
-    qreal getBaseB() const;
-    qreal getEnhancementA() const;
-    qreal getEnhancementB() const;
-    qreal getValueA() const;
-    qreal getValueB() const;
+    qreal getBase(GenePosition pos) const;
+    qreal getEnhancement(GenePosition pos) const;
+    qreal getValue(GenePosition pos) const;
+
     qreal getSigma() const;
     qreal getMutationChance() const;
 
-    void setBaseA(const qreal &value);
-    void setBaseB(const qreal &value);
-    void setEnhancementA(const qreal &value);
-    void setEnhancementB(const qreal &value);
+    void setBase(const qreal &value, GenePosition pos);
+    void setEnhancement(const qreal &value, GenePosition pos);
 
     void setSigma(const qreal &value);
     void setMutationChance(const qreal &mutation_chance);
@@ -37,9 +37,8 @@ public:
 
 
 private:
-    qreal base_value_;
-    qreal enhancement_A_;
-    qreal enhancement_B_;
+    qreal base_[2];
+    qreal enhancement_[2];
 
     qreal sigma_;
     qreal mutation_chance_;

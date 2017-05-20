@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     ConeCollider.cpp \
     CircleCollider.cpp \
     Gene.cpp \
-    Randomizer.cpp
+    Randomizer.cpp \
+    Genome.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -54,6 +55,7 @@ HEADERS  += \
     ConeCollider.h \
     CircleCollider.h \
     Gene.h \
-    Randomizer.h
+    Randomizer.h \
+    Genome.h
 
 FORMS    += mainwindow.ui
