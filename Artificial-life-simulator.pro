@@ -33,6 +33,18 @@ SOURCES += main.cpp\
     CircleCollider.cpp \
     Gene.cpp \
     Randomizer.cpp \
+    BehaviourManager.cpp \
+    Attribute.cpp \
+    State.cpp \
+    SearchFoodState.cpp \
+    ChaseFoodState.cpp \
+    EatState.cpp \
+    SearchWaterState.cpp \
+    DrinkState.cpp \
+    DieState.cpp \
+    SleepState.cpp \
+    SearchPartnerState.cpp \
+    ReproduceState.cpp
     Genome.cpp \
     AttributeConditioning.cpp
 
@@ -57,6 +69,19 @@ HEADERS  += \
     CircleCollider.h \
     Gene.h \
     Randomizer.h \
+    BehaviourManager.h \
+    Attribute.h \
+    State.h \
+    SearchFoodState.h \
+    ChaseFoodState.h \
+    EatState.h \
+    SearchWaterState.h \
+    DrinkState.h \
+    DieState.h \
+    SleepState.h \
+    SearchPartnerState.h \
+    ReproduceState.h \
+    states.h
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h
