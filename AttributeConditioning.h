@@ -1,6 +1,7 @@
 #ifndef ATTRIBUTECONDITIONING_H
 #define ATTRIBUTECONDITIONING_H
 
+#include "Gene.h"
 
 class AttributeConditioning
 {

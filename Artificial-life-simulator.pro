@@ -58,6 +58,7 @@ HEADERS  += \
     Gene.h \
     Randomizer.h \
     Genome.h \
-    AttributeConditioning.h
+    AttributeConditioning.h \
+    AttributeType.h
 
 FORMS    += mainwindow.ui
