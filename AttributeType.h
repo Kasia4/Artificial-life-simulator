@@ -11,7 +11,7 @@ enum class AttributeType : unsigned
     STRENGHT,
     SLEEPING_NECESSITY,
     FOOD_NECESSITY,
-    WATER_NECESSITY;
+    WATER_NECESSITY
 
 }
 #endif // ATTRIBUTETYPE_H
