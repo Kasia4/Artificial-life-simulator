@@ -12,6 +12,7 @@
 #include <iostream>
 #include <cmath>
 
+#include "State.h"
 #include "ItemType.h"
 #include "CircleCollider.h"
 #include "ConeCollider.h"
@@ -95,6 +96,8 @@ private:
 
     CircleCollider hearing_;
     ConeCollider sight_;
+
+    State* currentState;
 
     void rotateTo(qreal angle);
     void move();
