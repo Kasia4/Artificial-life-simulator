@@ -13,5 +13,5 @@ enum class AttributeType : unsigned
     FOOD_NECESSITY,
     WATER_NECESSITY
 
-}
+};
 #endif // ATTRIBUTETYPE_H

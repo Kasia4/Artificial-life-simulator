@@ -44,7 +44,7 @@ SOURCES += main.cpp\
     DieState.cpp \
     SleepState.cpp \
     SearchPartnerState.cpp \
-    ReproduceState.cpp
+    ReproduceState.cpp \
     Genome.cpp \
     AttributeConditioning.cpp
 
@@ -81,7 +81,7 @@ HEADERS  += \
     SleepState.h \
     SearchPartnerState.h \
     ReproduceState.h \
-    states.h
+    states.h \
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h

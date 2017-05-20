@@ -1,7 +1,10 @@
 #ifndef STATE_H
 #define STATE_H
 
+class Specimen;
+
 #include "Specimen.h"
+
 
 class State
 {

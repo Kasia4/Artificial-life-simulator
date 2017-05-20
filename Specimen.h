@@ -12,15 +12,20 @@
 #include <iostream>
 #include <cmath>
 
-#include "State.h"
+
+
 #include "ItemType.h"
 #include "CircleCollider.h"
 #include "ConeCollider.h"
+
+class State;
+#include "State.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,
     CARNIVORE
 };
+
 
 
 class Specimen :  public QGraphicsItem

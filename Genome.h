@@ -14,7 +14,7 @@ public:
 
 private:
     QMap<AttributeType, AttributeConditioning> fenome_;
-    QList<Gene> chromosome;
+    QList<Gene> chromosome_;
 };
 
 #endif // GENOME_H
