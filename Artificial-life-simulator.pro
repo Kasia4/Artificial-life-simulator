@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     CircleCollider.cpp \
     Gene.cpp \
     Randomizer.cpp \
-    Genome.cpp
+    Genome.cpp \
+    AttributeConditioning.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -56,6 +57,7 @@ HEADERS  += \
     CircleCollider.h \
     Gene.h \
     Randomizer.h \
-    Genome.h
+    Genome.h \
+    AttributeConditioning.h
 
 FORMS    += mainwindow.ui
