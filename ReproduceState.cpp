@@ -4,3 +4,8 @@ ReproduceState::ReproduceState()
 {
 
 }
+
+void ReproduceState::action(Specimen *specimen)
+{
+
+}

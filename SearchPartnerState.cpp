@@ -4,3 +4,8 @@ SearchPartnerState::SearchPartnerState()
 {
 
 }
+
+void SearchPartnerState::action(Specimen *specimen)
+{
+
+}

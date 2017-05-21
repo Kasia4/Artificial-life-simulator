@@ -2,10 +2,13 @@
 #define SEARCHWATERSTATE_H
 #include "State.h"
 
-class SearchWaterState
+class SearchWaterState : public State
 {
 public:
     SearchWaterState();
+    void action(Specimen *specimen);
+private:
+    void searchForWater();
 };
 
 #endif // SEARCHWATERSTATE_H

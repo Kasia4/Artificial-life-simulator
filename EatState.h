@@ -2,10 +2,13 @@
 #define EATSTATE_H
 #include "State.h"
 
-class EatState
+class EatState : public State
 {
 public:
     EatState();
+    void action(Specimen *specimen);
+private:
+    void eat();
 };
 
 #endif // EATSTATE_H

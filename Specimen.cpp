@@ -35,7 +35,7 @@ Specimen::Specimen()
     addAttribute(AttributeType::SLEEPING_NECESSITY, Attribute(0.1));
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
-
+    currentState_ = new State();
     currentNeed_ = Need::NONE;
     hearing_.setVisiblity(true);
     sight_.setVisiblity(true);
@@ -158,6 +158,12 @@ qreal Specimen::getSightAngle() const
     return sight_.getApexAngle();
 }
 
+qreal Specimen::getAttributeValue(AttributeType type) const
+{
+    return attributes_.value(type).getValue();
+}
+
+
 QGraphicsItem *Specimen::getTarget() const
 {
     return target_;
@@ -229,6 +235,17 @@ void Specimen::advance(int step)
             move();
         }
     }
+}
+
+State *Specimen::getCurrentState() const
+{
+    return currentState_;
+}
+
+void Specimen::setCurrentState(State *currentState)
+{
+    delete currentState_;
+    currentState_ = currentState;
 }
 
 Need Specimen::getCurrentNeed() const

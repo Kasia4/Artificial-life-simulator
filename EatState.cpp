@@ -4,3 +4,8 @@ EatState::EatState()
 {
 
 }
+
+void EatState::action(Specimen *specimen)
+{
+
+}

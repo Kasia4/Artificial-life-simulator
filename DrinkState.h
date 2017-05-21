@@ -2,10 +2,13 @@
 #define DRINKSTATE_H
 #include "State.h"
 
-class DrinkState
+class DrinkState : public State
 {
 public:
     DrinkState();
+    void action(Specimen *specimen);
+private:
+    void drink();
 };
 
 #endif // DRINKSTATE_H

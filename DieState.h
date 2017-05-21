@@ -2,10 +2,13 @@
 #define DIESTATE_H
 #include "State.h"
 
-class DieState
+class DieState : public State
 {
 public:
     DieState();
+    void action(Specimen *specimen);
+private:
+    void die();
 };
 
 #endif // DIESTATE_H

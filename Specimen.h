@@ -63,6 +63,7 @@ public:
     qreal getHearingRange() const;
     qreal getSightRange() const;
     qreal getSightAngle() const;
+    qreal getAttributeValue(AttributeType type) const;
 
     QGraphicsItem* getTarget() const;
     bool getMove() const;
@@ -97,6 +98,9 @@ public:
 
     Need getCurrentNeed() const;
     void setCurrentNeed(const Need &currentNeed);
+
+    State *getCurrentState() const;
+    void setCurrentState(State *currentState);
 
 protected:
     void advance(int step);
