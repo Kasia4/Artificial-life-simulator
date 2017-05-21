@@ -10,9 +10,10 @@ Specimen::Specimen()
     ,escaped_from_chaser_(true)
     ,velocity_(0)
     ,angular_velocity_(0)
-    ,thirst(0)
-    ,hunger(0)
-    ,tiredness(0)
+    ,thirst_(0)
+    ,hunger_(0)
+    ,tiredness_(0)
+    ,needChanged_(false)
 {
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
@@ -33,8 +34,9 @@ Specimen::Specimen()
     addAttribute(AttributeType::WATER_NECESSITY, Attribute(0.1));
     addAttribute(AttributeType::SLEEPING_NECESSITY, Attribute(0.1));
 
-    hp = attributes_.value(AttributeType::ENDURANCE).getValue();
+    hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
 
+    currentNeed_ = Need::NONE;
     hearing_.setVisiblity(true);
     sight_.setVisiblity(true);
 }
@@ -229,44 +231,64 @@ void Specimen::advance(int step)
     }
 }
 
+Need Specimen::getCurrentNeed() const
+{
+    return currentNeed_;
+}
+
+void Specimen::setCurrentNeed(const Need &currentNeed)
+{
+    currentNeed_ = currentNeed;
+}
+
+bool Specimen::getNeedChanged() const
+{
+    return needChanged_;
+}
+
+void Specimen::setNeedChanged(bool value)
+{
+    needChanged_ = value;
+}
+
 qreal Specimen::getHp() const
 {
-    return hp;
+    return hp_;
 }
 
 void Specimen::setHp(const qreal &value)
 {
-    hp = value;
+    hp_ = value;
 }
 
 qreal Specimen::getTiredness() const
 {
-    return tiredness;
+    return tiredness_;
 }
 
 void Specimen::setTiredness(const qreal &value)
 {
-    tiredness = value;
+    tiredness_ = value;
 }
 
 qreal Specimen::getHunger() const
 {
-    return hunger;
+    return hunger_;
 }
 
 void Specimen::setHunger(const qreal &value)
 {
-    hunger = value;
+    hunger_ = value;
 }
 
 qreal Specimen::getThirst() const
 {
-    return thirst;
+    return thirst_;
 }
 
 void Specimen::setThirst(const qreal &value)
 {
-    thirst = value;
+    thirst_ = value;
 }
 
 void Specimen::addAttribute(AttributeType type, Attribute attribute)

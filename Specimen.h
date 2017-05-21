@@ -18,6 +18,7 @@
 #include "ConeCollider.h"
 #include "Attribute.h"
 #include "AttributeType.h"
+#include "Need.h"
 
 class State;
 #include "State.h"
@@ -91,6 +92,12 @@ public:
     qreal getHp() const;
     void setHp(const qreal &value);
 
+    bool getNeedChanged() const;
+    void setNeedChanged(bool value);
+
+    Need getCurrentNeed() const;
+    void setCurrentNeed(const Need &currentNeed);
+
 protected:
     void advance(int step);
     qreal size_;
@@ -117,12 +124,15 @@ private:
     CircleCollider hearing_;
     ConeCollider sight_;
 
-    State* currentState;
+    State* currentState_;
     QMap<AttributeType, Attribute> attributes_;
-    qreal thirst;
-    qreal hunger;
-    qreal tiredness;
-    qreal hp;
+    qreal thirst_;
+    qreal hunger_;
+    qreal tiredness_;
+    qreal hp_;
+
+    bool needChanged_;
+    Need currentNeed_;
 
 
     void addAttribute(AttributeType type, Attribute attribute);
