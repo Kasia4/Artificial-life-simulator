@@ -1,7 +1,14 @@
 #include "Gene.h"
 
+bool Gene::compareAttributes(const Gene &a, const Gene &b)
+{
+    return (a.getAttribute(GenePosition::A) == b.getAttribute(GenePosition::A) && a.getAttribute(GenePosition::B) == b.getAttribute(GenePosition::B));
+}
+
 Gene Gene::crossing(const Gene &a, const Gene &b)
 {
+    if(!compareAttributes(a,b))throw(std::invalid_argument("incompatible genes"));
+
     Gene new_gene;
     qreal new_sigma = (a.sigma_ + b.sigma_)/2;
     std::normal_distribution<double> g_dis(0, new_sigma);
@@ -11,6 +18,8 @@ Gene Gene::crossing(const Gene &a, const Gene &b)
     new_gene.setBase( base_value, dominant);
     new_gene.setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
     new_gene.setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
+    new_gene.setAttribute(a.getAttribute(GenePosition::A), GenePosition::A);
+    new_gene.setAttribute(a.getAttribute(GenePosition::B), GenePosition::B);
     return new_gene;
 }
 
@@ -26,6 +35,8 @@ Gene::Gene(const Gene &other)
     setBase( other.getBase(GenePosition::A) , GenePosition::A);
     setEnhancement(other.getEnhancement(GenePosition::A), GenePosition::A);
     setEnhancement(other.getEnhancement(GenePosition::B), GenePosition::B);
+    setAttribute(other.getAttribute(GenePosition::A), GenePosition::A);
+    setAttribute(other.getAttribute(GenePosition::B), GenePosition::B);
 }
 
 Gene::Gene(const Gene &a, const Gene &b)
@@ -49,6 +60,11 @@ qreal Gene::getValue(GenePosition pos) const
     return base_[pos] + enhancement_[pos];
 }
 
+AttributeType Gene::getAttribute(GenePosition pos) const
+{
+    return attribute_[pos];
+}
+
 void Gene::setBase(const qreal &value, GenePosition pos = GenePosition::A)
 {
     base_[pos] = value;
@@ -58,6 +74,11 @@ void Gene::setBase(const qreal &value, GenePosition pos = GenePosition::A)
 void Gene::setEnhancement(const qreal &value, GenePosition pos)
 {
     enhancement_[pos] = value;
+}
+
+void Gene::setAttribute(const AttributeType &type, GenePosition pos)
+{
+    attribute_[pos] = type;
 }
 
 void Gene::setSigma(const qreal &value)
