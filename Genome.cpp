@@ -44,15 +44,9 @@ void Genome::addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, G
 
 qreal Genome::getAttributeValue(AttributeType type) const
 {
-    AttributeConditioning cond = conditionings_.find(type).value();
-    for(auto const& ptr : chromosome_)
-    {
-        if(ptr == cond.gene_handle())
-        {
-            return ptr->getValue(cond.position());
-        }
-    }
-    return 0;
+    AttributeConditioning cond = conditionings_.value(type);
+    qreal att_value = cond.gene_handle()->getValue(cond.position());
+    return ranges_.value(type).transform(att_value);
 }
 
 int Genome::genesCount() const
@@ -68,5 +62,15 @@ bool Genome::isConditioned(AttributeType type) const
 bool Genome::areCoupled(AttributeType typeA, AttributeType typeB) const
 {
     return conditionings_.find(typeA).value().gene_handle() == conditionings_.find(typeB).value().gene_handle();
+}
+
+void Genome::setAttributeRange(AttributeType type, const Range &range)
+{
+    ranges_.insert(type, range);
+}
+
+Range Genome::getAttributeRange(AttributeType type) const
+{
+    return ranges_.value(type);
 }
 

@@ -1,15 +1,14 @@
 #include "Range.h"
 
 Range::Range()
-{
-
-}
+    :begin_(0)
+    ,end_(1)
+{}
 
 Range::Range(const qreal &begin, const qreal &end)
-{
-    begin_ = begin;
-    end_ = end;
-}
+    :begin_(begin)
+    ,end_(end)
+{}
 
 qreal Range::transform(const qreal &value,const Range& origin) const
 {

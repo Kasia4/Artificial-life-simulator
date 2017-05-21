@@ -60,27 +60,32 @@ void createSpecimans(SimulationEngine& engine){
 
 void testGenes(){
     Range range(7, 12);
-    std::cout<<range.transform(0)<<"\t"<<range.transform(-1)<<"\t"<<range.transform(0.7)<<"\n";
-    Genome genome, genome2;
+    std::cout<<range.transform(0)<<"\t"<<range.transform(2)<<"\t"<<range.transform(0.7)<<"\n";
+
+    Genome genome;
     genome.addAttributesPair(AttributeType::ENDURANCE, AttributeType::HEARING_RANGE);
     genome.addAttributesPair(AttributeType::SIGHT_ANGLE, AttributeType::SIGHT_RANGE);
     std::cout<<genome.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
     std::cout<<genome.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
     std::cout<<genome.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
     std::cout<<genome.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+
+    Genome genome2;
     genome2.addAttributesPair(AttributeType::ENDURANCE, AttributeType::HEARING_RANGE);
     genome2.addAttributesPair(AttributeType::SIGHT_ANGLE, AttributeType::SIGHT_RANGE);
     std::cout<<genome2.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
     std::cout<<genome2.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
-
     std::cout<<genome2.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
     std::cout<<genome2.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+
+
     Genome genome3 = Genome::crossing(genome, genome2);
     std::cout<<genome3.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
     std::cout<<genome3.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
-
     std::cout<<genome3.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
     std::cout<<genome3.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+    genome3.setAttributeRange(AttributeType::ENDURANCE, Range(100,150));
+    std::cout<<genome3.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
 
 }
 
