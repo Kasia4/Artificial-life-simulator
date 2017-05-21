@@ -9,6 +9,7 @@
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
 #include "Genome.h"
+#include "Range.h"
 
 void setCustomBoard(Board& board)
 {
@@ -58,34 +59,58 @@ void createSpecimans(SimulationEngine& engine){
 }
 
 void testGenes(){
+    Range range(7, 12);
+    std::cout<<range.transform(0)<<"\t"<<range.transform(2)<<"\t"<<range.transform(0.7)<<"\n";
+
     Genome genome;
     genome.addAttributesPair(AttributeType::ENDURANCE, AttributeType::HEARING_RANGE);
+    genome.addAttributesPair(AttributeType::SIGHT_ANGLE, AttributeType::SIGHT_RANGE);
     std::cout<<genome.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
     std::cout<<genome.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
+    std::cout<<genome.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
+    std::cout<<genome.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+
+    Genome genome2;
+    genome2.addAttributesPair(AttributeType::ENDURANCE, AttributeType::HEARING_RANGE);
+    genome2.addAttributesPair(AttributeType::SIGHT_ANGLE, AttributeType::SIGHT_RANGE);
+    std::cout<<genome2.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
+    std::cout<<genome2.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
+    std::cout<<genome2.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
+    std::cout<<genome2.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+
+
+    Genome genome3 = Genome::crossing(genome, genome2);
+    std::cout<<genome3.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
+    std::cout<<genome3.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
+    std::cout<<genome3.getAttributeValue(AttributeType::SIGHT_ANGLE)<<std::endl;
+    std::cout<<genome3.getAttributeValue(AttributeType::SIGHT_RANGE)<<std::endl;
+    genome3.setAttributeRange(AttributeType::ENDURANCE, Range(100,150));
+    std::cout<<genome3.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
+
 }
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow main_window;
+//    QApplication a(argc, argv);
+//    MainWindow main_window;
 
-    /* board properties setting */
-    Board board(QPoint(15,15));
-    board.setFieldSize(40);
+//    /* board properties setting */
+//    Board board(QPoint(15,15));
+//    board.setFieldSize(40);
 
-    /* simulation engine creating */
-    SimulationEngine engine(board);
+//    /* simulation engine creating */
+//    SimulationEngine engine(board);
 
-    /* example tests demonstrating implemented features */
-    setCustomBoard(board);
-    createSpecimans(engine);
+//    /* example tests demonstrating implemented features */
+//    setCustomBoard(board);
+//    createSpecimans(engine);
 
-    engine.startWork();
+//    engine.startWork();
 
-    main_window.setBoardView(&(engine.getScene()));
-    main_window.show();
+//    main_window.setBoardView(&(engine.getScene()));
+//    main_window.show();
 
     testGenes();
-    return a.exec();
+//    return a.exec();
 }
 

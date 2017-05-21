@@ -2,30 +2,40 @@
 #define GENOME_H
 
 #include <QMap>
-#include <QSet>
+#include <QList>
 #include <QSharedPointer>
 
+#include <exception>
+
 #include "Gene.h"
+#include "Range.h"
 #include "AttributeConditioning.h"
 #include "AttributeType.h"
 
 class Genome
 {
 public:
+    typedef QList<QSharedPointer<Gene>> Chromosome;
+    typedef QMap<AttributeType, Range> AttributeRange;
     static Genome crossing(const Genome& a, const Genome& b);
+
     Genome();
-    Genome(const Genome& a, const Genome& b);
 
     void addAttributesPair(AttributeType typeA, AttributeType typeB);
     void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
-    qreal getAttributeValue(AttributeType type) const;
+
     int genesCount() const;
-    QSet<QSharedPointer<Gene>> getChromosome() const;
+    Chromosome getChromosome() const;
     bool isConditioned(AttributeType type) const;
+    bool areCoupled(AttributeType typeA, AttributeType typeB) const;
+    void setAttributeRange(AttributeType type, const Range& range);
+    Range getAttributeRange(AttributeType type) const;
+    qreal getAttributeValue(AttributeType type) const;
+
 private:
     QMap<AttributeType, AttributeConditioning> conditionings_;
-    QSet<QSharedPointer<Gene>> chromosome_;
-
+    AttributeRange ranges_;
+    Chromosome chromosome_;
 
 };
 
