@@ -8,6 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void MainWindow::setSimulationEngine(SimulationEngine *engine)
+{
+    engine_ = engine;
+    setBoardView(&(engine_->getScene()));
+}
+
 void MainWindow::setBoardView(QGraphicsScene *scene)
 {
     QGraphicsView *boardView = findChild<QGraphicsView*>("boardView");
@@ -21,4 +27,10 @@ void MainWindow::setBoardView(QGraphicsScene *scene)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
+{
+    if(arg1 == Qt::Unchecked)engine_->hideColliders();
+    if(arg1 == Qt::Checked)engine_->showColliders();
 }

@@ -91,26 +91,26 @@ void testGenes(){
 
 int main(int argc, char *argv[])
 {
-//    QApplication a(argc, argv);
-//    MainWindow main_window;
+    QApplication a(argc, argv);
+    MainWindow main_window;
 
-//    /* board properties setting */
-//    Board board(QPoint(15,15));
-//    board.setFieldSize(40);
+    /* board properties setting */
+    Board board(QPoint(15,15));
+    board.setFieldSize(40);
 
-//    /* simulation engine creating */
-//    SimulationEngine engine(board);
+    /* simulation engine creating */
+    SimulationEngine engine(board);
 
-//    /* example tests demonstrating implemented features */
-//    setCustomBoard(board);
-//    createSpecimans(engine);
+    /* example tests demonstrating implemented features */
+    setCustomBoard(board);
+    createSpecimans(engine);
 
-//    engine.startWork();
+    engine.startWork();
 
-//    main_window.setBoardView(&(engine.getScene()));
-//    main_window.show();
+    main_window.setSimulationEngine(&engine);
+    main_window.show();
 
     testGenes();
-//    return a.exec();
+    return a.exec();
 }
 

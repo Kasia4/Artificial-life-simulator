@@ -37,8 +37,6 @@ Specimen::Specimen()
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
     currentState_ = new State();
     currentNeed_ = Need::NONE;
-    hearing_.setVisiblity(true);
-    sight_.setVisiblity(true);
 }
 
 int Specimen::type() const
@@ -246,6 +244,16 @@ void Specimen::setCurrentState(State *currentState)
 {
     delete currentState_;
     currentState_ = currentState;
+}
+
+CircleCollider &Specimen::getHearingCollider()
+{
+    return hearing_;
+}
+
+ConeCollider &Specimen::getSightCollider()
+{
+    return sight_;
 }
 
 Need Specimen::getCurrentNeed() const

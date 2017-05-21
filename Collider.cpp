@@ -4,7 +4,7 @@ Collider::Collider()
     :generated_(false)
     ,is_visible_(false)
 {
-    setOpacity(0.2);
+    setOpacity(0);
 }
 
 int Collider::type() const

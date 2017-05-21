@@ -102,6 +102,9 @@ public:
     State *getCurrentState() const;
     void setCurrentState(State *currentState);
 
+    CircleCollider& getHearingCollider();
+    ConeCollider& getSightCollider();
+
 protected:
     void advance(int step);
     qreal size_;

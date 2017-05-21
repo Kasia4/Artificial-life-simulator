@@ -80,6 +80,24 @@ void SimulationEngine::removeSpecimen(Specimen *specimen)
     scene_.removeItem(specimen);
 }
 
+void SimulationEngine::showColliders()
+{
+    for(Specimen* specimen: specimens_)
+    {
+        specimen->getSightCollider().setVisiblity(true);
+        specimen->getHearingCollider().setVisiblity(true);
+    }
+}
+
+void SimulationEngine::hideColliders()
+{
+    for(Specimen* specimen: specimens_)
+    {
+        specimen->getSightCollider().setVisiblity(false);
+        specimen->getHearingCollider().setVisiblity(false);
+    }
+}
+
 void SimulationEngine::updateBoardSize(const QPoint &size)
 {
     Q_UNUSED(size);

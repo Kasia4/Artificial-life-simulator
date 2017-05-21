@@ -35,7 +35,8 @@ public slots:
     void resume();
     void addSpecimen(Specimen* specimen);
     void removeSpecimen(Specimen* specimen);
-
+    void showColliders();
+    void hideColliders();
 private slots:
     void updateBoardSize(const QPoint& size);
     void replaceField(BoardField* old_field, BoardField* new_field);
