@@ -84,6 +84,7 @@ HEADERS  += \
     states.h \
     Genome.h \
     AttributeConditioning.h \
-    AttributeType.h
+    AttributeType.h \
+    Need.h
 
 FORMS    += mainwindow.ui

@@ -6,8 +6,8 @@ class Attribute
 {
 public:
     Attribute();
-    Attribute(qreal base, qreal factor);
-    qreal getValue();
+    Attribute(qreal base, qreal factor = 1);
+    qreal getValue() const;
 private:
     qreal base;
     qreal factor;
