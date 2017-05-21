@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     SearchPartnerState.cpp \
     ReproduceState.cpp \
     Genome.cpp \
-    AttributeConditioning.cpp
+    AttributeConditioning.cpp \
+    Range.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -85,6 +86,7 @@ HEADERS  += \
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h \
-    Need.h
+    Need.h \
+    Range.h
 
 FORMS    += mainwindow.ui
