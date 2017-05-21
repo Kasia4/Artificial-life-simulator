@@ -9,14 +9,15 @@
 #include <QVector2D>
 #include <QPainter>
 #include <QtMath>
+#include <QMap>
 #include <iostream>
 #include <cmath>
-
-
 
 #include "ItemType.h"
 #include "CircleCollider.h"
 #include "ConeCollider.h"
+#include "Attribute.h"
+#include "AttributeType.h"
 
 class State;
 #include "State.h"
@@ -76,6 +77,20 @@ public:
 
     bool getEscapedFromChaser() const;
 
+    QMap<AttributeType, Attribute> getAttributes() const;
+
+    qreal getThirst() const;
+    void setThirst(const qreal &value);
+
+    qreal getHunger() const;
+    void setHunger(const qreal &value);
+
+    qreal getTiredness() const;
+    void setTiredness(const qreal &value);
+
+    qreal getHp() const;
+    void setHp(const qreal &value);
+
 protected:
     void advance(int step);
     qreal size_;
@@ -103,7 +118,14 @@ private:
     ConeCollider sight_;
 
     State* currentState;
+    QMap<AttributeType, Attribute> attributes_;
+    qreal thirst;
+    qreal hunger;
+    qreal tiredness;
+    qreal hp;
 
+
+    void addAttribute(AttributeType type, Attribute attribute);
     void rotateTo(qreal angle);
     void move();
 

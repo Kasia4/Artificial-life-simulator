@@ -3,12 +3,12 @@
 
 enum class AttributeType : unsigned
 {
-    ENDURANCE,
+    ENDURANCE = 0,
     SIGHT_RANGE,
     SIGHT_ANGLE,
     HEARING_RANGE,
     SPEED,
-    STRENGHT,
+    STRENGTH,
     SLEEPING_NECESSITY,
     FOOD_NECESSITY,
     WATER_NECESSITY
