@@ -47,7 +47,8 @@ SOURCES += main.cpp\
     ReproduceState.cpp \
     Genome.cpp \
     AttributeConditioning.cpp \
-    Range.cpp
+    Range.cpp \
+    runAwayState.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -87,6 +88,7 @@ HEADERS  += \
     AttributeConditioning.h \
     AttributeType.h \
     Need.h \
-    Range.h
+    Range.h \
+    runAwayState.h
 
 FORMS    += mainwindow.ui
