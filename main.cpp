@@ -8,7 +8,7 @@
 #include "HerbivoreSpecimen.h"
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
-#include "Gene.h"
+#include "Genome.h"
 
 void setCustomBoard(Board& board)
 {
@@ -58,11 +58,10 @@ void createSpecimans(SimulationEngine& engine){
 }
 
 void testGenes(){
-    Gene a, b;
-    a.print(15);
-    b.print(15);
-    Gene c(a, b);
-    c.print(15);
+    Genome genome;
+    genome.addAttributesPair(AttributeType::ENDURANCE, AttributeType::HEARING_RANGE);
+    std::cout<<genome.getAttributeValue(AttributeType::ENDURANCE)<<std::endl;
+    std::cout<<genome.getAttributeValue(AttributeType::HEARING_RANGE)<<std::endl;
 }
 
 int main(int argc, char *argv[])

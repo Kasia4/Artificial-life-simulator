@@ -52,6 +52,7 @@ qreal Gene::getValue(GenePosition pos) const
 void Gene::setBase(const qreal &value, GenePosition pos = GenePosition::A)
 {
     base_[pos] = value;
+    base_[1-pos] = 1 - value;
 }
 
 void Gene::setEnhancement(const qreal &value, GenePosition pos)
@@ -82,6 +83,7 @@ void Gene::randomize()
     setBase(dis(Randomizer::rand_gen()));
     setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
     setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
+    std::cout<<"values\t"<<getValue(GenePosition::A)<<"\t"<<getValue(GenePosition::B)<<"\n";
 }
 
 void Gene::print(int length)
