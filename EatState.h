@@ -6,7 +6,7 @@ class EatState : public State
 {
 public:
     EatState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void eat();
 };

@@ -6,7 +6,7 @@ class SearchPartnerState : public State
 {
 public:
     SearchPartnerState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void searchForPartner();
 };

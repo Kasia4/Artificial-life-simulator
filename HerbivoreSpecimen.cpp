@@ -10,3 +10,9 @@ Specimen* HerbivoreSpecimen::clone() const
     HerbivoreSpecimen* temp = new HerbivoreSpecimen();
     return temp;
 }
+
+bool HerbivoreSpecimen::shouldRunAway()
+{
+    chaser_ = nearestSpecimen(SpecimenType::CARNIVORE);
+    return chaser_ != nullptr;
+}

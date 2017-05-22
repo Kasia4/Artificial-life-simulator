@@ -5,7 +5,7 @@ DrinkState::DrinkState()
 
 }
 
-void DrinkState::action(Specimen *specimen)
+State* DrinkState::action(Specimen *specimen)
 {
 
 }

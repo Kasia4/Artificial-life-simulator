@@ -5,7 +5,7 @@ SearchPartnerState::SearchPartnerState()
 
 }
 
-void SearchPartnerState::action(Specimen *specimen)
+State* SearchPartnerState::action(Specimen *specimen)
 {
 
 }

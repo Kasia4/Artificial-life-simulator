@@ -5,7 +5,7 @@ SleepState::SleepState()
 
 }
 
-void SleepState::action(Specimen *specimen)
+State* SleepState::action(Specimen *specimen)
 {
     sleep(specimen);
 }

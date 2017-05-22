@@ -6,7 +6,7 @@ class RunAwayState : public State
 {
 public:
     RunAwayState();
-    void action(Specimen* specimen);
+    State* action(Specimen* specimen);
 private:
     void runAway(Specimen* specimen);
 };

@@ -5,7 +5,7 @@ DieState::DieState()
 
 }
 
-void DieState::action(Specimen *specimen)
+State* DieState::action(Specimen *specimen)
 {
 
 }

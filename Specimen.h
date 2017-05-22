@@ -115,6 +115,7 @@ public:
 
 protected:
     void advance(int step);
+    virtual bool shouldRunAway();
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
@@ -131,6 +132,10 @@ protected:
     bool escaped_from_chaser_;
     qreal dist_to_target_;
     qreal dist_to_chaser_;
+
+    QList<Specimen*> collidingSpecimens(SpecimenType type);
+    Specimen* nearestSpecimen(SpecimenType type);
+
 
 private:
     qreal velocity_;
@@ -159,10 +164,7 @@ private:
     void chaseTarget();
     void move();
     bool shouldDie();
-    bool shouldRunAway();
 
-    QList<Specimen*> collidingSpecimens(SpecimenType type);
-    Specimen* nearestSpecimen(SpecimenType type);
 
 
 };

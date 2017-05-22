@@ -6,7 +6,7 @@ class SleepState : public State
 {
 public:
     SleepState();
-    void action(Specimen* specimen);
+    State* action(Specimen* specimen);
 private:
     void sleep(Specimen* specimen);
 };

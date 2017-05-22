@@ -6,7 +6,7 @@ class ReproduceState : public State
 {
 public:
     ReproduceState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void reproduce();
 };

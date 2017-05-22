@@ -4,8 +4,7 @@ ChaseFoodState::ChaseFoodState()
 {
 
 }
-
-void ChaseFoodState::action(Specimen *specimen)
+State* ChaseFoodState::action(Specimen *specimen)
 {
 
 }

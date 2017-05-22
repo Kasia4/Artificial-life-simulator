@@ -6,7 +6,7 @@ class SearchWaterState : public State
 {
 public:
     SearchWaterState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void searchForWater();
 };

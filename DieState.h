@@ -6,7 +6,7 @@ class DieState : public State
 {
 public:
     DieState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void die();
 };
