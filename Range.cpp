@@ -15,6 +15,13 @@ qreal Range::transform(const qreal &value,const Range& origin) const
     return (value - origin.begin())*(lenght()/origin.lenght()) + begin();
 }
 
+qreal Range::cutValue(const qreal &value) const
+{
+    if(value > end_)return end_;
+    if(value < begin_)return begin_;
+    return value;
+}
+
 qreal Range::lenght() const
 {
     return end_ - begin_;

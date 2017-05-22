@@ -7,21 +7,24 @@
 #define GROUNDFIELD_H
 
 #include "BoardField.h"
+#include "Range.h"
+
 class GroundField : public BoardField
 {
 public:
+    static const Range GRASS_RANGE;
     GroundField();
     FieldType getFieldType() const { return FieldType::GROUND; }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     BoardField* clone() const;
-    void setOvergrow( int overgrow_level );
+    void setOvergrow( qreal overgrow_level );
 
     /* Adds given value to current overgrow_level value*/
-    void modifyOvergrow( int value );
+    void modifyOvergrow( qreal value );
 
-    int getOvergrow() const;
+    qreal getOvergrow() const;
 private:
-    int overgrow_level_;
+    qreal overgrow_level_;
 
 };
 

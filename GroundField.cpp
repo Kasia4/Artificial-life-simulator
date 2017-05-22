@@ -1,12 +1,14 @@
 #include "GroundField.h"
 
+const Range GroundField::GRASS_RANGE = Range(0,100);
+
 GroundField::GroundField()
     :overgrow_level_(0)
 {
 
 }
 
-int GroundField::getOvergrow() const
+qreal GroundField::getOvergrow() const
 {
     return overgrow_level_;
 }
@@ -25,18 +27,13 @@ BoardField *GroundField::clone() const
     return temp;
 }
 
-void GroundField::setOvergrow(int overgrow_level)
+void GroundField::setOvergrow(qreal overgrow_level)
 {
-    if(overgrow_level < 0)
-    {
-        overgrow_level_=0;
-        return;
-    }
-    else if(overgrow_level > 100)
-    {
-        overgrow_level_ = 100;
-        return;
-    }
-    overgrow_level_ = overgrow_level;
+    overgrow_level_ = GroundField::GRASS_RANGE.cutValue(overgrow_level);
 
+}
+
+void GroundField::modifyOvergrow(qreal value)
+{
+    overgrow_level_ = GroundField::GRASS_RANGE.cutValue(overgrow_level_ + value);
 }
