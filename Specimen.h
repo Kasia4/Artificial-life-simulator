@@ -111,6 +111,8 @@ public:
     bool getIsChased() const;
     void setIsChased(bool isChased);
 
+
+
 protected:
     void advance(int step);
     qreal size_;
@@ -153,6 +155,8 @@ private:
 
     void addAttribute(AttributeType type, Attribute attribute);
     void rotateTo(qreal angle);
+    void runAway();
+    void chaseTarget();
     void move();
 
 
