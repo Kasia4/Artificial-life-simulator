@@ -22,6 +22,11 @@ qreal Range::cutValue(const qreal &value) const
     return value;
 }
 
+bool Range::inRange(const qreal &value) const
+{
+    return value < end_ && value > begin_;
+}
+
 qreal Range::lenght() const
 {
     return end_ - begin_;

@@ -38,6 +38,9 @@ public:
     QPoint getSize() const;
     int getFieldSize() const;
     BoardField& getField(const QPoint& position);
+    bool onBoard(const QPoint& position);
+    FieldType getFieldType(const QPoint& position);
+
     const MapTable& getFields() const;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -45,7 +48,7 @@ public:
 
     /* Sets field with given type at given position. Creates new field object and destroys old one */
     void replaceField(const QPoint& position, FieldType type);
-
+    void advance(int phase);
 
 private:
     void resize(const QPoint& size);
