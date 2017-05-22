@@ -47,7 +47,7 @@ void SpecimensModel::setAttributesStrings()
     attributes_strings_.insert(AttributeType::HEARING_RANGE,        "Hearing range"         );
     attributes_strings_.insert(AttributeType::SIGHT_ANGLE,          "Sight angle"           );
     attributes_strings_.insert(AttributeType::SIGHT_RANGE,          "Sight range"           );
-    attributes_strings_.insert(AttributeType::SLEEPING_NECESSITY,   "Sleeping necessity"    );
+    attributes_strings_.insert(AttributeType::SLEEP_NECESSITY,   "Sleeping necessity"    );
     attributes_strings_.insert(AttributeType::SPEED,                "Speed"                 );
     attributes_strings_.insert(AttributeType::STRENGTH,             "Strenght"              );
     attributes_strings_.insert(AttributeType::WATER_NECESSITY,      "Water necessity"       );

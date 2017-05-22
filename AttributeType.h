@@ -9,9 +9,10 @@ enum class AttributeType : unsigned
     HEARING_RANGE,
     SPEED,
     STRENGTH,
-    SLEEPING_NECESSITY,
+    SLEEP_NECESSITY,
     FOOD_NECESSITY,
     WATER_NECESSITY
 
 };
+
 #endif // ATTRIBUTETYPE_H
