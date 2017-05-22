@@ -5,7 +5,7 @@ SearchWaterState::SearchWaterState()
 
 }
 
-void SearchWaterState::action(Specimen *specimen)
+State* SearchWaterState::action(Specimen *specimen)
 {
 
 }

@@ -6,7 +6,7 @@ class SearchFoodState : public State
 {
 public:
     SearchFoodState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void searchForFood();
 };

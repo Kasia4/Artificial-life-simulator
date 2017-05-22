@@ -5,7 +5,7 @@ SearchFoodState::SearchFoodState()
 
 }
 
-void SearchFoodState::action(Specimen *specimen)
+State* SearchFoodState::action(Specimen *specimen)
 {
 
 }

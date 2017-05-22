@@ -6,7 +6,7 @@ class ChaseFoodState : public State
 {
 public:
     ChaseFoodState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void chaseForFood();
 };

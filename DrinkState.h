@@ -6,7 +6,7 @@ class DrinkState : public State
 {
 public:
     DrinkState();
-    void action(Specimen *specimen);
+    State* action(Specimen *specimen);
 private:
     void drink();
 };

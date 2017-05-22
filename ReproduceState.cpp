@@ -5,7 +5,7 @@ ReproduceState::ReproduceState()
 
 }
 
-void ReproduceState::action(Specimen *specimen)
+State* ReproduceState::action(Specimen *specimen)
 {
 
 }

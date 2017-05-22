@@ -5,7 +5,7 @@ RunAwayState::RunAwayState()
 
 }
 
-void RunAwayState::action(Specimen *specimen)
+State* RunAwayState::action(Specimen *specimen)
 {
 
 }

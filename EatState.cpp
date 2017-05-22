@@ -5,7 +5,7 @@ EatState::EatState()
 
 }
 
-void EatState::action(Specimen *specimen)
+State* EatState::action(Specimen *specimen)
 {
 
 }
