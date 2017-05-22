@@ -12,6 +12,7 @@ public:
 
     qreal transform(const qreal& value, const Range &origin = Range(0.0,1.0)) const;
     qreal cutValue(const qreal &value) const;
+    bool inRange(const qreal& value) const;
 
     qreal lenght() const;
 
