@@ -47,7 +47,7 @@ void GroundField::setOvergrow(const qreal& overgrow_level)
 void GroundField::modifyOvergrow(qreal value)
 {
     overgrow_level_ = GroundField::GRASS_RANGE.cutValue(overgrow_level_ + value);
-    //this->update();
+    this->update();
 }
 
 void GroundField::advance(int phase)

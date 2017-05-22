@@ -32,6 +32,8 @@ enum class SpecimenType : unsigned {
 
 class Specimen :  public QGraphicsItem
 {
+    static constexpr qreal SELECTION_RING_SCALE = 1.7;
+    inline qreal selectionRingSize() const;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ESCAPING_DISTANCE = 50;

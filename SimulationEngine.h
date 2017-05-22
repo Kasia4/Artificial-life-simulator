@@ -26,7 +26,7 @@ public:
     SimulationEngine(Board& board);
     Board* getBoard() const;
     QGraphicsScene& getScene();
-    QList<Specimen*>& getSpecimens();
+    const QList<Specimen*>& getSpecimens() const;
 
 
 public slots:

@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QTableView>
+
 #include "SimulationEngine.h"
 #include "Board.h"
 #include "BoardModel.h"
@@ -9,15 +11,12 @@
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
 #include "Genome.h"
+#include "SpecimensModel.h"
 #include "Range.h"
 
 void setCustomBoard(Board& board)
 {
-    for(int i = 0; i<board.getWidth()-1; ++i)
-    {
-        board.replaceField(QPoint(board.getWidth()-1-i,i), FieldType::WATER);
-        board.replaceField(QPoint(board.getWidth()-1-i,i+1), FieldType::WATER);
-    }
+
     for(int i = 0; i<board.getWidth(); ++i){
         for(int j = 0; j<board.getHeight(); ++j){
             BoardField* field = board.getField(QPoint(i,j));
@@ -26,6 +25,12 @@ void setCustomBoard(Board& board)
                 dynamic_cast<GroundField*>(field)->setOvergrow(0);
             }
         }
+
+    }
+    for(int i = 0; i<board.getWidth()-1; ++i)
+    {
+        board.replaceField(QPoint(board.getWidth()-1-i,i), FieldType::WATER);
+        board.replaceField(QPoint(board.getWidth()-1-i,i+1), FieldType::WATER);
     }
 }
 
@@ -44,7 +49,7 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setPos(280,350);
     spec2->setSize(20);
     spec2->setRotation(10);
-    spec2->setVelocity(0.7);
+    spec2->setVelocity(1.2);
     spec2->setAngularVelocity(-1);
     spec2->setMove(true);
     engine.addSpecimen(spec2);
@@ -100,6 +105,8 @@ int main(int argc, char *argv[])
 
     /* simulation engine creating */
     SimulationEngine engine(board);
+
+    SpecimensModel spec_model(engine);
 
     /* example tests demonstrating implemented features */
     setCustomBoard(board);
