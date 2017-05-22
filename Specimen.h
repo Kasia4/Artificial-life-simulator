@@ -105,6 +105,12 @@ public:
     CircleCollider& getHearingCollider();
     ConeCollider& getSightCollider();
 
+    bool getIsDead() const;
+    void setIsDead(bool isDead);
+
+    bool getIsChased() const;
+    void setIsChased(bool isChased);
+
 protected:
     void advance(int step);
     qreal size_;
@@ -140,6 +146,9 @@ private:
 
     bool needChanged_;
     Need currentNeed_;
+
+    bool isDead_;
+    bool isChased_;
 
 
     void addAttribute(AttributeType type, Attribute attribute);

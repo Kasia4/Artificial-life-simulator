@@ -14,6 +14,8 @@ Specimen::Specimen()
     ,hunger_(0)
     ,tiredness_(0)
     ,needChanged_(false)
+    ,isDead_(false)
+    ,isChased_(false)
 {
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
@@ -233,6 +235,26 @@ void Specimen::advance(int step)
             move();
         }
     }
+}
+
+bool Specimen::getIsChased() const
+{
+    return isChased_;
+}
+
+void Specimen::setIsChased(bool isChased)
+{
+    isChased_ = isChased;
+}
+
+bool Specimen::getIsDead() const
+{
+    return isDead_;
+}
+
+void Specimen::setIsDead(bool isDead)
+{
+    isDead_ = isDead;
 }
 
 State *Specimen::getCurrentState() const
