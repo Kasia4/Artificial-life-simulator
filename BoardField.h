@@ -13,7 +13,8 @@
 enum class FieldType : unsigned{
     GROUND = 0,
     WATER,
-    BARREN
+    BARREN,
+    VOID = 99
 };
 
 class BoardField : public QGraphicsItem
