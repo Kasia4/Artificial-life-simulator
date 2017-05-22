@@ -49,7 +49,8 @@ SOURCES += main.cpp\
     AttributeConditioning.cpp \
     Range.cpp \
     RunAwayState.cpp \
-    BarrenField.cpp
+    BarrenField.cpp \
+    SpecimenWidget.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -91,6 +92,8 @@ HEADERS  += \
     Need.h \
     Range.h \
     RunAwayState.h \
-    BarrenField.h
+    BarrenField.h \
+    SpecimenWidget.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    SpecimenWidget.ui

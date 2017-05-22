@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QTableView>
+
 #include "SimulationEngine.h"
 #include "Board.h"
 #include "BoardModel.h"
@@ -9,6 +11,7 @@
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
 #include "Genome.h"
+#include "SpecimensModel.h"
 #include "Range.h"
 
 void setCustomBoard(Board& board)
@@ -106,14 +109,21 @@ int main(int argc, char *argv[])
     /* simulation engine creating */
     SimulationEngine engine(board);
 
+    SpecimensModel spec_model(engine);
+
     /* example tests demonstrating implemented features */
     setCustomBoard(board);
     createSpecimans(engine);
 
     engine.startWork();
 
+    QTableView table_view;
+    table_view.setModel(&spec_model);
+
     main_window.setSimulationEngine(&engine);
     main_window.show();
+
+    table_view.show();
 
     //testGenes();
     return a.exec();

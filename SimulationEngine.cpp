@@ -33,7 +33,7 @@ QGraphicsScene& SimulationEngine::getScene()
     return scene_;
 }
 
-QList<Specimen*>& SimulationEngine::getSpecimens()
+const QList<Specimen *> &SimulationEngine::getSpecimens() const
 {
     return specimens_;
 }
