@@ -107,11 +107,6 @@ int main(int argc, char *argv[])
 
     engine.startWork();
 
-    std::cout<<engine.getBoard()->getNeighbors(QPoint(0,0)).size()<<std::endl;
-    std::cout<<engine.getBoard()->getNeighbors(QPoint(2,0)).size()<<std::endl;
-    std::cout<<engine.getBoard()->getNeighbors(QPoint(2,2)).size()<<std::endl;
-
-
     main_window.setSimulationEngine(&engine);
     main_window.show();
 

@@ -4,6 +4,7 @@ const Range GroundField::GRASS_RANGE = Range(0,100);
 
 GroundField::GroundField()
     :overgrow_level_(0)
+    ,overgrowing_speed_(0.1)
 {
 
 }
@@ -11,6 +12,16 @@ GroundField::GroundField()
 qreal GroundField::getOvergrow() const
 {
     return overgrow_level_;
+}
+
+qreal GroundField::getOvergrowingSpeed() const
+{
+    return overgrowing_speed_;
+}
+
+void GroundField::setOvergrowingSpeed(const qreal &overgrowingSpeed)
+{
+    overgrowing_speed_ = overgrowingSpeed;
 }
 
 void GroundField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -27,7 +38,7 @@ BoardField *GroundField::clone() const
     return temp;
 }
 
-void GroundField::setOvergrow(qreal overgrow_level)
+void GroundField::setOvergrow(const qreal& overgrow_level)
 {
     overgrow_level_ = GroundField::GRASS_RANGE.cutValue(overgrow_level);
 
@@ -36,4 +47,11 @@ void GroundField::setOvergrow(qreal overgrow_level)
 void GroundField::modifyOvergrow(qreal value)
 {
     overgrow_level_ = GroundField::GRASS_RANGE.cutValue(overgrow_level_ + value);
+    //this->update();
+}
+
+void GroundField::advance(int phase)
+{
+    if(!phase)return;
+    modifyOvergrow(overgrowing_speed_);
 }
