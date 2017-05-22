@@ -21,6 +21,7 @@ class BoardField : public QGraphicsItem
 {
 public:
     BoardField();
+    BoardField(const QPoint& position);
     virtual FieldType getFieldType() const = 0;
     virtual BoardField* clone() const = 0;
     int type() const;
@@ -30,8 +31,13 @@ public:
     void setSize(qreal size);
     qreal getSize() const;
 
+    QPoint getPosition() const;
+    void setPosition(const QPoint &position);
+
 private:
     qreal size_;
+    QPoint position_;
 };
+
 
 #endif // BOARDFIELD_H

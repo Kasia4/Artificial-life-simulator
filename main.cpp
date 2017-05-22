@@ -20,10 +20,10 @@ void setCustomBoard(Board& board)
     }
     for(int i = 0; i<board.getWidth(); ++i){
         for(int j = 0; j<board.getHeight(); ++j){
-            BoardField* field = &board.getField(QPoint(i,j));
+            BoardField* field = board.getField(QPoint(i,j));
             if(field->getFieldType()==FieldType::GROUND)
             {
-                dynamic_cast<GroundField*>(field)->setOvergrow(i*5);
+                dynamic_cast<GroundField*>(field)->setOvergrow(0);
             }
         }
     }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     MainWindow main_window;
 
     /* board properties setting */
-    Board board(QPoint(15,15));
+    Board board( QPoint(15,15) );
     board.setFieldSize(40);
 
     /* simulation engine creating */
@@ -107,10 +107,15 @@ int main(int argc, char *argv[])
 
     engine.startWork();
 
+    std::cout<<engine.getBoard()->getNeighbors(QPoint(0,0)).size()<<std::endl;
+    std::cout<<engine.getBoard()->getNeighbors(QPoint(2,0)).size()<<std::endl;
+    std::cout<<engine.getBoard()->getNeighbors(QPoint(2,2)).size()<<std::endl;
+
+
     main_window.setSimulationEngine(&engine);
     main_window.show();
 
-    testGenes();
+    //testGenes();
     return a.exec();
 }
 

@@ -17,7 +17,7 @@ class FieldFactory
 public:
     static FieldFactory& getInstance();
     void registerField(FieldType type, BoardField* prototype);
-    BoardField* create(FieldType type);
+    BoardField* create(FieldType type, const QPoint& position);
 
 private:
     QMap<FieldType, BoardField*> prototypes_;

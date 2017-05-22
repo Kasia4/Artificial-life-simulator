@@ -37,7 +37,7 @@ public:
     int getHeight() const;
     QPoint getSize() const;
     int getFieldSize() const;
-    BoardField& getField(const QPoint& position);
+    BoardField *getField(const QPoint& position);
     bool onBoard(const QPoint& position);
     FieldType getFieldType(const QPoint& position);
 
@@ -48,7 +48,9 @@ public:
 
     /* Sets field with given type at given position. Creates new field object and destroys old one */
     void replaceField(const QPoint& position, FieldType type);
-    void advance(int phase);
+
+    QList<BoardField*> getNeighbors(const BoardField* field);
+    QList<BoardField*> getNeighbors(const QPoint& position);
 
 private:
     void resize(const QPoint& size);
