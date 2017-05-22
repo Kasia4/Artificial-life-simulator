@@ -38,9 +38,13 @@ int Board::getFieldSize() const
     return field_size_;
 }
 
-BoardField& Board::getField(const QPoint& position)
+BoardField* Board::getField(const QPoint& position)
 {
-    return *fields_[position.x()][position.y()];
+    if(onBoard(position))
+        return fields_[position.x()][position.y()];
+    else
+        return nullptr;
+
 }
 
 bool Board::onBoard(const QPoint &position)
@@ -76,28 +80,36 @@ QRectF Board::boundingRect() const
 
 void Board::replaceField(const QPoint &position, FieldType type)
 {
-    BoardField* old_field = &getField(position);
-    BoardField* new_field = FieldFactory::getInstance().create(type);
+    BoardField* old_field = getField(position);
+    BoardField* new_field = FieldFactory::getInstance().create(type, position);
     fields_[position.x()][position.y()] = new_field;
     placeField(position);
     emit fieldReplaced(old_field, new_field);
     delete old_field;
 }
 
-void Board::advance(int phase)
+QList<BoardField *> Board::getNeighbors(const BoardField *field)
 {
-    if(!phase)return;
-    for(MapColumn& column: fields_)
-    {
-        for(BoardField* field: column)
-        {
-            //TODO
-        }
-    }
-
-
+    QPoint position = field->getPosition();
+    QList<BoardField *> neighbors;
+    neighbors.append(getField(QPoint(position.x(), position.y()-1)));
+    neighbors.append(getField(QPoint(position.x()+1, position.y())));
+    neighbors.append(getField(QPoint(position.x(), position.y()+1)));
+    neighbors.append(getField(QPoint(position.x()-1, position.y())));
+    neighbors.removeAll(nullptr);
+    return neighbors;
 }
 
+QList<BoardField *> Board::getNeighbors(const QPoint &position)
+{
+    QList<BoardField *> neighbors;
+    neighbors.append( getField(QPoint(position.x(), position.y()-1)) );
+    neighbors.append( getField(QPoint(position.x()+1, position.y())) );
+    neighbors.append( getField(QPoint(position.x(), position.y()+1)) );
+    neighbors.append( getField(QPoint(position.x()-1, position.y())) );
+    neighbors.removeAll(nullptr);
+    return neighbors;
+}
 
 void Board::resize(const QPoint& size)
 {
@@ -115,6 +127,7 @@ void Board::resize(const QPoint& size)
         fields_[x].resize(size_.y());
         for(int y = 0; y < size_.y(); ++y){
             GroundField* field = new GroundField();
+            field->setPosition(QPoint(x,y));
             fields_[x][y] = field;
             placeField(QPoint(x,y));
         }

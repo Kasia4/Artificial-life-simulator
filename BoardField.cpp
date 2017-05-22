@@ -5,6 +5,12 @@ BoardField::BoardField()
 
 }
 
+BoardField::BoardField(const QPoint &position)
+    :position_ (position)
+{
+
+}
+
 int BoardField::type() const
 {
     return ItemType :: FIELD;
@@ -31,5 +37,15 @@ void BoardField::setSize(qreal size)
 qreal BoardField::getSize() const
 {
     return size_;
+}
+
+QPoint BoardField::getPosition() const
+{
+    return position_;
+}
+
+void BoardField::setPosition(const QPoint &position)
+{
+    position_ = position;
 }
 

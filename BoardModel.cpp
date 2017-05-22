@@ -22,10 +22,10 @@ QVariant BoardModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid())
         return QVariant();
-    BoardField& field = board_handle_->getField(QPoint(index.column(), index.row()));
+    BoardField* field = board_handle_->getField(QPoint(index.column(), index.row()));
     if( role == FIELD_TYPE_ROLE )
     {
-        return int(field.getFieldType());
+        return int(field->getFieldType());
     }
     if( index.column() > board_handle_->getWidth() || index.row() > board_handle_->getHeight() )
     {
@@ -33,9 +33,9 @@ QVariant BoardModel::data(const QModelIndex &index, int role) const
     }
     else if( role == FIELD_VALUE_ROLE )
     {
-        if(field.getFieldType() == FieldType::GROUND)
+        if(field->getFieldType() == FieldType::GROUND)
         {
-            return (dynamic_cast<GroundField&>(field)).getOvergrow();
+            return (dynamic_cast<GroundField*>(field))->getOvergrow();
         }
         return 0;
     }

@@ -17,8 +17,10 @@ void FieldFactory::registerField(FieldType type, BoardField *prototype)
     prototypes_.insert(type, prototype);
 }
 
-BoardField* FieldFactory::create(FieldType type)
+BoardField* FieldFactory::create(FieldType type, const QPoint &position)
 {
-    return prototypes_.value(type)->clone();
+    BoardField* created = prototypes_.value(type)->clone();
+    created->setPosition(position);
+    return created;
 }
 
