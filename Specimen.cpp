@@ -181,10 +181,14 @@ QColor Specimen::getSkinColor() const
 
 void Specimen::advance(int step)
 {
-    if(!step)return;
+    if(!step)
+        return;
     if(shouldDie())
         isDead_=true;
-    if(chaser_)
+    else if(shouldRunAway())
+        isChased_=true;
+
+    else if(chaser_)
         runAway();
     else if(target_)
         chaseTarget();
