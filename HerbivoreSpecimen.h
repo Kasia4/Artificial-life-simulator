@@ -13,6 +13,8 @@ public:
     HerbivoreSpecimen();
     SpecimenType getSpec() const { return SpecimenType::HERBIVORE; }
     Specimen* clone() const;
+private:
+    bool shouldRunAway();
 };
 
 #endif // HERBIVORESPECIMEN_H

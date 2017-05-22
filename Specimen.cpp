@@ -402,7 +402,7 @@ bool Specimen::shouldDie()
 
 bool Specimen::shouldRunAway()
 {
-
+    return false;
 }
 
 QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
