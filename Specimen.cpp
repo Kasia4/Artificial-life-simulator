@@ -182,7 +182,8 @@ QColor Specimen::getSkinColor() const
 void Specimen::advance(int step)
 {
     if(!step)return;
-    //if(hp_ <= 0 || )
+    if(shouldDie())
+        isDead_=true;
     if(chaser_)
         runAway();
     else if(target_)
@@ -390,4 +391,49 @@ void Specimen::rotateTo(qreal angle)
 }
 void Specimen::move(){
     setPos(mapToParent(velocity_,0));
+}
+
+bool Specimen::shouldDie()
+{
+    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1)
+        return true;
+    return false;
+}
+
+bool Specimen::shouldRunAway()
+{
+
+}
+
+QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
+{
+    QList<Specimen*> specimens;
+    for(QGraphicsItem* item : sight_.collidingItems(ItemType::SPECIMEN))
+    {
+        Specimen* specimen = dynamic_cast<Specimen*>(item);
+        if(specimen->getSpec() == type)
+            specimens.append(specimen);
+    }
+    for(QGraphicsItem* item : hearing_.collidingItems(ItemType::SPECIMEN))
+    {
+        Specimen* specimen = dynamic_cast<Specimen*>(item);
+        if(specimen->getSpec() == type)
+            specimens.append(specimen);
+    }
+    return specimens;
+}
+
+Specimen* Specimen::nearestSpecimen(SpecimenType type)
+{
+    qreal minDistance = hearing_.getRadius() > sight_.getRadius() ? hearing_.getRadius() : sight_.getRadius();
+    Specimen* nearestSpec = nullptr;
+    for(Specimen* specimen : collidingSpecimens(type))
+    {
+        QLine dist_line(pos().x(), pos().y(), specimen->pos().x(), specimen->pos().y());
+        qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
+        if(distance < minDistance)
+            nearestSpec = specimen;
+    }
+
+    return nearestSpec;
 }

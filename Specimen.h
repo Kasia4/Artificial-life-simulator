@@ -158,6 +158,11 @@ private:
     void runAway();
     void chaseTarget();
     void move();
+    bool shouldDie();
+    bool shouldRunAway();
+
+    QList<Specimen*> collidingSpecimens(SpecimenType type);
+    Specimen* nearestSpecimen(SpecimenType type);
 
 
 };

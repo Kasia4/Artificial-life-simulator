@@ -5,6 +5,7 @@
 
 #include "ItemType.h"
 
+
 class Collider : public QGraphicsItem
 {
 public:
