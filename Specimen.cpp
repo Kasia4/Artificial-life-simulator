@@ -14,6 +14,8 @@ Specimen::Specimen()
     ,hunger_(0)
     ,tiredness_(0)
     ,needChanged_(false)
+    ,isDead_(false)
+    ,isChased_(false)
 {
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
@@ -180,49 +182,63 @@ QColor Specimen::getSkinColor() const
 void Specimen::advance(int step)
 {
     if(!step)return;
+    //if(hp_ <= 0 || )
     if(chaser_)
-    {
-        QLine dist_line(pos().x(), pos().y(), chaser_->pos().x(), chaser_->pos().y());
-        qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx())) + 180;
-        dist_to_chaser_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
-        if(dist_to_chaser_ > ESCAPING_DISTANCE)
+        runAway();
+    else if(target_)
+        chaseTarget();
+    else if(move_)
         {
-            escaped_from_chaser_ = true;
+            setRotation(rotation() + angular_velocity_);
+            move();
+        }
+}
+
+bool Specimen::getIsChased() const
+{
+    return isChased_;
+}
+
+void Specimen::setIsChased(bool isChased)
+{
+    isChased_ = isChased;
+}
+
+void Specimen::runAway()
+{
+    QLine dist_line(pos().x(), pos().y(), chaser_->pos().x(), chaser_->pos().y());
+    qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx())) + 180;
+    dist_to_chaser_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+    if(dist_to_chaser_ > ESCAPING_DISTANCE)
+    {
+        escaped_from_chaser_ = true;
+    }
+    else
+        setRotation(rotation() + angle);
+    if(move_)
+    {
+        move();
+    }
+}
+
+void Specimen::chaseTarget()
+{
+    see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    if(see_target_ || hear_target_)
+    {
+        QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
+        qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
+        dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+        if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
+        {
+            caught_target_ = true;
         }
         else
-            setRotation(rotation() + angle);
+            setRotation(angle);
         if(move_)
         {
             move();
-        }
-    }
-    else if(target_)
-    {
-        see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
-        hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
-        if(see_target_ || hear_target_)
-        {
-            QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
-            qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
-            dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
-            if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
-            {
-                caught_target_ = true;
-            }
-            else
-                setRotation(angle);
-            if(move_)
-            {
-                move();
-            }
-        }
-        else
-        {
-            if(move_)
-            {
-                setRotation(rotation() + angular_velocity_);
-                move();
-            }
         }
     }
     else
@@ -233,6 +249,16 @@ void Specimen::advance(int step)
             move();
         }
     }
+}
+
+bool Specimen::getIsDead() const
+{
+    return isDead_;
+}
+
+void Specimen::setIsDead(bool isDead)
+{
+    isDead_ = isDead;
 }
 
 State *Specimen::getCurrentState() const

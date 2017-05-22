@@ -18,4 +18,5 @@ void SleepState::sleep(Specimen *specimen)
     else
         specimen->setTiredness(value);
 
+
 }
