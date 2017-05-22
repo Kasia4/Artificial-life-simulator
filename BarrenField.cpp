@@ -11,10 +11,8 @@ BoardField *BarrenField::clone() const
     return temp;
 }
 
-
-void BarrenField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+QColor BarrenField::getColor() const
 {
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-    painter->fillRect(boundingRect(), QColor(Qt::lightGray));
+    return QColor(Qt::lightGray);
 }
+

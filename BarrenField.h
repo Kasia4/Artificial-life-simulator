@@ -9,7 +9,7 @@ public:
     BarrenField();
     FieldType getFieldType() const override { return FieldType::BARREN; }
     BoardField* clone() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QColor getColor() const override;
 };
 
 #endif // BARRENFIELD_H

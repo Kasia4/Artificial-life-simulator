@@ -24,6 +24,9 @@ public:
     BoardField(const QPoint& position);
     virtual FieldType getFieldType() const = 0;
     virtual BoardField* clone() const = 0;
+    virtual QColor getColor() const = 0;
+
+    QRectF fieldRect() const;
     int type() const;
 
     QRectF boundingRect() const override;

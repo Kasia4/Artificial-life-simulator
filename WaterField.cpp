@@ -11,10 +11,8 @@ BoardField *WaterField::clone() const
     return temp;
 }
 
-void WaterField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+QColor WaterField::getColor() const
 {
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-    painter->fillRect(boundingRect(), QColor(Qt::blue));
+    return QColor(Qt::blue);
 }
 

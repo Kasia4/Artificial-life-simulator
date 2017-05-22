@@ -14,8 +14,7 @@ public:
     WaterField();
     FieldType getFieldType() const override { return FieldType::WATER; }
     BoardField* clone() const override;
-    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0) override;
-
+    QColor getColor() const override;
 };
 
 #endif // WATERFIELD_H

@@ -2,7 +2,7 @@
 
 BoardField::BoardField()
 {
-
+    setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 BoardField::BoardField(const QPoint &position)
@@ -10,6 +10,12 @@ BoardField::BoardField(const QPoint &position)
 {
 
 }
+
+QRectF BoardField::fieldRect() const
+{
+    return QRectF(0,0, size_, size_);
+}
+
 
 int BoardField::type() const
 {
@@ -21,12 +27,21 @@ void BoardField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-   painter->drawRect(boundingRect());
+    painter->fillRect(fieldRect(), getColor());
+    if(isSelected())
+    {
+        QPainterPath selection_path;
+        selection_path.addRect(fieldRect() + QMargins(-2,-2,-2,-2));
+        QPen selection_pen(Qt::DotLine);
+        selection_pen.setWidth(3);
+        painter->setPen(selection_pen);
+        painter->drawPath(selection_path);
+    }
 }
 
 QRectF BoardField::boundingRect() const
 {
-    return QRectF(0,0, size_, size_);
+    return QRectF(0,0, size_+1, size_+1);
 }
 
 void BoardField::setSize(qreal size)

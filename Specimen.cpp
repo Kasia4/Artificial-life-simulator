@@ -22,7 +22,7 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable);
+    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable);
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
 
@@ -64,7 +64,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    if(hasFocus())
+    if(hasFocus() || isSelected())
     {
         QPainterPath focus_path;
         focus_path.addEllipse(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
