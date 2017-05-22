@@ -1,5 +1,10 @@
 #include "Specimen.h"
 
+qreal Specimen::selectionRingSize() const
+{
+    return SELECTION_RING_SCALE * size_;
+}
+
 Specimen::Specimen()
     :target_(nullptr)
     ,chaser_(nullptr)
@@ -17,8 +22,10 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
+    setFlags(QGraphicsItem::ItemIsFocusable);
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
+
 
     /*Example values*/
     setHearingRange(50);
@@ -34,7 +41,7 @@ Specimen::Specimen()
 
     addAttribute(AttributeType::FOOD_NECESSITY, Attribute(0.1));
     addAttribute(AttributeType::WATER_NECESSITY, Attribute(0.1));
-    addAttribute(AttributeType::SLEEPING_NECESSITY, Attribute(0.1));
+    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
     currentState_ = new State();
@@ -50,16 +57,25 @@ int Specimen::type() const
 
 QRectF Specimen::boundingRect() const
 {
-    return QRectF(-size_/2,-size_/2, size_, size_);
-
+    return QRectF(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
 }
 
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
+    if(hasFocus())
+    {
+        QPainterPath focus_path;
+        focus_path.addEllipse(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
+        QPen focus_pen(Qt::DotLine);
+        focus_pen.setWidth(3);
+        painter->setPen(focus_pen);
+        painter->drawPath(focus_path);
+
+    }
     QPainterPath circle_path;
-    circle_path.addEllipse(boundingRect());
+    circle_path.addEllipse(-size_/2,-size_/2, size_, size_);
     circle_path.addEllipse(size_/5, -eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     circle_path.addEllipse(size_/5,  eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     painter->setPen(QPen(QColor(0, 0, 0),2));

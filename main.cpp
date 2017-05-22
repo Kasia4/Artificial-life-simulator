@@ -18,10 +18,7 @@ void setCustomBoard(Board& board)
 {
 
     for(int i = 0; i<board.getWidth(); ++i){
-        for(int j = 0; j<5; ++j){
-            board.replaceField(QPoint(i,j), FieldType::BARREN);
-        }
-        for(int j = 5; j<board.getHeight(); ++j){
+        for(int j = 0; j<board.getHeight(); ++j){
             BoardField* field = board.getField(QPoint(i,j));
             if(field->getFieldType()==FieldType::GROUND)
             {
@@ -52,7 +49,7 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setPos(280,350);
     spec2->setSize(20);
     spec2->setRotation(10);
-    spec2->setVelocity(0.7);
+    spec2->setVelocity(1.2);
     spec2->setAngularVelocity(-1);
     spec2->setMove(true);
     engine.addSpecimen(spec2);
@@ -117,13 +114,8 @@ int main(int argc, char *argv[])
 
     engine.startWork();
 
-    QTableView table_view;
-    table_view.setModel(&spec_model);
-
     main_window.setSimulationEngine(&engine);
     main_window.show();
-
-    table_view.show();
 
     //testGenes();
     return a.exec();
