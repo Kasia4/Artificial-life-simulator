@@ -11,6 +11,7 @@
 
 #include "GroundField.h"
 #include "WaterField.h"
+#include "BarrenField.h"
 
 class FieldFactory
 {

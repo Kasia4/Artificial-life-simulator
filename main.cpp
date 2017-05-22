@@ -13,19 +13,24 @@
 
 void setCustomBoard(Board& board)
 {
-    for(int i = 0; i<board.getWidth()-1; ++i)
-    {
-        board.replaceField(QPoint(board.getWidth()-1-i,i), FieldType::WATER);
-        board.replaceField(QPoint(board.getWidth()-1-i,i+1), FieldType::WATER);
-    }
+
     for(int i = 0; i<board.getWidth(); ++i){
-        for(int j = 0; j<board.getHeight(); ++j){
+        for(int j = 0; j<5; ++j){
+            board.replaceField(QPoint(i,j), FieldType::BARREN);
+        }
+        for(int j = 5; j<board.getHeight(); ++j){
             BoardField* field = board.getField(QPoint(i,j));
             if(field->getFieldType()==FieldType::GROUND)
             {
                 dynamic_cast<GroundField*>(field)->setOvergrow(0);
             }
         }
+
+    }
+    for(int i = 0; i<board.getWidth()-1; ++i)
+    {
+        board.replaceField(QPoint(board.getWidth()-1-i,i), FieldType::WATER);
+        board.replaceField(QPoint(board.getWidth()-1-i,i+1), FieldType::WATER);
     }
 }
 
