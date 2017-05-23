@@ -79,7 +79,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     circle_path.addEllipse(size_/5, -eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     circle_path.addEllipse(size_/5,  eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     painter->setPen(QPen(QColor(0, 0, 0),2));
-    painter->setBrush(skin_color_);
+    painter->setBrush(skinColor());
     painter->drawPath(circle_path);
 }
 
@@ -188,11 +188,6 @@ QGraphicsItem *Specimen::getTarget() const
 bool Specimen::getMove() const
 {
     return move_;
-}
-
-QColor Specimen::getSkinColor() const
-{
-    return skin_color_;
 }
 
 void Specimen::advance(int step)

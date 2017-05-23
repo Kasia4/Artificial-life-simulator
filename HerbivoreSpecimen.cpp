@@ -2,13 +2,17 @@
 
 HerbivoreSpecimen::HerbivoreSpecimen()
 {
-    skin_color_ = QColor(0,210,0);
 }
 
 Specimen* HerbivoreSpecimen::clone() const
 {
     HerbivoreSpecimen* temp = new HerbivoreSpecimen();
     return temp;
+}
+
+QColor HerbivoreSpecimen::skinColor() const
+{
+    return QColor(0,210,0);
 }
 
 bool HerbivoreSpecimen::shouldRunAway()

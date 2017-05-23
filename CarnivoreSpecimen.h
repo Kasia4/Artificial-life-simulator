@@ -15,6 +15,7 @@ public:
     CarnivoreSpecimen();
     SpecimenType getSpec() const { return SpecimenType::CARNIVORE; }
     Specimen* clone() const;
+    QColor skinColor() const;
 };
 
 #endif // CARNIVORESPECIMEN_H
