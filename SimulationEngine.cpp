@@ -28,7 +28,7 @@ Board* SimulationEngine::getBoard() const
     return board_;
 }
 
-QGraphicsScene& SimulationEngine::getScene()
+SimulationScene &SimulationEngine::getScene()
 {
     return scene_;
 }
@@ -116,3 +116,5 @@ void SimulationEngine::replaceField(BoardField *old_field, BoardField *new_field
     scene_.removeItem(old_field);
     scene_.addItem(new_field);
 }
+
+

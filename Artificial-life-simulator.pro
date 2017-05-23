@@ -50,7 +50,8 @@ SOURCES += main.cpp\
     Range.cpp \
     RunAwayState.cpp \
     BarrenField.cpp \
-    SpecimenWidget.cpp
+    SpecimenWidget.cpp \
+    SimulationScene.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -93,7 +94,8 @@ HEADERS  += \
     Range.h \
     RunAwayState.h \
     BarrenField.h \
-    SpecimenWidget.h
+    SpecimenWidget.h \
+    SimulationScene.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui

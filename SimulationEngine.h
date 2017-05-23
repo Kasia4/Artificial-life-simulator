@@ -13,6 +13,7 @@
 #include <QTimer>
 #include <QDebug>
 
+#include "SimulationScene.h"
 #include "Board.h"
 #include "Specimen.h"
 #include "Border.h"
@@ -24,8 +25,9 @@ public:
     const qint64 STEP_TIME =    1000000000;
     const qint64 TIME_DIVISOR = 1000000000;
     SimulationEngine(Board& board);
+    virtual ~SimulationEngine() {};
     Board* getBoard() const;
-    QGraphicsScene& getScene();
+    SimulationScene& getScene();
     const QList<Specimen*>& getSpecimens() const;
 
 
@@ -40,12 +42,13 @@ public slots:
 private slots:
     void updateBoardSize(const QPoint& size);
     void replaceField(BoardField* old_field, BoardField* new_field);
+
 private:
     QList<Specimen*> specimens_;
     QTimer timer_;
     Board* board_;
     bool is_started_;
-    QGraphicsScene scene_;
+    SimulationScene scene_;
     Border* border;
 
 
