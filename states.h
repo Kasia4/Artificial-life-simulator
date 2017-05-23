@@ -9,4 +9,5 @@
 #include "SearchPartnerState.h"
 #include "SearchWaterState.h"
 #include "SleepState.h"
+#include "RunAwayState.h"
 #endif // STATES_H

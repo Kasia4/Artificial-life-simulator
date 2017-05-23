@@ -114,6 +114,9 @@ public:
 
 
 
+    qreal getReproduce() const;
+    void setReproduce(const qreal &reproduce);
+
 protected:
     void advance(int step);
     virtual bool shouldRunAway();
@@ -149,6 +152,7 @@ private:
     qreal thirst_;
     qreal hunger_;
     qreal tiredness_;
+    qreal reproduce_;
     qreal hp_;
 
     bool needChanged_;

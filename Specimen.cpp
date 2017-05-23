@@ -397,7 +397,7 @@ void Specimen::move(){
 
 bool Specimen::shouldDie()
 {
-    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1)
+    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1 || reproduce_ >= 1)
         return true;
     return false;
 }
@@ -438,4 +438,14 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     }
 
     return nearestSpec;
+}
+
+qreal Specimen::getReproduce() const
+{
+    return reproduce_;
+}
+
+void Specimen::setReproduce(const qreal &reproduce)
+{
+    reproduce_ = reproduce;
 }
