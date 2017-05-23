@@ -387,19 +387,6 @@ void Specimen::setChaser(QGraphicsItem *chaser)
 }
 
 
-void Specimen::rotateTo(qreal angle)
-{
-    //    qreal rot = fmod(rotation(), 360) - 180;
-    //    if(rot<-180)rot+=360;
-    //    qreal diff = rot - angle;
-//    std::cout<<diff<<" = "<<rot <<" - "<<angle<<std::endl;
-//    if(qAbs(diff) < ROTATING_DISTANCE_THRESHOLD)
-//        return;
-//    qreal vel = (diff <= 180) ? qAbs(angular_velocity_) :
-//                                -qAbs(angular_velocity_);
-//    setRotation(rotation() + vel);
-
-}
 void Specimen::move(){
     setPos(mapToParent(velocity_,0));
 }

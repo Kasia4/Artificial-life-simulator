@@ -159,7 +159,6 @@ private:
 
 
     void addAttribute(AttributeType type, Attribute attribute);
-    void rotateTo(qreal angle);
     void runAway();
     void chaseTarget();
     void move();
