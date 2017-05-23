@@ -24,18 +24,17 @@ void GroundField::setOvergrowingSpeed(const qreal &overgrowingSpeed)
     overgrowing_speed_ = overgrowingSpeed;
 }
 
-void GroundField::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-    painter->fillRect(boundingRect(), QColor(200-overgrow_level_*2,150,0));
-}
 
 BoardField *GroundField::clone() const
 {
     GroundField* temp = new GroundField;
     temp->overgrow_level_ = overgrow_level_;
     return temp;
+}
+
+QColor GroundField::getColor() const
+{
+    return QColor(200-overgrow_level_*2,150,0);
 }
 
 void GroundField::setOvergrow(const qreal& overgrow_level)

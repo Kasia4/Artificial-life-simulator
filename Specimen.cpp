@@ -22,7 +22,7 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable);
+    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable);
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
 
@@ -64,7 +64,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    if(hasFocus())
+    if(hasFocus() || isSelected())
     {
         QPainterPath focus_path;
         focus_path.addEllipse(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
@@ -79,7 +79,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     circle_path.addEllipse(size_/5, -eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     circle_path.addEllipse(size_/5,  eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     painter->setPen(QPen(QColor(0, 0, 0),2));
-    painter->setBrush(skin_color_);
+    painter->setBrush(skinColor());
     painter->drawPath(circle_path);
 }
 
@@ -188,11 +188,6 @@ QGraphicsItem *Specimen::getTarget() const
 bool Specimen::getMove() const
 {
     return move_;
-}
-
-QColor Specimen::getSkinColor() const
-{
-    return skin_color_;
 }
 
 void Specimen::advance(int step)
@@ -396,19 +391,6 @@ void Specimen::setChaser(QGraphicsItem *chaser)
 }
 
 
-void Specimen::rotateTo(qreal angle)
-{
-    //    qreal rot = fmod(rotation(), 360) - 180;
-    //    if(rot<-180)rot+=360;
-    //    qreal diff = rot - angle;
-//    std::cout<<diff<<" = "<<rot <<" - "<<angle<<std::endl;
-//    if(qAbs(diff) < ROTATING_DISTANCE_THRESHOLD)
-//        return;
-//    qreal vel = (diff <= 180) ? qAbs(angular_velocity_) :
-//                                -qAbs(angular_velocity_);
-//    setRotation(rotation() + vel);
-
-}
 void Specimen::move(){
     setPos(mapToParent(velocity_,0));
 }

@@ -16,9 +16,8 @@ public:
 
     GroundField();
     FieldType getFieldType() const { return FieldType::GROUND; }
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     BoardField* clone() const;
-
+    QColor getColor() const override;
     /* Adds given value to current overgrow_level value*/
     void modifyOvergrow( qreal value );
     virtual void advance(int phase);

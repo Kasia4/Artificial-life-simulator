@@ -41,6 +41,7 @@ public:
     Specimen();
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
+    virtual QColor skinColor() const = 0;
     int type() const;
 
 
@@ -69,8 +70,6 @@ public:
 
     QGraphicsItem* getTarget() const;
     bool getMove() const;
-
-    QColor getSkinColor() const;
 
     void disableTracking();
 
@@ -122,7 +121,6 @@ protected:
     qreal eyes_size_;
     qreal eyes_dist_;
 
-    QColor skin_color_;
 
     QGraphicsItem* target_;
     QGraphicsItem* chaser_;
@@ -161,7 +159,6 @@ private:
 
 
     void addAttribute(AttributeType type, Attribute attribute);
-    void rotateTo(qreal angle);
     void runAway();
     void chaseTarget();
     void move();

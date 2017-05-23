@@ -13,6 +13,8 @@ public:
     HerbivoreSpecimen();
     SpecimenType getSpec() const { return SpecimenType::HERBIVORE; }
     Specimen* clone() const;
+    QColor skinColor() const;
+
 private:
     bool shouldRunAway();
 };
