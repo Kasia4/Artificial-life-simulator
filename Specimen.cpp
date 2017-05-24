@@ -193,11 +193,14 @@ bool Specimen::getMove() const
 
 void Specimen::advance(int step)
 {
-    if(!step)return;
-    attributes_[AttributeType::ENDURANCE].setFactor(attributes_[AttributeType::ENDURANCE].getFactor()+0.1);
+    if(!step)
+        return;
     if(shouldDie())
         isDead_=true;
-    if(chaser_)
+    else if(shouldRunAway())
+        isChased_=true;
+
+    else if(chaser_)
         runAway();
     else if(target_)
         chaseTarget();
@@ -395,7 +398,7 @@ void Specimen::move(){
 
 bool Specimen::shouldDie()
 {
-    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1)
+    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1 || reproduce_ >= 1)
         return true;
     return false;
 }
@@ -438,3 +441,15 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     return nearestSpec;
 }
 
+<<<<<<< HEAD
+=======
+qreal Specimen::getReproduce() const
+{
+    return reproduce_;
+}
+
+void Specimen::setReproduce(const qreal &reproduce)
+{
+    reproduce_ = reproduce;
+}
+>>>>>>> e9b7b53b35b74826d5430a5b758b59bc5e66c89b

@@ -7,6 +7,8 @@ State::State()
 
 State* State::action(Specimen *specimen)
 {
-     if(specimen->getHp() < 0)
-        specimen->setCurrentState(new DieState);
+    if(specimen->getIsDead())
+        return new DieState();
+    else if(specimen->getIsChased())
+        return new RunAwayState();
 }
