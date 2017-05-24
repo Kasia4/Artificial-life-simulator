@@ -22,10 +22,11 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable);
+    setFlags(QGraphicsItem::ItemIsFocusable);
+    setAcceptHoverEvents(true);
+
     hearing_.setParentItem(this);
     sight_.setParentItem(this);
-
 
     /*Example values*/
     setHearingRange(50);
@@ -193,6 +194,7 @@ bool Specimen::getMove() const
 void Specimen::advance(int step)
 {
     if(!step)return;
+    attributes_[AttributeType::ENDURANCE].setFactor(attributes_[AttributeType::ENDURANCE].getFactor()+0.1);
     if(shouldDie())
         isDead_=true;
     if(chaser_)
@@ -435,3 +437,4 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
 
     return nearestSpec;
 }
+

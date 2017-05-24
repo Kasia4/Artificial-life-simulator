@@ -22,8 +22,6 @@ class SimulationEngine: public QObject
 {
     Q_OBJECT
 public:
-    const qint64 STEP_TIME =    1000000000;
-    const qint64 TIME_DIVISOR = 1000000000;
     SimulationEngine(Board& board);
     virtual ~SimulationEngine() {};
     Board* getBoard() const;

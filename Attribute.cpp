@@ -5,13 +5,23 @@ Attribute::Attribute()
 
 }
 
-Attribute::Attribute(qreal base, qreal factor) : base(base), factor(factor)
+Attribute::Attribute(qreal base, qreal factor) : base_(base), factor_(factor)
 {
 
 }
 
 qreal Attribute::getValue() const
 {
-    return base * factor;
+    return base_ * factor_;
 
+}
+
+void Attribute::setFactor(const qreal &factor)
+{
+    factor_ = factor;
+}
+
+qreal Attribute::getFactor() const
+{
+    return factor_;
 }

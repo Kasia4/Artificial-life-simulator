@@ -15,6 +15,7 @@ int SpecimensModel::rowCount(const QModelIndex &parent) const
 int SpecimensModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
+    if(specimens_handle_->isEmpty())return 0;
     return specimens_handle_->first()->getAttributes().size();
 }
 
