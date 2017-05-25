@@ -22,7 +22,7 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable);
+    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 
     hearing_.setParentItem(this);
@@ -241,7 +241,7 @@ void Specimen::runAway()
 void Specimen::chaseTarget()
 {
     see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
     if(see_target_ || hear_target_)
     {
         QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());

@@ -142,6 +142,8 @@ protected:
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
     Specimen* nearestSpecimen(SpecimenType type);
+
+
 private:
     qreal velocity_;
     qreal angular_velocity_;

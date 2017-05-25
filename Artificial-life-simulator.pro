@@ -52,7 +52,9 @@ SOURCES += main.cpp\
     BarrenField.cpp \
     SpecimenWidget.cpp \
     SimulationScene.cpp \
+    HoverSpecimenEventFilter.cpp \
     Needs.cpp
+
 
 HEADERS  += \
     SimulationEngine.h \
@@ -96,6 +98,7 @@ HEADERS  += \
     BarrenField.h \
     SpecimenWidget.h \
     SimulationScene.h \
+    HoverSpecimenEventFilter.h \
     NeedType.h \
     Needs.h
 
