@@ -5,7 +5,12 @@
 
 
 #include "ItemType.h"
+#include "SpecimenWidget.h"
+#include "HoverSpecimenEventFilter.h"
+
 #include <iostream>
+#include <QPointer>
+#include <QGraphicsProxyWidget>
 
 class SimulationScene : public QGraphicsScene
 {
@@ -13,11 +18,11 @@ class SimulationScene : public QGraphicsScene
 public:
     SimulationScene();
     virtual ~SimulationScene() {};
-
 public slots:
 
-private:
 
+private:
+    QGraphicsProxyWidget* specimen_widget_;
 };
 
 #endif // SIMULATIONSCENE_H

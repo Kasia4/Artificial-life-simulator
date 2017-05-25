@@ -8,7 +8,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include "SimulationEngine.h"
-
+#include "HoverSpecimenEventFilter.h"
 namespace Ui {
 class MainWindow;
 }
@@ -23,6 +23,8 @@ public:
     void setBoardView(QGraphicsScene *scene);
     ~MainWindow();
 
+protected:
+    bool event(QEvent *event);
 private slots:
 
     void on_collidersCheckBox_stateChanged(int arg1);

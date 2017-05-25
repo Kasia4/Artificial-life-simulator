@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     RunAwayState.cpp \
     BarrenField.cpp \
     SpecimenWidget.cpp \
-    SimulationScene.cpp
+    SimulationScene.cpp \
+    HoverSpecimenEventFilter.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -95,7 +96,8 @@ HEADERS  += \
     RunAwayState.h \
     BarrenField.h \
     SpecimenWidget.h \
-    SimulationScene.h
+    SimulationScene.h \
+    HoverSpecimenEventFilter.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui

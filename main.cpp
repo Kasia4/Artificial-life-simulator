@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     /* simulation engine creating */
     SimulationEngine engine(board);
 
-    SpecimensModel spec_model(engine);
+    //SpecimensModel spec_model(engine);
 
 
     /* example tests demonstrating implemented features */
@@ -115,12 +115,12 @@ int main(int argc, char *argv[])
 
     engine.startWork();
 
-    QTableView spec_view;
-    spec_view.setModel(&spec_model);
+    //QTableView spec_view;
+    //spec_view.setModel(&spec_model);
 
     main_window.setSimulationEngine(&engine);
     main_window.show();
-    spec_view.show();
+    //spec_view.show();
 
     //testGenes();
     return a.exec();

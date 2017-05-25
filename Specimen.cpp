@@ -22,7 +22,7 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable);
+    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 
     hearing_.setParentItem(this);
@@ -241,7 +241,7 @@ void Specimen::runAway()
 void Specimen::chaseTarget()
 {
     see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    hear_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
     if(see_target_ || hear_target_)
     {
         QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
@@ -441,8 +441,7 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     return nearestSpec;
 }
 
-<<<<<<< HEAD
-=======
+
 qreal Specimen::getReproduce() const
 {
     return reproduce_;
@@ -452,4 +451,3 @@ void Specimen::setReproduce(const qreal &reproduce)
 {
     reproduce_ = reproduce;
 }
->>>>>>> e9b7b53b35b74826d5430a5b758b59bc5e66c89b
