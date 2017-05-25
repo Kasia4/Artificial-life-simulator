@@ -413,6 +413,16 @@ bool Specimen::shouldRunAway()
     return false;
 }
 
+void Specimen::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    emit hoverEnter(this);
+}
+
+void Specimen::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    emit hoverLeave();
+}
+
 QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
 {
     QList<Specimen*> specimens;

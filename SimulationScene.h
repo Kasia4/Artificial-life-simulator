@@ -11,6 +11,7 @@
 #include <iostream>
 #include <QPointer>
 #include <QGraphicsProxyWidget>
+#include <QGraphicsSceneMouseEvent>
 
 class SimulationScene : public QGraphicsScene
 {
@@ -18,11 +19,14 @@ class SimulationScene : public QGraphicsScene
 public:
     SimulationScene();
     virtual ~SimulationScene() {};
+
 public slots:
-
-
+    void showSpecimenWidget(Specimen* specimen);
+    void hideSpecimenWidget();
+protected:
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
-    QGraphicsProxyWidget* specimen_widget_;
+    QGraphicsWidget* specimen_widget_;
 };
 
 #endif // SIMULATIONSCENE_H

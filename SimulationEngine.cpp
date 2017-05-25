@@ -71,6 +71,8 @@ void SimulationEngine::addSpecimen(Specimen *specimen)
 {
     specimens_.append(specimen);
     scene_.addItem(specimen);
+    connect(specimen, SIGNAL(hoverEnter(Specimen*)), &scene_, SLOT(showSpecimenWidget(Specimen*)));
+    connect(specimen, SIGNAL(hoverLeave()), &scene_, SLOT(hideSpecimenWidget()));
 }
 
 void SimulationEngine::removeSpecimen(Specimen *specimen)

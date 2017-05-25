@@ -21,22 +21,11 @@ void MainWindow::setBoardView(QGraphicsScene *scene)
     ui->boardView->setFixedSize(602,602);
     ui->boardView->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
     ui->boardView->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-    ui->boardView->installEventFilter(new HoverSpecimenEventFilter);
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-bool MainWindow::event(QEvent *event)
-{
-    if(event->type() == QEvent::GraphicsSceneHoverEnter)
-    {
-        std::cout<<"Jak pojebany"<<std::endl;
-    }
-    return QMainWindow::event(event);
 }
 
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)

@@ -124,6 +124,9 @@ public:
 protected:
     void advance(int step);
     virtual bool shouldRunAway();
+
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
@@ -142,7 +145,6 @@ protected:
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
     Specimen* nearestSpecimen(SpecimenType type);
-
 
 private:
     qreal velocity_;
@@ -171,7 +173,9 @@ private:
     void move();
     bool shouldDie();
     void chooseNeed();
-
+signals:
+    void hoverEnter(Specimen* spec);
+    void hoverLeave();
 
 
 };
