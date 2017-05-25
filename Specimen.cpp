@@ -446,8 +446,7 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     return nearestSpec;
 }
 
-<<<<<<< HEAD
-=======
+
 qreal Specimen::getReproduce() const
 {
     return reproduce_;
@@ -457,4 +456,4 @@ void Specimen::setReproduce(const qreal &reproduce)
 {
     reproduce_ = reproduce;
 }
->>>>>>> e9b7b53b35b74826d5430a5b758b59bc5e66c89b
+
