@@ -18,7 +18,7 @@
 #include "ConeCollider.h"
 #include "Attribute.h"
 #include "AttributeType.h"
-#include "NeedType.h"
+#include "Needs.h"
 
 class State;
 #include "State.h"
@@ -71,6 +71,7 @@ public:
     qreal getSightRange() const;
     qreal getSightAngle() const;
     qreal getAttributeValue(AttributeType type) const;
+    qreal getNeedValue(NeedType type) const;
 
     QGraphicsItem* getTarget() const;
     bool getMove() const;
@@ -86,14 +87,14 @@ public:
 
     QMap<AttributeType, Attribute> getAttributes() const;
 
-    qreal getThirst() const;
-    void setThirst(const qreal &value);
+//    qreal getThirst() const;
+//    void setThirst(const qreal &value);
 
-    qreal getHunger() const;
-    void setHunger(const qreal &value);
+//    qreal getHunger() const;
+//    void setHunger(const qreal &value);
 
-    qreal getTiredness() const;
-    void setTiredness(const qreal &value);
+//    qreal getTiredness() const;
+//    void setTiredness(const qreal &value);
 
     qreal getHp() const;
     void setHp(const qreal &value);
@@ -118,8 +119,11 @@ public:
 
 
 
-    qreal getReproduce() const;
-    void setReproduce(const qreal &reproduce);
+//    qreal getReproduce() const;
+//    void setReproduce(const qreal &reproduce);
+
+    Needs getNeeds() const;
+    void setNeeds(const Needs &needs);
 
 protected:
     void advance(int step);
@@ -153,11 +157,12 @@ private:
 
     State* currentState_;
     QMap<AttributeType, Attribute> attributes_;
-    qreal thirst_;
-    qreal hunger_;
-    qreal tiredness_;
-    qreal reproduce_;
+//    qreal thirst_;
+//    qreal hunger_;
+//    qreal tiredness_;
+//    qreal reproduce_;
     qreal hp_;
+    Needs needs_;
 
     bool needChanged_;
     NeedType currentNeed_;
