@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     RunAwayState.cpp \
     BarrenField.cpp \
     SpecimenWidget.cpp \
-    SimulationScene.cpp
+    SimulationScene.cpp \
+    Needs.cpp
 
 HEADERS  += \
     SimulationEngine.h \
@@ -90,12 +91,13 @@ HEADERS  += \
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h \
-    Need.h \
     Range.h \
     RunAwayState.h \
     BarrenField.h \
     SpecimenWidget.h \
-    SimulationScene.h
+    SimulationScene.h \
+    NeedType.h \
+    Needs.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui
