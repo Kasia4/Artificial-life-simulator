@@ -9,12 +9,12 @@ class Needs
 {
 public:
     typedef QPair<NeedType, qreal> Need;
-    Needs(qreal criticalLevel);
+    Needs(qreal criticalLevel = 0.7);
     void addNeed(NeedType needType, qreal value, int priority = 0);
     void removeNeed(NeedType needType);
     int getPriority(NeedType needType) const;
     void setValue(NeedType needType, qreal value);
-    qreal getValue();
+    qreal getValue(NeedType needType) const;
 
     NeedType mostImportant();
 

@@ -15,9 +15,9 @@ Specimen::Specimen()
     ,escaped_from_chaser_(true)
     ,velocity_(0)
     ,angular_velocity_(0)
-    ,thirst_(0)
-    ,hunger_(0)
-    ,tiredness_(0)
+//    ,thirst_(0)
+//    ,hunger_(0)
+//    ,tiredness_(0)
     ,needChanged_(false)
     ,isDead_(false)
     ,isChased_(false)
@@ -45,6 +45,11 @@ Specimen::Specimen()
     addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
+    needs_.addNeed(NeedType::EAT, 0.1, 0);
+    needs_.addNeed(NeedType::DRINK, 0.1, 1);
+    needs_.addNeed(NeedType::SLEEP, 0.1, 2);
+    needs_.addNeed(NeedType::REPRODUCE, 0.1, 3);
+
     currentState_ = new State();
     currentNeed_ = NeedType::NONE;
 }
@@ -178,6 +183,11 @@ qreal Specimen::getSightAngle() const
 qreal Specimen::getAttributeValue(AttributeType type) const
 {
     return attributes_.value(type).getValue();
+}
+
+qreal Specimen::getNeedValue(NeedType type) const
+{
+    return needs_.getValue(type);
 }
 
 
@@ -329,35 +339,35 @@ void Specimen::setHp(const qreal &value)
     hp_ = value;
 }
 
-qreal Specimen::getTiredness() const
-{
-    return tiredness_;
-}
+//qreal Specimen::getTiredness() const
+//{
+//    return tiredness_;
+//}
 
-void Specimen::setTiredness(const qreal &value)
-{
-    tiredness_ = value;
-}
+//void Specimen::setTiredness(const qreal &value)
+//{
+//    tiredness_ = value;
+//}
 
-qreal Specimen::getHunger() const
-{
-    return hunger_;
-}
+//qreal Specimen::getHunger() const
+//{
+//    return hunger_;
+//}
 
-void Specimen::setHunger(const qreal &value)
-{
-    hunger_ = value;
-}
+//void Specimen::setHunger(const qreal &value)
+//{
+//    hunger_ = value;
+//}
 
-qreal Specimen::getThirst() const
-{
-    return thirst_;
-}
+//qreal Specimen::getThirst() const
+//{
+//    return thirst_;
+//}
 
-void Specimen::setThirst(const qreal &value)
-{
-    thirst_ = value;
-}
+//void Specimen::setThirst(const qreal &value)
+//{
+//    thirst_ = value;
+//}
 
 void Specimen::addAttribute(AttributeType type, Attribute attribute)
 {
@@ -398,7 +408,7 @@ void Specimen::move(){
 
 bool Specimen::shouldDie()
 {
-    if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1 || reproduce_ >= 1)
+    if(hp_ <= 0 || needs_.getValue(NeedType::EAT) >= 1 || needs_.getValue(NeedType::DRINK) >= 1 || needs_.getValue(NeedType::SLEEP) >= 1 || needs_.getValue(NeedType::REPRODUCE) >= 1 )
         return true;
     return false;
 }
@@ -456,13 +466,24 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     return nearestSpec;
 }
 
-
-qreal Specimen::getReproduce() const
+Needs Specimen::getNeeds() const
 {
-    return reproduce_;
+    return needs_;
 }
 
-void Specimen::setReproduce(const qreal &reproduce)
+void Specimen::setNeeds(const Needs &needs)
 {
-    reproduce_ = reproduce;
+    needs_ = needs;
 }
+
+
+//qreal Specimen::getReproduce() const
+//{
+//    return reproduce_;
+//}
+
+//void Specimen::setReproduce(const qreal &reproduce)
+//{
+//    reproduce_ = reproduce;
+//}
+

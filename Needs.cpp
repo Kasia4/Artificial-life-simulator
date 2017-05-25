@@ -1,14 +1,14 @@
 #include "Needs.h"
 
-Needs::Needs(qreal criticalLevel = 0.7)
+Needs::Needs(qreal criticalLevel)
 {
     criticalLevel_ = criticalLevel;
 }
 
 void Needs::addNeed(NeedType needType, qreal value, int priority)
 {
-    needs_[priority]=qMakePair(needType, value);
-
+    //needs_[priority]=qMakePair(needType, value);
+    needs_.insert(priority, qMakePair(needType, value));
 }
 
 void Needs::removeNeed(NeedType needType)
@@ -19,6 +19,19 @@ void Needs::removeNeed(NeedType needType)
             needs_.erase(it);
     }
 }
+
+qreal Needs::getValue(NeedType needType) const
+{
+    auto it=needs_.begin();
+    for( ; it != needs_.end(); ++it)
+    {
+        if(it->first == needType)
+            break;
+    }
+    return it->second;
+}
+
+
 
 NeedType Needs::mostImportant()
 {
