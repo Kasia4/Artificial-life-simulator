@@ -30,8 +30,10 @@ enum class SpecimenType : unsigned {
 
 
 
-class Specimen :  public QGraphicsItem
+class Specimen :  public QObject, public QGraphicsItem
 {
+    Q_OBJECT
+
     static constexpr qreal SELECTION_RING_SCALE = 1.7;
     inline qreal selectionRingSize() const;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
@@ -39,9 +41,11 @@ class Specimen :  public QGraphicsItem
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
     Specimen();
+    virtual ~Specimen() {};
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
     virtual QColor skinColor() const = 0;
+
     int type() const;
 
 
@@ -138,8 +142,6 @@ protected:
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
     Specimen* nearestSpecimen(SpecimenType type);
-
-
 private:
     qreal velocity_;
     qreal angular_velocity_;
@@ -161,13 +163,13 @@ private:
     bool isDead_;
     bool isChased_;
 
-
     void addAttribute(AttributeType type, Attribute attribute);
     void runAway();
     void chaseTarget();
     void move();
     bool shouldDie();
     void chooseNeed();
+
 
 
 };

@@ -17,6 +17,7 @@ public:
 public slots:
 
 private:
+
 };
 
 #endif // SIMULATIONSCENE_H

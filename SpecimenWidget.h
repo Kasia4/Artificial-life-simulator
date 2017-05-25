@@ -2,6 +2,7 @@
 #define SPECIMENWIDGET_H
 
 #include <QWidget>
+#include "Specimen.h"
 
 namespace Ui {
 class SpecimenWidget;
@@ -15,8 +16,12 @@ public:
     explicit SpecimenWidget(QWidget *parent = 0);
     ~SpecimenWidget();
 
+    void setSpecimen(Specimen* specimen);
+    Specimen* getSpecimen() const;
+
 private:
     Ui::SpecimenWidget *ui;
+    Specimen* specimen_;
 };
 
 #endif // SPECIMENWIDGET_H

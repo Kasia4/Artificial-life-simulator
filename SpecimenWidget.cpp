@@ -12,3 +12,9 @@ SpecimenWidget::~SpecimenWidget()
 {
     delete ui;
 }
+
+void SpecimenWidget::setSpecimen(Specimen *specimen)
+{
+    specimen_ = specimen;
+    //ui->health_value->setText("" + specimen_->getHp() + "/" + specimen_->getAttributeValue(AttributeType::ENDURANCE));
+}

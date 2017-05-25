@@ -107,14 +107,19 @@ int main(int argc, char *argv[])
 
     SpecimensModel spec_model(engine);
 
+
     /* example tests demonstrating implemented features */
     setCustomBoard(board);
     createSpecimans(engine);
 
     engine.startWork();
 
+    QTableView spec_view;
+    spec_view.setModel(&spec_model);
+
     main_window.setSimulationEngine(&engine);
     main_window.show();
+    spec_view.show();
 
     //testGenes();
     return a.exec();
