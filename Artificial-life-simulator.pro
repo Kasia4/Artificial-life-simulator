@@ -52,7 +52,9 @@ SOURCES += main.cpp\
     BarrenField.cpp \
     SpecimenWidget.cpp \
     SimulationScene.cpp \
-    HoverSpecimenEventFilter.cpp
+    HoverSpecimenEventFilter.cpp \
+    Needs.cpp
+
 
 HEADERS  += \
     SimulationEngine.h \
@@ -91,13 +93,14 @@ HEADERS  += \
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h \
-    Need.h \
     Range.h \
     RunAwayState.h \
     BarrenField.h \
     SpecimenWidget.h \
     SimulationScene.h \
-    HoverSpecimenEventFilter.h
+    HoverSpecimenEventFilter.h \
+    NeedType.h \
+    Needs.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui

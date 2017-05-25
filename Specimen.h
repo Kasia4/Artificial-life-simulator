@@ -18,7 +18,7 @@
 #include "ConeCollider.h"
 #include "Attribute.h"
 #include "AttributeType.h"
-#include "Need.h"
+#include "NeedType.h"
 
 class State;
 #include "State.h"
@@ -101,8 +101,8 @@ public:
     bool getNeedChanged() const;
     void setNeedChanged(bool value);
 
-    Need getCurrentNeed() const;
-    void setCurrentNeed(const Need &currentNeed);
+    NeedType getCurrentNeed() const;
+    void setCurrentNeed(const NeedType &currentNeed);
 
     State *getCurrentState() const;
     void setCurrentState(State *currentState);
@@ -160,7 +160,7 @@ private:
     qreal hp_;
 
     bool needChanged_;
-    Need currentNeed_;
+    NeedType currentNeed_;
 
     bool isDead_;
     bool isChased_;
@@ -170,7 +170,7 @@ private:
     void chaseTarget();
     void move();
     bool shouldDie();
-
+    void chooseNeed();
 
 
 

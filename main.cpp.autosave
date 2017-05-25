@@ -51,15 +51,13 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setRotation(10);
     spec2->setVelocity(1.2);
     spec2->setAngularVelocity(-1);
-    spec2->setMove(true);
     engine.addSpecimen(spec2);
 
-//    CarnivoreSpecimen* spec3 = new CarnivoreSpecimen;
-//    spec3->setPos(20,240);
-//    spec3->setSize(40);
-//    spec3->setVelocity(3);
-//    spec3->setTarget(spec2);
-//    engine.addSpecimen(spec3);
+    spec3->setPos(20,240);
+    spec3->setSize(40);
+    spec3->setVelocity(3);
+    spec3->setTarget(spec2);
+    engine.addSpecimen(spec3);
 
 }
 
@@ -106,8 +104,7 @@ int main(int argc, char *argv[])
     /* simulation engine creating */
     SimulationEngine engine(board);
 
-    //SpecimensModel spec_model(engine);
-
+    SpecimensModel spec_model(engine);
 
     /* example tests demonstrating implemented features */
     setCustomBoard(board);
@@ -115,12 +112,8 @@ int main(int argc, char *argv[])
 
     engine.startWork();
 
-    //QTableView spec_view;
-    //spec_view.setModel(&spec_model);
-
     main_window.setSimulationEngine(&engine);
     main_window.show();
-    //spec_view.show();
 
     //testGenes();
     return a.exec();

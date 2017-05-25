@@ -46,7 +46,7 @@ Specimen::Specimen()
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
     currentState_ = new State();
-    currentNeed_ = Need::NONE;
+    currentNeed_ = NeedType::NONE;
 }
 
 int Specimen::type() const
@@ -299,12 +299,12 @@ ConeCollider &Specimen::getSightCollider()
     return sight_;
 }
 
-Need Specimen::getCurrentNeed() const
+NeedType Specimen::getCurrentNeed() const
 {
     return currentNeed_;
 }
 
-void Specimen::setCurrentNeed(const Need &currentNeed)
+void Specimen::setCurrentNeed(const NeedType &currentNeed)
 {
     currentNeed_ = currentNeed;
 }
@@ -401,6 +401,11 @@ bool Specimen::shouldDie()
     if(hp_ <= 0 || thirst_ >= 1 || hunger_ >= 1 || tiredness_ >= 1 || reproduce_ >= 1)
         return true;
     return false;
+}
+
+void Specimen::chooseNeed()
+{
+
 }
 
 bool Specimen::shouldRunAway()
