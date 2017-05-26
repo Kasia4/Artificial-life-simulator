@@ -2,6 +2,7 @@
 #define SPECIMENWIDGET_H
 
 #include <QWidget>
+#include <QMouseEvent>
 #include "Specimen.h"
 
 namespace Ui {
@@ -18,6 +19,9 @@ public:
 
     void setSpecimen(Specimen* specimen);
     Specimen* getSpecimen() const;
+
+protected:
+    void mouseMoveEvent(QMouseEvent *event);
 
 private:
     Ui::SpecimenWidget *ui;

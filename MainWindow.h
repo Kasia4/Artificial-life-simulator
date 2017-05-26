@@ -24,7 +24,6 @@ public:
     ~MainWindow();
 
 protected:
-    bool event(QEvent *event);
 private slots:
 
     void on_collidersCheckBox_stateChanged(int arg1);
