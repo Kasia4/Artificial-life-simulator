@@ -8,7 +8,7 @@ public:
     ReproduceState();
     State* action(Specimen *specimen);
 private:
-    void reproduce();
+    State* reproduce(Specimen* specimen);
 };
 
 #endif // REPRODUCESTATE_H

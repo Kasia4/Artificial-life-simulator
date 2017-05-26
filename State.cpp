@@ -9,17 +9,18 @@ State* State::action(Specimen *specimen)
 {
     if(specimen->getIsDead())
         return new DieState();
-    else if(specimen->getIsChased())
+    else if(specimen->getIsChased()) // TODO stay in the same RunAwayState
         return new RunAwayState();
     else if(specimen->getNeedChanged())
     {
+        //specimen->setNeedChanged(false);
         switch(specimen->getCurrentNeed())
         {
-            case NeedType::DRINK :
-                return new SearchWaterState();
-                break;
             case NeedType::EAT :
                 return new SearchFoodState();
+                break;
+            case NeedType::DRINK :
+                return new SearchWaterState();
                 break;
             case NeedType::SLEEP :
                 return new SleepState();

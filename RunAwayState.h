@@ -8,7 +8,7 @@ public:
     RunAwayState();
     State* action(Specimen* specimen);
 private:
-    void runAway(Specimen* specimen);
+    State* runAway(Specimen* specimen);
 };
 
 #endif // RUNAWAYSTATE_H

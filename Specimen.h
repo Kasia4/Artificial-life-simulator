@@ -19,6 +19,7 @@
 #include "Attribute.h"
 #include "AttributeType.h"
 #include "Needs.h"
+#include "BoardField.h"
 
 class State;
 #include "State.h"
@@ -118,6 +119,8 @@ public:
     bool getIsChased() const;
     void setIsChased(bool isChased);
 
+    Specimen* nearestSpecimen(SpecimenType type);
+    BoardField* nearestField(FieldType type);
 
 
 //    qreal getReproduce() const;
@@ -125,6 +128,11 @@ public:
 
     Needs getNeeds() const;
     void setNeeds(const Needs &needs);
+
+    bool getCaughtTarget() const;
+    void updateHp(qreal value);
+
+
 
 protected:
     void advance(int step);
@@ -149,7 +157,8 @@ protected:
     qreal dist_to_chaser_;
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
-    Specimen* nearestSpecimen(SpecimenType type);
+    QList<BoardField*> collidingFields(FieldType type);
+
 
 private:
     qreal velocity_;
@@ -179,6 +188,7 @@ private:
     void move();
     bool shouldDie();
     void chooseNeed();
+    void updateState(State* state);
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();

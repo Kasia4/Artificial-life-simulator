@@ -8,7 +8,7 @@ public:
     ChaseFoodState();
     State* action(Specimen *specimen);
 private:
-    void chaseForFood();
+    State* chaseFood(Specimen* specimen);
 };
 
 #endif // CHASEFOODSTATE_H

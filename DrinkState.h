@@ -8,7 +8,7 @@ public:
     DrinkState();
     State* action(Specimen *specimen);
 private:
-    void drink();
+    State* drink(Specimen* specimen);
 };
 
 #endif // DRINKSTATE_H
