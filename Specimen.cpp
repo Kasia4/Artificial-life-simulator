@@ -225,7 +225,7 @@ void Specimen::advance(int step)
             move();
         }
 
-    //emit attributesChanged();
+    emit attributesChanged();
 }
 
 bool Specimen::getIsChased() const
@@ -466,6 +466,7 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     Specimen* nearestSpec = nullptr;
     for(Specimen* specimen : collidingSpecimens(type))
     {
+
         QLine dist_line(pos().x(), pos().y(), specimen->pos().x(), specimen->pos().y());
         qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
         if(distance < minDistance)
