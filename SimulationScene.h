@@ -6,6 +6,8 @@
 
 #include "ItemType.h"
 #include "SpecimenWidget.h"
+#include "CarnivoreSpecimen.h"
+#include "HerbivoreSpecimen.h"
 #include "HoverSpecimenEventFilter.h"
 
 #include <iostream>
@@ -19,14 +21,22 @@ class SimulationScene : public QGraphicsScene
 public:
     SimulationScene();
     virtual ~SimulationScene() {};
+    void addSpecimen(Specimen* specimen);
+    void removeSpecimen(Specimen* specimen);
+
+    void setShowColliders(bool enable);
 
 public slots:
     void showSpecimenWidget(Specimen* specimen);
     void hideSpecimenWidget();
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 private:
-    QGraphicsWidget* specimen_widget_;
+    QSet<Specimen*> specimens_;
+
+    SpecimenWidget* specimen_widget_;
+    QGraphicsProxyWidget* specimen_widget_proxy_;
 };
 
 #endif // SIMULATIONSCENE_H

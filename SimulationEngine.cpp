@@ -32,16 +32,12 @@ SimulationScene &SimulationEngine::getScene()
     return scene_;
 }
 
-const QList<Specimen *> &SimulationEngine::getSpecimens() const
-{
-    return specimens_;
-}
 
 void SimulationEngine::startWork()
 {
     if(is_started_)return;
     is_started_ = true;
-    timer_.start(1000 / 33);
+    timer_.start(1000/30);
     /*
     while(true)
     {
@@ -69,35 +65,14 @@ void SimulationEngine::resume()
 
 void SimulationEngine::addSpecimen(Specimen *specimen)
 {
-    specimens_.append(specimen);
-    scene_.addItem(specimen);
-    connect(specimen, SIGNAL(hoverEnter(Specimen*)), &scene_, SLOT(showSpecimenWidget(Specimen*)));
-    connect(specimen, SIGNAL(hoverLeave()), &scene_, SLOT(hideSpecimenWidget()));
+    scene_.addSpecimen(specimen);
 }
 
 void SimulationEngine::removeSpecimen(Specimen *specimen)
 {
-    specimens_.removeOne(specimen);
-    scene_.removeItem(specimen);
+    scene_.removeSpecimen(specimen);
 }
 
-void SimulationEngine::showColliders()
-{
-    for(Specimen* specimen: specimens_)
-    {
-        specimen->getSightCollider().setVisiblity(true);
-        specimen->getHearingCollider().setVisiblity(true);
-    }
-}
-
-void SimulationEngine::hideColliders()
-{
-    for(Specimen* specimen: specimens_)
-    {
-        specimen->getSightCollider().setVisiblity(false);
-        specimen->getHearingCollider().setVisiblity(false);
-    }
-}
 
 void SimulationEngine::updateBoardSize(const QPoint &size)
 {

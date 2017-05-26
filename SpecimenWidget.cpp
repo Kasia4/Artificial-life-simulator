@@ -13,14 +13,25 @@ SpecimenWidget::~SpecimenWidget()
     delete ui;
 }
 
-void SpecimenWidget::setSpecimen(Specimen *specimen)
+void SpecimenWidget::disconnectSpecimen()
+{
+    disconnect(specimen_, SIGNAL(attributesChanged()), this, SLOT(updateInfo()));
+    specimen_ = nullptr;
+}
+
+void SpecimenWidget::connectSpecimen(Specimen *specimen)
 {
     specimen_ = specimen;
-    //ui->health_value->setText("" + specimen_->getHp() + "/" + specimen_->getAttributeValue(AttributeType::ENDURANCE));
+    connect(specimen_, SIGNAL(attributesChanged()), this, SLOT(updateInfo()));
 }
+
 
 void SpecimenWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    std::cout<<"elo"<<std::endl;
     this->move(event->pos());
+}
+
+void SpecimenWidget::updateInfo()
+{
+
 }

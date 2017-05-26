@@ -14,9 +14,8 @@ void MainWindow::setSimulationEngine(SimulationEngine *engine)
     setBoardView(&(engine_->getScene()));
 }
 
-void MainWindow::setBoardView(QGraphicsScene *scene)
+void MainWindow::setBoardView(SimulationScene *scene)
 {
-
     ui->boardView->setScene(scene);
     ui->boardView->setFixedSize(602,602);
     ui->boardView->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
@@ -30,7 +29,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Unchecked)engine_->hideColliders();
-    if(arg1 == Qt::Checked)engine_->showColliders();
+    ui->boardView->setShowColliders(arg1);
 }
-

@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     SpecimenWidget.cpp \
     SimulationScene.cpp \
     HoverSpecimenEventFilter.cpp \
-    Needs.cpp
+    Needs.cpp \
+    SimulationView.cpp
 
 
 HEADERS  += \
@@ -100,7 +101,8 @@ HEADERS  += \
     SimulationScene.h \
     HoverSpecimenEventFilter.h \
     NeedType.h \
-    Needs.h
+    Needs.h \
+    SimulationView.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui

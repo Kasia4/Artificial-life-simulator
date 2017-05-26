@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>170</width>
-    <height>160</height>
+    <height>198</height>
    </rect>
   </property>
   <property name="palette">
@@ -59,7 +59,7 @@
      <x>10</x>
      <y>10</y>
      <width>151</width>
-     <height>141</height>
+     <height>178</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">

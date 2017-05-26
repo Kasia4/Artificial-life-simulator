@@ -224,6 +224,8 @@ void Specimen::advance(int step)
             setRotation(rotation() + angular_velocity_);
             move();
         }
+
+    //emit attributesChanged();
 }
 
 bool Specimen::getIsChased() const

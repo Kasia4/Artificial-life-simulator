@@ -26,7 +26,6 @@ public:
     virtual ~SimulationEngine() {};
     Board* getBoard() const;
     SimulationScene& getScene();
-    const QList<Specimen*>& getSpecimens() const;
 
 
 public slots:
@@ -35,14 +34,11 @@ public slots:
     void resume();
     void addSpecimen(Specimen* specimen);
     void removeSpecimen(Specimen* specimen);
-    void showColliders();
-    void hideColliders();
 private slots:
     void updateBoardSize(const QPoint& size);
     void replaceField(BoardField* old_field, BoardField* new_field);
 
 private:
-    QList<Specimen*> specimens_;
     QTimer timer_;
     Board* board_;
     bool is_started_;
