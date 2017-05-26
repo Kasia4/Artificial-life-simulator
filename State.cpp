@@ -13,13 +13,14 @@ State* State::action(Specimen *specimen)
         return new RunAwayState();
     else if(specimen->getNeedChanged())
     {
+        //specimen->setNeedChanged(false);
         switch(specimen->getCurrentNeed())
         {
-            case NeedType::DRINK :
-                return new SearchWaterState();
-                break;
             case NeedType::EAT :
                 return new SearchFoodState();
+                break;
+            case NeedType::DRINK :
+                return new SearchWaterState();
                 break;
             case NeedType::SLEEP :
                 return new SleepState();

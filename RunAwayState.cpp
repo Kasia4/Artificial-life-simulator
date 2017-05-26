@@ -22,7 +22,6 @@ State *RunAwayState::runAway(Specimen *specimen)
         specimen->setChaser(nullptr);
         return new State();
     }
-
     return this;
 
 }

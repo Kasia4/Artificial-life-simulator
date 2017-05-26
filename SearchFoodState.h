@@ -8,7 +8,7 @@ public:
     SearchFoodState();
     State* action(Specimen *specimen);
 private:
-    void searchForFood();
+    State* searchForFood(Specimen* specimen);
 };
 
 #endif // SEARCHFOODSTATE_H

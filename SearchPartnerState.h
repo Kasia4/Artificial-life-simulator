@@ -1,6 +1,7 @@
 #ifndef SEARCHPARTNERSTATE_H
 #define SEARCHPARTNERSTATE_H
 #include "State.h"
+#include "ReproduceState.h"
 
 class SearchPartnerState : public State
 {
@@ -8,7 +9,8 @@ public:
     SearchPartnerState();
     State* action(Specimen *specimen);
 private:
-    void searchForPartner();
+    State* searchForPartner(Specimen *specimen);
+    Specimen* nearestPartner(Specimen* specimen);
 };
 
 #endif // SEARCHPARTNERSTATE_H

@@ -384,10 +384,6 @@ QMap<AttributeType, Attribute> Specimen::getAttributes() const
     return attributes_;
 }
 
-bool Specimen::getEscapedFromChaser() const
-{
-    return escaped_from_chaser_;
-}
 
 
 qreal Specimen::getDistToChaser() const
@@ -447,6 +443,18 @@ void Specimen::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     emit hoverLeave();
 }
+
+bool Specimen::getEscapedFromChaser() const
+{
+    return escaped_from_chaser_;
+}
+
+
+bool Specimen::getCaughtTarget() const
+{
+    return caught_target_;
+}
+
 
 QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
 {

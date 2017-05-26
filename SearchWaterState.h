@@ -8,7 +8,7 @@ public:
     SearchWaterState();
     State* action(Specimen *specimen);
 private:
-    void searchForWater();
+    State* searchForWater(Specimen *specimen);
 };
 
 #endif // SEARCHWATERSTATE_H

@@ -118,6 +118,7 @@ public:
     bool getIsChased() const;
     void setIsChased(bool isChased);
 
+    Specimen* nearestSpecimen(SpecimenType type);
 
 
 //    qreal getReproduce() const;
@@ -125,6 +126,10 @@ public:
 
     Needs getNeeds() const;
     void setNeeds(const Needs &needs);
+
+    bool getCaughtTarget() const;
+
+
 
 protected:
     void advance(int step);
@@ -149,7 +154,7 @@ protected:
     qreal dist_to_chaser_;
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
-    Specimen* nearestSpecimen(SpecimenType type);
+
 
 private:
     qreal velocity_;

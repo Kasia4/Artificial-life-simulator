@@ -8,7 +8,7 @@ public:
     EatState();
     State* action(Specimen *specimen);
 private:
-    void eat();
+    State* eat(Specimen* specimen);
 };
 
 #endif // EATSTATE_H
