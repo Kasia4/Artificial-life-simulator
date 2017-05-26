@@ -72,6 +72,7 @@ public:
     qreal getSightAngle() const;
     qreal getAttributeValue(AttributeType type) const;
     qreal getNeedValue(NeedType type) const;
+    void setNeedValue(NeedType type, qreal value);
 
     QGraphicsItem* getTarget() const;
     bool getMove() const;

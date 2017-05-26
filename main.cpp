@@ -54,10 +54,7 @@ void createSpecimans(SimulationEngine& engine){
     spec2->setAngularVelocity(-1);
     spec2->setMove(true);
     engine.addSpecimen(spec2);
-    std::cout<<spec1->getNeedValue(NeedType::EAT);
-    std::cout<<spec1->getNeedValue(NeedType::DRINK);
-    std::cout<<spec1->getNeedValue(NeedType::SLEEP);
-    std::cout<<spec1->getNeedValue(NeedType::REPRODUCE);
+
 
 
 //    CarnivoreSpecimen* spec3 = new CarnivoreSpecimen;

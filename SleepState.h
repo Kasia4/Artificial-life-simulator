@@ -8,7 +8,7 @@ public:
     SleepState();
     State* action(Specimen* specimen);
 private:
-    void sleep(Specimen* specimen);
+    State* sleep(Specimen* specimen);
 };
 
 #endif // SLEEPSTATE_H

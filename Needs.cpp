@@ -20,6 +20,15 @@ void Needs::removeNeed(NeedType needType)
     }
 }
 
+void Needs::setValue(NeedType needType, qreal value)
+{
+    for(auto it=needs_.begin(); it != needs_.end(); ++it)
+    {
+        if(it->first == needType)
+            it->second = value;
+    }
+}
+
 qreal Needs::getValue(NeedType needType) const
 {
     auto it=needs_.begin();

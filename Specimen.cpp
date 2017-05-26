@@ -190,6 +190,11 @@ qreal Specimen::getNeedValue(NeedType type) const
     return needs_.getValue(type);
 }
 
+void Specimen::setNeedValue(NeedType type, qreal value)
+{
+    needs_.setValue(type,value);
+}
+
 
 QGraphicsItem *Specimen::getTarget() const
 {
@@ -205,11 +210,11 @@ void Specimen::advance(int step)
 {
     if(!step)
         return;
+    chooseNeed();
     if(shouldDie())
         isDead_=true;
     else if(shouldRunAway())
         isChased_=true;
-
     else if(chaser_)
         runAway();
     else if(target_)
@@ -415,7 +420,9 @@ bool Specimen::shouldDie()
 
 void Specimen::chooseNeed()
 {
-
+    NeedType old = currentNeed_;
+    currentNeed_=needs_.mostImportant();
+    needChanged_ = (old == currentNeed_);
 }
 
 bool Specimen::shouldRunAway()
