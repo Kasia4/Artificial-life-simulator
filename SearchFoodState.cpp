@@ -7,13 +7,20 @@ SearchFoodState::SearchFoodState()
 
 State* SearchFoodState::action(Specimen *specimen)
 {
-    State* result = State::action(specimen);
-    if(result)
-       return result;
-    return searchForFood(specimen);
+    if(!specimen->getTarget() || specimen->getTarget() != nearestFood(specimen))
+       specimen->setTarget(nearestFood(specimen));
+    if(specimen->getCaughtTarget())
+       return new EatState();
+    return this;
 }
 
-State *SearchFoodState::searchForFood(Specimen *specimen)
+QGraphicsItem *SearchFoodState::nearestFood(Specimen *specimen)
 {
+    if(specimen->getSpec() == SpecimenType::HERBIVORE)
+    {
+        return specimen->nearestField(FieldType::GROUND);
+    }
+
+    return specimen->nearestSpecimen(SpecimenType::HERBIVORE);
 
 }
