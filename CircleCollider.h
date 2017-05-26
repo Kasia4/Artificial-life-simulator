@@ -11,7 +11,7 @@ public:
     void setRadius(qreal radius);
 
     qreal getRadius() const;
-    void generateShape();
+    virtual void generateShape();
     QRectF boundingRect() const;
 private:
     qreal radius_;

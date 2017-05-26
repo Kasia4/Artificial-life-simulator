@@ -52,9 +52,10 @@ SOURCES += main.cpp\
     BarrenField.cpp \
     SpecimenWidget.cpp \
     SimulationScene.cpp \
-    HoverSpecimenEventFilter.cpp \
     Needs.cpp \
-    SimulationView.cpp
+    SimulationView.cpp \
+    Senses.cpp \
+    SpecimenSenses.cpp
 
 
 HEADERS  += \
@@ -99,10 +100,11 @@ HEADERS  += \
     BarrenField.h \
     SpecimenWidget.h \
     SimulationScene.h \
-    HoverSpecimenEventFilter.h \
     NeedType.h \
     Needs.h \
-    SimulationView.h
+    SimulationView.h \
+    Senses.h \
+    SpecimenSenses.h
 
 FORMS    += mainwindow.ui \
     SpecimenWidget.ui

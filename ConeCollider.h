@@ -14,7 +14,7 @@ public:
     qreal getRadius() const;
     qreal getApexAngle() const;
 
-    void generateShape();
+    virtual void generateShape();
     QRectF boundingRect() const;
 private:
     qreal radius_;

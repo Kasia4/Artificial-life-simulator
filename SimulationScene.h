@@ -8,7 +8,6 @@
 #include "SpecimenWidget.h"
 #include "CarnivoreSpecimen.h"
 #include "HerbivoreSpecimen.h"
-#include "HoverSpecimenEventFilter.h"
 
 #include <iostream>
 #include <QPointer>

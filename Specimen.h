@@ -20,6 +20,7 @@
 #include "AttributeType.h"
 #include "Needs.h"
 #include "BoardField.h"
+#include "SpecimenSenses.h"
 
 class State;
 #include "State.h"
@@ -57,9 +58,6 @@ public:
     void setAngularVelocity(qreal velocity);
     void setTarget(QGraphicsItem *target);
     void setMove(bool move);
-    void setHearingRange(qreal range);
-    void setSightRange(qreal range);
-    void setSightAngle(qreal angle);
 
     void release();
 
@@ -68,9 +66,6 @@ public:
     qreal getEyesDist() const;
     qreal getVelocity() const;
     qreal getAngularVelocity() const;
-    qreal getHearingRange() const;
-    qreal getSightRange() const;
-    qreal getSightAngle() const;
     qreal getAttributeValue(AttributeType type) const;
     qreal getNeedValue(NeedType type) const;
     void setNeedValue(NeedType type, qreal value);
@@ -110,8 +105,7 @@ public:
     State *getCurrentState() const;
     void setCurrentState(State *currentState);
 
-    CircleCollider& getHearingCollider();
-    ConeCollider& getSightCollider();
+    SpecimenSenses &getSensesCollider();
 
     bool getIsDead() const;
     void setIsDead(bool isDead);
@@ -140,6 +134,7 @@ protected:
 
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
@@ -150,8 +145,7 @@ protected:
 
     bool move_;
     bool caught_target_;
-    bool see_target_;
-    bool hear_target_;
+    bool sense_target_;
     bool escaped_from_chaser_;
     qreal dist_to_target_;
     qreal dist_to_chaser_;
@@ -164,8 +158,7 @@ private:
     qreal velocity_;
     qreal angular_velocity_;
 
-    CircleCollider hearing_;
-    ConeCollider sight_;
+    SpecimenSenses senses_;
 
     State* currentState_;
     QMap<AttributeType, Attribute> attributes_;

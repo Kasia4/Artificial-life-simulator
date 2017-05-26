@@ -8,7 +8,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include "SimulationEngine.h"
-#include "HoverSpecimenEventFilter.h"
+
 namespace Ui {
 class MainWindow;
 }

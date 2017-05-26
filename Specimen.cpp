@@ -10,8 +10,7 @@ Specimen::Specimen()
     ,chaser_(nullptr)
     ,move_(false)
     ,caught_target_(false)
-    ,see_target_(false)
-    ,hear_target_(false)
+    ,sense_target_(false)
     ,escaped_from_chaser_(true)
     ,velocity_(0)
     ,angular_velocity_(0)
@@ -25,13 +24,12 @@ Specimen::Specimen()
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 
-    hearing_.setParentItem(this);
-    sight_.setParentItem(this);
+    senses_.setParentItem(this);
 
     /*Example values*/
-    setHearingRange(50);
-    setSightRange(200);
-    setSightAngle(30);
+    senses_.setHearingRange(50);
+    senses_.setSightRange(200);
+    senses_.setSightAngle(30);
 
     addAttribute(AttributeType::ENDURANCE, Attribute(20));
     addAttribute(AttributeType::SIGHT_RANGE, Attribute(200));
@@ -117,27 +115,10 @@ void Specimen::setMove(bool move)
     move_ = move;
 }
 
-
-void Specimen::setHearingRange(qreal range)
-{
-    hearing_.setRadius(range);
-}
-
-void Specimen::setSightRange(qreal range)
-{
-    sight_.setRadius(range);
-}
-
-void Specimen::setSightAngle(qreal angle)
-{
-    sight_.setApexAngle(angle);
-}
-
 void Specimen::disableTracking()
 {
     target_ = nullptr;
-    see_target_ = false;
-    hear_target_ = false;
+    sense_target_ = false;
 }
 
 qreal Specimen::getSize() const
@@ -163,21 +144,6 @@ qreal Specimen::getVelocity() const
 qreal Specimen::getAngularVelocity() const
 {
     return angular_velocity_;
-}
-
-qreal Specimen::getHearingRange() const
-{
-    return hearing_.getRadius();
-}
-
-qreal Specimen::getSightRange() const
-{
-    return sight_.getRadius();
-}
-
-qreal Specimen::getSightAngle() const
-{
-    return sight_.getApexAngle();
 }
 
 qreal Specimen::getAttributeValue(AttributeType type) const
@@ -257,9 +223,8 @@ void Specimen::runAway()
 
 void Specimen::chaseTarget()
 {
-    see_target_ = sight_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    hear_target_ = hearing_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    if(see_target_ || hear_target_)
+    sense_target_ = senses_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    if(sense_target_)
     {
         QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
         qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
@@ -306,15 +271,11 @@ void Specimen::setCurrentState(State *currentState)
     currentState_ = currentState;
 }
 
-CircleCollider &Specimen::getHearingCollider()
+SpecimenSenses &Specimen::getSensesCollider()
 {
-    return hearing_;
+    return senses_;
 }
 
-ConeCollider &Specimen::getSightCollider()
-{
-    return sight_;
-}
 
 NeedType Specimen::getCurrentNeed() const
 {
@@ -438,11 +399,13 @@ bool Specimen::shouldRunAway()
 
 void Specimen::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
+    Q_UNUSED(event);
     emit hoverEnter(this);
 }
 
 void Specimen::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
+    Q_UNUSED(event);
     emit hoverLeave();
 }
 
@@ -467,13 +430,7 @@ void Specimen::updateHp(qreal value)
 QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
 {
     QList<Specimen*> specimens;
-    for(QGraphicsItem* item : sight_.collidingItems(ItemType::SPECIMEN))
-    {
-        Specimen* specimen = dynamic_cast<Specimen*>(item);
-        if(specimen->getSpec() == type)
-            specimens.append(specimen);
-    }
-    for(QGraphicsItem* item : hearing_.collidingItems(ItemType::SPECIMEN))
+    for(QGraphicsItem* item : senses_.collidingItems(ItemType::SPECIMEN))
     {
         Specimen* specimen = dynamic_cast<Specimen*>(item);
         if(specimen->getSpec() == type)
@@ -485,13 +442,7 @@ QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
 QList<BoardField *> Specimen::collidingFields(FieldType type)
 {
     QList<BoardField*> fields;
-    for(QGraphicsItem* item : sight_.collidingItems(ItemType::FIELD))
-    {
-        BoardField* field = dynamic_cast<BoardField*>(item);
-        if(field->getFieldType() == type)
-            fields.append(field);
-    }
-    for(QGraphicsItem* item : hearing_.collidingItems(ItemType::FIELD))
+    for(QGraphicsItem* item : senses_.collidingItems(ItemType::FIELD))
     {
         BoardField* field = dynamic_cast<BoardField*>(item);
         if(field->getFieldType() == type)
@@ -502,7 +453,8 @@ QList<BoardField *> Specimen::collidingFields(FieldType type)
 
 Specimen* Specimen::nearestSpecimen(SpecimenType type)
 {
-    qreal minDistance = hearing_.getRadius() > sight_.getRadius() ? hearing_.getRadius() : sight_.getRadius();
+    //TODO - rozsadna wartosc ?
+    qreal minDistance = 100000;
     Specimen* nearestSpec = nullptr;
     for(Specimen* specimen : collidingSpecimens(type))
     {
@@ -518,7 +470,8 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
 
 BoardField *Specimen::nearestField(FieldType type)
 {
-    qreal minDistance = hearing_.getRadius() > sight_.getRadius() ? hearing_.getRadius() : sight_.getRadius();
+    //TODO - rozsadna wartosc ?
+    qreal minDistance = 100000;
     BoardField* nearestField = nullptr;
     for(BoardField* field : collidingFields(type))
     {

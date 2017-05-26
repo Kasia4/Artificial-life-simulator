@@ -30,8 +30,7 @@ void SimulationScene::setShowColliders(bool enable)
 {
     for(Specimen* specimen: specimens_)
     {
-        specimen->getSightCollider().setVisiblity(enable);
-        specimen->getHearingCollider().setVisiblity(enable);
+        specimen->getSensesCollider().setVisiblity(enable);
     }
 }
 
@@ -57,8 +56,8 @@ void SimulationScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    static shit = 0;
-    std::cout<<shit<<"eeeeeele\n";
+    static int shit = 0;
+    std::cout<<shit++<<"eeeeeele\n";
     HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
     new_spec->setMove(true);
     new_spec->setPos(200,250);
