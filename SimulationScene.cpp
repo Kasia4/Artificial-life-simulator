@@ -10,6 +10,31 @@ SimulationScene::SimulationScene()
     specimen_widget_proxy_->setAcceptHoverEvents(false);
 }
 
+void SimulationScene::addSpecimen(Specimen *specimen)
+{
+    specimens_.insert(specimen);
+    addItem(specimen);
+    connect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
+    connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+}
+
+void SimulationScene::removeSpecimen(Specimen *specimen)
+{
+    specimens_.remove(specimen);
+    removeItem(specimen);
+    disconnect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
+    disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+}
+
+void SimulationScene::setShowColliders(bool enable)
+{
+    for(Specimen* specimen: specimens_)
+    {
+        specimen->getSightCollider().setVisiblity(enable);
+        specimen->getHearingCollider().setVisiblity(enable);
+    }
+}
+
 void SimulationScene::showSpecimenWidget(Specimen *specimen)
 {
     specimen_widget_->connectSpecimen(specimen);
@@ -34,6 +59,12 @@ void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     std::cout<<"eeeeeele\n";
     HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
-
+    new_spec->setMove(true);
+    new_spec->setPos(200,250);
+    new_spec->setVelocity(1);
+    new_spec->setAngularVelocity(rand()%2 ? -0.5 : 0.5);
+    new_spec->setSize(20);
+    addSpecimen(new_spec);
+    QGraphicsScene::mousePressEvent(event);
 }
 

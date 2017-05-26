@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void setSimulationEngine(SimulationEngine *engine);
-    void setBoardView(QGraphicsScene *scene);
+    void setBoardView(SimulationScene *scene);
     ~MainWindow();
 
 protected:

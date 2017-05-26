@@ -2,7 +2,7 @@
 
 SpecimensModel::SpecimensModel(const SimulationEngine &engine)
 {
-    specimens_handle_ = &(engine.getSpecimens());
+    //specimens_handle_ = &(engine.getSpecimens());
     setAttributesStrings();
 }
 

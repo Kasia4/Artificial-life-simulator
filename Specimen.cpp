@@ -225,7 +225,7 @@ void Specimen::advance(int step)
             move();
         }
 
-    emit attributesChanged();
+    //emit attributesChanged();
 }
 
 bool Specimen::getIsChased() const

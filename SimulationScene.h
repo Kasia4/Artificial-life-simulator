@@ -21,6 +21,10 @@ class SimulationScene : public QGraphicsScene
 public:
     SimulationScene();
     virtual ~SimulationScene() {};
+    void addSpecimen(Specimen* specimen);
+    void removeSpecimen(Specimen* specimen);
+
+    void setShowColliders(bool enable);
 
 public slots:
     void showSpecimenWidget(Specimen* specimen);
@@ -29,6 +33,8 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 private:
+    QSet<Specimen*> specimens_;
+
     SpecimenWidget* specimen_widget_;
     QGraphicsProxyWidget* specimen_widget_proxy_;
 };

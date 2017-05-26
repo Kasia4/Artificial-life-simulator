@@ -105,7 +105,10 @@
   <customwidget>
    <class>SimulationView</class>
    <extends>QGraphicsView</extends>
-   <header>SimulationView.h</header>
+   <header location="global">SimulationView.h</header>
+   <slots>
+    <slot>addSpecimen()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
