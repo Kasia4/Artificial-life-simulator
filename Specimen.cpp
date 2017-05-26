@@ -474,6 +474,24 @@ QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
     return specimens;
 }
 
+QList<BoardField *> Specimen::collidingFields(FieldType type)
+{
+    QList<BoardField*> fields;
+    for(QGraphicsItem* item : sight_.collidingItems(ItemType::FIELD))
+    {
+        BoardField* field = dynamic_cast<BoardField*>(item);
+        if(field->getFieldType() == type)
+            fields.append(field);
+    }
+    for(QGraphicsItem* item : hearing_.collidingItems(ItemType::FIELD))
+    {
+        BoardField* field = dynamic_cast<BoardField*>(item);
+        if(field->getFieldType() == type)
+            fields.append(field);
+    }
+    return fields;
+}
+
 Specimen* Specimen::nearestSpecimen(SpecimenType type)
 {
     qreal minDistance = hearing_.getRadius() > sight_.getRadius() ? hearing_.getRadius() : sight_.getRadius();
@@ -487,6 +505,21 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     }
 
     return nearestSpec;
+}
+
+BoardField *Specimen::nearestField(FieldType type)
+{
+    qreal minDistance = hearing_.getRadius() > sight_.getRadius() ? hearing_.getRadius() : sight_.getRadius();
+    BoardField* nearestField = nullptr;
+    for(BoardField* field : collidingFields(type))
+    {
+        QLine dist_line(pos().x(), pos().y(), field->pos().x(), field->pos().y());
+        qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
+        if(distance < minDistance)
+            nearestField = field;
+    }
+
+    return nearestField;
 }
 
 Needs Specimen::getNeeds() const

@@ -19,6 +19,7 @@
 #include "Attribute.h"
 #include "AttributeType.h"
 #include "Needs.h"
+#include "BoardField.h"
 
 class State;
 #include "State.h"
@@ -119,6 +120,7 @@ public:
     void setIsChased(bool isChased);
 
     Specimen* nearestSpecimen(SpecimenType type);
+    BoardField* nearestField(FieldType type);
 
 
 //    qreal getReproduce() const;
@@ -154,6 +156,7 @@ protected:
     qreal dist_to_chaser_;
 
     QList<Specimen*> collidingSpecimens(SpecimenType type);
+    QList<BoardField*> collidingFields(FieldType type);
 
 
 private:
