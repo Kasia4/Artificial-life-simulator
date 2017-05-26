@@ -425,6 +425,14 @@ void Specimen::chooseNeed()
     needChanged_ = (old == currentNeed_);
 }
 
+void Specimen::updateState(State* state)
+{
+    if(currentState_ == state)
+        return;
+    delete currentState_;
+    currentState_ = state;
+}
+
 bool Specimen::shouldRunAway()
 {
     return false;

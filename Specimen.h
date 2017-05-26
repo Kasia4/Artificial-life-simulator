@@ -179,6 +179,7 @@ private:
     void move();
     bool shouldDie();
     void chooseNeed();
+    void updateState(State* state);
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();
