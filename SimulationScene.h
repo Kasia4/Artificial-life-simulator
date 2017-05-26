@@ -26,7 +26,8 @@ public slots:
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
-    QGraphicsWidget* specimen_widget_;
+    SpecimenWidget* specimen_widget_;
+    QGraphicsProxyWidget* specimen_widget_proxy_;
 };
 
 #endif // SIMULATIONSCENE_H

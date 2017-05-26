@@ -17,8 +17,10 @@ public:
     explicit SpecimenWidget(QWidget *parent = 0);
     ~SpecimenWidget();
 
-    void setSpecimen(Specimen* specimen);
+    void connectSpecimen(Specimen* specimen);
     Specimen* getSpecimen() const;
+    void disconnectSpecimen();
+
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
@@ -26,6 +28,8 @@ protected:
 private:
     Ui::SpecimenWidget *ui;
     Specimen* specimen_;
+private slots:
+    void updateInfo();
 };
 
 #endif // SPECIMENWIDGET_H

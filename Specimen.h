@@ -182,6 +182,7 @@ private:
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();
+    void attributesChanged();
 
 
 };
