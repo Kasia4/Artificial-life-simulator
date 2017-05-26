@@ -29,3 +29,11 @@ void SimulationScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     specimen_widget_proxy_->setPos(event->scenePos());
     QGraphicsScene::mouseMoveEvent(event);
 }
+
+void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    std::cout<<"eeeeeele\n";
+    HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
+
+}
+

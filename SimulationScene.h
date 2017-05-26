@@ -6,6 +6,8 @@
 
 #include "ItemType.h"
 #include "SpecimenWidget.h"
+#include "CarnivoreSpecimen.h"
+#include "HerbivoreSpecimen.h"
 #include "HoverSpecimenEventFilter.h"
 
 #include <iostream>
@@ -25,6 +27,7 @@ public slots:
     void hideSpecimenWidget();
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 private:
     SpecimenWidget* specimen_widget_;
     QGraphicsProxyWidget* specimen_widget_proxy_;
