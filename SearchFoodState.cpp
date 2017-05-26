@@ -14,6 +14,9 @@ State* SearchFoodState::action(Specimen *specimen)
     return this;
 }
 
+
+
+
 QGraphicsItem *SearchFoodState::nearestFood(Specimen *specimen)
 {
     if(specimen->getSpec() == SpecimenType::HERBIVORE)

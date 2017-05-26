@@ -130,6 +130,7 @@ public:
     void setNeeds(const Needs &needs);
 
     bool getCaughtTarget() const;
+    void updateHp(qreal value);
 
 
 

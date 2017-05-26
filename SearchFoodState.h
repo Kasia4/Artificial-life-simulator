@@ -4,6 +4,7 @@
 #include "GroundField.h"
 #include "EatState.h"
 
+
 class SearchFoodState : public State
 {
 public:
@@ -12,6 +13,7 @@ public:
 private:
     State* searchForFood(Specimen* specimen);
     QGraphicsItem* nearestFood(Specimen* specimen);
+
 };
 
 #endif // SEARCHFOODSTATE_H

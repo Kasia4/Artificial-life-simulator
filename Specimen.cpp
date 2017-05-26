@@ -455,6 +455,12 @@ bool Specimen::getCaughtTarget() const
     return caught_target_;
 }
 
+void Specimen::updateHp(qreal value)
+{
+    hp_+=value;
+}
+
+
 
 QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
 {
