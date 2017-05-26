@@ -16,11 +16,17 @@ State* EatState::action(Specimen *specimen)
 State *EatState::eat(Specimen *specimen)
 {
     qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
-//    if(specimen->getSpec() == SpecimenType::HERBIVORE)
-//    {
-//        G
-//        specimen->getTarget()->
-//    }
+    if(specimen->getSpec() == SpecimenType::HERBIVORE)
+    {
+        GroundField* ground = dynamic_cast<GroundField*>(specimen->getTarget());
+        ground->modifyOvergrow(-difference);
+
+    }
+    else
+    {
+        Specimen* target = dynamic_cast<Specimen*>(specimen->getTarget());
+        target->updateHp(-difference);
+    }
     // TODO update hp or overgrowing level of target without dynamic_cast
     qreal currentValue = specimen->getNeedValue(NeedType::EAT) - difference;
     if(currentValue <= 0)
