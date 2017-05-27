@@ -37,11 +37,12 @@ void Collider::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 QList<QGraphicsItem*> Collider::collidingItems(ItemType type)
 {
     QList<QGraphicsItem*> items;
-    for(QGraphicsItem* item : QGraphicsItem::collidingItems())
+    for(QGraphicsItem* item : QGraphicsItem::collidingItems(Qt::IntersectsItemBoundingRect))
     {
         if(item->type() == type)
             items.append(item);
     }
     items.removeOne(parentItem());
+    //std::cout<<items.count()<<std::endl;
     return items;
 }

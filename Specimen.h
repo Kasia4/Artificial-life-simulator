@@ -21,6 +21,7 @@
 #include "Needs.h"
 #include "BoardField.h"
 #include "SpecimenSenses.h"
+#include "FocusRing.h"
 
 class State;
 #include "State.h"
@@ -36,8 +37,7 @@ class Specimen :  public QObject, public QGraphicsItem
 {
     Q_OBJECT
 
-    static constexpr qreal SELECTION_RING_SCALE = 1.7;
-    inline qreal selectionRingSize() const;
+    static constexpr qreal FOCUS_RING_SCALE = 1.2;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ESCAPING_DISTANCE = 50;
@@ -134,7 +134,8 @@ protected:
 
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-
+    void focusInEvent(QFocusEvent *event);
+    void focusOutEvent(QFocusEvent *event);
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
@@ -159,7 +160,7 @@ private:
     qreal angular_velocity_;
 
     SpecimenSenses senses_;
-
+    FocusRing focus_ring_;
     State* currentState_;
     QMap<AttributeType, Attribute> attributes_;
 //    qreal thirst_;

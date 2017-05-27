@@ -1,10 +1,5 @@
 #include "Specimen.h"
 
-qreal Specimen::selectionRingSize() const
-{
-    return SELECTION_RING_SCALE * size_;
-}
-
 Specimen::Specimen()
     :target_(nullptr)
     ,chaser_(nullptr)
@@ -21,7 +16,7 @@ Specimen::Specimen()
     ,isDead_(false)
     ,isChased_(false)
 {
-    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
+    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 
     senses_.setParentItem(this);
@@ -29,7 +24,12 @@ Specimen::Specimen()
     /*Example values*/
     senses_.setHearingRange(50);
     senses_.setSightRange(200);
-    senses_.setSightAngle(30);
+    senses_.setSightAngle(45);
+
+    focus_ring_.setParentItem(this);
+    focus_ring_.setVisible(false);
+
+
 
     addAttribute(AttributeType::ENDURANCE, Attribute(20));
     addAttribute(AttributeType::SIGHT_RANGE, Attribute(200));
@@ -61,23 +61,13 @@ int Specimen::type() const
 
 QRectF Specimen::boundingRect() const
 {
-    return QRectF(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
+    return QRectF(-size_/2, -size_/2 , size_ , size_);
 }
 
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    if(hasFocus() || isSelected())
-    {
-        QPainterPath focus_path;
-        focus_path.addEllipse(-selectionRingSize()/2, -selectionRingSize()/2 , selectionRingSize() , selectionRingSize());
-        QPen focus_pen(Qt::DotLine);
-        focus_pen.setWidth(3);
-        painter->setPen(focus_pen);
-        painter->drawPath(focus_path);
-
-    }
     QPainterPath circle_path;
     circle_path.addEllipse(-size_/2,-size_/2, size_, size_);
     circle_path.addEllipse(size_/5, -eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
@@ -92,6 +82,7 @@ void Specimen::setSize(qreal size)
     size_ = size;
     eyes_dist_ = size/2;
     eyes_size_ = size/5;
+    focus_ring_.setRadius(size_*FOCUS_RING_SCALE);
 }
 
 void Specimen::setVelocity(qreal velocity)
@@ -407,6 +398,20 @@ void Specimen::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     Q_UNUSED(event);
     emit hoverLeave();
+}
+
+void Specimen::focusInEvent(QFocusEvent *event)
+{
+    Q_UNUSED(event);
+    std::cout<<"siema"<<std::endl;
+    focus_ring_.setVisible(true);
+}
+
+void Specimen::focusOutEvent(QFocusEvent *event)
+{
+    Q_UNUSED(event);
+    std::cout<<"nara"<<std::endl;
+    focus_ring_.setVisible(false);
 }
 
 bool Specimen::getEscapedFromChaser() const

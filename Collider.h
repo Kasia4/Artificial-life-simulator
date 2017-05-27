@@ -2,8 +2,10 @@
 #define COLLIDER_H
 #include <QGraphicsItem>
 #include <QPainter>
+#include <iostream>
 
 #include "ItemType.h"
+
 
 
 class Collider : public QGraphicsItem

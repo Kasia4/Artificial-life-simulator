@@ -8,6 +8,7 @@ SimulationScene::SimulationScene()
     specimen_widget_proxy_->setEnabled(false);
     specimen_widget_proxy_->setOpacity(0);
     specimen_widget_proxy_->setAcceptHoverEvents(false);
+    specimen_widget_proxy_->setFocusPolicy(Qt::NoFocus);
 }
 
 void SimulationScene::addSpecimen(Specimen *specimen)
@@ -56,15 +57,15 @@ void SimulationScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    static int shit = 0;
-    std::cout<<shit++<<"eeeeeele\n";
-    HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
-    new_spec->setMove(true);
-    new_spec->setPos(200,250);
-    new_spec->setVelocity(1);
-    new_spec->setAngularVelocity(rand()%2 ? -0.5 : 0.5);
-    new_spec->setSize(20);
-    addSpecimen(new_spec);
+//    static int shit = 0;
+//    std::cout<<shit++<<"eeeeeele\n";
+//    HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
+//    new_spec->setMove(true);
+//    new_spec->setPos(200,250);
+//    new_spec->setVelocity(1);
+//    new_spec->setAngularVelocity(rand()%2 ? -0.5 : 0.5);
+//    new_spec->setSize(20);
+//    addSpecimen(new_spec);
     QGraphicsScene::mousePressEvent(event);
 }
 
