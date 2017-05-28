@@ -1,21 +1,15 @@
 #include "Board.h"
 
-Board::Board(const QPoint& size)
+Board::Board(const QPoint& size, const QPointF& surface_size)
 {
-    setFieldSize(DEFAULT_FIELD_SIZE);
+    size_ = size;
+    setSurfaceSize(surface_size);
     resize(size);
 }
 
 Board::~Board()
 {
 
-}
-
-
-void Board::setFieldSize(qreal field_size)
-{
-    field_size_ = field_size;
-    placeFields();
 }
 
 int Board::getWidth() const
@@ -73,7 +67,7 @@ void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
 QRectF Board::boundingRect() const
 {
-    return QRectF(0,0, size_.x()*field_size_, size_.y()*field_size_);
+    return QRectF(0,0, surface_size_.x(), surface_size_.y());
 }
 
 
@@ -152,3 +146,25 @@ void Board::placeFields(){
         }
     }
 }
+
+void Board::updateFieldSize()
+{
+    qreal new_field_size_x = surface_size_.x()/size_.x();
+    qreal new_field_size_y = surface_size_.y()/size_.y();
+    field_size_ = new_field_size_x < new_field_size_y ?
+                    new_field_size_x :
+                    new_field_size_y;
+}
+
+QPointF Board::getSurfaceSize() const
+{
+    return surface_size_;
+}
+
+void Board::setSurfaceSize(const QPointF &surface_size)
+{
+    surface_size_ = surface_size;
+    updateFieldSize();
+}
+
+

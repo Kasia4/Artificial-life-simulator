@@ -63,17 +63,3 @@ void SimulationScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsScene::mouseMoveEvent(event);
 }
 
-void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-//    static int shit = 0;
-//    std::cout<<shit++<<"eeeeeele\n";
-//    HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
-//    new_spec->setMove(true);
-//    new_spec->setPos(200,250);
-//    new_spec->setVelocity(1);
-//    new_spec->setAngularVelocity(rand()%2 ? -0.5 : 0.5);
-//    new_spec->setSize(20);
-//    addSpecimen(new_spec);
-    QGraphicsScene::mousePressEvent(event);
-}
-

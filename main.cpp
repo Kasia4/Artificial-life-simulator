@@ -103,8 +103,7 @@ int main(int argc, char *argv[])
     MainWindow main_window;
 
     /* board properties setting */
-    Board board( QPoint(15,15) );
-    board.setFieldSize(40);
+    Board board( QPoint(60,60) , QPointF(602, 602));
 
     /* simulation engine creating */
     SimulationEngine engine(board);

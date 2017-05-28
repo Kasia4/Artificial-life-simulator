@@ -34,7 +34,6 @@ public slots:
     void hideSpecimenWidget();
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 private:
     QSet<Specimen*> specimens_;
 

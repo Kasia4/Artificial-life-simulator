@@ -2,8 +2,8 @@
 
 SimulationEngine::SimulationEngine(Board& board)
    :board_(&board)
+   ,is_started_(false)
 {
-    is_started_=false;
     connect(&board, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
     connect(&board, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
     connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
