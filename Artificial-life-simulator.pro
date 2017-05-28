@@ -56,7 +56,8 @@ SOURCES += main.cpp\
     SimulationView.cpp \
     Senses.cpp \
     SpecimenSenses.cpp \
-    FocusRing.cpp
+    FocusRing.cpp \
+    InitDialog.cpp
 
 
 HEADERS  += \
@@ -106,7 +107,9 @@ HEADERS  += \
     SimulationView.h \
     Senses.h \
     SpecimenSenses.h \
-    FocusRing.h
+    FocusRing.h \
+    InitDialog.h
 
 FORMS    += mainwindow.ui \
-    SpecimenWidget.ui
+    SpecimenWidget.ui \
+    InitDialog.ui
