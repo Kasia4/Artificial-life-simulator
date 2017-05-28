@@ -19,6 +19,7 @@ void SpecimenFactory::registerSpecimen(SpecimenType type, Specimen *prototype)
 Specimen *SpecimenFactory::create(SpecimenType type)
 {
     return prototypes_.value(type)->clone();
+
 }
 
 

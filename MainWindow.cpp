@@ -45,6 +45,10 @@ void MainWindow::initiateSimulation()
     QPointF surface_size(view_size.width(), view_size.height());
     setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
     engine_->startWork();
+    for(;carnivores;--carnivores)
+        engine_->getScene().addRandomSpecimen(SpecimenType::CARNIVORE);
+    for(;herbivores;--herbivores)
+        engine_->getScene().addRandomSpecimen(SpecimenType::HERBIVORE);
 }
 
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
