@@ -403,14 +403,12 @@ void Specimen::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 void Specimen::focusInEvent(QFocusEvent *event)
 {
     Q_UNUSED(event);
-    std::cout<<"siema"<<std::endl;
     focus_ring_.setVisible(true);
 }
 
 void Specimen::focusOutEvent(QFocusEvent *event)
 {
     Q_UNUSED(event);
-    std::cout<<"nara"<<std::endl;
     focus_ring_.setVisible(false);
 }
 

@@ -4,7 +4,6 @@ FocusRing::FocusRing()
 {
     pen_.setStyle(Qt::DotLine);
     pen_.setWidth(3);
-    setOpacity(0.4);
 }
 
 qreal FocusRing::radius() const

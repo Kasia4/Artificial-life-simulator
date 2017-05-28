@@ -20,6 +20,7 @@ public slots:
     void addSpecimen();
     void setShowColliders(bool enable);
 
+
 private:
     SimulationScene* simulation_scene_;
 };

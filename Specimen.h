@@ -37,7 +37,7 @@ class Specimen :  public QObject, public QGraphicsItem
 {
     Q_OBJECT
 
-    static constexpr qreal FOCUS_RING_SCALE = 1.2;
+    static constexpr qreal FOCUS_RING_SCALE = 0.6   ;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 5;
     static constexpr qreal ESCAPING_DISTANCE = 50;

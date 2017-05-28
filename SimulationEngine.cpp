@@ -55,12 +55,12 @@ void SimulationEngine::startWork()
 
 void SimulationEngine::pause()
 {
-
+    timer_.stop();
 }
 
 void SimulationEngine::resume()
 {
-
+    timer_.start();
 }
 
 void SimulationEngine::addSpecimen(Specimen *specimen)

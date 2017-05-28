@@ -28,6 +28,10 @@ private slots:
 
     void on_collidersCheckBox_stateChanged(int arg1);
 
+    void on_pauseButton_clicked();
+
+    void on_resumeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimulationEngine *engine_;

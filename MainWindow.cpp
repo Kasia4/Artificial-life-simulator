@@ -31,3 +31,14 @@ void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
 {
     ui->boardView->setShowColliders(arg1);
 }
+
+void MainWindow::on_pauseButton_clicked()
+{
+    engine_->pause();
+}
+
+
+void MainWindow::on_resumeButton_clicked()
+{
+    engine_->resume();
+}
