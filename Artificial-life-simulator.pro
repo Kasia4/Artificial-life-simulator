@@ -110,6 +110,7 @@ HEADERS  += \
     FocusRing.h \
     InitDialog.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
     SpecimenWidget.ui \
-    InitDialog.ui
+    InitDialog.ui \
+    MainWindow.ui

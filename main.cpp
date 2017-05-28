@@ -102,29 +102,12 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow main_window;
 
-    /* board properties setting */
-    Board board( QPoint(10,10) , QPointF(602, 602));
-
-    /* simulation engine creating */
-    SimulationEngine engine(board);
-
-    //SpecimensModel spec_model(engine);
-
-
     /* example tests demonstrating implemented features */
-    setCustomBoard(board);
-    createSpecimans(engine);
+    //setCustomBoard(board);
+    //createSpecimans(engine);
 
-    engine.startWork();
+    main_window.start();
 
-    //QTableView spec_view;
-    //spec_view.setModel(&spec_model);
-
-    main_window.setSimulationEngine(&engine);
-    main_window.show();
-    //spec_view.show();
-
-    //testGenes();
     return a.exec();
 }
 

@@ -1,9 +1,9 @@
 #include "SimulationEngine.h"
 
-SimulationEngine::SimulationEngine(Board& board)
+SimulationEngine::SimulationEngine(Board* board)
    :is_started_(false)
 {
-    scene_.setBoard(&board);
+    scene_.setBoard(board);
     connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
 
     border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());

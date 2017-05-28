@@ -27,6 +27,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::start()
+{
+    show();
+
+    init_dialog_ = new InitDialog;
+    connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
+    init_dialog_->show();
+}
+
+void MainWindow::initiateSimulation()
+{
+    QPoint board_size = init_dialog_->getBoardSize();
+    int carnivores = init_dialog_->getCarnivoreCount();
+    int herbivores = init_dialog_->getHerbivoreCount();
+    QSize view_size = ui->boardView->size();
+    QPointF surface_size(view_size.width(), view_size.height());
+    setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
+    engine_->startWork();
+}
+
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
 {
     ui->boardView->setShowColliders(arg1);

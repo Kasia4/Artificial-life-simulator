@@ -20,11 +20,13 @@ void SimulationScene::addSpecimen(Specimen *specimen)
 }
 
 void SimulationScene::addRandomSpecimen(SpecimenType type)
-{
-    //Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
-    //std::uniform_real_distribution(0, )
-    //new_specimen->setPos();
-    //addSpecimen(new_specimen);
+{/*
+    Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
+    std::uniform_real_distribution<> x_gen(0, board_->getSurfaceSize().x());
+    std::uniform_real_distribution<> y_gen(0, board_->getSurfaceSize().y());
+
+    new_specimen->setPos(x_gen(Randomizer::rand_gen()), y_gen(Randomizer::rand_gen()));
+    addSpecimen(new_specimen);*/
 }
 
 void SimulationScene::removeSpecimen(Specimen *specimen)
@@ -66,7 +68,6 @@ void SimulationScene::updateBoardSize(const QPoint &size)
     {
         for(BoardField* field : column)
         {
-            std::cout<<"eeeeee"<<std::endl;
             addItem(field);
         }
     }

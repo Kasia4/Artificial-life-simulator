@@ -6,6 +6,7 @@ InitDialog::InitDialog(QWidget *parent) :
     ui(new Ui::InitDialog)
 {
     ui->setupUi(this);
+    this->setSizeGripEnabled(false);
 }
 
 InitDialog::~InitDialog()

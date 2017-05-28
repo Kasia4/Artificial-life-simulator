@@ -22,7 +22,7 @@ class SimulationEngine: public QObject
 {
     Q_OBJECT
 public:
-    SimulationEngine(Board& board);
+    SimulationEngine(Board* board);
     virtual ~SimulationEngine() {};
 
     SimulationScene& getScene();
