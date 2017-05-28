@@ -19,6 +19,14 @@ void SimulationScene::addSpecimen(Specimen *specimen)
     connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
 }
 
+void SimulationScene::addRandomSpecimen(SpecimenType type)
+{
+    //Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
+    //std::uniform_real_distribution(0, )
+    //new_specimen->setPos();
+    //addSpecimen(new_specimen);
+}
+
 void SimulationScene::removeSpecimen(Specimen *specimen)
 {
     specimens_.remove(specimen);

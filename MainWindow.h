@@ -32,6 +32,10 @@ private slots:
 
     void on_resumeButton_clicked();
 
+    void on_addHerbivoreButton_clicked();
+
+    void on_addCarnivoreButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimulationEngine *engine_;

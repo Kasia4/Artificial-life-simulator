@@ -134,6 +134,32 @@
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="addHerbivoreButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>50</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Herbivore</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addCarnivoreButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>80</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Carnivore</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

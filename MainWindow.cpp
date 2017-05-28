@@ -42,3 +42,13 @@ void MainWindow::on_resumeButton_clicked()
 {
     engine_->resume();
 }
+
+void MainWindow::on_addHerbivoreButton_clicked()
+{
+    ui->boardView->addHerbivore();
+}
+
+void MainWindow::on_addCarnivoreButton_clicked()
+{
+    ui->boardView->addCarnivore();
+}

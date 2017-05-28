@@ -8,11 +8,14 @@
 #include "SpecimenWidget.h"
 #include "CarnivoreSpecimen.h"
 #include "HerbivoreSpecimen.h"
+#include "SpecimenFactory.h"
+#include "Randomizer.h"
 
 #include <iostream>
 #include <QPointer>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsSceneMouseEvent>
+#include <random>
 
 class SimulationScene : public QGraphicsScene
 {
@@ -21,6 +24,7 @@ public:
     SimulationScene();
     virtual ~SimulationScene() {};
     void addSpecimen(Specimen* specimen);
+    void addRandomSpecimen(SpecimenType type);
     void removeSpecimen(Specimen* specimen);
 
     void setShowColliders(bool enable);
