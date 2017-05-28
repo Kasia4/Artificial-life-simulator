@@ -1,16 +1,11 @@
 #include "SimulationEngine.h"
 
 SimulationEngine::SimulationEngine(Board& board)
-   :board_(&board)
-   ,is_started_(false)
+   :is_started_(false)
 {
-    connect(&board, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
-    connect(&board, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
+    scene_.setBoard(&board);
     connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
 
-
-    updateBoardSize(board_->getSize());
-    scene_.setSceneRect(board_->boundingRect());
     border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());
     QPen pen = QPen(Qt::black);
 
@@ -22,10 +17,7 @@ SimulationEngine::SimulationEngine(Board& board)
 
 }
 
-Board* SimulationEngine::getBoard() const
-{
-    return board_;
-}
+
 
 SimulationScene &SimulationEngine::getScene()
 {
@@ -73,24 +65,5 @@ void SimulationEngine::removeSpecimen(Specimen *specimen)
     scene_.removeSpecimen(specimen);
 }
 
-
-void SimulationEngine::updateBoardSize(const QPoint &size)
-{
-    Q_UNUSED(size);
-    const MapTable& map = board_->getFields();
-    for(MapColumn column : map)
-    {
-        for(BoardField* field : column)
-        {
-            scene_.addItem(field);
-        }
-    }
-}
-
-void SimulationEngine::replaceField(BoardField *old_field, BoardField *new_field)
-{
-    scene_.removeItem(old_field);
-    scene_.addItem(new_field);
-}
 
 

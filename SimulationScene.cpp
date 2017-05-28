@@ -35,12 +35,47 @@ void SimulationScene::removeSpecimen(Specimen *specimen)
     disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
 }
 
+Board* SimulationScene::getBoard() const
+{
+    return board_;
+}
+
 void SimulationScene::setShowColliders(bool enable)
 {
     for(Specimen* specimen: specimens_)
     {
         specimen->getSensesCollider().setVisiblity(enable);
     }
+}
+
+void SimulationScene::setBoard(Board* board)
+{
+    setSceneRect(board->boundingRect());
+    board_ = board;
+
+    connect(board_, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
+    connect(board_, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
+    updateBoardSize(board_->getSize());
+}
+
+void SimulationScene::updateBoardSize(const QPoint &size)
+{
+    Q_UNUSED(size);
+    const MapTable& map = board_->getFields();
+    for(MapColumn column : map)
+    {
+        for(BoardField* field : column)
+        {
+            std::cout<<"eeeeee"<<std::endl;
+            addItem(field);
+        }
+    }
+}
+
+void SimulationScene::replaceField(BoardField *old_field, BoardField *new_field)
+{
+    removeItem(old_field);
+    addItem(new_field);
 }
 
 void SimulationScene::showSpecimenWidget(Specimen *specimen)

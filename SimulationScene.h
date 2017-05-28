@@ -3,7 +3,7 @@
 
 #include <QGraphicsScene>
 
-
+#include "Board.h"
 #include "ItemType.h"
 #include "SpecimenWidget.h"
 #include "CarnivoreSpecimen.h"
@@ -27,14 +27,22 @@ public:
     void addRandomSpecimen(SpecimenType type);
     void removeSpecimen(Specimen* specimen);
 
+
     void setShowColliders(bool enable);
 
+    Board* getBoard() const;
+    void setBoard(Board *board);
+
 public slots:
+    void updateBoardSize(const QPoint& size);
+    void replaceField(BoardField* old_field, BoardField* new_field);
+
     void showSpecimenWidget(Specimen* specimen);
     void hideSpecimenWidget();
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
+    Board* board_;
     QSet<Specimen*> specimens_;
 
     SpecimenWidget* specimen_widget_;

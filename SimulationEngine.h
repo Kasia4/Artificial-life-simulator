@@ -24,7 +24,7 @@ class SimulationEngine: public QObject
 public:
     SimulationEngine(Board& board);
     virtual ~SimulationEngine() {};
-    Board* getBoard() const;
+
     SimulationScene& getScene();
 
 
@@ -35,8 +35,6 @@ public slots:
     void addSpecimen(Specimen* specimen);
     void removeSpecimen(Specimen* specimen);
 private slots:
-    void updateBoardSize(const QPoint& size);
-    void replaceField(BoardField* old_field, BoardField* new_field);
 
 private:
     QTimer timer_;
