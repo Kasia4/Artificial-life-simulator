@@ -24,6 +24,7 @@ void SimulationView::setScene(SimulationScene *scene)
 
 void SimulationView::mousePressEvent(QMouseEvent *event)
 {
+	std::cout<<(int)editor_field_type_<<std::endl;
     QGraphicsView::mousePressEvent(event);
 }
 
@@ -39,7 +40,12 @@ void SimulationView::addCarnivore()
 
 void SimulationView::setShowColliders(bool enable)
 {
-    simulation_scene_->setShowColliders(enable);
+	simulation_scene_->setShowColliders(enable);
+}
+
+void SimulationView::setEditorFieldType(FieldType type)
+{
+	editor_field_type_ = type;
 }
 
 

@@ -166,10 +166,10 @@
      <string>Add Carnivore</string>
     </property>
    </widget>
-   <widget class="BoardEditor" name="widget" native="true">
+   <widget class="BoardEditor" name="boardEditor" native="true">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>150</y>
       <width>191</width>
       <height>251</height>
@@ -196,6 +196,7 @@
    <header location="global">SimulationView.h</header>
    <slots>
     <slot>addSpecimen()</slot>
+    <slot>setEditorFieldType(FieldType)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -203,6 +204,9 @@
    <extends>QWidget</extends>
    <header location="global">BoardEditor.h</header>
    <container>1</container>
+   <slots>
+    <signal>fieldTypeChanged(FieldType)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -40,6 +40,8 @@ private slots:
 
     void on_addCarnivoreButton_clicked();
 
+	void on_boardEditor_fieldTypeChanged(const FieldType &type);
+
 private:
     Ui::MainWindow *ui;
     SimulationEngine *engine_;
