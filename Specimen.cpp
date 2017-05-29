@@ -229,7 +229,6 @@ void Specimen::chaseTarget()
         dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
         if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
         {
-            std::cout<<"\nzlapalem\n"<<target_<<"\n";
             caught_target_ = true;
         }
         else
@@ -445,8 +444,8 @@ QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
     {
         Specimen* specimen = dynamic_cast<Specimen*>(item);
         if(specimen->getSpec() == type)
-           { specimens.append(specimen);
-            std::cout<<"\njestes tu \n";}
+           specimens.append(specimen);
+
     }
     return specimens;
 }
@@ -470,7 +469,6 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     Specimen* nearestSpec = nullptr;
     for(Specimen* specimen : collidingSpecimens(type))
     {
-        std::cout<<"weszlo ";
         QLine dist_line(pos().x(), pos().y(), specimen->pos().x(), specimen->pos().y());
         qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
         if(distance < minDistance)

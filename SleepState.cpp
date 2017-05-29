@@ -11,7 +11,6 @@ State* SleepState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    std::cout<<"spie ";
     return sleep(specimen);
 }
 

@@ -43,6 +43,5 @@ QList<QGraphicsItem*> Collider::collidingItems(ItemType type)
             items.append(item);
     }
     items.removeOne(parentItem());
-    std::cout<<"type: "<<type<<"\titems count: "<<items.count()<<std::endl;
     return items;
 }
