@@ -9,12 +9,14 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <BoardEditor.h>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -35,9 +37,8 @@ public:
     QPushButton *resumeButton;
     QPushButton *addHerbivoreButton;
     QPushButton *addCarnivoreButton;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton_5;
+    BoardEditor *widget;
+    QLabel *label;
     QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -49,7 +50,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         boardView = new SimulationView(centralWidget);
         boardView->setObjectName(QStringLiteral("boardView"));
-        boardView->setGeometry(QRect(0, 0, 601, 601));
+        boardView->setGeometry(QRect(0, 0, 600, 600));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(610, 550, 111, 41));
@@ -58,11 +59,11 @@ public:
         pushButton_2->setGeometry(QRect(730, 550, 111, 41));
         collidersCheckBox = new QCheckBox(centralWidget);
         collidersCheckBox->setObjectName(QStringLiteral("collidersCheckBox"));
-        collidersCheckBox->setGeometry(QRect(700, 10, 101, 19));
+        collidersCheckBox->setGeometry(QRect(710, 10, 111, 41));
         collidersCheckBox->setTristate(false);
         pauseButton = new QPushButton(centralWidget);
         pauseButton->setObjectName(QStringLiteral("pauseButton"));
-        pauseButton->setGeometry(QRect(640, 10, 31, 31));
+        pauseButton->setGeometry(QRect(650, 10, 41, 41));
         QFont font;
         font.setFamily(QStringLiteral("Purisa"));
         font.setPointSize(16);
@@ -75,35 +76,25 @@ public:
         pauseButton->setIconSize(QSize(32, 32));
         resumeButton = new QPushButton(centralWidget);
         resumeButton->setObjectName(QStringLiteral("resumeButton"));
-        resumeButton->setGeometry(QRect(610, 10, 31, 31));
+        resumeButton->setGeometry(QRect(610, 10, 41, 41));
         resumeButton->setFont(font);
         resumeButton->setMouseTracking(false);
         resumeButton->setAutoFillBackground(false);
         resumeButton->setIconSize(QSize(32, 32));
         addHerbivoreButton = new QPushButton(centralWidget);
         addHerbivoreButton->setObjectName(QStringLiteral("addHerbivoreButton"));
-        addHerbivoreButton->setGeometry(QRect(610, 50, 111, 31));
+        addHerbivoreButton->setGeometry(QRect(610, 60, 121, 41));
+        addHerbivoreButton->setStyleSheet(QStringLiteral("background-color: rgb(4, 255, 0);"));
         addCarnivoreButton = new QPushButton(centralWidget);
         addCarnivoreButton->setObjectName(QStringLiteral("addCarnivoreButton"));
-        addCarnivoreButton->setGeometry(QRect(610, 80, 111, 31));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(730, 50, 31, 31));
-        pushButton_3->setAutoFillBackground(false);
-        pushButton_3->setStyleSheet(QStringLiteral("background-color: rgb(200, 150, 0);"));
-        pushButton_3->setAutoRepeatDelay(300);
-        pushButton_4 = new QPushButton(centralWidget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(760, 50, 31, 31));
-        pushButton_4->setAutoFillBackground(false);
-        pushButton_4->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
-        pushButton_4->setAutoRepeatDelay(290);
-        pushButton_5 = new QPushButton(centralWidget);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        pushButton_5->setGeometry(QRect(790, 50, 31, 31));
-        pushButton_5->setAutoFillBackground(false);
-        pushButton_5->setStyleSheet(QStringLiteral("background-color: rgb(192,192,192);"));
-        pushButton_5->setAutoRepeatDelay(290);
+        addCarnivoreButton->setGeometry(QRect(610, 100, 121, 41));
+        addCarnivoreButton->setStyleSheet(QStringLiteral("background-color: rgb(255, 0, 0);"));
+        widget = new BoardEditor(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(600, 150, 191, 251));
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(80, 60, 54, 13));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -125,9 +116,7 @@ public:
         resumeButton->setText(QApplication::translate("MainWindow", "\342\226\266", 0));
         addHerbivoreButton->setText(QApplication::translate("MainWindow", "Add Herbivore", 0));
         addCarnivoreButton->setText(QApplication::translate("MainWindow", "Add Carnivore", 0));
-        pushButton_3->setText(QString());
-        pushButton_4->setText(QString());
-        pushButton_5->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
     } // retranslateUi
 
 };
