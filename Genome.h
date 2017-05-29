@@ -21,8 +21,7 @@ public:
 
     Genome();
 
-    void addAttributesPair(AttributeType typeA, AttributeType typeB);
-    void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
+	void addAttributesPair(AttributeType typeA, AttributeType typeB);
 
     int genesCount() const;
     Chromosome getChromosome() const;
@@ -32,7 +31,11 @@ public:
     Range getAttributeRange(AttributeType type) const;
     qreal getAttributeValue(AttributeType type) const;
 
+	qreal getAttributeEnchancement(AttributeType type) const;
 private:
+	void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
+
+
     QMap<AttributeType, AttributeConditioning> conditionings_;
     AttributeRange ranges_;
     Chromosome chromosome_;
