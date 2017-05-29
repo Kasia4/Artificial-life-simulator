@@ -12,7 +12,7 @@ Specimen::Specimen()
 //    ,thirst_(0)
 //    ,hunger_(0)
 //    ,tiredness_(0)
-    ,needChanged_(false)
+    ,needChanged_(true)
     ,isDead_(false)
     ,isChased_(false)
 {
@@ -182,6 +182,7 @@ void Specimen::advance(int step)
             move();
         }
 
+    //updateState(currentState_->action(this));
     emit attributesChanged();
 }
 
@@ -372,7 +373,7 @@ void Specimen::chooseNeed()
 {
     NeedType old = currentNeed_;
     currentNeed_=needs_.mostImportant();
-    needChanged_ = (old == currentNeed_);
+    needChanged_ = (old != currentNeed_);
 }
 
 void Specimen::updateState(State* state)

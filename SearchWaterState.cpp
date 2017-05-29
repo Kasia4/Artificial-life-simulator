@@ -7,6 +7,7 @@ SearchWaterState::SearchWaterState()
 
 State* SearchWaterState::action(Specimen *specimen)
 {
+
     State* result = State::action(specimen);
     if(result)
        return result;
@@ -15,6 +16,7 @@ State* SearchWaterState::action(Specimen *specimen)
 
 State *SearchWaterState::searchForWater(Specimen *specimen)
 {
+    std::cout<<"szukam wody ";
     if(!specimen->getTarget() || specimen->getTarget() != nearestWater(specimen))
        specimen->setTarget(nearestWater(specimen));
     if(specimen->getCaughtTarget())
