@@ -117,5 +117,5 @@ HEADERS  += \
 FORMS    += \
     SpecimenWidget.ui \
     InitDialog.ui \
-    mainwindow.ui \
-    BoardEditor.ui
+    BoardEditor.ui \
+    MainWindow.ui
