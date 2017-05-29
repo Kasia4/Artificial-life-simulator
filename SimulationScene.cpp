@@ -33,7 +33,6 @@ void SimulationScene::addRandomSpecimen(SpecimenType type)
     new_specimen->setAngularVelocity(0.5);
     new_specimen->setSize(20);
     new_specimen->setMove(true);
-
     addSpecimen(new_specimen);
 }
 

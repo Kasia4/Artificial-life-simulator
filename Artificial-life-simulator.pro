@@ -57,7 +57,9 @@ SOURCES += main.cpp\
     Senses.cpp \
     SpecimenSenses.cpp \
     FocusRing.cpp \
-    InitDialog.cpp
+    InitDialog.cpp \
+    BoardEditor.cpp \
+    ExclusiveButtonGroup.cpp
 
 
 HEADERS  += \
@@ -108,9 +110,12 @@ HEADERS  += \
     Senses.h \
     SpecimenSenses.h \
     FocusRing.h \
-    InitDialog.h
+    InitDialog.h \
+    BoardEditor.h \
+    ExclusiveButtonGroup.h
 
 FORMS    += \
     SpecimenWidget.ui \
     InitDialog.ui \
-    MainWindow.ui
+    mainwindow.ui \
+    BoardEditor.ui

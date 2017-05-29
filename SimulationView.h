@@ -24,6 +24,7 @@ public slots:
 
 private:
     SimulationScene* simulation_scene_;
+
 };
 
 #endif // SIMULATIONVIEW_H

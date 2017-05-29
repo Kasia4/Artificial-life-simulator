@@ -30,6 +30,7 @@ void SimulationEngine::startWork()
     if(is_started_)return;
     is_started_ = true;
     timer_.start(1000/30);
+
     /*
     while(true)
     {

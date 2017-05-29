@@ -174,7 +174,7 @@ void Specimen::advance(int step)
         isDead_=true;
     else if(shouldRunAway())
         isChased_=true;
-    else if(chaser_)
+	if(chaser_)
         runAway();
     else if(target_)
         chaseTarget();
