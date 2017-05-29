@@ -390,6 +390,20 @@ void Specimen::updateState(State* state)
     currentState_ = state;
 }
 
+void Specimen::generateGenome()
+{
+    genome_.addAttributesPair(AttributeType::ENDURANCE, AttributeType::STRENGTH);
+    genome_.addAttributesPair(AttributeType::SIGHT_ANGLE,AttributeType::SIGHT_RANGE);
+    genome_.addAttributesPair(AttributeType::HEARING_RANGE,AttributeType::SPEED);
+    genome_.setAttributeRange(AttributeType::ENDURANCE, Range(10,40));
+    genome_.setAttributeRange(AttributeType::STRENGTH, Range(30,50));
+    genome_.setAttributeRange(AttributeType::SIGHT_ANGLE, Range(10,90));
+    genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(100,250));
+    genome_.setAttributeRange(AttributeType::HEARING_RANGE, Range(40,80));
+    genome_.setAttributeRange(AttributeType::SPEED,Range(0.5,3.5));
+
+}
+
 bool Specimen::shouldRunAway()
 {
     return false;
