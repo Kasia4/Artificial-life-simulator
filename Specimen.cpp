@@ -1,6 +1,6 @@
 #include "Specimen.h"
 
-Specimen::Specimen()
+Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     :target_(nullptr)
     ,chaser_(nullptr)
     ,move_(false)
@@ -23,26 +23,42 @@ Specimen::Specimen()
 
     senses_.setParentItem(this);
 
-    /*Example values*/
-    senses_.setHearingRange(50);
-    senses_.setSightRange(200);
-    senses_.setSightAngle(45);
+//    /*Example values*/
+//    senses_.setHearingRange(50);
+//    senses_.setSightRange(200);
+//    senses_.setSightAngle(45);
 
     focus_ring_.setParentItem(this);
     focus_ring_.setVisible(false);
+    if(!first_parent || !second_parent)
+        generateGenome();
+    else
+       generateGenome(first_parent, second_parent);
 
+    setAttributesValues();
+    std::cout<<"moje atrybuty\n";
+    std::cout<<"wytrzymalosc "<<getAttributeValue(AttributeType::ENDURANCE)<<"\n";
+    std::cout<<"sila "<<getAttributeValue(AttributeType::STRENGTH)<<"\n";
+    std::cout<<"zasieg wzroku "<<getAttributeValue(AttributeType::SIGHT_RANGE)<<"\n";
+    std::cout<<"kat widzenia "<<getAttributeValue(AttributeType::SIGHT_ANGLE)<<"\n";
+    std::cout<<"zasieg sluchu "<<getAttributeValue(AttributeType::HEARING_RANGE)<<"\n";
+    std::cout<<"szybkosc "<<getAttributeValue(AttributeType::SPEED)<<"\n";
 
+    /*Example values*/
+    senses_.setHearingRange(getAttributeValue(AttributeType::HEARING_RANGE));
+    senses_.setSightRange(getAttributeValue(AttributeType::SIGHT_RANGE));
+    senses_.setSightAngle(getAttributeValue(AttributeType::SIGHT_ANGLE));
 
-    addAttribute(AttributeType::ENDURANCE, Attribute(20));
-    addAttribute(AttributeType::SIGHT_RANGE, Attribute(200));
-    addAttribute(AttributeType::SIGHT_ANGLE, Attribute(30));
-    addAttribute(AttributeType::HEARING_RANGE, Attribute(50));
-    addAttribute(AttributeType::SPEED, Attribute(1));
-    addAttribute(AttributeType::STRENGTH, Attribute(40));
+//    addAttribute(AttributeType::ENDURANCE, Attribute(20));
+//    addAttribute(AttributeType::SIGHT_RANGE, Attribute(200));
+//    addAttribute(AttributeType::SIGHT_ANGLE, Attribute(30));
+//    addAttribute(AttributeType::HEARING_RANGE, Attribute(50));
+//    addAttribute(AttributeType::SPEED, Attribute(1));
+//    addAttribute(AttributeType::STRENGTH, Attribute(40));
 
-    addAttribute(AttributeType::FOOD_NECESSITY, Attribute(0.1));
-    addAttribute(AttributeType::WATER_NECESSITY, Attribute(0.1));
-    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
+//    addAttribute(AttributeType::FOOD_NECESSITY, Attribute(0.1));
+//    addAttribute(AttributeType::WATER_NECESSITY, Attribute(0.1));
+//    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
     needs_.addNeed(NeedType::EAT, 0.1, 0);
@@ -404,6 +420,27 @@ void Specimen::generateGenome()
 
 }
 
+void Specimen::generateGenome(Specimen* first_parent, Specimen* second_parent)
+{
+    genome_ = Genome::crossing(first_parent->getGenome(), second_parent->getGenome());
+}
+
+void Specimen::setAttributesValues()
+{
+    addAttribute(AttributeType::ENDURANCE, Attribute(genome_.getAttributeValue(AttributeType::ENDURANCE)));
+    addAttribute(AttributeType::SIGHT_RANGE, Attribute(genome_.getAttributeValue(AttributeType::SIGHT_RANGE)));
+    addAttribute(AttributeType::SIGHT_ANGLE, Attribute(genome_.getAttributeValue(AttributeType::SIGHT_ANGLE)));
+    addAttribute(AttributeType::HEARING_RANGE, Attribute(genome_.getAttributeValue(AttributeType::HEARING_RANGE)));
+    addAttribute(AttributeType::SPEED, Attribute(genome_.getAttributeValue(AttributeType::SPEED)));
+    addAttribute(AttributeType::STRENGTH, Attribute(genome_.getAttributeValue(AttributeType::STRENGTH)));
+
+    addAttribute(AttributeType::FOOD_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::ENDURANCE)+genome_.getAttributeEnchancement(AttributeType::STRENGTH)));
+    addAttribute(AttributeType::WATER_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
+    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
+
+
+}
+
 bool Specimen::shouldRunAway()
 {
     return false;
@@ -474,6 +511,16 @@ QList<BoardField *> Specimen::collidingFields(FieldType type)
             fields.append(field);
     }
     return fields;
+}
+
+Genome Specimen::getGenome() const
+{
+    return genome_;
+}
+
+void Specimen::setGenome(const Genome& genome)
+{
+    genome_ = genome;
 }
 
 Specimen* Specimen::nearestSpecimen(SpecimenType type)

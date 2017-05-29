@@ -22,6 +22,7 @@
 #include "BoardField.h"
 #include "SpecimenSenses.h"
 #include "FocusRing.h"
+#include "Genome.h"
 
 class State;
 #include "State.h"
@@ -42,7 +43,7 @@ class Specimen :  public QObject, public QGraphicsItem
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 1;
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
-    Specimen();
+    Specimen(Specimen* first_parent = nullptr,Specimen* second_parent = nullptr);
     virtual ~Specimen() {};
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
@@ -128,6 +129,9 @@ public:
 
 
 
+    Genome getGenome() const;
+    void setGenome(const Genome& genome);
+
 protected:
     void advance(int step);
     virtual bool shouldRunAway();
@@ -170,6 +174,9 @@ private:
     qreal hp_;
     Needs needs_;
 
+    Genome genome_;
+
+
     bool needChanged_;
     NeedType currentNeed_;
 
@@ -183,6 +190,9 @@ private:
     bool shouldDie();
     void chooseNeed();
     void updateState(State* state);
+    void generateGenome();
+    void generateGenome(Specimen* first_parent, Specimen* second_parent);
+    void setAttributesValues();
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();
