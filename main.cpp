@@ -107,8 +107,9 @@ int main(int argc, char *argv[])
     //setCustomBoard(board);
     //createSpecimans(engine);
 
-    main_window.start();
+	//testGenes();
+	main_window.start();
 
-    return a.exec();
+	return a.exec();
 }
 

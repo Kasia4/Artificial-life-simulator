@@ -16,7 +16,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -38,7 +37,6 @@ public:
     QPushButton *addHerbivoreButton;
     QPushButton *addCarnivoreButton;
     BoardEditor *widget;
-    QLabel *label;
     QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -92,9 +90,6 @@ public:
         widget = new BoardEditor(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(600, 150, 191, 251));
-        label = new QLabel(widget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(80, 60, 54, 13));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -116,7 +111,6 @@ public:
         resumeButton->setText(QApplication::translate("MainWindow", "\342\226\266", 0));
         addHerbivoreButton->setText(QApplication::translate("MainWindow", "Add Herbivore", 0));
         addCarnivoreButton->setText(QApplication::translate("MainWindow", "Add Carnivore", 0));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
     } // retranslateUi
 
 };

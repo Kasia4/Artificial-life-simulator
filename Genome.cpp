@@ -46,7 +46,14 @@ qreal Genome::getAttributeValue(AttributeType type) const
 {
     AttributeConditioning cond = conditionings_.value(type);
     qreal att_value = cond.gene_handle()->getValue(cond.position());
-    return ranges_.value(type).transform(att_value);
+	return ranges_.value(type).transform(att_value);
+}
+
+qreal Genome::getAttributeEnchancement(AttributeType type) const
+{
+	AttributeConditioning cond = conditionings_.value(type);
+	return cond.gene_handle()->getEnhancement(cond.position());
+
 }
 
 int Genome::genesCount() const
