@@ -12,7 +12,7 @@ Specimen::Specimen()
 //    ,thirst_(0)
 //    ,hunger_(0)
 //    ,tiredness_(0)
-    ,needChanged_(false)
+    ,needChanged_(true)
     ,isDead_(false)
     ,isChased_(false)
 {
@@ -110,6 +110,7 @@ void Specimen::setMove(bool move)
 
 void Specimen::disableTracking()
 {
+    caught_target_=false;
     target_ = nullptr;
     sense_target_ = false;
 }
@@ -184,6 +185,7 @@ void Specimen::advance(int step)
             move();
         }
 
+    updateState(currentState_->action(this));
     emit attributesChanged();
 }
 
@@ -207,7 +209,7 @@ void Specimen::runAway()
         escaped_from_chaser_ = true;
     }
     else
-        setRotation(rotation() + angle);
+        setRotation(angle);
     if(move_)
     {
         move();
@@ -216,8 +218,11 @@ void Specimen::runAway()
 
 void Specimen::chaseTarget()
 {
-    sense_target_ = senses_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    if(sense_target_)
+//    if(getSpec() == SpecimenType::HERBIVORE)
+//        sense_target_ = senses_.collidingItems(ItemType::FIELD).contains(target_);
+//    else
+//        sense_target_ = senses_.collidingItems(ItemType::SPECIMEN).contains(target_);
+    //if(sense_target_)
     {
         QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
         qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
@@ -233,14 +238,14 @@ void Specimen::chaseTarget()
             move();
         }
     }
-    else
-    {
-        if(move_)
-        {
-            setRotation(rotation() + angular_velocity_);
-            move();
-        }
-    }
+//    else
+//    {
+//        if(move_)
+//        {
+//            setRotation(rotation() + angular_velocity_);
+//            move();
+//        }
+//    }
 }
 
 bool Specimen::getIsDead() const
@@ -374,7 +379,7 @@ void Specimen::chooseNeed()
 {
     NeedType old = currentNeed_;
     currentNeed_=needs_.mostImportant();
-    needChanged_ = (old == currentNeed_);
+    needChanged_ = (old != currentNeed_);
 }
 
 void Specimen::updateState(State* state)
@@ -439,7 +444,8 @@ QList<Specimen*> Specimen::collidingSpecimens(SpecimenType type)
     {
         Specimen* specimen = dynamic_cast<Specimen*>(item);
         if(specimen->getSpec() == type)
-            specimens.append(specimen);
+           specimens.append(specimen);
+
     }
     return specimens;
 }
@@ -463,11 +469,13 @@ Specimen* Specimen::nearestSpecimen(SpecimenType type)
     Specimen* nearestSpec = nullptr;
     for(Specimen* specimen : collidingSpecimens(type))
     {
-
         QLine dist_line(pos().x(), pos().y(), specimen->pos().x(), specimen->pos().y());
         qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
         if(distance < minDistance)
+        {
             nearestSpec = specimen;
+            minDistance = distance;
+        }
     }
 
     return nearestSpec;
@@ -483,9 +491,11 @@ BoardField *Specimen::nearestField(FieldType type)
         QLine dist_line(pos().x(), pos().y(), field->pos().x(), field->pos().y());
         qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
         if(distance < minDistance)
+        {
             nearestField = field;
+            minDistance = distance;
+        }
     }
-
     return nearestField;
 }
 

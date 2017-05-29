@@ -8,6 +8,7 @@ SearchPartnerState::SearchPartnerState()
 
 State* SearchPartnerState::action(Specimen *specimen)
 {
+
     State* result = State::action(specimen);
     if(result)
        return result;
@@ -17,7 +18,10 @@ State* SearchPartnerState::action(Specimen *specimen)
 State* SearchPartnerState::searchForPartner(Specimen *specimen)
 {
     if(!specimen->getTarget() || specimen->getTarget() != nearestPartner(specimen))
-       specimen->setTarget(nearestPartner(specimen));
+    {
+        specimen->disableTracking();
+        specimen->setTarget(nearestPartner(specimen));
+    }
     if(specimen->getCaughtTarget())
        return new ReproduceState();
     return this;

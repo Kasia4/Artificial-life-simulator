@@ -7,6 +7,7 @@ SleepState::SleepState()
 
 State* SleepState::action(Specimen *specimen)
 {
+
     State* result = State::action(specimen);
     if(result)
        return result;

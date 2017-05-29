@@ -2,7 +2,7 @@
 #define ITEMTYPE_H
 #include <QGraphicsItem>
 
-enum ItemType : unsigned {
+enum ItemType : int {
     SPECIMEN = QGraphicsItem::UserType + 1,
     FIELD,
     COLLIDER,

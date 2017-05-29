@@ -43,17 +43,18 @@ void createSpecimans(SimulationEngine& engine){
     spec1->setSize(20);
     spec1->setVelocity(1);
     spec1->setAngularVelocity(1);
-    spec1->setTarget(spec2);
+    //spec1->setTarget(spec2);
     spec1->setMove(true);
     spec1->setRotation(-350);
     engine.addSpecimen(spec1);
-    spec2->setPos(280,350);
-    spec2->setSize(20);
-    spec2->setRotation(10);
-    spec2->setVelocity(1.2);
-    spec2->setAngularVelocity(-1);
-    spec2->setMove(true);
-    engine.addSpecimen(spec2);
+//    spec2->setPos(280,350);
+//    spec2->setSize(20);
+//    spec2->setRotation(10);
+//    spec2->setVelocity(1.2);
+//    spec2->setAngularVelocity(-1);
+//    spec2->setMove(true);
+//    engine.addSpecimen(spec2);
+
 
 
 

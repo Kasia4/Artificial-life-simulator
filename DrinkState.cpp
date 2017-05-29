@@ -7,6 +7,7 @@ DrinkState::DrinkState()
 
 State* DrinkState::action(Specimen *specimen)
 {
+
     State* result = State::action(specimen);
     if(result)
        return result;
@@ -15,6 +16,7 @@ State* DrinkState::action(Specimen *specimen)
 
 State *DrinkState::drink(Specimen *specimen)
 {
+    specimen->setMove(false);
     qreal value = specimen->getNeedValue(NeedType::DRINK) - specimen->getAttributeValue(AttributeType::WATER_NECESSITY);
     if(value < 0)
     {
