@@ -19,9 +19,13 @@ State* SearchPartnerState::searchForPartner(Specimen *specimen)
 {
     std::cout<<"szukam partnera ";
     if(!specimen->getTarget() || specimen->getTarget() != nearestPartner(specimen))
-       specimen->setTarget(nearestPartner(specimen));
+    {
+        specimen->disableTracking();
+        specimen->setTarget(nearestPartner(specimen));
+    }
     if(specimen->getCaughtTarget())
        return new ReproduceState();
+    std::cout<<"yolo ";
     return this;
 }
 

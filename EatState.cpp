@@ -17,11 +17,13 @@ State* EatState::action(Specimen *specimen)
 
 State *EatState::eat(Specimen *specimen)
 {
+//    specimen->setMove(false);
     qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
     if(specimen->getSpec() == SpecimenType::HERBIVORE)
     {
         GroundField* ground = dynamic_cast<GroundField*>(specimen->getTarget());
         ground->modifyOvergrow(-difference);
+        std::cout<<"zjadlem ";
     }
     else
     {

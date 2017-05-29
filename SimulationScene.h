@@ -25,7 +25,6 @@ public:
     virtual ~SimulationScene() {};
     void addSpecimen(Specimen* specimen);
     void addRandomSpecimen(SpecimenType type);
-    void removeSpecimen(Specimen* specimen);
 
 
     void setShowColliders(bool enable);
@@ -36,6 +35,7 @@ public:
 public slots:
     void updateBoardSize(const QPoint& size);
     void replaceField(BoardField* old_field, BoardField* new_field);
+    void removeSpecimen(Specimen* specimen);
 
     void showSpecimenWidget(Specimen* specimen);
     void hideSpecimenWidget();

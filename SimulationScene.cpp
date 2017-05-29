@@ -17,6 +17,7 @@ void SimulationScene::addSpecimen(Specimen *specimen)
     addItem(specimen);
     connect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
     connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+    //connect(specimen, SIGNAL(destroyed(QObject*)), this, SLOT(removeSpecimen(Specimen*));
     specimen->setVisible(true);
 }
 
