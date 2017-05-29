@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include "SimulationEngine.h"
+#include "InitDialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,8 +24,11 @@ public:
     void setBoardView(SimulationScene *scene);
     ~MainWindow();
 
+    void start();
+
 protected:
 private slots:
+    void initiateSimulation();
 
     void on_collidersCheckBox_stateChanged(int arg1);
 
@@ -32,9 +36,14 @@ private slots:
 
     void on_resumeButton_clicked();
 
+    void on_addHerbivoreButton_clicked();
+
+    void on_addCarnivoreButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimulationEngine *engine_;
+    InitDialog *init_dialog_;
 };
 
 #endif // MAINWINDOW_H

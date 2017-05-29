@@ -54,6 +54,6 @@ QVariant BoardModel::headerData(int section, Qt::Orientation orientation, int ro
 
 void BoardModel::linkEngine(const SimulationEngine &engine)
 {
-    board_handle_ = engine.getBoard();
+    //board_handle_ = engine.getBoard();
 }
 

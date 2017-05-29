@@ -27,9 +27,14 @@ void SimulationView::mousePressEvent(QMouseEvent *event)
     QGraphicsView::mousePressEvent(event);
 }
 
-void SimulationView::addSpecimen()
+void SimulationView::addHerbivore()
 {
-    std::cout<<"abc0\n";
+    simulation_scene_->addRandomSpecimen(SpecimenType::HERBIVORE);
+}
+
+void SimulationView::addCarnivore()
+{
+    simulation_scene_->addRandomSpecimen(SpecimenType::CARNIVORE);
 }
 
 void SimulationView::setShowColliders(bool enable)

@@ -17,6 +17,24 @@ void SimulationScene::addSpecimen(Specimen *specimen)
     addItem(specimen);
     connect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
     connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+    specimen->setVisible(true);
+}
+
+void SimulationScene::addRandomSpecimen(SpecimenType type)
+{
+    std::cout<<"czesc owsiak ty skurwysynu\n";
+    Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
+    std::uniform_real_distribution<> x_gen(0, board_->getSurfaceSize().x());
+    std::uniform_real_distribution<> y_gen(0, board_->getSurfaceSize().y());
+
+
+    new_specimen->setPos(x_gen(Randomizer::rand_gen()), y_gen(Randomizer::rand_gen()));
+    new_specimen->setVelocity(1);
+    new_specimen->setAngularVelocity(0.5);
+    new_specimen->setSize(20);
+    new_specimen->setMove(true);
+
+    addSpecimen(new_specimen);
 }
 
 void SimulationScene::removeSpecimen(Specimen *specimen)
@@ -27,12 +45,46 @@ void SimulationScene::removeSpecimen(Specimen *specimen)
     disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
 }
 
+Board* SimulationScene::getBoard() const
+{
+    return board_;
+}
+
 void SimulationScene::setShowColliders(bool enable)
 {
     for(Specimen* specimen: specimens_)
     {
         specimen->getSensesCollider().setVisiblity(enable);
     }
+}
+
+void SimulationScene::setBoard(Board* board)
+{
+    setSceneRect(board->boundingRect());
+    board_ = board;
+
+    connect(board_, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
+    connect(board_, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
+    updateBoardSize(board_->getSize());
+}
+
+void SimulationScene::updateBoardSize(const QPoint &size)
+{
+    Q_UNUSED(size);
+    const MapTable& map = board_->getFields();
+    for(MapColumn column : map)
+    {
+        for(BoardField* field : column)
+        {
+            addItem(field);
+        }
+    }
+}
+
+void SimulationScene::replaceField(BoardField *old_field, BoardField *new_field)
+{
+    removeItem(old_field);
+    addItem(new_field);
 }
 
 void SimulationScene::showSpecimenWidget(Specimen *specimen)
@@ -53,19 +105,5 @@ void SimulationScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     specimen_widget_proxy_->setPos(event->scenePos());
     QGraphicsScene::mouseMoveEvent(event);
-}
-
-void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-//    static int shit = 0;
-//    std::cout<<shit++<<"eeeeeele\n";
-//    HerbivoreSpecimen* new_spec = new HerbivoreSpecimen;
-//    new_spec->setMove(true);
-//    new_spec->setPos(200,250);
-//    new_spec->setVelocity(1);
-//    new_spec->setAngularVelocity(rand()%2 ? -0.5 : 0.5);
-//    new_spec->setSize(20);
-//    addSpecimen(new_spec);
-    QGraphicsScene::mousePressEvent(event);
 }
 

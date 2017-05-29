@@ -17,7 +17,8 @@ protected:
 
 
 public slots:
-    void addSpecimen();
+    void addHerbivore();
+    void addCarnivore();
     void setShowColliders(bool enable);
 
 

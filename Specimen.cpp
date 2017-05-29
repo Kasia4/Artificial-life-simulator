@@ -19,6 +19,8 @@ Specimen::Specimen()
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 
+    std::cout<<"a on tylko elo i odwraca glowe\n";
+
     senses_.setParentItem(this);
 
     /*Example values*/

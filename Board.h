@@ -28,11 +28,8 @@ class Board : public QObject, public QGraphicsItem
 
 
 public:
-    static constexpr qreal DEFAULT_FIELD_SIZE = 30.0;
-    Board(const QPoint& size);
+    Board(const QPoint& size, const QPointF &surface_size);
     virtual ~Board();
-
-    void setFieldSize(qreal field_size);
 
     int getWidth() const;
     int getHeight() const;
@@ -53,14 +50,20 @@ public:
     QList<BoardField*> getNeighbors(const BoardField* field);
     QList<BoardField*> getNeighbors(const QPoint& position);
 
+    QPointF getSurfaceSize() const;
+
 private:
+    void setSurfaceSize(const QPointF &surface_size);
     void resize(const QPoint& size);
+
     /* Sets properly QGraphicsItem properties for field at given position */
     void placeField(QPoint position);
     /* Calls placeField for every field */
     void placeFields();
+    void updateFieldSize();
 
     QPoint size_;
+    QPointF surface_size_;
     qreal field_size_;
     MapTable fields_;
 
