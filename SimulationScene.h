@@ -47,6 +47,9 @@ private:
 
     SpecimenWidget* specimen_widget_;
     QGraphicsProxyWidget* specimen_widget_proxy_;
+
+signals:
+	void populationChanged(SpecimenType type, int change);
 };
 
 #endif // SIMULATIONSCENE_H

@@ -9,6 +9,7 @@
 #include <QGraphicsView>
 #include "SimulationEngine.h"
 #include "InitDialog.h"
+#include "PopulationChart.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,9 +43,12 @@ private slots:
 
 	void on_boardEditor_fieldTypeChanged(const FieldType &type);
 
+	void on_stats_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimulationEngine *engine_;
+	PopulationChart* population_chart_;
     InitDialog *init_dialog_;
 };
 

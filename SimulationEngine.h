@@ -25,7 +25,7 @@ public:
     SimulationEngine(Board* board);
     virtual ~SimulationEngine() {};
 
-    SimulationScene& getScene();
+	SimulationScene* getScene();
 
 
 public slots:

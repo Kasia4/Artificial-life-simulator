@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::setSimulationEngine(SimulationEngine *engine)
 {
     engine_ = engine;
-    setBoardView(&(engine_->getScene()));
+	setBoardView(engine_->getScene());
 }
 
 void MainWindow::setBoardView(SimulationScene *scene)
@@ -24,6 +24,7 @@ void MainWindow::setBoardView(SimulationScene *scene)
 
 MainWindow::~MainWindow()
 {
+	delete population_chart_;
     delete ui;
 }
 
@@ -34,6 +35,8 @@ void MainWindow::start()
     init_dialog_ = new InitDialog;
 	connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
     init_dialog_->show();
+
+	population_chart_ = new PopulationChart;
 }
 
 void MainWindow::initiateSimulation()
@@ -46,9 +49,12 @@ void MainWindow::initiateSimulation()
     setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
     engine_->startWork();
     for(;carnivores;--carnivores)
-        engine_->getScene().addRandomSpecimen(SpecimenType::CARNIVORE);
+		engine_->getScene()->addRandomSpecimen(SpecimenType::CARNIVORE);
     for(;herbivores;--herbivores)
-        engine_->getScene().addRandomSpecimen(SpecimenType::HERBIVORE);
+		engine_->getScene()->addRandomSpecimen(SpecimenType::HERBIVORE);
+	delete init_dialog_;
+
+	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
 }
 
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
@@ -80,4 +86,9 @@ void MainWindow::on_addCarnivoreButton_clicked()
 void MainWindow::on_boardEditor_fieldTypeChanged(const FieldType &type)
 {
 	ui->boardView->setEditorFieldType(type);
+}
+
+void MainWindow::on_stats_button_clicked()
+{
+	population_chart_->show();
 }
