@@ -24,9 +24,15 @@ void SimulationView::setScene(SimulationScene *scene)
 
 void SimulationView::mousePressEvent(QMouseEvent *event)
 {
-	std::cout<<(int)editor_field_type_<<std::endl;
-	simulation_scene_->getBoard()->getFieldByPixel(event->pos());
-    QGraphicsView::mousePressEvent(event);
+	if(editor_field_type_ != FieldType::VOID)
+	{
+		QPoint field_coordinates = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());
+		simulation_scene_->getBoard()->replaceField(field_coordinates, editor_field_type_);
+	}
+	else
+	{
+		QGraphicsView::mousePressEvent(event);
+	}
 }
 
 void SimulationView::addHerbivore()
