@@ -35,7 +35,9 @@ public:
     int getHeight() const;
     QPoint getSize() const;
     int getFieldSize() const;
-    BoardField *getField(const QPoint& position);
+	BoardField* getField(const QPoint& position);
+	BoardField* getFieldByPixel(const QPoint& px_position);
+
     bool onBoard(const QPoint& position);
     FieldType getFieldType(const QPoint& position);
 

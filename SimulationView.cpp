@@ -25,6 +25,7 @@ void SimulationView::setScene(SimulationScene *scene)
 void SimulationView::mousePressEvent(QMouseEvent *event)
 {
 	std::cout<<(int)editor_field_type_<<std::endl;
+	simulation_scene_->getBoard()->getFieldByPixel(event->pos());
     QGraphicsView::mousePressEvent(event);
 }
 
