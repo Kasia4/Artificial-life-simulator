@@ -15,5 +15,8 @@ State* ReproduceState::action(Specimen *specimen)
 
 State *ReproduceState::reproduce(Specimen *specimen)
 {
-
+    // create new specimen on the board from specimen and target
+    //remember of the scene to add specimen
+    //think about access to scene in states
+    // die state needs to access scene methods too
 }

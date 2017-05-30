@@ -15,10 +15,11 @@ State* SearchFoodState::action(Specimen *specimen)
 
 State* SearchFoodState::searchForFood(Specimen *specimen)
 {
-    if(!specimen->getTarget() || specimen->getTarget() != nearestFood(specimen))
+    QGraphicsItem* nearest_food = nearestFood(specimen);
+    if(!specimen->getTarget() || specimen->getTarget() != nearest_food)
     {
         specimen->disableTracking();
-        specimen->setTarget(nearestFood(specimen));
+        specimen->setTarget(nearest_food);
     }
 
     if(specimen->getCaughtTarget())

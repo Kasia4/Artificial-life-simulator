@@ -12,7 +12,7 @@ class Gene
 {
 public:
 
-    static qreal constexpr DEFAULT_SIGMA = 0.2;
+    static qreal constexpr DEFAULT_SIGMA = 0.1;
     static bool compareAttributes(const Gene& a, const Gene& b);
     static Gene crossing(const Gene& a, const Gene& b);
     Gene();

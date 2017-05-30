@@ -40,7 +40,7 @@ class Specimen :  public QObject, public QGraphicsItem
 
     static constexpr qreal FOCUS_RING_SCALE = 0.7   ;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
-    static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 1;
+    static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 3;
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
     Specimen(Specimen* first_parent = nullptr,Specimen* second_parent = nullptr);
@@ -108,8 +108,8 @@ public:
 
     SpecimenSenses &getSensesCollider();
 
-    bool getIsDead() const;
-    void setIsDead(bool isDead);
+//    bool getIsDead() const;
+//    void setIsDead(bool isDead);
 
     bool getIsChased() const;
     void setIsChased(bool isChased);
@@ -180,7 +180,7 @@ private:
     bool needChanged_;
     NeedType currentNeed_;
 
-    bool isDead_;
+    //bool isDead_;
     bool isChased_;
 
     void addAttribute(AttributeType type, Attribute attribute);
@@ -197,6 +197,7 @@ signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();
     void attributesChanged();
+    void killed(Specimen* spec);
 
 
 };

@@ -8,9 +8,9 @@ State::State()
 State* State::action(Specimen *specimen)
 {
     //specimen->setMove(true);
-    if(specimen->getIsDead())
-        return new DieState();
-    else if(specimen->getIsChased()) // TODO stay in the same RunAwayState
+//    if(specimen->getIsDead())
+//        return new DieState();
+   /* else*/ if(specimen->getIsChased()) // TODO stay in the same RunAwayState
         return new RunAwayState();
     else if(specimen->getNeedChanged())
     {

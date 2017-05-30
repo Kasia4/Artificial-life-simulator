@@ -17,12 +17,13 @@ State* SearchPartnerState::action(Specimen *specimen)
 
 State* SearchPartnerState::searchForPartner(Specimen *specimen)
 {
-    if(!specimen->getTarget() || specimen->getTarget() != nearestPartner(specimen))
+    Specimen* nearest_partner = nearestPartner(specimen);
+    if(!specimen->getTarget() || specimen->getTarget() != nearest_partner)
     {
         specimen->disableTracking();
-        specimen->setTarget(nearestPartner(specimen));
+        specimen->setTarget(nearest_partner);
     }
-    if(specimen->getCaughtTarget())
+    if(specimen->getCaughtTarget() && nearest_partner->getTarget() == specimen)
        return new ReproduceState();
     return this;
 }

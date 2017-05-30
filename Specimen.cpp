@@ -13,7 +13,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 //    ,hunger_(0)
 //    ,tiredness_(0)
     ,needChanged_(true)
-    ,isDead_(false)
+   // ,isDead_(false)
     ,isChased_(false)
 {
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
@@ -44,6 +44,10 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     std::cout<<"kat widzenia "<<getAttributeValue(AttributeType::SIGHT_ANGLE)<<"\n";
     std::cout<<"zasieg sluchu "<<getAttributeValue(AttributeType::HEARING_RANGE)<<"\n";
     std::cout<<"szybkosc "<<getAttributeValue(AttributeType::SPEED)<<"\n";
+
+    std::cout<<"zapotrzebowanie na jedzenie "<<getAttributeValue(AttributeType::FOOD_NECESSITY)<<"\n";
+    std::cout<<"zapotrzebowanie na wode "<<getAttributeValue(AttributeType::WATER_NECESSITY)<<"\n";
+    std::cout<<"zapotrzebowanie na sen "<<getAttributeValue(AttributeType::SLEEP_NECESSITY)<<"\n";
 
     /*Example values*/
     senses_.setHearingRange(getAttributeValue(AttributeType::HEARING_RANGE));
@@ -189,7 +193,7 @@ void Specimen::advance(int step)
         return;
     chooseNeed();
     if(shouldDie())
-        isDead_=true;
+        emit killed(this);
     else if(shouldRunAway())
         isChased_=true;
 	if(chaser_)
@@ -265,15 +269,15 @@ void Specimen::chaseTarget()
 //    }
 }
 
-bool Specimen::getIsDead() const
-{
-    return isDead_;
-}
+//bool Specimen::getIsDead() const
+//{
+//    return isDead_;
+//}
 
-void Specimen::setIsDead(bool isDead)
-{
-    isDead_ = isDead;
-}
+//void Specimen::setIsDead(bool isDead)
+//{
+//    isDead_ = isDead;
+//}
 
 State *Specimen::getCurrentState() const
 {
