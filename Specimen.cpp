@@ -7,7 +7,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     ,caught_target_(false)
     ,sense_target_(false)
     ,escaped_from_chaser_(true)
-    ,velocity_(0)
+   // ,velocity_(0)
     ,angular_velocity_(0)
 //    ,thirst_(0)
 //    ,hunger_(0)
@@ -104,10 +104,10 @@ void Specimen::setSize(qreal size)
     focus_ring_.setRadius(size_*FOCUS_RING_SCALE);
 }
 
-void Specimen::setVelocity(qreal velocity)
-{
-    velocity_ = velocity;
-}
+//void Specimen::setVelocity(qreal velocity)
+//{
+//    velocity_ = velocity;
+//}
 
 void Specimen::setAngularVelocity(qreal velocity)
 {
@@ -147,10 +147,10 @@ qreal Specimen::getEyesDist() const
     return eyes_dist_;
 }
 
-qreal Specimen::getVelocity() const
-{
-    return velocity_;
-}
+//qreal Specimen::getVelocity() const
+//{
+//    return velocity_;
+//}
 
 qreal Specimen::getAngularVelocity() const
 {
@@ -382,7 +382,7 @@ void Specimen::setChaser(QGraphicsItem *chaser)
 
 
 void Specimen::move(){
-    setPos(mapToParent(velocity_,0));
+    setPos(mapToParent(getAttributeValue(AttributeType::SPEED),0));
 }
 
 bool Specimen::shouldDie()
@@ -417,7 +417,7 @@ void Specimen::generateGenome()
     genome_.setAttributeRange(AttributeType::SIGHT_ANGLE, Range(10,90));
     genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(100,250));
     genome_.setAttributeRange(AttributeType::HEARING_RANGE, Range(40,80));
-    genome_.setAttributeRange(AttributeType::SPEED,Range(0.5,3.5));
+    genome_.setAttributeRange(AttributeType::SPEED,Range(1,2.5));
 
 }
 

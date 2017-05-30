@@ -55,7 +55,7 @@ public:
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     void setSize(qreal size);
-    void setVelocity(qreal velocity);
+    //void setVelocity(qreal velocity);
     void setAngularVelocity(qreal velocity);
     void setTarget(QGraphicsItem *target);
     void setMove(bool move);
@@ -65,7 +65,7 @@ public:
     qreal getSize() const;
     qreal getEyesSize() const;
     qreal getEyesDist() const;
-    qreal getVelocity() const;
+    //qreal getVelocity() const;
     qreal getAngularVelocity() const;
     qreal getAttributeValue(AttributeType type) const;
     qreal getNeedValue(NeedType type) const;
@@ -160,7 +160,7 @@ protected:
 
 
 private:
-    qreal velocity_;
+    //qreal velocity_;
     qreal angular_velocity_;
 
     SpecimenSenses senses_;
