@@ -29,13 +29,13 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
      <width>221</width>
-     <height>71</height>
+     <height>78</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -96,13 +96,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>100</y>
      <width>221</width>
-     <height>71</height>
+     <height>78</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
