@@ -2,7 +2,8 @@
 
 BoardField::BoardField()
 {
-    setFlags(QGraphicsItem::ItemIsSelectable);
+	setFlags(QGraphicsItem::ItemIsSelectable);
+	setZValue(0);
 }
 
 BoardField::BoardField(const QPoint &position)

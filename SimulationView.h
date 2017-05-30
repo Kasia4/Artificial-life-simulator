@@ -20,10 +20,11 @@ public slots:
     void addHerbivore();
     void addCarnivore();
     void setShowColliders(bool enable);
-
+	void setEditorFieldType(FieldType type);
 
 private:
     SimulationScene* simulation_scene_;
+	FieldType editor_field_type_;
 
 };
 

@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 void MainWindow::setSimulationEngine(SimulationEngine *engine)
@@ -32,7 +32,7 @@ void MainWindow::start()
     show();
 
     init_dialog_ = new InitDialog;
-    connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
+	connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
     init_dialog_->show();
 }
 
@@ -75,4 +75,9 @@ void MainWindow::on_addHerbivoreButton_clicked()
 void MainWindow::on_addCarnivoreButton_clicked()
 {
     ui->boardView->addCarnivore();
+}
+
+void MainWindow::on_boardEditor_fieldTypeChanged(const FieldType &type)
+{
+	ui->boardView->setEditorFieldType(type);
 }

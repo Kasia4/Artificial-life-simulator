@@ -41,6 +41,11 @@ BoardField* Board::getField(const QPoint& position)
 
 }
 
+QPoint Board::getFieldPositionByPixel(const QPoint& px_position)
+{
+	return QPoint(px_position.x()/field_size_, px_position.y()/field_size_);
+}
+
 bool Board::onBoard(const QPoint &position)
 {
     return position.x() >= 0 && position.y() >= 0 && position.x() < size_.x() && position.y() < size_.y();

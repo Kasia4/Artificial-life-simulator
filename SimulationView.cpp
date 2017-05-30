@@ -24,7 +24,15 @@ void SimulationView::setScene(SimulationScene *scene)
 
 void SimulationView::mousePressEvent(QMouseEvent *event)
 {
-    QGraphicsView::mousePressEvent(event);
+	if(editor_field_type_ != FieldType::VOID)
+	{
+		QPoint field_coordinates = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());
+		simulation_scene_->getBoard()->replaceField(field_coordinates, editor_field_type_);
+	}
+	else
+	{
+		QGraphicsView::mousePressEvent(event);
+	}
 }
 
 void SimulationView::addHerbivore()
@@ -39,7 +47,12 @@ void SimulationView::addCarnivore()
 
 void SimulationView::setShowColliders(bool enable)
 {
-    simulation_scene_->setShowColliders(enable);
+	simulation_scene_->setShowColliders(enable);
+}
+
+void SimulationView::setEditorFieldType(FieldType type)
+{
+	editor_field_type_ = type;
 }
 
 

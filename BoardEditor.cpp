@@ -20,7 +20,6 @@ BoardEditor::~BoardEditor()
 
 void BoardEditor::changeFieldType(QAbstractButton* btn)
 {
-	std::cout<<(int)(buttons_map_.value(btn))<<std::endl;
 	emit fieldTypeChanged(buttons_map_.value(btn));
 }
 

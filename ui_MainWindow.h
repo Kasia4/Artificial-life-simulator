@@ -36,7 +36,7 @@ public:
     QPushButton *resumeButton;
     QPushButton *addHerbivoreButton;
     QPushButton *addCarnivoreButton;
-    BoardEditor *widget;
+    BoardEditor *boardEditor;
     QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -87,9 +87,9 @@ public:
         addCarnivoreButton->setObjectName(QStringLiteral("addCarnivoreButton"));
         addCarnivoreButton->setGeometry(QRect(610, 100, 121, 41));
         addCarnivoreButton->setStyleSheet(QStringLiteral("background-color: rgb(255, 0, 0);"));
-        widget = new BoardEditor(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(600, 150, 191, 251));
+        boardEditor = new BoardEditor(centralWidget);
+        boardEditor->setObjectName(QStringLiteral("boardEditor"));
+        boardEditor->setGeometry(QRect(610, 150, 191, 251));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
