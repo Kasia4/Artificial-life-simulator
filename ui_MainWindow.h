@@ -17,7 +17,6 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 #include <SimulationView.h>
@@ -29,32 +28,27 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     SimulationView *boardView;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *stats_button;
     QCheckBox *collidersCheckBox;
     QPushButton *pauseButton;
     QPushButton *resumeButton;
     QPushButton *addHerbivoreButton;
     QPushButton *addCarnivoreButton;
     BoardEditor *boardEditor;
-    QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(854, 620);
+        MainWindow->resize(851, 600);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         boardView = new SimulationView(centralWidget);
         boardView->setObjectName(QStringLiteral("boardView"));
         boardView->setGeometry(QRect(0, 0, 600, 600));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(610, 550, 111, 41));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(730, 550, 111, 41));
+        stats_button = new QPushButton(centralWidget);
+        stats_button->setObjectName(QStringLiteral("stats_button"));
+        stats_button->setGeometry(QRect(610, 550, 231, 41));
         collidersCheckBox = new QCheckBox(centralWidget);
         collidersCheckBox->setObjectName(QStringLiteral("collidersCheckBox"));
         collidersCheckBox->setGeometry(QRect(710, 10, 111, 41));
@@ -89,12 +83,8 @@ public:
         addCarnivoreButton->setStyleSheet(QStringLiteral("background-color: rgb(255, 0, 0);"));
         boardEditor = new BoardEditor(centralWidget);
         boardEditor->setObjectName(QStringLiteral("boardEditor"));
-        boardEditor->setGeometry(QRect(610, 150, 191, 251));
+        boardEditor->setGeometry(QRect(610, 150, 231, 391));
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 854, 18));
-        MainWindow->setMenuBar(menuBar);
 
         retranslateUi(MainWindow);
 
@@ -104,8 +94,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Edit Mode", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Statistics", 0));
+        stats_button->setText(QApplication::translate("MainWindow", "Statistics", 0));
         collidersCheckBox->setText(QApplication::translate("MainWindow", "Show Colliders", 0));
         pauseButton->setText(QApplication::translate("MainWindow", "\342\217\270", 0));
         resumeButton->setText(QApplication::translate("MainWindow", "\342\226\266", 0));

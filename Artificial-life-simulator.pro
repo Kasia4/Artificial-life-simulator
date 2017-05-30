@@ -59,7 +59,8 @@ SOURCES += main.cpp\
     FocusRing.cpp \
     InitDialog.cpp \
     BoardEditor.cpp \
-    ExclusiveButtonGroup.cpp
+    ExclusiveButtonGroup.cpp \
+    PopulationChart.cpp
 
 
 HEADERS  += \
@@ -112,10 +113,12 @@ HEADERS  += \
     FocusRing.h \
     InitDialog.h \
     BoardEditor.h \
-    ExclusiveButtonGroup.h
+    ExclusiveButtonGroup.h \
+    PopulationChart.h
 
 FORMS    += \
     SpecimenWidget.ui \
     InitDialog.ui \
     BoardEditor.ui \
-    MainWindow.ui
+    MainWindow.ui \
+    PopulationChart.ui

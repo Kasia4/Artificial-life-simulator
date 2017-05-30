@@ -19,9 +19,9 @@ SimulationEngine::SimulationEngine(Board* board)
 
 
 
-SimulationScene &SimulationEngine::getScene()
+SimulationScene* SimulationEngine::getScene()
 {
-    return scene_;
+	return &scene_;
 }
 
 

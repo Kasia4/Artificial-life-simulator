@@ -19,6 +19,7 @@ void SimulationScene::addSpecimen(Specimen *specimen)
     connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
     connect(specimen, SIGNAL(killed(Specimen*)), this, SLOT(removeSpecimen(Specimen*)));
     specimen->setVisible(true);
+	emit populationChanged(specimen->getSpec(), 1);
 }
 
 void SimulationScene::addRandomSpecimen(SpecimenType type)
@@ -42,8 +43,10 @@ void SimulationScene::removeSpecimen(Specimen *specimen)
     specimens_.remove(specimen);
     removeItem(specimen);
     specimen->deleteLater();
-    disconnect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
-    disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+	disconnect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
+	disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+	emit populationChanged(specimen->getSpec(), -1);
+
 }
 
 Board* SimulationScene::getBoard() const

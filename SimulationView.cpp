@@ -3,6 +3,7 @@
 
 SimulationView::SimulationView(QWidget *parent)
     :QGraphicsView(parent)
+	,editor_field_type_(FieldType::VOID)
 {
     setOptimizationFlags(QGraphicsView::DontSavePainterState | QGraphicsView::DontClipPainter
                          | QGraphicsView::DontAdjustForAntialiasing);
