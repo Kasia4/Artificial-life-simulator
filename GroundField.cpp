@@ -2,11 +2,11 @@
 
 const Range GroundField::GRASS_RANGE = Range(0,100);
 
-GroundField::GroundField()
-    :overgrow_level_(0)
+GroundField::GroundField(qreal overgrow_level)
+    :overgrow_level_(overgrow_level)
     ,overgrowing_speed_(0.1)
 {
-
+    updateAvailable();
 }
 
 qreal GroundField::getOvergrow() const
@@ -22,6 +22,12 @@ qreal GroundField::getOvergrowingSpeed() const
 void GroundField::setOvergrowingSpeed(const qreal &overgrowingSpeed)
 {
     overgrowing_speed_ = overgrowingSpeed;
+}
+
+void GroundField::updateAvailable()
+{
+   available_= (overgrow_level_ >= OVERGROW_THRESHOLD);
+
 }
 
 
@@ -53,4 +59,5 @@ void GroundField::advance(int phase)
 {
     if(!phase)return;
     modifyOvergrow(overgrowing_speed_);
+    updateAvailable();
 }

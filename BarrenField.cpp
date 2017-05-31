@@ -16,3 +16,8 @@ QColor BarrenField::getColor() const
     return QColor(Qt::lightGray);
 }
 
+void BarrenField::updateAvailable()
+{
+    available_ = true;
+}
+

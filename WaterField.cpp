@@ -2,7 +2,7 @@
 
 WaterField::WaterField()
 {
-
+    updateAvailable();
 }
 
 BoardField *WaterField::clone() const
@@ -14,5 +14,10 @@ BoardField *WaterField::clone() const
 QColor WaterField::getColor() const
 {
     return QColor(Qt::blue);
+}
+
+void WaterField::updateAvailable()
+{
+    available_=true;
 }
 

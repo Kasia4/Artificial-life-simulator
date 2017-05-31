@@ -15,6 +15,8 @@ public:
     FieldType getFieldType() const override { return FieldType::WATER; }
     BoardField* clone() const override;
     QColor getColor() const override;
+private:
+    void updateAvailable();
 };
 
 #endif // WATERFIELD_H

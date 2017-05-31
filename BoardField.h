@@ -37,9 +37,17 @@ public:
     QPoint getPosition() const;
     void setPosition(const QPoint &position);
 
+    bool getAvailable() const;
+    void setAvailable(bool available);
+    void lockField();
+protected:
+    virtual void updateAvailable() = 0;
+    virtual void advance(int step);
+    bool available_;
 private:
     qreal size_;
     QPoint position_;
+
 };
 
 

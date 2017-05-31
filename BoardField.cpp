@@ -8,6 +8,7 @@ BoardField::BoardField()
 
 BoardField::BoardField(const QPoint &position)
     :position_ (position)
+    ,available_(true)
 {
 
 }
@@ -64,4 +65,28 @@ void BoardField::setPosition(const QPoint &position)
 {
     position_ = position;
 }
+
+bool BoardField::getAvailable() const
+{
+    return available_;
+}
+
+void BoardField::setAvailable(bool available)
+{
+    available_ = available;
+}
+
+void BoardField::lockField()
+{
+    available_ = false;
+}
+
+void BoardField::advance(int step)
+{
+    if(!step)
+        return;
+    updateAvailable();
+}
+
+
 

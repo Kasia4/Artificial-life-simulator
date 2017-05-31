@@ -16,6 +16,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
    // ,isDead_(false)
     ,isChased_(false)
     ,produce_new_specimen(false)
+    ,interrupted_(false)
 {
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -495,6 +496,8 @@ bool Specimen::getCaughtTarget() const
 void Specimen::updateHp(qreal value)
 {
     hp_+=value;
+    if(hp_ <0)
+        hp_ = 0;
 }
 
 
@@ -522,6 +525,16 @@ QList<BoardField *> Specimen::collidingFields(FieldType type)
             fields.append(field);
     }
     return fields;
+}
+
+bool Specimen::getInterrupted() const
+{
+    return interrupted_;
+}
+
+void Specimen::setInterrupted(bool interrupted)
+{
+    interrupted_ = interrupted;
 }
 
 bool Specimen::getProduceNewSpecimen() const
@@ -572,7 +585,7 @@ BoardField *Specimen::nearestField(FieldType type)
     {
         QLine dist_line(pos().x(), pos().y(), field->pos().x(), field->pos().y());
         qreal distance = dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy();
-        if(distance < minDistance)
+        if(distance < minDistance && field->getAvailable())
         {
             nearestField = field;
             minDistance = distance;

@@ -135,6 +135,9 @@ public:
     bool getProduceNewSpecimen() const;
     void setProduceNewSpecimen(bool value);
 
+    bool getInterrupted() const;
+    void setInterrupted(bool interupted);
+
 protected:
     void advance(int step);
     virtual bool shouldRunAway();
@@ -185,6 +188,8 @@ private:
 
     //bool isDead_;
     bool isChased_;
+
+    bool interrupted_;
 
     void addAttribute(AttributeType type, Attribute attribute);
     void runAway();

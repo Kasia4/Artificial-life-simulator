@@ -24,9 +24,11 @@ State *EatState::eat(Specimen *specimen)
         ground->modifyOvergrow(-difference);
 		if(ground->getOvergrow() == 0)
 		{
+            ground->lockField();
 			specimen->disableTracking();
+            specimen->setInterrupted(true);
 			std::cout<<"siabadaba: \n";
-			//return new State();
+            return new State();
 		}
     }
     else
@@ -37,7 +39,8 @@ State *EatState::eat(Specimen *specimen)
 		if(target->getHp() == 0)
 		{
 			specimen->disableTracking();
-			//return new State();
+            specimen->setInterrupted(true);
+            return new State();
 		}
     }
     // TODO update hp or overgrowing level of target without dynamic_cast

@@ -12,10 +12,11 @@ State* State::action(Specimen *specimen)
 //        return new DieState();
    /* else*/ if(specimen->getIsChased()) // TODO stay in the same RunAwayState
         return new RunAwayState();
-    else if(specimen->getNeedChanged())
+    else if(specimen->getNeedChanged() || specimen->getInterrupted())
     {
         specimen->setTarget(nullptr);
         specimen->setNeedChanged(false);
+        specimen->setInterrupted(false);
         switch(specimen->getCurrentNeed())
         {
             case NeedType::EAT :
