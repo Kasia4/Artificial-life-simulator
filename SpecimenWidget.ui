@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>170</width>
-    <height>198</height>
+    <width>169</width>
+    <height>290</height>
    </rect>
   </property>
   <property name="palette">
@@ -59,7 +59,7 @@
      <x>10</x>
      <y>10</y>
      <width>151</width>
-     <height>178</height>
+     <height>181</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -69,6 +69,13 @@
        <widget class="QLabel" name="health_label">
         <property name="text">
          <string>Zdrowie:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="endurance_label">
+        <property name="text">
+         <string>Wytrzymałość:</string>
         </property>
        </widget>
       </item>
@@ -135,12 +142,19 @@
       <item>
        <widget class="QLabel" name="health_value">
         <property name="text">
-         <string>0/0</string>
+         <string>0</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="strenght_value_label">
+       <widget class="QLabel" name="endurance_value">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="strenght_value">
         <property name="text">
          <string>0</string>
         </property>
@@ -199,7 +213,161 @@
     </item>
    </layout>
   </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="sleep_icon">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>20</horstretch>
+        <verstretch>20</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="need_icons.qrc">:/images/images/sleep.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="sleep_bar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>230</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QLabel" name="food_icon">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>20</horstretch>
+        <verstretch>20</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="need_icons.qrc">:/images/images/food.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="food_bar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <widget class="QLabel" name="water_icon">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>20</horstretch>
+        <verstretch>20</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="need_icons.qrc">:/images/images/water.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="water_bar">
+      <property name="value">
+       <number>24</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>sleep_bar</zorder>
+  <zorder>food_bar</zorder>
+  <zorder>water_bar</zorder>
+  <zorder>sleep_icon</zorder>
+  <zorder>food_icon</zorder>
+  <zorder>water_icon</zorder>
+  <zorder>food_bar</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="need_icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

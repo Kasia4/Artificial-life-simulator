@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QMouseEvent>
+#include <QLabel>
+#include <QPixmap>
 #include "Specimen.h"
 
 namespace Ui {
@@ -28,6 +30,8 @@ protected:
 private:
     Ui::SpecimenWidget *ui;
     Specimen* specimen_;
+
+	void updateLabelValue(QLabel* label, qreal value);
 private slots:
     void updateInfo();
 };
