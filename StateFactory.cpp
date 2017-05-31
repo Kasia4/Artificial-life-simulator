@@ -9,6 +9,11 @@ StateFactory::StateFactory()
 	registerState(StateType::SEARCH_FOOD, new SearchFoodState);
 	registerState(StateType::SEARCH_PARTNER, new SearchPartnerState);
 	registerState(StateType::SEARCH_WATER, new SearchWaterState);
+
+	registerStateByNeed(NeedType::DRINK, new SearchWaterState);
+	registerStateByNeed(NeedType::EAT, new SearchFoodState);
+	registerStateByNeed(NeedType::REPRODUCE, new SearchPartnerState);
+
 }
 
 StateFactory& StateFactory::getInstance()
@@ -22,9 +27,19 @@ void StateFactory::registerState(StateType type, State *state)
 	prototypes_.insert(type, state);
 }
 
+void StateFactory::registerStateByNeed(NeedType type, State* state)
+{
+	prototypes_by_needs_.insert(type, state);
+}
+
 State* StateFactory::create(StateType type)
 {
 	return prototypes_.value(type)->clone();
+}
+
+State*StateFactory::createByNeed(NeedType type)
+{
+	return prototypes_by_needs_.value(type)->clone();
 }
 
 StateFactory::~StateFactory()
