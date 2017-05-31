@@ -59,7 +59,6 @@ SOURCES += main.cpp\
     FocusRing.cpp \
     InitDialog.cpp \
     BoardEditor.cpp \
-    ExclusiveButtonGroup.cpp \
     PopulationChart.cpp
 
 
@@ -113,7 +112,6 @@ HEADERS  += \
     FocusRing.h \
     InitDialog.h \
     BoardEditor.h \
-    ExclusiveButtonGroup.h \
     PopulationChart.h
 
 FORMS    += \
@@ -122,3 +120,6 @@ FORMS    += \
     BoardEditor.ui \
     MainWindow.ui \
     PopulationChart.ui
+
+RESOURCES += \
+    need_icons.qrc
