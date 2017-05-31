@@ -66,10 +66,10 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 //    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
 
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
-    needs_.addNeed(NeedType::EAT, 0.1, 0);
-    needs_.addNeed(NeedType::DRINK, 0.1, 1);
-    needs_.addNeed(NeedType::SLEEP, 0.1, 2);
-    needs_.addNeed(NeedType::REPRODUCE, 0.1, 3);
+	needs_.addNeed(NeedType::EAT, 40, 0);
+	needs_.addNeed(NeedType::DRINK, 40, 1);
+	needs_.addNeed(NeedType::SLEEP, 40, 2);
+	needs_.addNeed(NeedType::REPRODUCE, 40, 3);
 
     currentState_ = new State();
     currentNeed_ = NeedType::NONE;
@@ -391,8 +391,8 @@ void Specimen::move(){
 
 bool Specimen::shouldDie()
 {
-    if(hp_ <= 0 || needs_.getValue(NeedType::EAT) >= 1 || needs_.getValue(NeedType::DRINK) >= 1 || needs_.getValue(NeedType::SLEEP) >= 1 || needs_.getValue(NeedType::REPRODUCE) >= 1 )
-        return true;
+	if(hp_ <= 0 || needs_.getValue(NeedType::EAT) >= 100 || needs_.getValue(NeedType::DRINK) >= 100 || needs_.getValue(NeedType::SLEEP) >= 100 || needs_.getValue(NeedType::REPRODUCE) >= 100 )
+		return true;
     return false;
 }
 
@@ -405,10 +405,12 @@ void Specimen::chooseNeed()
 
 void Specimen::updateState(State* state)
 {
+
+	std::cout<<"state: "<<state<<std::endl;
     if(currentState_ == state)
         return;
     delete currentState_;
-    currentState_ = state;
+	currentState_ = state;
 }
 
 void Specimen::generateGenome()
@@ -439,9 +441,9 @@ void Specimen::setAttributesValues()
     addAttribute(AttributeType::SPEED, Attribute(genome_.getAttributeValue(AttributeType::SPEED)));
     addAttribute(AttributeType::STRENGTH, Attribute(genome_.getAttributeValue(AttributeType::STRENGTH)));
 
-    addAttribute(AttributeType::FOOD_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::ENDURANCE)+genome_.getAttributeEnchancement(AttributeType::STRENGTH)));
-    addAttribute(AttributeType::WATER_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
-    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
+	addAttribute(AttributeType::FOOD_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::ENDURANCE)+genome_.getAttributeEnchancement(AttributeType::STRENGTH)));
+	addAttribute(AttributeType::WATER_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
+	addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
 
 
 }
@@ -472,8 +474,11 @@ void Specimen::focusInEvent(QFocusEvent *event)
 void Specimen::focusOutEvent(QFocusEvent *event)
 {
     Q_UNUSED(event);
-    focus_ring_.setVisible(false);
+	focus_ring_.setVisible(false);
 }
+
+
+
 
 bool Specimen::getEscapedFromChaser() const
 {

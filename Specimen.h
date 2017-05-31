@@ -139,7 +139,7 @@ protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     void focusInEvent(QFocusEvent *event);
-    void focusOutEvent(QFocusEvent *event);
+	void focusOutEvent(QFocusEvent *event);
     qreal size_;
     qreal eyes_size_;
     qreal eyes_dist_;
