@@ -132,6 +132,9 @@ public:
     Genome getGenome() const;
     void setGenome(const Genome& genome);
 
+    bool getProduceNewSpecimen() const;
+    void setProduceNewSpecimen(bool value);
+
 protected:
     void advance(int step);
     virtual bool shouldRunAway();
@@ -176,7 +179,7 @@ private:
 
     Genome genome_;
 
-
+    bool produce_new_specimen;
     bool needChanged_;
     NeedType currentNeed_;
 

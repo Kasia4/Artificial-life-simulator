@@ -15,6 +15,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     ,needChanged_(true)
    // ,isDead_(false)
     ,isChased_(false)
+    ,produce_new_specimen(false)
 {
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -516,6 +517,16 @@ QList<BoardField *> Specimen::collidingFields(FieldType type)
             fields.append(field);
     }
     return fields;
+}
+
+bool Specimen::getProduceNewSpecimen() const
+{
+    return produce_new_specimen;
+}
+
+void Specimen::setProduceNewSpecimen(bool value)
+{
+    produce_new_specimen = value;
 }
 
 Genome Specimen::getGenome() const

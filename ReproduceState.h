@@ -1,6 +1,7 @@
 #ifndef REPRODUCESTATE_H
 #define REPRODUCESTATE_H
 #include "State.h"
+#include "SimulationScene.h"
 
 class ReproduceState : public State
 {
