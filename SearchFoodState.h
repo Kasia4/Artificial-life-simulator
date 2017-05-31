@@ -9,7 +9,8 @@ class SearchFoodState : public State
 {
 public:
     SearchFoodState();
-    State* action(Specimen *specimen);
+	State* action(Specimen *specimen);
+	State* clone() const;
 private:
     State* searchForFood(Specimen* specimen);
     QGraphicsItem* nearestFood(Specimen* specimen);

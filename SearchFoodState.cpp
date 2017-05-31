@@ -10,7 +10,12 @@ State* SearchFoodState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return searchForFood(specimen);
+	return searchForFood(specimen);
+}
+
+State* SearchFoodState::clone() const
+{
+	return new SearchFoodState(*this);
 }
 
 State* SearchFoodState::searchForFood(Specimen *specimen)

@@ -11,7 +11,12 @@ State* DrinkState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return drink(specimen);
+	return drink(specimen);
+}
+
+State* DrinkState::clone() const
+{
+	return new DrinkState(*this);
 }
 
 State *DrinkState::drink(Specimen *specimen)

@@ -1,8 +1,13 @@
 #include "State.h"
-#include "states.h"
+#include "States.h"
 State::State()
 {
 
+}
+
+State* State::clone() const
+{
+	return new State;
 }
 
 State* State::action(Specimen *specimen)
@@ -27,7 +32,7 @@ State* State::action(Specimen *specimen)
             case NeedType::SLEEP :
                 return new SleepState();
                 break;
-            case NeedType::REPRODUCE :                
+			case NeedType::REPRODUCE :
                 return new SearchPartnerState();
                 break;
             case NeedType::NONE :                

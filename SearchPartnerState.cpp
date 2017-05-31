@@ -12,7 +12,12 @@ State* SearchPartnerState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return searchForPartner(specimen);
+	return searchForPartner(specimen);
+}
+
+State* SearchPartnerState::clone() const
+{
+	return new SearchPartnerState(*this);
 }
 
 State* SearchPartnerState::searchForPartner(Specimen *specimen)

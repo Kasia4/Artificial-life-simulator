@@ -6,8 +6,8 @@ HerbivoreSpecimen::HerbivoreSpecimen()
 
 Specimen* HerbivoreSpecimen::clone() const
 {
-    HerbivoreSpecimen* temp = new HerbivoreSpecimen();
-    return temp;
+	HerbivoreSpecimen* temp = new HerbivoreSpecimen();
+	return temp;
 }
 
 QColor HerbivoreSpecimen::skinColor() const

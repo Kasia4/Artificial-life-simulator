@@ -22,4 +22,12 @@ Specimen *SpecimenFactory::create(SpecimenType type)
 
 }
 
+SpecimenFactory::~SpecimenFactory()
+{
+	for(auto spec : prototypes_.values())
+	{
+		delete spec;
+	}
+}
+
 

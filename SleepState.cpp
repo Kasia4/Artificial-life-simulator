@@ -11,7 +11,12 @@ State* SleepState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return sleep(specimen);
+	return sleep(specimen);
+}
+
+State* SleepState::clone() const
+{
+	return new SleepState(*this);
 }
 
 State *SleepState::sleep(Specimen *specimen)

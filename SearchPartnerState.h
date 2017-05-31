@@ -8,6 +8,7 @@ class SearchPartnerState : public State
 public:
     SearchPartnerState();
     State* action(Specimen *specimen);
+	State* clone() const;
 private:
     State* searchForPartner(Specimen *specimen);
     Specimen* nearestPartner(Specimen* specimen);

@@ -9,6 +9,7 @@ class SearchWaterState : public State
 public:
     SearchWaterState();
     State* action(Specimen *specimen);
+	State* clone() const;
 private:
     State* searchForWater(Specimen *specimen);
     BoardField* nearestWater(Specimen* specimen);

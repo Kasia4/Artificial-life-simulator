@@ -11,10 +11,15 @@ State* EatState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return eat(specimen);
+	return eat(specimen);
 }
 
-State *EatState::eat(Specimen *specimen)
+State* EatState::clone() const
+{
+	return new EatState(*this);
+}
+
+State* EatState::eat(Specimen *specimen)
 {
     specimen->setMove(false);
     qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);

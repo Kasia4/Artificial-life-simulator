@@ -11,7 +11,12 @@ State* SearchWaterState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return searchForWater(specimen);
+	return searchForWater(specimen);
+}
+
+State* SearchWaterState::clone() const
+{
+	return new SearchWaterState(*this);
 }
 
 State *SearchWaterState::searchForWater(Specimen *specimen)
