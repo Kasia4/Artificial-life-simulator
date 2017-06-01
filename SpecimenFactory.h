@@ -16,6 +16,7 @@ public:
     static SpecimenFactory& getInstance();
     void registerSpecimen(SpecimenType type, Specimen* prototype);
     Specimen* create(SpecimenType type);
+	~SpecimenFactory();
 
 private:
     QMap<SpecimenType, Specimen*> prototypes_;

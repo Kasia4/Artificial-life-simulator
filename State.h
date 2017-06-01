@@ -9,6 +9,8 @@ class State
 public:
     State();
     virtual ~State() {};
+
+	virtual State* clone() const;
     virtual State* action(Specimen* specimen);
 };
 #endif // STATE_H

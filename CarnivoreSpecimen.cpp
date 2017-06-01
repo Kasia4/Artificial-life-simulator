@@ -6,8 +6,8 @@ CarnivoreSpecimen::CarnivoreSpecimen()
 
 Specimen* CarnivoreSpecimen::clone() const
 {
-    CarnivoreSpecimen* temp = new CarnivoreSpecimen();
-    return temp;
+	CarnivoreSpecimen* temp = new CarnivoreSpecimen();
+	return temp;
 }
 
 QColor CarnivoreSpecimen::skinColor() const

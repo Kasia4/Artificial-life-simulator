@@ -8,6 +8,7 @@ class ReproduceState : public State
 public:
     ReproduceState();
     State* action(Specimen *specimen);
+	State* clone() const;
 private:
     State* reproduce(Specimen* specimen);
 };

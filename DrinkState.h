@@ -7,6 +7,8 @@ class DrinkState : public State
 public:
     DrinkState();
     State* action(Specimen *specimen);
+	State* clone() const;
+
 private:
     State* drink(Specimen* specimen);
 };

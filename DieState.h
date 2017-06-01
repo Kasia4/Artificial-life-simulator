@@ -6,6 +6,7 @@ class DieState : public State
 {
 public:
     DieState();
+	State* clone() const;
     State* action(Specimen *specimen);
 };
 

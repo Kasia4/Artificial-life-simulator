@@ -1,8 +1,14 @@
 #include "State.h"
-#include "states.h"
+#include "StateFactory.h"
+
 State::State()
 {
 
+}
+
+State* State::clone() const
+{
+	return new State;
 }
 
 State* State::action(Specimen *specimen)
@@ -17,24 +23,8 @@ State* State::action(Specimen *specimen)
         specimen->setTarget(nullptr);
         specimen->setNeedChanged(false);
         specimen->setInterrupted(false);
-        switch(specimen->getCurrentNeed())
-        {
-            case NeedType::EAT :
-                return new SearchFoodState();
-                break;
-            case NeedType::DRINK :
-                return new SearchWaterState();
-                break;
-            case NeedType::SLEEP :
-                return new SleepState();
-                break;
-            case NeedType::REPRODUCE :                
-                return new SearchPartnerState();
-                break;
-            case NeedType::NONE :                
-                return new State();
-                break;
-        }
+		return StateFactory::getInstance().createByNeed(specimen->getCurrentNeed());
+
     }
     return nullptr;
 }

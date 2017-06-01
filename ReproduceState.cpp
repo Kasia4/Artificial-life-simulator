@@ -10,7 +10,12 @@ State* ReproduceState::action(Specimen *specimen)
     State* result = State::action(specimen);
     if(result)
        return result;
-    return reproduce(specimen);
+	return reproduce(specimen);
+}
+
+State* ReproduceState::clone() const
+{
+	return new ReproduceState(*this);
 }
 
 State *ReproduceState::reproduce(Specimen *specimen)

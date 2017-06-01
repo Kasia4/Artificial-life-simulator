@@ -59,7 +59,8 @@ SOURCES += main.cpp\
     FocusRing.cpp \
     InitDialog.cpp \
     BoardEditor.cpp \
-    PopulationChart.cpp
+    PopulationChart.cpp \
+    StateFactory.cpp
 
 
 HEADERS  += \
@@ -95,7 +96,6 @@ HEADERS  += \
     SleepState.h \
     SearchPartnerState.h \
     ReproduceState.h \
-    states.h \
     Genome.h \
     AttributeConditioning.h \
     AttributeType.h \
@@ -112,7 +112,9 @@ HEADERS  += \
     FocusRing.h \
     InitDialog.h \
     BoardEditor.h \
-    PopulationChart.h
+    PopulationChart.h \
+    StateFactory.h \
+    States.h
 
 FORMS    += \
     SpecimenWidget.ui \

@@ -15,7 +15,12 @@ State* RunAwayState::action(Specimen *specimen)
 
 }
 
-State *RunAwayState::runAway(Specimen *specimen)
+State* RunAwayState::clone() const
+{
+	return new RunAwayState(*this);
+}
+
+State* RunAwayState::runAway(Specimen *specimen)
 {
     if(specimen->getEscapedFromChaser())
     {
