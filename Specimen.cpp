@@ -1,5 +1,7 @@
 #include "Specimen.h"
 
+const Range Specimen::SIZE_RANGE = Range(10,15);
+
 Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     :target_(nullptr)
     ,chaser_(nullptr)
@@ -26,11 +28,6 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 
     senses_.setParentItem(this);
 
-//    /*Example values*/
-//    senses_.setHearingRange(50);
-//    senses_.setSightRange(200);
-//    senses_.setSightAngle(45);
-
     focus_ring_.setParentItem(this);
     focus_ring_.setVisible(false);
     if(!first_parent || !second_parent)
@@ -39,6 +36,11 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
        generateGenome(first_parent, second_parent);
 
     setAttributesValues();
+
+	Range endurance_range = genome_.getAttributeRange(AttributeType::ENDURANCE);
+
+	setSize(SIZE_RANGE.transform(getAttributeValue(AttributeType::ENDURANCE), endurance_range));
+
     std::cout<<"moje atrybuty\n";
     std::cout<<"wytrzymalosc "<<getAttributeValue(AttributeType::ENDURANCE)<<"\n";
     std::cout<<"sila "<<getAttributeValue(AttributeType::STRENGTH)<<"\n";
@@ -75,6 +77,8 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 
     currentState_ = new State();
     currentNeed_ = NeedType::NONE;
+
+	emit attributesChanged();
 }
 
 int Specimen::type() const
@@ -97,7 +101,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     circle_path.addEllipse(-size_/2,-size_/2, size_, size_);
     circle_path.addEllipse(size_/5, -eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
     circle_path.addEllipse(size_/5,  eyes_dist_/2 - eyes_size_/2, eyes_size_, eyes_size_);
-    painter->setPen(QPen(QColor(0, 0, 0),2));
+	painter->setPen(QPen(QColor(0, 0, 0),1));
     painter->setBrush(skinColor());
     painter->drawPath(circle_path);
 }
