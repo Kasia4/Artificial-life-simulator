@@ -187,7 +187,7 @@ private:
     bool needChanged_;
     NeedType currentNeed_;
 
-    //bool isDead_;
+  //  bool isDead_;
     bool isChased_;
 
     bool interrupted_;

@@ -9,6 +9,7 @@ StateFactory::StateFactory()
 	registerState(StateType::SEARCH_FOOD, new SearchFoodState);
 	registerState(StateType::SEARCH_PARTNER, new SearchPartnerState);
 	registerState(StateType::SEARCH_WATER, new SearchWaterState);
+    registerState(StateType::SLEEP, new SleepState);
 
 	registerStateByNeed(NeedType::DRINK, new SearchWaterState);
 	registerStateByNeed(NeedType::EAT, new SearchFoodState);

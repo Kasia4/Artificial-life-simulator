@@ -17,6 +17,6 @@ QColor HerbivoreSpecimen::skinColor() const
 
 bool HerbivoreSpecimen::shouldRunAway()
 {
-    chaser_ = nearestSpecimen(SpecimenType::CARNIVORE);
+    setChaser(nearestSpecimen(SpecimenType::CARNIVORE));
     return chaser_ != nullptr;
 }
