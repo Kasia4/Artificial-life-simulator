@@ -5,38 +5,38 @@ Attribute::Attribute()
 
 }
 
-Attribute::Attribute(qreal base, qreal factor_state, qreal factor_need)
+Attribute::Attribute(qreal base, qreal state_factor, qreal need_factor)
   :base_(base)
-  ,factor_state_(factor_state)
-  ,factor_need_(factor_need)
+  ,state_factor_(state_factor)
+  ,need_factor_(need_factor)
 {
 
 }
 
 qreal Attribute::getValue() const
 {
-    return base_ * factor_state_ * factor_need_;
+	return base_ * state_factor_ * need_factor_;
 
 }
 
-qreal Attribute::getFactor_state() const
+qreal Attribute::getStateFactor() const
 {
-    return factor_state_;
+	return state_factor_;
 }
 
-void Attribute::setFactor_state(const qreal& factor_state)
+void Attribute::setStateFactor(const qreal& state_factor)
 {
-    factor_state_ = factor_state;
+	state_factor_ = factor_state;
 }
 
-qreal Attribute::getFactor_need() const
+qreal Attribute::getNeedFactor() const
 {
-    return factor_need_;
+	return need_factor_;
 }
 
-void Attribute::setFactor_need(const qreal& factor_need)
+void Attribute::setNeedFactor(const qreal& need_factor)
 {
-    factor_need_ = factor_need;
+	need_factor_ = need_factor;
 }
 
 qreal Attribute::getBase() const

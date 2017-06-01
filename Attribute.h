@@ -6,22 +6,22 @@ class Attribute
 {
 public:
     Attribute();
-    Attribute(qreal base, qreal factor_state = 1, qreal factor_need = 1);
+	Attribute(qreal base, qreal state_factor = 1, qreal need_factor = 1);
     qreal getValue() const;
 
-    qreal getFactor_state() const;
-    void setFactor_state(const qreal& factor_state);
+	qreal getStateFactor() const;
+	void setStateFactor(const qreal& state_factor);
 
-    qreal getFactor_need() const;
-    void setFactor_need(const qreal& factor_need);
+	qreal getNeedFactor() const;
+	void setNeedFactor(const qreal& need_factor);
 
     qreal getBase() const;
     void setBase(const qreal& base);
 
 private:
     qreal base_;
-    qreal factor_state_;
-    qreal factor_need_;
+	qreal state_factor_;
+	qreal need_factor_;
 };
 
 #endif // ATTRIBUTE_H
