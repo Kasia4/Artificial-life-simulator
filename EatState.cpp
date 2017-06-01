@@ -42,7 +42,7 @@ State* EatState::eat(Specimen *specimen)
         target->setMove(false);
         target->updateHp(-difference);
 		if(target->getHp() == 0)
-		{
+        {
 			specimen->disableTracking();
             specimen->setInterrupted(true);
             return new State();

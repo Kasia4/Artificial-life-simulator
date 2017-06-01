@@ -20,6 +20,7 @@ State* ReproduceState::clone() const
 
 State *ReproduceState::reproduce(Specimen *specimen)
 {
+    specimen->setMove(false);
     // create new specimen on the board from specimen and target
     //remember of the scene to add specimen
     //think about access to scene in states

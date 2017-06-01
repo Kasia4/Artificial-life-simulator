@@ -40,7 +40,7 @@ class Specimen :  public QObject, public QGraphicsItem
 
 	static const Range SIZE_RANGE;
     static constexpr qreal FOCUS_RING_SCALE = 0.7   ;
-    static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 5;
+    static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 7;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 3;
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
@@ -187,7 +187,7 @@ private:
     bool needChanged_;
     NeedType currentNeed_;
 
-    //bool isDead_;
+  //  bool isDead_;
     bool isChased_;
 
     bool interrupted_;

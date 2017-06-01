@@ -8,9 +8,6 @@ RunAwayState::RunAwayState()
 State* RunAwayState::action(Specimen *specimen)
 {
 
-    State* result = State::action(specimen);
-    if(result)
-       return result;
     return runAway(specimen);
 
 }
@@ -22,10 +19,13 @@ State* RunAwayState::clone() const
 
 State* RunAwayState::runAway(Specimen *specimen)
 {
+    std::cout<<"uciekam ";
+    specimen->setMove(true);
     if(specimen->getEscapedFromChaser())
     {
         specimen->setIsChased(false);
         specimen->setChaser(nullptr);
+//        specimen->setInterrupted(true);
         return new State();
     }
     return this;

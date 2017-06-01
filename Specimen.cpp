@@ -1,6 +1,6 @@
 #include "Specimen.h"
 
-const Range Specimen::SIZE_RANGE = Range(10,15);
+const Range Specimen::SIZE_RANGE = Range(20,25);
 
 Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     :target_(nullptr)
@@ -235,6 +235,7 @@ void Specimen::runAway()
     if(dist_to_chaser_ > ESCAPING_DISTANCE)
     {
         escaped_from_chaser_ = true;
+        //isChased_= false;
     }
     else
         setRotation(angle);
@@ -387,8 +388,9 @@ QGraphicsItem* Specimen::getChaser() const
 
 void Specimen::setChaser(QGraphicsItem *chaser)
 {
+    QGraphicsItem* old = chaser_;
     chaser_ = chaser;
-    escaped_from_chaser_ = false;
+    escaped_from_chaser_ = (chaser_ != old);
 }
 
 
@@ -412,8 +414,6 @@ void Specimen::chooseNeed()
 
 void Specimen::updateState(State* state)
 {
-
-	std::cout<<"state: "<<state<<std::endl;
     if(currentState_ == state)
         return;
     delete currentState_;

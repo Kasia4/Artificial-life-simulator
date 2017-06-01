@@ -20,6 +20,7 @@ State* SearchFoodState::clone() const
 
 State* SearchFoodState::searchForFood(Specimen *specimen)
 {
+    specimen->setMove(true);
     QGraphicsItem* nearest_food = nearestFood(specimen);
     if(!specimen->getTarget() || specimen->getTarget() != nearest_food)
     {
