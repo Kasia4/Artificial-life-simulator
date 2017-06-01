@@ -13,7 +13,8 @@ StateFactory::StateFactory()
 	registerStateByNeed(NeedType::DRINK, new SearchWaterState);
 	registerStateByNeed(NeedType::EAT, new SearchFoodState);
 	registerStateByNeed(NeedType::REPRODUCE, new SearchPartnerState);
-    registerStateByNeed(NeedType::NONE, new State);
+	registerStateByNeed(NeedType::SLEEP, new SleepState);
+	registerStateByNeed(NeedType::NONE, new State);
 
 }
 
