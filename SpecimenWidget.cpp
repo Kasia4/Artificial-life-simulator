@@ -16,13 +16,24 @@ SpecimenWidget::~SpecimenWidget()
 void SpecimenWidget::disconnectSpecimen()
 {
     disconnect(specimen_, SIGNAL(attributesChanged()), this, SLOT(updateInfo()));
-    specimen_ = nullptr;
+	hideWidget();
 }
 
+void SpecimenWidget::hideWidget()
+{
+	std::cout<<"elo"<<std::endl;
+	setEnabled(false);
+	hide();
+	specimen_ = nullptr;
+}
 void SpecimenWidget::connectSpecimen(Specimen *specimen)
 {
+	std::cout<<"elo"<<std::endl;
     specimen_ = specimen;
+	setEnabled(true);
+	show();
     connect(specimen_, SIGNAL(attributesChanged()), this, SLOT(updateInfo()));
+	connect(specimen_, SIGNAL(killed(Specimen*)), this, SLOT(hideWidget()));
 }
 
 
@@ -38,6 +49,7 @@ void SpecimenWidget::updateLabelValue(QLabel* label, qreal value)
 
 void SpecimenWidget::updateInfo()
 {
+	if(!specimen_)return;
 	updateLabelValue(ui->health_value,			specimen_->getHp());
 	updateLabelValue(ui->endurance_value,		specimen_->getAttributeValue(AttributeType::ENDURANCE));
 	updateLabelValue(ui->strenght_value,		specimen_->getAttributeValue(AttributeType::STRENGTH));
@@ -52,5 +64,3 @@ void SpecimenWidget::updateInfo()
 	ui->food_bar->setValue(specimen_->getNeedValue(NeedType::EAT));
 	ui->water_bar->setValue(specimen_->getNeedValue(NeedType::DRINK));
 }
-
-

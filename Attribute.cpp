@@ -26,7 +26,7 @@ qreal Attribute::getStateFactor() const
 
 void Attribute::setStateFactor(const qreal& state_factor)
 {
-	state_factor_ = factor_state;
+	state_factor_ = state_factor;
 }
 
 qreal Attribute::getNeedFactor() const

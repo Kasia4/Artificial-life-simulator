@@ -211,8 +211,9 @@ void Specimen::advance(int step)
             setRotation(rotation() + angular_velocity_);
             move();
         }
-
+	updateNeeds();
     updateState(currentState_->action(this));
+
     emit attributesChanged();
 }
 
@@ -451,6 +452,14 @@ void Specimen::setAttributesValues()
 	addAttribute(AttributeType::WATER_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
 	addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
 
+
+}
+
+void Specimen::updateNeeds()
+{
+	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/10);
+	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/10);
+	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/10);
 
 }
 

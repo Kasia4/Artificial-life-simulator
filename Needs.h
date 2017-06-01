@@ -1,20 +1,26 @@
 #ifndef NEEDS_H
 #define NEEDS_H
+
+#include "Range.h"
 #include "NeedType.h"
 #include <QPair>
 #include <QList>
 #include <QtMath>
 
+
 class Needs
 {
 public:
+	static const Range NEED_RANGE;
+
     typedef QPair<NeedType, qreal> Need;
-    Needs(qreal criticalLevel = 0.7);
+	Needs(qreal criticalLevel = 70);
     void addNeed(NeedType needType, qreal value, int priority = 0);
     void removeNeed(NeedType needType);
     int getPriority(NeedType needType) const;
     void setValue(NeedType needType, qreal value);
-    qreal getValue(NeedType needType) const;
+	void modifyValue(NeedType needType, qreal difference);
+	qreal getValue(NeedType needType) const;
 
     NeedType mostImportant();
 

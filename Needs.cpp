@@ -1,5 +1,7 @@
 #include "Needs.h"
 
+const Range Needs::NEED_RANGE = Range(0,100);
+
 Needs::Needs(qreal criticalLevel)
 {
     criticalLevel_ = criticalLevel;
@@ -24,9 +26,24 @@ void Needs::setValue(NeedType needType, qreal value)
 {
     for(auto it=needs_.begin(); it != needs_.end(); ++it)
     {
-        if(it->first == needType)
-            it->second = value;
-    }
+		if(it->first == needType)
+		{
+			it->second = value;
+			break;
+		}
+	}
+}
+
+void Needs::modifyValue(NeedType needType, qreal difference)
+{
+	for(auto it=needs_.begin(); it != needs_.end(); ++it)
+	{
+		if(it->first == needType)
+		{
+			it->second += NEED_RANGE.cutValue(difference);
+			break;
+		}
+	}
 }
 
 qreal Needs::getValue(NeedType needType) const

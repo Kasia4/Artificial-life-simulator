@@ -21,8 +21,7 @@ public:
 
     void connectSpecimen(Specimen* specimen);
     Specimen* getSpecimen() const;
-    void disconnectSpecimen();
-
+	void disconnectSpecimen();
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
@@ -32,8 +31,10 @@ private:
     Specimen* specimen_;
 
 	void updateLabelValue(QLabel* label, qreal value);
+
 private slots:
-    void updateInfo();
+	void updateInfo();
+	void hideWidget();
 };
 
 #endif // SPECIMENWIDGET_H

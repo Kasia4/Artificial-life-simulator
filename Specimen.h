@@ -202,6 +202,7 @@ private:
     void generateGenome();
     void generateGenome(Specimen* first_parent, Specimen* second_parent);
     void setAttributesValues();
+	void updateNeeds();
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();
