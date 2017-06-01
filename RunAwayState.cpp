@@ -22,10 +22,12 @@ State* RunAwayState::clone() const
 
 State* RunAwayState::runAway(Specimen *specimen)
 {
+    specimen->setMove(true);
     if(specimen->getEscapedFromChaser())
     {
         specimen->setIsChased(false);
         specimen->setChaser(nullptr);
+//        specimen->setInterrupted(true);
         return new State();
     }
     return this;

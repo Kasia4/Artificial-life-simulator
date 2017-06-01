@@ -17,7 +17,10 @@ State* State::action(Specimen *specimen)
 //    if(specimen->getIsDead())
 //        return new DieState();
    /* else*/ if(specimen->getIsChased()) // TODO stay in the same RunAwayState
+    {
+        specimen->setInterrupted(true);
         return new RunAwayState();
+    }
     else if(specimen->getNeedChanged() || specimen->getInterrupted())
     {
         specimen->setTarget(nullptr);

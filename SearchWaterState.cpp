@@ -21,6 +21,7 @@ State* SearchWaterState::clone() const
 
 State *SearchWaterState::searchForWater(Specimen *specimen)
 {
+    specimen->setMove(true);
     BoardField* nearest_water = nearestWater(specimen);
     if(!specimen->getTarget() || specimen->getTarget() != nearest_water)
     {

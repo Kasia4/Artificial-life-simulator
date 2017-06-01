@@ -230,6 +230,7 @@ void Specimen::runAway()
     if(dist_to_chaser_ > ESCAPING_DISTANCE)
     {
         escaped_from_chaser_ = true;
+        isChased_= false;
     }
     else
         setRotation(angle);

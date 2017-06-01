@@ -22,6 +22,7 @@ State* SearchPartnerState::clone() const
 
 State* SearchPartnerState::searchForPartner(Specimen *specimen)
 {
+    specimen->setMove(true);
     Specimen* nearest_partner = nearestPartner(specimen);
     if(!specimen->getTarget() || specimen->getTarget() != nearest_partner)
     {
