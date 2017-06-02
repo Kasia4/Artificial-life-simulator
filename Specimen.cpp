@@ -1,6 +1,17 @@
 #include "Specimen.h"
 
 const Range Specimen::SIZE_RANGE = Range(20,25);
+QRectF Specimen::moving_rect;
+
+void Specimen::setMovingRect(QRectF rect)
+{
+	moving_rect = rect;
+}
+
+QRectF Specimen::getMovingRect()
+{
+	return moving_rect;
+}
 
 Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     :target_(nullptr)
@@ -211,8 +222,9 @@ void Specimen::advance(int step)
             setRotation(rotation() + angular_velocity_);
             move();
         }
-    updateState(currentState_->action(this));
 
+    updateState(currentState_->action(this));
+	checkBorders();
     emit attributesChanged();
 }
 
@@ -433,6 +445,20 @@ void Specimen::updateNeeds()
     needs_.modifyValue(NeedType::REPRODUCE, 0.016);
 
 
+}
+
+void Specimen::checkBorders()
+{
+	QPointF veryfied_pos = pos();
+	if(pos().x() > moving_rect.right())
+		veryfied_pos.setX(moving_rect.left());
+	else if(pos().x() < moving_rect.left())
+		veryfied_pos.setX(moving_rect.right());
+	if(pos().y() < moving_rect.top())
+		veryfied_pos.setY(moving_rect.bottom());
+	else if(pos().y() > moving_rect.bottom())
+		veryfied_pos.setY(moving_rect.top());
+	setPos(veryfied_pos);
 }
 
 bool Specimen::shouldRunAway()

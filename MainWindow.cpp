@@ -35,6 +35,7 @@ void MainWindow::start()
     init_dialog_ = new InitDialog;
 	connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
 	connect(init_dialog_, SIGNAL(rejected()), this, SLOT(close()));
+
 	init_dialog_->show();
 
 	population_chart_ = new PopulationChart;

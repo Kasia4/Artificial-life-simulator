@@ -73,6 +73,10 @@ void SimulationScene::setBoard(Board* board)
     connect(board_, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
     connect(board_, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
     updateBoardSize(board_->getSize());
+
+	Specimen::setMovingRect(QRectF(-10,-10,board->getSurfaceSize().x() + 10, board->getSurfaceSize().y() +10));
+
+	std::cout<<Specimen::getMovingRect().left()<<" "<<Specimen::getMovingRect().top()<<" "<<Specimen::getMovingRect().right()<<" "<<Specimen::getMovingRect().bottom()<<std::endl;
 }
 
 void SimulationScene::updateBoardSize(const QPoint &size)

@@ -39,8 +39,11 @@ class Specimen :  public QObject, public QGraphicsItem
 {
     Q_OBJECT
 
+	static QRectF moving_rect;
+
+
 	static const Range SIZE_RANGE;
-    static constexpr qreal FOCUS_RING_SCALE = 0.7   ;
+	static constexpr qreal FOCUS_RING_SCALE = 0.7;
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 7;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 3;
     static constexpr qreal ESCAPING_DISTANCE = 50;
@@ -53,6 +56,8 @@ public:
 
     int type() const;
 
+	static void setMovingRect(QRectF rect);
+	static QRectF getMovingRect();
 
     QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
@@ -194,6 +199,7 @@ private:
     void generateGenome(Specimen* first_parent, Specimen* second_parent);
     void setAttributesValues();
 	void updateNeeds();
+	void checkBorders();
 
 public slots:
 	void chooseNeed();
