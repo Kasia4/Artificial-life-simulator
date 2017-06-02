@@ -163,11 +163,11 @@ qreal Specimen::getAttributeValue(AttributeType type) const
 	return attributes_.value(type).getValue();
 }
 
-void Specimen::setAttributesStateFactors(AttFactorsMap map)
+void Specimen::setAttributesStateFactors(const AttFactorsMap& map)
 {
-	for(auto key : map.keys())
+	for(auto key : attributes_.keys())
 	{
-		attributes_[key].setStateFactor(map[key]);
+		attributes_[key].setStateFactor(map.value(key, 1));
 	}
 }
 
@@ -406,7 +406,7 @@ void Specimen::generateGenome()
 void Specimen::generateGenome(Specimen* first_parent, Specimen* second_parent)
 {
     genome_ = Genome::crossing(first_parent->getGenome(), second_parent->getGenome());
-	generateGenome();
+
 }
 
 void Specimen::setAttributesValues()

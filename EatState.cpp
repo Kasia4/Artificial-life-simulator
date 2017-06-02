@@ -14,6 +14,8 @@ State* EatState::action(Specimen *specimen)
 	return eat(specimen);
 }
 
+
+
 State* EatState::clone() const
 {
 	return new EatState(*this);

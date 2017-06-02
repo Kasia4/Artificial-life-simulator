@@ -47,6 +47,7 @@ void SimulationScene::removeSpecimen(Specimen *specimen)
     specimen->deleteLater();
 	disconnect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
 	disconnect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
+	disconnect(&needs_timer_, SIGNAL(timeout()), specimen, SLOT(chooseNeed()));
 	emit populationChanged(specimen->getSpec(), -1);
 
 }

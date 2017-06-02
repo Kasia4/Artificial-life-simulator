@@ -13,6 +13,12 @@ State* SearchFoodState::action(Specimen *specimen)
 	return searchForFood(specimen);
 }
 
+void SearchFoodState::setFactors(Specimen* specimen)
+{
+	specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::SEARCH_FOOD));
+
+}
+
 State* SearchFoodState::clone() const
 {
 	return new SearchFoodState(*this);

@@ -21,7 +21,8 @@ State* State::action(Specimen *specimen)
     //specimen->setMove(true);
 //    if(specimen->getIsDead())
 //        return new DieState();
-    if(specimen->getIsChased()) // TODO stay in the same RunAwayState
+	setFactors(specimen);
+	if(specimen->getIsChased()) // TODO stay in the same RunAwayState
     {
         std::cout<<"sledzi ";
         specimen->setInterrupted(true);

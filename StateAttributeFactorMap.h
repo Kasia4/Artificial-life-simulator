@@ -5,6 +5,7 @@
 #include "AttributeType.h"
 #include "StateType.h"
 
+#include <iostream>
 typedef QMap<AttributeType, qreal> AttFactorsMap;
 typedef QMap<StateType, AttFactorsMap> StateFactorsMap;
 
@@ -17,7 +18,7 @@ public:
 	void setFactor(StateType state, AttributeType attribute, qreal value);
 	void setAttFactorsMap(StateType state, const AttFactorsMap& att_map);
 	qreal getFactor(StateType state, AttributeType attribute) const;
-	const AttFactorsMap& getAttFactorsMap(StateType state) const;
+	const AttFactorsMap getAttFactorsMap(StateType state) const;
 
 	const StateFactorsMap& map();
 

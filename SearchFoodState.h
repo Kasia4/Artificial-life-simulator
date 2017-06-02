@@ -10,6 +10,7 @@ class SearchFoodState : public State
 public:
     SearchFoodState();
 	State* action(Specimen *specimen);
+	void setFactors(Specimen *specimen);
 	State* clone() const;
 private:
     State* searchForFood(Specimen* specimen);

@@ -69,7 +69,7 @@ public:
 	qreal getEyesDist() const;
     qreal getAngularVelocity() const;
     qreal getAttributeValue(AttributeType type) const;
-	void setAttributesStateFactors(AttFactorsMap map);
+	void setAttributesStateFactors(const AttFactorsMap& map);
     qreal getNeedValue(NeedType type) const;
     void setNeedValue(NeedType type, qreal value);
 

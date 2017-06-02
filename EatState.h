@@ -6,7 +6,7 @@ class EatState : public State
 {
 public:
     EatState();
-    State* action(Specimen *specimen);
+	State* action(Specimen *specimen);
 	State* clone() const;
 private:
     State* eat(Specimen* specimen);

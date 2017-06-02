@@ -14,6 +14,11 @@ State* SleepState::action(Specimen *specimen)
 	return sleep(specimen);
 }
 
+void SleepState::setFactors(Specimen* specimen)
+{
+	specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::SLEEP));
+}
+
 State* SleepState::clone() const
 {
 	return new SleepState(*this);
