@@ -29,6 +29,7 @@ protected:
 private:
     Ui::SpecimenWidget *ui;
     Specimen* specimen_;
+	QMap<NeedType, QString> needs_strings_;
 
 	void updateLabelValue(QLabel* label, qreal value);
 

@@ -3,5 +3,6 @@
         <file>images/food.png</file>
         <file>images/sleep.png</file>
         <file>images/water.png</file>
+        <file>images/reproduce.png</file>
     </qresource>
 </RCC>

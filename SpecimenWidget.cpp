@@ -6,6 +6,12 @@ SpecimenWidget::SpecimenWidget(QWidget *parent) :
     ui(new Ui::SpecimenWidget)
 {
 	ui->setupUi(this);
+
+	needs_strings_.insert(NeedType::DRINK, "Pragnienie");
+	needs_strings_.insert(NeedType::EAT, "Glod");
+	needs_strings_.insert(NeedType::REPRODUCE, "Rozmnazanie");
+	needs_strings_.insert(NeedType::SLEEP, "Sen");
+	needs_strings_.insert(NeedType::NONE, "Brak");
 }
 
 SpecimenWidget::~SpecimenWidget()
@@ -62,4 +68,5 @@ void SpecimenWidget::updateInfo()
 	ui->food_bar->setValue(specimen_->getNeedValue(NeedType::EAT));
 	ui->water_bar->setValue(specimen_->getNeedValue(NeedType::DRINK));
     ui->reproduce_bar->setValue(specimen_->getNeedValue(NeedType::REPRODUCE));
+	ui->current_need->setText(needs_strings_.value(specimen_->getCurrentNeed()));
 }
