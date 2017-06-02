@@ -15,7 +15,7 @@ class SpecimenFactory
 public:
     static SpecimenFactory& getInstance();
     void registerSpecimen(SpecimenType type, Specimen* prototype);
-    Specimen* create(SpecimenType type);
+	Specimen* create(SpecimenType type);
 	~SpecimenFactory();
 
 private:

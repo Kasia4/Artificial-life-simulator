@@ -115,11 +115,6 @@ void Specimen::setSize(qreal size)
     focus_ring_.setRadius(size_*FOCUS_RING_SCALE);
 }
 
-//void Specimen::setVelocity(qreal velocity)
-//{
-//    velocity_ = velocity;
-//}
-
 void Specimen::setAngularVelocity(qreal velocity)
 {
     angular_velocity_ = velocity;
@@ -158,11 +153,6 @@ qreal Specimen::getEyesDist() const
     return eyes_dist_;
 }
 
-//qreal Specimen::getVelocity() const
-//{
-//    return velocity_;
-//}
-
 qreal Specimen::getAngularVelocity() const
 {
     return angular_velocity_;
@@ -170,7 +160,15 @@ qreal Specimen::getAngularVelocity() const
 
 qreal Specimen::getAttributeValue(AttributeType type) const
 {
-    return attributes_.value(type).getValue();
+	return attributes_.value(type).getValue();
+}
+
+void Specimen::setAttributesStateFactors(AttFactorsMap map)
+{
+	for(auto key : map.keys())
+	{
+		attributes_[key].setStateFactor(map[key]);
+	}
 }
 
 qreal Specimen::getNeedValue(NeedType type) const
@@ -335,36 +333,6 @@ void Specimen::setHp(const qreal &value)
     hp_ = value;
 }
 
-//qreal Specimen::getTiredness() const
-//{
-//    return tiredness_;
-//}
-
-//void Specimen::setTiredness(const qreal &value)
-//{
-//    tiredness_ = value;
-//}
-
-//qreal Specimen::getHunger() const
-//{
-//    return hunger_;
-//}
-
-//void Specimen::setHunger(const qreal &value)
-//{
-//    hunger_ = value;
-//}
-
-//qreal Specimen::getThirst() const
-//{
-//    return thirst_;
-//}
-
-//void Specimen::setThirst(const qreal &value)
-//{
-//    thirst_ = value;
-//}
-
 void Specimen::addAttribute(AttributeType type, Attribute attribute)
 {
     attributes_.insert(type, attribute);
@@ -438,6 +406,7 @@ void Specimen::generateGenome()
 void Specimen::generateGenome(Specimen* first_parent, Specimen* second_parent)
 {
     genome_ = Genome::crossing(first_parent->getGenome(), second_parent->getGenome());
+	generateGenome();
 }
 
 void Specimen::setAttributesValues()

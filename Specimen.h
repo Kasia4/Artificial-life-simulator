@@ -23,6 +23,7 @@
 #include "SpecimenSenses.h"
 #include "FocusRing.h"
 #include "Genome.h"
+#include "StateAttributeFactorMap.h"
 
 class State;
 #include "State.h"
@@ -65,10 +66,10 @@ public:
 
     qreal getSize() const;
     qreal getEyesSize() const;
-    qreal getEyesDist() const;
-    //qreal getVelocity() const;
+	qreal getEyesDist() const;
     qreal getAngularVelocity() const;
     qreal getAttributeValue(AttributeType type) const;
+	void setAttributesStateFactors(AttFactorsMap map);
     qreal getNeedValue(NeedType type) const;
     void setNeedValue(NeedType type, qreal value);
 
@@ -85,15 +86,6 @@ public:
     bool getEscapedFromChaser() const;
 
     QMap<AttributeType, Attribute> getAttributes() const;
-
-//    qreal getThirst() const;
-//    void setThirst(const qreal &value);
-
-//    qreal getHunger() const;
-//    void setHunger(const qreal &value);
-
-//    qreal getTiredness() const;
-//    void setTiredness(const qreal &value);
 
     qreal getHp() const;
     void setHp(const qreal &value);

@@ -1,0 +1,17 @@
+#ifndef STATETYPE_H
+#define STATETYPE_H
+
+enum class StateType : unsigned
+{
+	BASIC,
+	DRINK,
+	EAT,
+	REPRODUCE,
+	SEARCH_FOOD,
+	SEARCH_PARTNER,
+	SEARCH_WATER,
+	RUN_AWAY,
+	SLEEP
+};
+
+#endif // STATETYPE_H
