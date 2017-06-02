@@ -26,6 +26,7 @@ State *SleepState::sleep(Specimen *specimen)
     if(value <= 0)
     {
         specimen->setNeedValue(NeedType::SLEEP, 0);
+		specimen->chooseNeed();
         return new State();
     }
     else

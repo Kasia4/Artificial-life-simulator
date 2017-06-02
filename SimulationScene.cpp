@@ -2,6 +2,7 @@
 
 SimulationScene::SimulationScene()
 {
+	needs_timer_.start(5000);
     specimen_widget_ = new SpecimenWidget();
 	specimen_widget_->setHidden(true);
     specimen_widget_proxy_ = addWidget(specimen_widget_);
@@ -19,7 +20,8 @@ void SimulationScene::addSpecimen(Specimen *specimen)
     connect(specimen, SIGNAL(hoverEnter(Specimen*)), this , SLOT(showSpecimenWidget(Specimen*)));
     connect(specimen, SIGNAL(hoverLeave()), this , SLOT(hideSpecimenWidget()));
     connect(specimen, SIGNAL(killed(Specimen*)), this, SLOT(removeSpecimen(Specimen*)));
-    specimen->setVisible(true);
+	connect(&needs_timer_, SIGNAL(timeout()), specimen, SLOT(chooseNeed()));
+	specimen->setVisible(true);
 	emit populationChanged(specimen->getSpec(), 1);
 }
 

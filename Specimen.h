@@ -197,12 +197,14 @@ private:
     void chaseTarget();
     void move();
     bool shouldDie();
-    void chooseNeed();
     void updateState(State* state);
     void generateGenome();
     void generateGenome(Specimen* first_parent, Specimen* second_parent);
     void setAttributesValues();
 	void updateNeeds();
+
+public slots:
+	void chooseNeed();
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();

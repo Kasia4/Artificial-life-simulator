@@ -26,6 +26,7 @@ State *DrinkState::drink(Specimen *specimen)
     if(value < 0)
     {
         specimen->setNeedValue(NeedType::DRINK, 0);
+		specimen->chooseNeed();
         return new State();
     }
     else

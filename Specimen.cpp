@@ -78,6 +78,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     currentState_ = new State();
     currentNeed_ = NeedType::NONE;
 
+	chooseNeed();
 	emit attributesChanged();
 }
 
@@ -197,7 +198,7 @@ void Specimen::advance(int step)
 {
     if(!step)
         return;
-    chooseNeed();
+	//chooseNeed();
     if(shouldDie())
         emit killed(this);
     else if(shouldRunAway())
@@ -457,9 +458,9 @@ void Specimen::setAttributesValues()
 
 void Specimen::updateNeeds()
 {
-	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/10);
-	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/10);
-	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/10);
+	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/60);
+	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/60);
+	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/60);
 
 }
 

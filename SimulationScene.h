@@ -15,6 +15,7 @@
 #include <QPointer>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsSceneMouseEvent>
+#include <QTimer>
 #include <random>
 
 class SimulationScene : public QGraphicsScene
@@ -44,6 +45,7 @@ protected:
 private:
     Board* board_;
     QSet<Specimen*> specimens_;
+	QTimer needs_timer_;
 
     SpecimenWidget* specimen_widget_;
     QGraphicsProxyWidget* specimen_widget_proxy_;

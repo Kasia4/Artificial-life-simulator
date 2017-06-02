@@ -31,8 +31,8 @@ State* EatState::eat(Specimen *specimen)
 		{
             ground->lockField();
 			specimen->disableTracking();
-            specimen->setInterrupted(true);
-			std::cout<<"siabadaba: \n";
+			specimen->setInterrupted(true);
+			specimen->chooseNeed();
             return new State();
 		}
     }
@@ -44,7 +44,8 @@ State* EatState::eat(Specimen *specimen)
 		if(target->getHp() == 0)
         {
 			specimen->disableTracking();
-            specimen->setInterrupted(true);
+			specimen->setInterrupted(true);
+			specimen->chooseNeed();
             return new State();
 		}
     }
@@ -53,6 +54,7 @@ State* EatState::eat(Specimen *specimen)
     if(currentValue <= 0)
     {
 		specimen->setNeedValue(NeedType::EAT, 0);
+		specimen->chooseNeed();
         return new State();
     }
 

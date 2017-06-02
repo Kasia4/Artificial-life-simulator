@@ -23,8 +23,9 @@ State* RunAwayState::runAway(Specimen *specimen)
     specimen->setMove(true);
     if(specimen->getEscapedFromChaser())
     {
-        specimen->setIsChased(false);
+		specimen->setIsChased(false);
         specimen->setChaser(nullptr);
+		specimen->chooseNeed();
 //        specimen->setInterrupted(true);
         return new State();
     }
