@@ -12,5 +12,6 @@ public:
 
 	virtual State* clone() const;
     virtual State* action(Specimen* specimen);
+
 };
 #endif // STATE_H

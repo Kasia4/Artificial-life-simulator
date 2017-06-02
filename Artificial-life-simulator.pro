@@ -60,7 +60,8 @@ SOURCES += main.cpp\
     InitDialog.cpp \
     BoardEditor.cpp \
     PopulationChart.cpp \
-    StateFactory.cpp
+    StateFactory.cpp \
+    StateAttributeFactorMap.cpp
 
 
 HEADERS  += \
@@ -114,7 +115,8 @@ HEADERS  += \
     BoardEditor.h \
     PopulationChart.h \
     StateFactory.h \
-    States.h
+    States.h \
+    StateAttributeFactorMap.h
 
 FORMS    += \
     SpecimenWidget.ui \

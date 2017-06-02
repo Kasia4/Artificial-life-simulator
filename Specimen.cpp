@@ -115,11 +115,6 @@ void Specimen::setSize(qreal size)
     focus_ring_.setRadius(size_*FOCUS_RING_SCALE);
 }
 
-//void Specimen::setVelocity(qreal velocity)
-//{
-//    velocity_ = velocity;
-//}
-
 void Specimen::setAngularVelocity(qreal velocity)
 {
     angular_velocity_ = velocity;
@@ -157,11 +152,6 @@ qreal Specimen::getEyesDist() const
 {
     return eyes_dist_;
 }
-
-//qreal Specimen::getVelocity() const
-//{
-//    return velocity_;
-//}
 
 qreal Specimen::getAngularVelocity() const
 {
@@ -334,36 +324,6 @@ void Specimen::setHp(const qreal &value)
 {
     hp_ = value;
 }
-
-//qreal Specimen::getTiredness() const
-//{
-//    return tiredness_;
-//}
-
-//void Specimen::setTiredness(const qreal &value)
-//{
-//    tiredness_ = value;
-//}
-
-//qreal Specimen::getHunger() const
-//{
-//    return hunger_;
-//}
-
-//void Specimen::setHunger(const qreal &value)
-//{
-//    hunger_ = value;
-//}
-
-//qreal Specimen::getThirst() const
-//{
-//    return thirst_;
-//}
-
-//void Specimen::setThirst(const qreal &value)
-//{
-//    thirst_ = value;
-//}
 
 void Specimen::addAttribute(AttributeType type, Attribute attribute)
 {

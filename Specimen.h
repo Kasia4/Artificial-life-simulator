@@ -65,8 +65,7 @@ public:
 
     qreal getSize() const;
     qreal getEyesSize() const;
-    qreal getEyesDist() const;
-    //qreal getVelocity() const;
+	qreal getEyesDist() const;
     qreal getAngularVelocity() const;
     qreal getAttributeValue(AttributeType type) const;
     qreal getNeedValue(NeedType type) const;
@@ -85,15 +84,6 @@ public:
     bool getEscapedFromChaser() const;
 
     QMap<AttributeType, Attribute> getAttributes() const;
-
-//    qreal getThirst() const;
-//    void setThirst(const qreal &value);
-
-//    qreal getHunger() const;
-//    void setHunger(const qreal &value);
-
-//    qreal getTiredness() const;
-//    void setTiredness(const qreal &value);
 
     qreal getHp() const;
     void setHp(const qreal &value);

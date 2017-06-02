@@ -2,7 +2,6 @@
 #define STATEFACTORY_H
 
 #include "States.h"
-#include "State.h"
 
 class StateFactory
 {
