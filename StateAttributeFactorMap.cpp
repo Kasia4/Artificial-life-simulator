@@ -20,7 +20,6 @@ StateAttributeFactorMap::StateAttributeFactorMap()
 StateAttributeFactorMap& StateAttributeFactorMap::getInstance()
 {
 	static StateAttributeFactorMap instance;
-	std::cout<<"lukasz czego szukasz"<<std::endl;
 	return instance;
 }
 
