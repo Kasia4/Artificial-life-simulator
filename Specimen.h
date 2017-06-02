@@ -195,7 +195,7 @@ private:
     void chaseTarget();
     void move();
     bool shouldDie();
-    void updateState(State* state);
+    void updateState();
     void generateGenome();
     void generateGenome(Specimen* first_parent, Specimen* second_parent);
     void setAttributesValues();
