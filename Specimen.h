@@ -45,7 +45,7 @@ class Specimen :  public QObject, public QGraphicsItem
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 3;
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
-    Specimen(Specimen* first_parent = nullptr,Specimen* second_parent = nullptr);
+    Specimen(Specimen* first_parent,Specimen* second_parent);
     virtual ~Specimen() {};
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;

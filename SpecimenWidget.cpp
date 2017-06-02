@@ -61,4 +61,5 @@ void SpecimenWidget::updateInfo()
 	ui->sleep_bar->setValue(specimen_->getNeedValue(NeedType::SLEEP));
 	ui->food_bar->setValue(specimen_->getNeedValue(NeedType::EAT));
 	ui->water_bar->setValue(specimen_->getNeedValue(NeedType::DRINK));
+    ui->reproduce_bar->setValue(specimen_->getNeedValue(NeedType::REPRODUCE));
 }

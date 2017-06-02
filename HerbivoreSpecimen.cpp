@@ -1,6 +1,6 @@
 #include "HerbivoreSpecimen.h"
 
-HerbivoreSpecimen::HerbivoreSpecimen()
+HerbivoreSpecimen::HerbivoreSpecimen(Specimen* first_parent, Specimen* second_parent) : Specimen(first_parent, second_parent)
 {
 }
 

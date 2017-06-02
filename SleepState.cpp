@@ -32,6 +32,7 @@ State *SleepState::sleep(Specimen *specimen)
     {
         specimen->setNeedValue(NeedType::SLEEP, 0);
 		specimen->chooseNeed();
+        specimen->setInterrupted(true);
         return new State();
     }
     else

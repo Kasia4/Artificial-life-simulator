@@ -196,6 +196,7 @@ void Specimen::advance(int step)
 {
     if(!step)
         return;
+    updateNeeds();
 	//chooseNeed();
     if(shouldDie())
         emit killed(this);
@@ -210,7 +211,6 @@ void Specimen::advance(int step)
             setRotation(rotation() + angular_velocity_);
             move();
         }
-	updateNeeds();
     updateState(currentState_->action(this));
 
     emit attributesChanged();
@@ -430,6 +430,8 @@ void Specimen::updateNeeds()
 	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/60);
 	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/60);
 	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/60);
+    needs_.modifyValue(NeedType::REPRODUCE, 0.016);
+
 
 }
 

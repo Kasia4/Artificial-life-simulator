@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>169</width>
-    <height>290</height>
+    <height>317</height>
    </rect>
   </property>
   <property name="palette">
@@ -59,7 +59,7 @@
      <x>10</x>
      <y>10</y>
      <width>151</width>
-     <height>181</height>
+     <height>188</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -213,13 +213,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>200</y>
      <width>151</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -260,13 +260,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>230</y>
      <width>151</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -307,13 +307,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>260</y>
      <width>151</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -357,14 +357,27 @@
     </item>
    </layout>
   </widget>
+  <widget class="QProgressBar" name="reproduce_bar">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>123</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
-  <zorder>sleep_bar</zorder>
-  <zorder>food_bar</zorder>
-  <zorder>water_bar</zorder>
-  <zorder>sleep_icon</zorder>
-  <zorder>food_icon</zorder>
-  <zorder>water_icon</zorder>
-  <zorder>food_bar</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>reproduce_bar</zorder>
  </widget>
  <resources>
   <include location="need_icons.qrc"/>
