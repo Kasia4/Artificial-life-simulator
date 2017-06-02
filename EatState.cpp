@@ -54,6 +54,7 @@ State* EatState::eat(Specimen *specimen)
     if(currentValue <= 0)
     {
 		specimen->setNeedValue(NeedType::EAT, 0);
+        specimen->disableTracking();
 		specimen->chooseNeed();
         return new State();
     }

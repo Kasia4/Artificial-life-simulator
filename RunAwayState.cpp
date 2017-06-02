@@ -19,14 +19,13 @@ State* RunAwayState::clone() const
 
 State* RunAwayState::runAway(Specimen *specimen)
 {
-    std::cout<<"uciekam ";
     specimen->setMove(true);
     if(specimen->getEscapedFromChaser())
     {
 		specimen->setIsChased(false);
         specimen->setChaser(nullptr);
 		specimen->chooseNeed();
-//        specimen->setInterrupted(true);
+        specimen->setInterrupted(true);
         return new State();
     }
     return this;

@@ -10,7 +10,7 @@
 class HerbivoreSpecimen : public Specimen
 {
 public:
-    HerbivoreSpecimen();
+    HerbivoreSpecimen(Specimen* first_parent = nullptr, Specimen* second_parent = nullptr);
     SpecimenType getSpec() const { return SpecimenType::HERBIVORE; }
     Specimen* clone() const;
     QColor skinColor() const;

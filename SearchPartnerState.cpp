@@ -29,8 +29,12 @@ State* SearchPartnerState::searchForPartner(Specimen *specimen)
         specimen->disableTracking();
         specimen->setTarget(nearest_partner);
     }
-    if(specimen->getCaughtTarget() && nearest_partner->getTarget() == specimen)
-       return new ReproduceState();
+    if(specimen->getCaughtTarget())
+    {
+        specimen->setMove(false);
+        nearest_partner->setMove(false);
+        return new ReproduceState();
+    }
     return this;
 }
 
