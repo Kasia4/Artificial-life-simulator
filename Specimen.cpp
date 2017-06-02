@@ -226,7 +226,7 @@ void Specimen::advance(int step)
             move();
         }
 
-    updateState(currentState_->action(this));
+    updateState();
 	checkBorders();
     emit attributesChanged();
 }
@@ -396,12 +396,10 @@ void Specimen::chooseNeed()
     needChanged_ = (old != currentNeed_);
 }
 
-void Specimen::updateState(State* state)
+void Specimen::updateState()
 {
-    if(currentState_ == state)
-        return;
-    delete currentState_;
-	currentState_ = state;
+    State* result = currentState_->action(this);
+    currentState_ = result ? result : currentState_;
 }
 
 void Specimen::generateGenome()
