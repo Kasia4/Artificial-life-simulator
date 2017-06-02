@@ -116,7 +116,8 @@ HEADERS  += \
     PopulationChart.h \
     StateFactory.h \
     States.h \
-    StateAttributeFactorMap.h
+    StateAttributeFactorMap.h \
+    StateType.h
 
 FORMS    += \
     SpecimenWidget.ui \

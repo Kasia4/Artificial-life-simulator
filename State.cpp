@@ -6,6 +6,11 @@ State::State()
 
 }
 
+void State::setFactors(Specimen* specimen)
+{
+	specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::BASIC));
+}
+
 State* State::clone() const
 {
 	return new State;

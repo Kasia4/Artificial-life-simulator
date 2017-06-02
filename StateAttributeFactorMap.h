@@ -3,7 +3,7 @@
 
 #include <QMap>
 #include "AttributeType.h"
-#include "States.h"
+#include "StateType.h"
 
 typedef QMap<AttributeType, qreal> AttFactorsMap;
 typedef QMap<StateType, AttFactorsMap> StateFactorsMap;

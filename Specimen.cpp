@@ -160,7 +160,15 @@ qreal Specimen::getAngularVelocity() const
 
 qreal Specimen::getAttributeValue(AttributeType type) const
 {
-    return attributes_.value(type).getValue();
+	return attributes_.value(type).getValue();
+}
+
+void Specimen::setAttributesStateFactors(AttFactorsMap map)
+{
+	for(auto key : map.keys())
+	{
+		attributes_[key].setStateFactor(map[key]);
+	}
 }
 
 qreal Specimen::getNeedValue(NeedType type) const
@@ -398,6 +406,7 @@ void Specimen::generateGenome()
 void Specimen::generateGenome(Specimen* first_parent, Specimen* second_parent)
 {
     genome_ = Genome::crossing(first_parent->getGenome(), second_parent->getGenome());
+	generateGenome();
 }
 
 void Specimen::setAttributesValues()
