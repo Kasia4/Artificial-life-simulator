@@ -23,20 +23,22 @@ State* EatState::clone() const
 
 State* EatState::eat(Specimen *specimen)
 {
-	specimen->setMove(false);
-	qreal difference = specimen->getAttributeValue(AttributeType::STRENGTH);
-	if(specimen->getSpec() == SpecimenType::HERBIVORE)
-	{
-		GroundField* ground = dynamic_cast<GroundField*>(specimen->getTarget());
-		ground->modifyOvergrow(-difference);
+    bool done = false;
+    specimen->setMove(false);
+    qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
+    if(specimen->getSpec() == SpecimenType::HERBIVORE)
+    {
+        GroundField* ground = dynamic_cast<GroundField*>(specimen->getTarget());
+        ground->modifyOvergrow(-difference);
 		if(ground->getOvergrow() == 0)
 		{
-			ground->lockField();
-			specimen->disableTracking();
-			specimen->setInterrupted(true);
-			specimen->chooseNeed();
-			return new State();
-		}
+            ground->lockField();
+//			specimen->disableTracking();
+//			specimen->setInterrupted(true);
+//			specimen->chooseNeed();
+//            return new State();
+            done = true;
+        }
 	}
 	else
 	{
@@ -44,11 +46,12 @@ State* EatState::eat(Specimen *specimen)
 		target->setMove(false);
 		target->updateHp(-difference);
 		if(target->getHp() == 0)
-		{
-			specimen->disableTracking();
-			specimen->setInterrupted(true);
-			specimen->chooseNeed();
-			return new State();
+        {
+//			specimen->disableTracking();
+//			specimen->setInterrupted(true);
+//			specimen->chooseNeed();
+//            return new State();
+            done = true;
 		}
 	}
 	// TODO update hp or overgrowing level of target without dynamic_cast
@@ -56,11 +59,22 @@ State* EatState::eat(Specimen *specimen)
 	if(currentValue <= 0)
 	{
 		specimen->setNeedValue(NeedType::EAT, 0);
-		specimen->chooseNeed();
-		return new State();
-	}
 
+//        specimen->disableTracking();
+//		specimen->chooseNeed();
+//        return new State();
+        done = true;
+    }
+    else
 	specimen->setNeedValue(NeedType::EAT, currentValue);
-	return this;
+    if(done)
+    {
+        specimen->disableTracking();
+        specimen->setInterrupted(true);
+        specimen->chooseNeed();
+        return new State();
+    }
+    return this;
+
 
 }
