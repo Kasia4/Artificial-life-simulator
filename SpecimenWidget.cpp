@@ -21,14 +21,12 @@ void SpecimenWidget::disconnectSpecimen()
 
 void SpecimenWidget::hideWidget()
 {
-	std::cout<<"elo"<<std::endl;
 	setEnabled(false);
 	hide();
 	specimen_ = nullptr;
 }
 void SpecimenWidget::connectSpecimen(Specimen *specimen)
 {
-	std::cout<<"elo"<<std::endl;
     specimen_ = specimen;
 	setEnabled(true);
 	show();
