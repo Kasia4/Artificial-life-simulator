@@ -131,9 +131,10 @@ void Specimen::setAngularVelocity(qreal velocity)
     angular_velocity_ = velocity;
 }
 
-void Specimen::setTarget(QGraphicsItem* target)
+void Specimen::setTarget(SimulationObject* target)
 {
-    target_ = target;
+	target_ = target;
+	if(target_)connect(target, SIGNAL(destroyed(QObject*)), this, SLOT(disableTracking()));
 }
 
 
@@ -144,9 +145,11 @@ void Specimen::setMove(bool move)
 
 void Specimen::disableTracking()
 {
-    caught_target_=false;
+	if(target_)disconnect(target_, SIGNAL(destroyed(QObject*)), this, SLOT(disableTracking()));
+	caught_target_=false;
     target_ = nullptr;
     sense_target_ = false;
+
 }
 
 qreal Specimen::getSize() const
@@ -193,7 +196,7 @@ void Specimen::setNeedValue(NeedType type, qreal value)
 }
 
 
-QGraphicsItem *Specimen::getTarget() const
+SimulationObject *Specimen::getTarget() const
 {
     return target_;
 }
@@ -362,14 +365,14 @@ qreal Specimen::getDistToChaser() const
     return dist_to_chaser_;
 }
 
-QGraphicsItem* Specimen::getChaser() const
+SimulationObject* Specimen::getChaser() const
 {
     return chaser_;
 }
 
-void Specimen::setChaser(QGraphicsItem *chaser)
+void Specimen::setChaser(SimulationObject *chaser)
 {
-    QGraphicsItem* old = chaser_;
+	SimulationObject* old = chaser_;
     chaser_ = chaser;
     escaped_from_chaser_ = (chaser_ != old);
 }

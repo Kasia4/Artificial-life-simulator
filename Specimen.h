@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cmath>
 
+#include "SimulationObject.h"
 #include "ItemType.h"
 #include "CircleCollider.h"
 #include "ConeCollider.h"
@@ -35,7 +36,7 @@ enum class SpecimenType : unsigned {
 
 
 
-class Specimen :  public QObject, public QGraphicsItem
+class Specimen :  public SimulationObject
 {
     Q_OBJECT
 
@@ -64,7 +65,7 @@ public:
     void setSize(qreal size);
     //void setVelocity(qreal velocity);
     void setAngularVelocity(qreal velocity);
-    void setTarget(QGraphicsItem *target);
+	void setTarget(SimulationObject* target);
     void setMove(bool move);
 
     void release();
@@ -78,13 +79,13 @@ public:
     qreal getNeedValue(NeedType type) const;
     void setNeedValue(NeedType type, qreal value);
 
-    QGraphicsItem* getTarget() const;
+	SimulationObject* getTarget() const;
     bool getMove() const;
 
 
 
-    QGraphicsItem* getChaser() const;
-    void setChaser(QGraphicsItem *chaser);
+	SimulationObject* getChaser() const;
+	void setChaser(SimulationObject *chaser);
 
     qreal getDistToChaser() const;
 
@@ -149,8 +150,8 @@ protected:
     qreal eyes_dist_;
 
 
-    QGraphicsItem* target_;
-    QGraphicsItem* chaser_;
+	SimulationObject* target_;
+	SimulationObject* chaser_;
 
     bool move_;
     bool caught_target_;
@@ -203,8 +204,8 @@ private:
 
 public slots:
 	void chooseNeed();
-private slots:
 	void disableTracking();
+
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();

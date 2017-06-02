@@ -8,6 +8,8 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+
+#include "SimulationObject.h"
 #include "ItemType.h"
 
 enum class FieldType : unsigned{
@@ -17,7 +19,7 @@ enum class FieldType : unsigned{
     VOID = 99
 };
 
-class BoardField : public QGraphicsItem
+class BoardField : public SimulationObject
 {
 public:
     BoardField();

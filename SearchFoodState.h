@@ -14,7 +14,7 @@ public:
 	State* clone() const;
 private:
     State* searchForFood(Specimen* specimen);
-    QGraphicsItem* nearestFood(Specimen* specimen);
+	SimulationObject* nearestFood(Specimen* specimen);
 
 };
 

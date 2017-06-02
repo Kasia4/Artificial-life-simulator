@@ -27,7 +27,7 @@ State* SearchFoodState::clone() const
 State* SearchFoodState::searchForFood(Specimen *specimen)
 {
     specimen->setMove(true);
-    QGraphicsItem* nearest_food = nearestFood(specimen);
+	SimulationObject* nearest_food = nearestFood(specimen);
     if(!specimen->getTarget() || specimen->getTarget() != nearest_food)
     {
         specimen->disableTracking();
@@ -42,7 +42,7 @@ State* SearchFoodState::searchForFood(Specimen *specimen)
 
 
 
-QGraphicsItem *SearchFoodState::nearestFood(Specimen *specimen)
+SimulationObject *SearchFoodState::nearestFood(Specimen *specimen)
 {
     if(specimen->getSpec() == SpecimenType::HERBIVORE)
     {

@@ -61,7 +61,8 @@ SOURCES += main.cpp\
     BoardEditor.cpp \
     PopulationChart.cpp \
     StateFactory.cpp \
-    StateAttributeFactorMap.cpp
+    StateAttributeFactorMap.cpp \
+    SimulationObject.cpp
 
 
 HEADERS  += \
@@ -117,7 +118,8 @@ HEADERS  += \
     StateFactory.h \
     States.h \
     StateAttributeFactorMap.h \
-    StateType.h
+    StateType.h \
+    SimulationObject.h
 
 FORMS    += \
     SpecimenWidget.ui \
