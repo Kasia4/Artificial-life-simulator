@@ -2,7 +2,7 @@
 
 SimulationScene::SimulationScene()
 {
-	needs_timer_.start(5000);
+    needs_timer_.start(5000);
     specimen_widget_ = new SpecimenWidget();
 	specimen_widget_->setHidden(true);
     specimen_widget_proxy_ = addWidget(specimen_widget_);

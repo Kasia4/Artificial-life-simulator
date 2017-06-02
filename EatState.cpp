@@ -23,6 +23,7 @@ State* EatState::clone() const
 
 State* EatState::eat(Specimen *specimen)
 {
+    bool done = false;
     specimen->setMove(false);
     qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
     if(specimen->getSpec() == SpecimenType::HERBIVORE)
@@ -32,10 +33,11 @@ State* EatState::eat(Specimen *specimen)
 		if(ground->getOvergrow() == 0)
 		{
             ground->lockField();
-			specimen->disableTracking();
-			specimen->setInterrupted(true);
-			specimen->chooseNeed();
-            return new State();
+//			specimen->disableTracking();
+//			specimen->setInterrupted(true);
+//			specimen->chooseNeed();
+//            return new State();
+            done = true;
 		}
     }
     else
@@ -45,10 +47,11 @@ State* EatState::eat(Specimen *specimen)
         target->updateHp(-difference);
 		if(target->getHp() == 0)
         {
-			specimen->disableTracking();
-			specimen->setInterrupted(true);
-			specimen->chooseNeed();
-            return new State();
+//			specimen->disableTracking();
+//			specimen->setInterrupted(true);
+//			specimen->chooseNeed();
+//            return new State();
+            done = true;
 		}
     }
     // TODO update hp or overgrowing level of target without dynamic_cast
@@ -56,12 +59,20 @@ State* EatState::eat(Specimen *specimen)
     if(currentValue <= 0)
     {
 		specimen->setNeedValue(NeedType::EAT, 0);
+//        specimen->disableTracking();
+//		specimen->chooseNeed();
+//        return new State();
+        done = true;
+    }
+    else
+	specimen->setNeedValue(NeedType::EAT, currentValue);
+    if(done)
+    {
         specimen->disableTracking();
-		specimen->chooseNeed();
+        specimen->setInterrupted(true);
+        specimen->chooseNeed();
         return new State();
     }
-
-	specimen->setNeedValue(NeedType::EAT, currentValue);
     return this;
 
 }

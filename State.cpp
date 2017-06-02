@@ -13,7 +13,7 @@ void State::setFactors(Specimen* specimen)
 
 State* State::clone() const
 {
-	return new State;
+    return new State(*this);
 }
 
 State* State::action(Specimen *specimen)

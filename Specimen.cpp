@@ -73,7 +73,7 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 	needs_.addNeed(NeedType::EAT, 40, 0);
 	needs_.addNeed(NeedType::DRINK, 40, 1);
 	needs_.addNeed(NeedType::SLEEP, 40, 2);
-	needs_.addNeed(NeedType::REPRODUCE, 40, 3);
+    needs_.addNeed(NeedType::REPRODUCE, 20, 3);
 
     currentState_ = new State();
     currentNeed_ = NeedType::NONE;
@@ -197,7 +197,7 @@ void Specimen::advance(int step)
     if(!step)
         return;
     updateNeeds();
-	//chooseNeed();
+    //chooseNeed();
     if(shouldDie())
         emit killed(this);
     else if(shouldRunAway())

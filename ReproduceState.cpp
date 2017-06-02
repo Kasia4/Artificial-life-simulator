@@ -44,6 +44,7 @@ State *ReproduceState::reproduce(Specimen *specimen)
     }
     specimen->setNeedValue(NeedType::REPRODUCE, 0);
     partner->setNeedValue(NeedType::REPRODUCE, 0);
+    //partner->chooseNeed();
     specimen->chooseNeed();
     return new State();
 }
