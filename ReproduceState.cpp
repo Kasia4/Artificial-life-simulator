@@ -7,7 +7,6 @@ ReproduceState::ReproduceState()
 
 State* ReproduceState::action(Specimen *specimen)
 {
-    std::cout<<"jestem ";
     State* result = State::action(specimen);
     if(result)
        return result;
@@ -44,7 +43,7 @@ State *ReproduceState::reproduce(Specimen *specimen)
         child->setPos(specimen->pos());
     }
     specimen->setNeedValue(NeedType::REPRODUCE, 0);
-    //partner->setNeedValue(NeedType::REPRODUCE, 0);
+    partner->setNeedValue(NeedType::REPRODUCE, 0);
     specimen->chooseNeed();
     return new State();
 }

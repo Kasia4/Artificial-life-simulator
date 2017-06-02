@@ -32,8 +32,9 @@ public:
     qreal getAttributeValue(AttributeType type) const;
 
 	qreal getAttributeEnchancement(AttributeType type) const;
+
 private:
-	void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
+    void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
 
 
     QMap<AttributeType, AttributeConditioning> conditionings_;

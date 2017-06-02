@@ -16,6 +16,7 @@ Genome Genome::crossing(const Genome &a, const Genome &b)
         new_genome.addAttributeToGene(type_a, gene, GenePosition::A);
         new_genome.addAttributeToGene(type_b, gene, GenePosition::B);
     }
+    new_genome.ranges_=a.ranges_;
     return new_genome;
 }
 
@@ -41,6 +42,7 @@ void Genome::addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, G
     conditionings_.insert(type, AttributeConditioning(pos, gene));
     if(!chromosome_.contains(gene))chromosome_.append(gene);
 }
+
 
 qreal Genome::getAttributeValue(AttributeType type) const
 {
