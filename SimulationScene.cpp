@@ -27,14 +27,12 @@ void SimulationScene::addSpecimen(Specimen *specimen)
 
 void SimulationScene::addRandomSpecimen(SpecimenType type)
 {
-    std::cout<<"czesc owsiak ty skurwysynu\n";
-    Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
+	Specimen* new_specimen = SpecimenFactory::getInstance().create(type);
     std::uniform_real_distribution<> x_gen(0, board_->getSurfaceSize().x());
     std::uniform_real_distribution<> y_gen(0, board_->getSurfaceSize().y());
 
 
     new_specimen->setPos(x_gen(Randomizer::rand_gen()), y_gen(Randomizer::rand_gen()));
-    //new_specimen->setVelocity(1);
 	new_specimen->setAngularVelocity(0.5);
     new_specimen->setMove(true);
     addSpecimen(new_specimen);
@@ -73,6 +71,10 @@ void SimulationScene::setBoard(Board* board)
     connect(board_, SIGNAL(fieldSizeChanged(const QPoint&)), this, SLOT(updateBoardSize(const QPoint&)));
     connect(board_, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
     updateBoardSize(board_->getSize());
+
+	Specimen::setMovingRect(QRectF(-10,-10,board->getSurfaceSize().x() + 10, board->getSurfaceSize().y() +10));
+
+	std::cout<<Specimen::getMovingRect().left()<<" "<<Specimen::getMovingRect().top()<<" "<<Specimen::getMovingRect().right()<<" "<<Specimen::getMovingRect().bottom()<<std::endl;
 }
 
 void SimulationScene::updateBoardSize(const QPoint &size)

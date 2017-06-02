@@ -8,9 +8,9 @@ EatState::EatState()
 State* EatState::action(Specimen *specimen)
 {
 
-    State* result = State::action(specimen);
-    if(result)
-       return result;
+	State* result = State::action(specimen);
+	if(result)
+	   return result;
 	return eat(specimen);
 }
 
@@ -38,13 +38,13 @@ State* EatState::eat(Specimen *specimen)
 //			specimen->chooseNeed();
 //            return new State();
             done = true;
-		}
-    }
-    else
-    {
-        Specimen* target = dynamic_cast<Specimen*>(specimen->getTarget());
-        target->setMove(false);
-        target->updateHp(-difference);
+        }
+	}
+	else
+	{
+		Specimen* target = dynamic_cast<Specimen*>(specimen->getTarget());
+		target->setMove(false);
+		target->updateHp(-difference);
 		if(target->getHp() == 0)
         {
 //			specimen->disableTracking();
@@ -53,12 +53,13 @@ State* EatState::eat(Specimen *specimen)
 //            return new State();
             done = true;
 		}
-    }
-    // TODO update hp or overgrowing level of target without dynamic_cast
-    qreal currentValue = specimen->getNeedValue(NeedType::EAT) - difference;
-    if(currentValue <= 0)
-    {
+	}
+	// TODO update hp or overgrowing level of target without dynamic_cast
+	qreal currentValue = specimen->getNeedValue(NeedType::EAT) - difference;
+	if(currentValue <= 0)
+	{
 		specimen->setNeedValue(NeedType::EAT, 0);
+
 //        specimen->disableTracking();
 //		specimen->chooseNeed();
 //        return new State();
@@ -74,5 +75,6 @@ State* EatState::eat(Specimen *specimen)
         return new State();
     }
     return this;
+
 
 }

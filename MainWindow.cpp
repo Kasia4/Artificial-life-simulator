@@ -34,7 +34,9 @@ void MainWindow::start()
 
     init_dialog_ = new InitDialog;
 	connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
-    init_dialog_->show();
+	connect(init_dialog_, SIGNAL(rejected()), this, SLOT(close()));
+
+	init_dialog_->show();
 
 	population_chart_ = new PopulationChart;
 }
@@ -47,14 +49,14 @@ void MainWindow::initiateSimulation()
     QSize view_size = ui->boardView->size();
     QPointF surface_size(view_size.width(), view_size.height());
     setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
-    engine_->startWork();
+	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
+
+	engine_->startWork();
     for(;carnivores;--carnivores)
 		engine_->getScene()->addRandomSpecimen(SpecimenType::CARNIVORE);
     for(;herbivores;--herbivores)
 		engine_->getScene()->addRandomSpecimen(SpecimenType::HERBIVORE);
 	delete init_dialog_;
-
-	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
 }
 
 void MainWindow::on_collidersCheckBox_stateChanged(int arg1)
