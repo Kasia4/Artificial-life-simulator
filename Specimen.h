@@ -81,7 +81,7 @@ public:
     QGraphicsItem* getTarget() const;
     bool getMove() const;
 
-    void disableTracking();
+
 
     QGraphicsItem* getChaser() const;
     void setChaser(QGraphicsItem *chaser);
@@ -203,6 +203,8 @@ private:
 
 public slots:
 	void chooseNeed();
+private slots:
+	void disableTracking();
 signals:
     void hoverEnter(Specimen* spec);
     void hoverLeave();

@@ -407,7 +407,7 @@ void Specimen::generateGenome()
     genome_.addAttributesPair(AttributeType::SIGHT_ANGLE,AttributeType::SIGHT_RANGE);
     genome_.addAttributesPair(AttributeType::HEARING_RANGE,AttributeType::SPEED);
     genome_.setAttributeRange(AttributeType::ENDURANCE, Range(10,40));
-    genome_.setAttributeRange(AttributeType::STRENGTH, Range(30,50));
+	genome_.setAttributeRange(AttributeType::STRENGTH, Range(2,4));
     genome_.setAttributeRange(AttributeType::SIGHT_ANGLE, Range(10,90));
     genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(100,250));
     genome_.setAttributeRange(AttributeType::HEARING_RANGE, Range(40,80));

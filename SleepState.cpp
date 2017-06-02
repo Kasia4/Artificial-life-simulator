@@ -27,7 +27,7 @@ State* SleepState::clone() const
 State *SleepState::sleep(Specimen *specimen)
 {
     specimen->setMove(false);
-    qreal value = specimen->getNeedValue(NeedType::SLEEP) - specimen->getAttributeValue(AttributeType::SLEEP_NECESSITY);
+	qreal value = specimen->getNeedValue(NeedType::SLEEP) - specimen->getAttributeValue(AttributeType::STRENGTH);
     if(value <= 0)
     {
         specimen->setNeedValue(NeedType::SLEEP, 0);

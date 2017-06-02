@@ -22,7 +22,7 @@ State* DrinkState::clone() const
 State *DrinkState::drink(Specimen *specimen)
 {
     specimen->setMove(false);
-    qreal value = specimen->getNeedValue(NeedType::DRINK) - specimen->getAttributeValue(AttributeType::WATER_NECESSITY);
+	qreal value = specimen->getNeedValue(NeedType::DRINK) - specimen->getAttributeValue(AttributeType::STRENGTH);
     if(value < 0)
     {
         specimen->setNeedValue(NeedType::DRINK, 0);
