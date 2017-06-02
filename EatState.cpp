@@ -23,9 +23,11 @@ State* EatState::clone() const
 
 State* EatState::eat(Specimen *specimen)
 {
+
     bool done = false;
     specimen->setMove(false);
-    qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
+	if(specimen->getTarget())
+	{qreal difference = specimen->getAttributeValue(AttributeType::FOOD_NECESSITY);
     if(specimen->getSpec() == SpecimenType::HERBIVORE)
     {
         GroundField* ground = dynamic_cast<GroundField*>(specimen->getTarget());
@@ -67,7 +69,10 @@ State* EatState::eat(Specimen *specimen)
     }
     else
 	specimen->setNeedValue(NeedType::EAT, currentValue);
-    if(done)
+	}
+	else
+		done = true;
+	if(done)
     {
         specimen->disableTracking();
         specimen->setInterrupted(true);
