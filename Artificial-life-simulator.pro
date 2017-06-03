@@ -15,8 +15,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     SimulationEngine.cpp \
-    SpecimensModel.cpp \
-    BoardModel.cpp \
     Specimen.cpp \
     Board.cpp \
     MainWindow.cpp \
@@ -33,15 +31,12 @@ SOURCES += main.cpp\
     CircleCollider.cpp \
     Gene.cpp \
     Randomizer.cpp \
-    BehaviourManager.cpp \
     Attribute.cpp \
     State.cpp \
     SearchFoodState.cpp \
-    ChaseFoodState.cpp \
     EatState.cpp \
     SearchWaterState.cpp \
     DrinkState.cpp \
-    DieState.cpp \
     SleepState.cpp \
     SearchPartnerState.cpp \
     ReproduceState.cpp \
@@ -67,8 +62,6 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     SimulationEngine.h \
-    SpecimensModel.h \
-    BoardModel.h \
     Specimen.h \
     Board.h \
     MainWindow.h \
@@ -86,15 +79,12 @@ HEADERS  += \
     CircleCollider.h \
     Gene.h \
     Randomizer.h \
-    BehaviourManager.h \
     Attribute.h \
     State.h \
     SearchFoodState.h \
-    ChaseFoodState.h \
     EatState.h \
     SearchWaterState.h \
     DrinkState.h \
-    DieState.h \
     SleepState.h \
     SearchPartnerState.h \
     ReproduceState.h \
