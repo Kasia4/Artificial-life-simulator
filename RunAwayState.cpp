@@ -14,7 +14,13 @@ State* RunAwayState::action(Specimen *specimen)
 
 State* RunAwayState::clone() const
 {
-	return new RunAwayState(*this);
+    return new RunAwayState(*this);
+}
+
+void RunAwayState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::RUN_AWAY));
+
 }
 
 State* RunAwayState::runAway(Specimen *specimen)

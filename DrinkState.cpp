@@ -16,7 +16,13 @@ State* DrinkState::action(Specimen *specimen)
 
 State* DrinkState::clone() const
 {
-	return new DrinkState(*this);
+    return new DrinkState(*this);
+}
+
+void DrinkState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::DRINK));
+
 }
 
 State *DrinkState::drink(Specimen *specimen)

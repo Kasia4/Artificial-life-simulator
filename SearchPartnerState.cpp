@@ -17,7 +17,13 @@ State* SearchPartnerState::action(Specimen *specimen)
 
 State* SearchPartnerState::clone() const
 {
-	return new SearchPartnerState(*this);
+    return new SearchPartnerState(*this);
+}
+
+void SearchPartnerState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::SEARCH_PARTNER));
+
 }
 
 State* SearchPartnerState::searchForPartner(Specimen *specimen)

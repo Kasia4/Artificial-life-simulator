@@ -8,6 +8,7 @@ public:
     RunAwayState();
     State* action(Specimen* specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 private:
     State* runAway(Specimen* specimen);
 };

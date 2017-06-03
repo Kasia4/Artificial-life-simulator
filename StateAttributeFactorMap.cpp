@@ -12,9 +12,25 @@ StateAttributeFactorMap::StateAttributeFactorMap()
 	map_.insert(StateType::SEARCH_WATER, AttFactorsMap());
 	map_.insert(StateType::SLEEP, AttFactorsMap());
 
-	map_[StateType::SLEEP].insert(AttributeType::FOOD_NECESSITY, 0.7);
-	map_[StateType::SLEEP].insert(AttributeType::WATER_NECESSITY, 0.7);
-	map_[StateType::SLEEP].insert(AttributeType::SIGHT_RANGE, 0);
+    map_[StateType::SLEEP].insert(AttributeType::FOOD_NECESSITY, 0.8);
+    map_[StateType::SLEEP].insert(AttributeType::WATER_NECESSITY, 0.8);
+    map_[StateType::REPRODUCE].insert(AttributeType::FOOD_NECESSITY, 1.1);
+    map_[StateType::REPRODUCE].insert(AttributeType::WATER_NECESSITY, 1.1);
+    map_[StateType::REPRODUCE].insert(AttributeType::SLEEP_NECESSITY, 1.1);
+    map_[StateType::RUN_AWAY].insert(AttributeType::FOOD_NECESSITY, 1.25);
+    map_[StateType::RUN_AWAY].insert(AttributeType::WATER_NECESSITY, 1.25);
+    map_[StateType::RUN_AWAY].insert(AttributeType::SLEEP_NECESSITY, 1.25);
+    map_[StateType::SEARCH_FOOD].insert(AttributeType::FOOD_NECESSITY, 1.2);
+    map_[StateType::SEARCH_FOOD].insert(AttributeType::WATER_NECESSITY, 1.2);
+    map_[StateType::SEARCH_FOOD].insert(AttributeType::SLEEP_NECESSITY, 1.2);
+    map_[StateType::SEARCH_WATER].insert(AttributeType::FOOD_NECESSITY, 1.2);
+    map_[StateType::SEARCH_WATER].insert(AttributeType::WATER_NECESSITY, 1.2);
+    map_[StateType::SEARCH_WATER].insert(AttributeType::SLEEP_NECESSITY, 1.2);
+    map_[StateType::SEARCH_PARTNER].insert(AttributeType::FOOD_NECESSITY, 1.15);
+    map_[StateType::SEARCH_PARTNER].insert(AttributeType::WATER_NECESSITY, 1.15);
+    map_[StateType::SEARCH_PARTNER].insert(AttributeType::SLEEP_NECESSITY, 1.15);
+
+
 }
 
 StateAttributeFactorMap& StateAttributeFactorMap::getInstance()

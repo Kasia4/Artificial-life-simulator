@@ -8,6 +8,7 @@ public:
     DrinkState();
     State* action(Specimen *specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 
 private:
     State* drink(Specimen* specimen);
