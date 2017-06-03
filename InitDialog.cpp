@@ -2,8 +2,8 @@
 #include "ui_InitDialog.h"
 
 InitDialog::InitDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::InitDialog)
+    QDialog(parent)
+    ,ui(new Ui::InitDialog)
 {
     ui->setupUi(this);
     this->setSizeGripEnabled(false);

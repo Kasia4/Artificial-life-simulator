@@ -113,7 +113,6 @@ QList<BoardField *> Board::getNeighbors(const QPoint &position)
 void Board::resize(const QPoint& size)
 {
     size_ = size;
-    std::cout<<"Board size:\t"<<size_.x()<<", "<<size_.y()<<std::endl;
     for(QVector<BoardField*> column: fields_)
     {
         for(BoardField* field: column)

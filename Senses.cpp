@@ -26,7 +26,5 @@ void Senses::generateShape()
 {
     shape_ = QPainterPath();
     for(Collider* coll : senses_)
-    {
         shape_.addPath(coll->shape());
-    }
 }

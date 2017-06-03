@@ -2,8 +2,8 @@
 #include "ui_PopulationChart.h"
 
 PopulationChart::PopulationChart(QWidget *parent) :
-	QWidget(parent),
-	ui(new Ui::PopulationChart)
+    QWidget(parent)
+    ,ui(new Ui::PopulationChart)
 {
 	ui->setupUi(this);
 	this->setWindowTitle("Populacja");

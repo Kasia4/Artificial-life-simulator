@@ -2,8 +2,8 @@
 #include "ui_BoardEditor.h"
 
 BoardEditor::BoardEditor(QWidget *parent) :
-	QWidget(parent),
-	ui(new Ui::BoardEditor)
+    QWidget(parent)
+    ,ui(new Ui::BoardEditor)
 {
 	ui->setupUi(this);
 	connect(ui->FieldsButtonsGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(changeFieldType(QAbstractButton*)));

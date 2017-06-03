@@ -13,6 +13,7 @@ public:
     qreal getRadius() const;
     virtual void generateShape();
     QRectF boundingRect() const;
+
 private:
     qreal radius_;
 

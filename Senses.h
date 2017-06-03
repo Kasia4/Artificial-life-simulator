@@ -10,6 +10,7 @@ public:
     void addSense(Collider* collider);
     void removeSense(Collider* collider);
     QRectF boundingRect() const;
+
 protected:
     virtual void generateShape();
 

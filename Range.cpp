@@ -3,12 +3,16 @@
 Range::Range()
     :begin_(0)
     ,end_(1)
-{}
+{
+
+}
 
 Range::Range(const qreal &begin, const qreal &end)
     :begin_(begin)
     ,end_(end)
-{}
+{
+
+}
 
 qreal Range::transform(const qreal &value,const Range& origin) const
 {
@@ -17,8 +21,10 @@ qreal Range::transform(const qreal &value,const Range& origin) const
 
 qreal Range::cutValue(const qreal &value) const
 {
-    if(value > end_)return end_;
-    if(value < begin_)return begin_;
+    if(value > end_)
+        return end_;
+    if(value < begin_)
+        return begin_;
     return value;
 }
 

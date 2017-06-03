@@ -29,11 +29,13 @@ State *SearchWaterState::searchForWater(Specimen *specimen)
 {
     specimen->setMove(true);
     BoardField* nearest_water = nearestWater(specimen);
+
     if(!specimen->getTarget() || specimen->getTarget() != nearest_water)
     {
         specimen->disableTracking();
         specimen->setTarget(nearest_water);
     }
+
     if(specimen->getCaughtTarget())
        return new DrinkState();
     return this;

@@ -10,9 +10,7 @@ FieldFactory::FieldFactory()
 FieldFactory::~FieldFactory()
 {
     for(auto field : prototypes_)
-    {
-        delete field;
-    }
+         delete field;
 }
 
 FieldFactory& FieldFactory::getInstance()

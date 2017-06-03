@@ -1,5 +1,6 @@
 #ifndef CONECOLLIDER_H
 #define CONECOLLIDER_H
+
 #include "Collider.h"
 
 class ConeCollider : public Collider
@@ -16,6 +17,7 @@ public:
 
     virtual void generateShape();
     QRectF boundingRect() const;
+
 private:
     qreal radius_;
     qreal apex_angle_;

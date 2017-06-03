@@ -9,7 +9,6 @@ Needs::Needs(qreal criticalLevel)
 
 void Needs::addNeed(NeedType needType, qreal value, int priority)
 {
-    //needs_[priority]=qMakePair(needType, value);
     needs_.insert(priority, qMakePair(needType, value));
 }
 

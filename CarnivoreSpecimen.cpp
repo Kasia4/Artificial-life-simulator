@@ -1,6 +1,7 @@
 #include "CarnivoreSpecimen.h"
 
-CarnivoreSpecimen::CarnivoreSpecimen(Specimen* first_parent, Specimen* second_parent) : Specimen(first_parent, second_parent)
+CarnivoreSpecimen::CarnivoreSpecimen(Specimen* first_parent, Specimen* second_parent)
+    :Specimen(first_parent, second_parent)
 {
 }
 

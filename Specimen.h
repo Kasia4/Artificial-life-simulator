@@ -15,8 +15,6 @@
 
 #include "SimulationObject.h"
 #include "ItemType.h"
-#include "CircleCollider.h"
-#include "ConeCollider.h"
 #include "Attribute.h"
 #include "AttributeType.h"
 #include "Needs.h"
@@ -27,7 +25,7 @@
 #include "StateAttributeFactorMap.h"
 
 class State;
-#include "State.h"
+//#include "State.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,

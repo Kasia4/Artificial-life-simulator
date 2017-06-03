@@ -1,5 +1,6 @@
 #ifndef REPRODUCESTATE_H
 #define REPRODUCESTATE_H
+
 #include "State.h"
 #include "SimulationScene.h"
 
@@ -10,6 +11,7 @@ public:
     State* action(Specimen *specimen);
 	State* clone() const;
     void setFactors(Specimen* specimen);
+
 private:
     State* reproduce(Specimen* specimen);
 };

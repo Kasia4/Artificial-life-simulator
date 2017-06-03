@@ -26,11 +26,8 @@ void ReproduceState::setFactors(Specimen* specimen)
 State *ReproduceState::reproduce(Specimen *specimen)
 {
 	specimen->setMove(false);
-	// create new specimen on the board from specimen and target
-	//remember of the scene to add specimen
-	//think about access to scene in states
-	// die state needs to access scene methods too
 	Specimen* partner = dynamic_cast<Specimen*>(specimen->getTarget());
+
 	if(!partner->getProduceNewSpecimen())
 	{
 		specimen->setProduceNewSpecimen(true);
@@ -47,6 +44,7 @@ State *ReproduceState::reproduce(Specimen *specimen)
 		sim_scen->addSpecimen(child);
 		child->setPos(specimen->pos());
 	}
+
 	specimen->setNeedValue(NeedType::REPRODUCE, 0);
 	partner->setNeedValue(NeedType::REPRODUCE, 0);
 	partner->chooseNeed();

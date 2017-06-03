@@ -30,11 +30,13 @@ State* SearchPartnerState::searchForPartner(Specimen *specimen)
 {
     specimen->setMove(true);
     Specimen* nearest_partner = nearestPartner(specimen);
+
     if(!specimen->getTarget() || specimen->getTarget() != nearest_partner)
     {
         specimen->disableTracking();
         specimen->setTarget(nearest_partner);
     }
+
     if(specimen->getCaughtTarget())
     {
         specimen->setMove(false);

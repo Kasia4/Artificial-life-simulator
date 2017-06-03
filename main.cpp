@@ -6,12 +6,10 @@
 
 #include "SimulationEngine.h"
 #include "Board.h"
-#include "BoardModel.h"
 #include "HerbivoreSpecimen.h"
 #include "CarnivoreSpecimen.h"
 #include "CircleCollider.h"
 #include "Genome.h"
-#include "SpecimensModel.h"
 #include "Range.h"
 
 
