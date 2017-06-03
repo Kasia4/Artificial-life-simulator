@@ -34,20 +34,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>Statistics</string>
+     <string>Statystyki</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="collidersCheckBox">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>700</x>
       <y>10</y>
-      <width>111</width>
+      <width>141</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Show Colliders</string>
+     <string>Pokaż zasięg zmysłów</string>
     </property>
     <property name="tristate">
      <bool>false</bool>
@@ -134,7 +134,7 @@
      <string notr="true">background-color: rgb(4, 255, 0);</string>
     </property>
     <property name="text">
-     <string>Add Herbivore</string>
+     <string>Dodaj roślinożercę</string>
     </property>
    </widget>
    <widget class="QPushButton" name="addCarnivoreButton">
@@ -150,7 +150,7 @@
      <string notr="true">background-color: rgb(255, 0, 0);</string>
     </property>
     <property name="text">
-     <string>Add Carnivore</string>
+     <string>Dodaj mięsożercę</string>
     </property>
    </widget>
    <widget class="BoardEditor" name="boardEditor" native="true">

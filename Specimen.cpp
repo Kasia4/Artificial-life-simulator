@@ -1,6 +1,6 @@
 #include "Specimen.h"
 
-const Range Specimen::SIZE_RANGE = Range(20,25);
+const Range Specimen::SIZE_RANGE = Range(10,15);
 QRectF Specimen::moving_rect;
 
 void Specimen::setMovingRect(QRectF rect)
@@ -410,9 +410,9 @@ void Specimen::generateGenome()
     genome_.setAttributeRange(AttributeType::ENDURANCE, Range(10,40));
 	genome_.setAttributeRange(AttributeType::STRENGTH, Range(2,4));
     genome_.setAttributeRange(AttributeType::SIGHT_ANGLE, Range(10,90));
-    genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(100,250));
-    genome_.setAttributeRange(AttributeType::HEARING_RANGE, Range(40,80));
-    genome_.setAttributeRange(AttributeType::SPEED,Range(1,2.5));
+	genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(50,100));
+	genome_.setAttributeRange(AttributeType::HEARING_RANGE, Range(20,40));
+	genome_.setAttributeRange(AttributeType::SPEED,Range(1,1.5));
 
 }
 
