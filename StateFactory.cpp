@@ -51,4 +51,8 @@ StateFactory::~StateFactory()
 	{
 		delete spec;
 	}
+	for(auto spec : prototypes_by_needs_.values())
+	{
+		delete spec;
+	}
 }

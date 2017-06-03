@@ -164,8 +164,9 @@ void Board::updateFieldSize()
 
 QPointF Board::getSurfaceSize() const
 {
-    return surface_size_;
+	return surface_size_;
 }
+
 
 void Board::setSurfaceSize(const QPointF &surface_size)
 {

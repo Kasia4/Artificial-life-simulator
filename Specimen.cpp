@@ -93,6 +93,11 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 	emit attributesChanged();
 }
 
+Specimen::~Specimen()
+{
+	delete currentState_;
+}
+
 int Specimen::type() const
 {
     return ItemType::SPECIMEN;
@@ -398,8 +403,12 @@ void Specimen::chooseNeed()
 
 void Specimen::updateState()
 {
-    State* result = currentState_->action(this);
-    currentState_ = result ? result : currentState_;
+	State* result = currentState_->action(this);
+	if(result && result != currentState_ )
+	{
+		delete currentState_;
+		currentState_ = result;
+	}
 }
 
 void Specimen::generateGenome()

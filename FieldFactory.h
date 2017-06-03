@@ -16,6 +16,7 @@
 class FieldFactory
 {
 public:
+	~FieldFactory();
     static FieldFactory& getInstance();
     void registerField(FieldType type, BoardField* prototype);
     BoardField* create(FieldType type, const QPoint& position);

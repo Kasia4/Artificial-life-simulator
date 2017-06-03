@@ -4,8 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-CONFIG      += console
+QT       += core gui testlib
+CONFIG      += console testcase
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

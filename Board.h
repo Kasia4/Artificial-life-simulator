@@ -10,6 +10,7 @@
 #include <QVector>
 #include <QPoint>
 #include <QGraphicsItem>
+#include <QFile>
 #include <iostream>
 
 #include "WaterField.h"
@@ -54,6 +55,8 @@ public:
 
     QPointF getSurfaceSize() const;
 
+	void loadFromFile(const QFile& file);
+
 private:
     void setSurfaceSize(const QPointF &surface_size);
     void resize(const QPoint& size);
@@ -71,8 +74,10 @@ private:
 
 signals:
     void fieldSizeChanged(const QPoint& size);
-    void fieldReplaced(BoardField* old_field, BoardField* new_field);
+	void fieldReplaced(BoardField* old_field, BoardField* new_field);
 };
+
+
 
 
 #endif // BOARD_H

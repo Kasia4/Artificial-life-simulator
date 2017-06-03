@@ -7,6 +7,14 @@ FieldFactory::FieldFactory()
     registerField(FieldType::BARREN, new BarrenField);
 }
 
+FieldFactory::~FieldFactory()
+{
+    for(auto field : prototypes_)
+    {
+        delete field;
+    }
+}
+
 FieldFactory& FieldFactory::getInstance()
 {
     static FieldFactory instance;

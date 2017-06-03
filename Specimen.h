@@ -50,7 +50,7 @@ class Specimen :  public SimulationObject
     static constexpr qreal ESCAPING_DISTANCE = 50;
 public:
     Specimen(Specimen* first_parent,Specimen* second_parent);
-    virtual ~Specimen() {};
+	virtual ~Specimen();
     virtual SpecimenType getSpec() const = 0;
     virtual Specimen* clone() const = 0;
     virtual QColor skinColor() const = 0;
