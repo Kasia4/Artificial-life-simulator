@@ -2,7 +2,6 @@
 #define SIMULATIONVIEW_H
 
 #include <QGraphicsView>
-#include <iostream>
 
 #include "SimulationScene.h"
 

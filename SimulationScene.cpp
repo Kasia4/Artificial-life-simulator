@@ -32,8 +32,7 @@ void SimulationScene::addRandomSpecimen(SpecimenType type)
     std::uniform_real_distribution<> y_gen(0, board_->getSurfaceSize().y());
 
 
-    new_specimen->setPos(x_gen(Randomizer::rand_gen()), y_gen(Randomizer::rand_gen()));
-	new_specimen->setAngularVelocity(0.5);
+	new_specimen->setPos(x_gen(Randomizer::rand_gen()), y_gen(Randomizer::rand_gen()));
     new_specimen->setMove(true);
     addSpecimen(new_specimen);
 }
@@ -72,9 +71,11 @@ void SimulationScene::setBoard(Board* board)
     connect(board_, SIGNAL(fieldReplaced(BoardField*,BoardField*)), this, SLOT(replaceField(BoardField*,BoardField*)));
     updateBoardSize(board_->getSize());
 
-	Specimen::setMovingRect(QRectF(-10,-10,board->getSurfaceSize().x() + 10, board->getSurfaceSize().y() +10));
-
-	std::cout<<Specimen::getMovingRect().left()<<" "<<Specimen::getMovingRect().top()<<" "<<Specimen::getMovingRect().right()<<" "<<Specimen::getMovingRect().bottom()<<std::endl;
+	Specimen::setMovingRect(
+				QRectF( -LOOPING_MARGIN,
+						-LOOPING_MARGIN,
+						board->getSurfaceSize().x() + LOOPING_MARGIN,
+						board->getSurfaceSize().y() + LOOPING_MARGIN ));
 }
 
 void SimulationScene::updateBoardSize(const QPoint &size)

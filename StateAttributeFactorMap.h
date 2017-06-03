@@ -5,7 +5,6 @@
 #include "AttributeType.h"
 #include "StateType.h"
 
-#include <iostream>
 typedef QMap<AttributeType, qreal> AttFactorsMap;
 typedef QMap<StateType, AttFactorsMap> StateFactorsMap;
 

@@ -10,13 +10,10 @@
 #include <QPainter>
 #include <QtMath>
 #include <QMap>
-#include <iostream>
 #include <cmath>
 
 #include "SimulationObject.h"
 #include "ItemType.h"
-#include "CircleCollider.h"
-#include "ConeCollider.h"
 #include "Attribute.h"
 #include "AttributeType.h"
 #include "Needs.h"
@@ -48,6 +45,9 @@ class Specimen :  public SimulationObject
     static constexpr qreal TRACKING_DISTANCE_THRESHOLD = 7;
     static constexpr qreal ROTATING_DISTANCE_THRESHOLD = 3;
     static constexpr qreal ESCAPING_DISTANCE = 50;
+	static constexpr qreal BASE_NECESSITY = 1;
+	static constexpr qreal BASE_ANGULAR_VELOCITY = 0.5;
+
 public:
     Specimen(Specimen* first_parent,Specimen* second_parent);
 	virtual ~Specimen();
@@ -60,82 +60,59 @@ public:
 	static void setMovingRect(QRectF rect);
 	static QRectF getMovingRect();
 
-    QRectF boundingRect() const;
+	virtual QRectF boundingRect() const;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
-    void setSize(qreal size);
-    //void setVelocity(qreal velocity);
+
+	void setSize(qreal size);
     void setAngularVelocity(qreal velocity);
 	void setTarget(SimulationObject* target);
     void setMove(bool move);
+	void setAttributesStateFactors(const AttFactorsMap& map);
+	void setNeedValue(NeedType type, qreal value);
+	void setChaser(SimulationObject *chaser);
+	void setHp(const qreal &value);
+	void setNeedChanged(bool value);
+	void setCurrentNeed(const NeedType &currentNeed);
+	void setCurrentState(State *currentState);
+	void setIsChased(bool isChased);
+	void setNeeds(const Needs &needs);
+	void setGenome(const Genome& genome);
+	void setProduceNewSpecimen(bool value);
+	void setInterrupted(bool interupted);
 
-    void release();
+
 
     qreal getSize() const;
     qreal getEyesSize() const;
 	qreal getEyesDist() const;
     qreal getAngularVelocity() const;
-    qreal getAttributeValue(AttributeType type) const;
-	void setAttributesStateFactors(const AttFactorsMap& map);
-    qreal getNeedValue(NeedType type) const;
-    void setNeedValue(NeedType type, qreal value);
-
+	qreal getAttributeValue(AttributeType type) const;
+	qreal getNeedValue(NeedType type) const;
 	SimulationObject* getTarget() const;
     bool getMove() const;
-
-
-
 	SimulationObject* getChaser() const;
-	void setChaser(SimulationObject *chaser);
 
     qreal getDistToChaser() const;
-
     bool getEscapedFromChaser() const;
-
     QMap<AttributeType, Attribute> getAttributes() const;
-
     qreal getHp() const;
-    void setHp(const qreal &value);
-
     bool getNeedChanged() const;
-    void setNeedChanged(bool value);
-
     NeedType getCurrentNeed() const;
-    void setCurrentNeed(const NeedType &currentNeed);
-
-    State *getCurrentState() const;
-    void setCurrentState(State *currentState);
-
-    SpecimenSenses &getSensesCollider();
-
-//    bool getIsDead() const;
-//    void setIsDead(bool isDead);
-
-    bool getIsChased() const;
-    void setIsChased(bool isChased);
-
-    Specimen* nearestSpecimen(SpecimenType type);
-    BoardField* nearestField(FieldType type);
-
-
-//    qreal getReproduce() const;
-//    void setReproduce(const qreal &reproduce);
-
+	State* getCurrentState() const;
+	SpecimenSenses &getSensesCollider();
+	bool getIsChased() const;
     Needs getNeeds() const;
-    void setNeeds(const Needs &needs);
+	bool getCaughtTarget() const;
+	Genome getGenome() const;
+	bool getProduceNewSpecimen() const;
+	bool getInterrupted() const;
 
-    bool getCaughtTarget() const;
-    void updateHp(qreal value);
+	Specimen* nearestSpecimen(SpecimenType type);
+	BoardField* nearestField(FieldType type);
+	void updateHp(qreal value);
+	void release();
 
 
-
-    Genome getGenome() const;
-    void setGenome(const Genome& genome);
-
-    bool getProduceNewSpecimen() const;
-    void setProduceNewSpecimen(bool value);
-
-    bool getInterrupted() const;
-    void setInterrupted(bool interupted);
 
 protected:
     void advance(int step);
@@ -165,28 +142,23 @@ protected:
 
 
 private:
-    //qreal velocity_;
     qreal angular_velocity_;
 
     SpecimenSenses senses_;
     FocusRing focus_ring_;
     State* currentState_;
     QMap<AttributeType, Attribute> attributes_;
-//    qreal thirst_;
-//    qreal hunger_;
-//    qreal tiredness_;
-//    qreal reproduce_;
+
     qreal hp_;
     Needs needs_;
 
     Genome genome_;
 
-    bool produce_new_specimen;
-    bool needChanged_;
+	bool produce_new_specimen_;
+	bool need_changed_;
     NeedType currentNeed_;
 
-  //  bool isDead_;
-    bool isChased_;
+	bool is_chased_;
 
     bool interrupted_;
 

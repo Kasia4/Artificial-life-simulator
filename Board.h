@@ -9,12 +9,8 @@
 #include <QObject>
 #include <QVector>
 #include <QPoint>
-#include <QGraphicsItem>
-#include <QFile>
-#include <iostream>
 
 #include "WaterField.h"
-
 #include "GroundField.h"
 #include "FieldFactory.h"
 
@@ -23,7 +19,7 @@ typedef QVector< MapColumn > MapTable;
 
 
 
-class Board : public QObject, public QGraphicsItem
+class Board : public SimulationObject
 {
     Q_OBJECT
 
@@ -54,8 +50,6 @@ public:
     QList<BoardField*> getNeighbors(const QPoint& position);
 
     QPointF getSurfaceSize() const;
-
-	void loadFromFile(const QFile& file);
 
 private:
     void setSurfaceSize(const QPointF &surface_size);

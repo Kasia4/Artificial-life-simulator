@@ -22,6 +22,9 @@ class SimulationScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
+
+	static constexpr qreal LOOPING_MARGIN = 10;
+
     SimulationScene();
     virtual ~SimulationScene() {};
     void addSpecimen(Specimen* specimen);

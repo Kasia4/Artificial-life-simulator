@@ -15,12 +15,12 @@ public:
 
     typedef QPair<NeedType, qreal> Need;
 	Needs(qreal criticalLevel = 70);
-    void addNeed(NeedType needType, qreal value, int priority = 0);
-    void removeNeed(NeedType needType);
-    int getPriority(NeedType needType) const;
-    void setValue(NeedType needType, qreal value);
-	void modifyValue(NeedType needType, qreal difference);
-	qreal getValue(NeedType needType) const;
+	void addNeed(NeedType need_type, qreal value, int priority = 0);
+	void removeNeed(NeedType need_type);
+	int getPriority(NeedType need_type) const;
+	void setValue(NeedType need_type, qreal value);
+	void modifyValue(NeedType need_type, qreal difference);
+	qreal getValue(NeedType need_type) const;
 
     NeedType mostImportant();
 
@@ -30,9 +30,13 @@ public:
     QList<QPair<NeedType, qreal>> getNeeds() const;
     void setNeeds(const QList<QPair<NeedType, qreal>> &needs);
 
+	qreal getFatalLevel() const;
+	void setFatalLevel(const qreal& fatal_level);
+
 private:
-    QList<QPair<NeedType, qreal>> needs_;
-    qreal criticalLevel_;
+	QList<QPair<NeedType, qreal>> needs_;
+	qreal fatal_level_;
+	qreal critical_level_;
 };
 
 

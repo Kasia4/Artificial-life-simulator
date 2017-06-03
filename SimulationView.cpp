@@ -25,6 +25,10 @@ void SimulationView::setScene(SimulationScene *scene)
 
 void SimulationView::mousePressEvent(QMouseEvent *event)
 {
+	if(event->button() == Qt::RightButton)
+	{
+		editor_field_type_ = FieldType::VOID;
+	}
 	if(editor_field_type_ != FieldType::VOID)
 	{
 		QPoint field_coordinates = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());

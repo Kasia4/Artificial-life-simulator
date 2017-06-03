@@ -18,11 +18,8 @@ State* State::clone() const
 
 State* State::action(Specimen *specimen)
 {
-    //specimen->setMove(true);
-//    if(specimen->getIsDead())
-//        return new DieState();
 	setFactors(specimen);
-	if(specimen->getIsChased()) // TODO stay in the same RunAwayState
+	if(specimen->getIsChased())
     {
         specimen->setInterrupted(true);
         return new RunAwayState();

@@ -16,26 +16,19 @@ QRectF Specimen::getMovingRect()
 Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
     :target_(nullptr)
     ,chaser_(nullptr)
-    ,move_(false)
+	,move_(true)
     ,caught_target_(false)
     ,sense_target_(false)
-    ,escaped_from_chaser_(true)
-   // ,velocity_(0)
-    ,angular_velocity_(0)
-//    ,thirst_(0)
-//    ,hunger_(0)
-//    ,tiredness_(0)
-    ,needChanged_(true)
-   // ,isDead_(false)
-    ,isChased_(false)
-    ,produce_new_specimen(false)
+	,escaped_from_chaser_(true)
+	,angular_velocity_(BASE_ANGULAR_VELOCITY)
+	,produce_new_specimen_(false)
+	,need_changed_(true)
+	,is_chased_(false)
     ,interrupted_(false)
 {
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
 	setZValue(0.5);
-
-    std::cout<<"a on tylko elo i odwraca glowe\n";
 
     senses_.setParentItem(this);
 
@@ -52,35 +45,12 @@ Specimen::Specimen(Specimen* first_parent, Specimen* second_parent)
 
 	setSize(SIZE_RANGE.transform(getAttributeValue(AttributeType::ENDURANCE), endurance_range));
 
-    std::cout<<"moje atrybuty\n";
-    std::cout<<"wytrzymalosc "<<getAttributeValue(AttributeType::ENDURANCE)<<"\n";
-    std::cout<<"sila "<<getAttributeValue(AttributeType::STRENGTH)<<"\n";
-    std::cout<<"zasieg wzroku "<<getAttributeValue(AttributeType::SIGHT_RANGE)<<"\n";
-    std::cout<<"kat widzenia "<<getAttributeValue(AttributeType::SIGHT_ANGLE)<<"\n";
-    std::cout<<"zasieg sluchu "<<getAttributeValue(AttributeType::HEARING_RANGE)<<"\n";
-    std::cout<<"szybkosc "<<getAttributeValue(AttributeType::SPEED)<<"\n";
-
-    std::cout<<"zapotrzebowanie na jedzenie "<<getAttributeValue(AttributeType::FOOD_NECESSITY)<<"\n";
-    std::cout<<"zapotrzebowanie na wode "<<getAttributeValue(AttributeType::WATER_NECESSITY)<<"\n";
-    std::cout<<"zapotrzebowanie na sen "<<getAttributeValue(AttributeType::SLEEP_NECESSITY)<<"\n";
-
-    /*Example values*/
-    senses_.setHearingRange(getAttributeValue(AttributeType::HEARING_RANGE));
+	senses_.setHearingRange(getAttributeValue(AttributeType::HEARING_RANGE));
     senses_.setSightRange(getAttributeValue(AttributeType::SIGHT_RANGE));
     senses_.setSightAngle(getAttributeValue(AttributeType::SIGHT_ANGLE));
 
-//    addAttribute(AttributeType::ENDURANCE, Attribute(20));
-//    addAttribute(AttributeType::SIGHT_RANGE, Attribute(200));
-//    addAttribute(AttributeType::SIGHT_ANGLE, Attribute(30));
-//    addAttribute(AttributeType::HEARING_RANGE, Attribute(50));
-//    addAttribute(AttributeType::SPEED, Attribute(1));
-//    addAttribute(AttributeType::STRENGTH, Attribute(40));
-
-//    addAttribute(AttributeType::FOOD_NECESSITY, Attribute(0.1));
-//    addAttribute(AttributeType::WATER_NECESSITY, Attribute(0.1));
-//    addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(0.1));
-
     hp_ = attributes_.value(AttributeType::ENDURANCE).getValue();
+
 	needs_.addNeed(NeedType::EAT, 40, 0);
 	needs_.addNeed(NeedType::DRINK, 40, 1);
 	needs_.addNeed(NeedType::SLEEP, 40, 2);
@@ -101,7 +71,6 @@ Specimen::~Specimen()
 int Specimen::type() const
 {
     return ItemType::SPECIMEN;
-
 }
 
 
@@ -215,12 +184,11 @@ void Specimen::advance(int step)
 {
     if(!step)
         return;
-    updateNeeds();
-    //chooseNeed();
+	updateNeeds();
     if(shouldDie())
         emit killed(this);
     else if(shouldRunAway())
-        isChased_=true;
+		is_chased_=true;
 	if(chaser_)
         runAway();
     else if(target_)
@@ -238,12 +206,12 @@ void Specimen::advance(int step)
 
 bool Specimen::getIsChased() const
 {
-    return isChased_;
+	return is_chased_;
 }
 
 void Specimen::setIsChased(bool isChased)
 {
-    isChased_ = isChased;
+	is_chased_ = isChased;
 }
 
 void Specimen::runAway()
@@ -253,8 +221,7 @@ void Specimen::runAway()
     dist_to_chaser_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
     if(dist_to_chaser_ > ESCAPING_DISTANCE)
     {
-        escaped_from_chaser_ = true;
-        //isChased_= false;
+		escaped_from_chaser_ = true;
     }
     else
         setRotation(angle);
@@ -266,45 +233,21 @@ void Specimen::runAway()
 
 void Specimen::chaseTarget()
 {
-//    if(getSpec() == SpecimenType::HERBIVORE)
-//        sense_target_ = senses_.collidingItems(ItemType::FIELD).contains(target_);
-//    else
-//        sense_target_ = senses_.collidingItems(ItemType::SPECIMEN).contains(target_);
-    //if(sense_target_)
-    {
-        QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
-        qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
-        dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
-        if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
-        {
-            caught_target_ = true;
-        }
-        else
-            setRotation(angle);
-        if(move_)
-        {
-            move();
-        }
-    }
-//    else
-//    {
-//        if(move_)
-//        {
-//            setRotation(rotation() + angular_velocity_);
-//            move();
-//        }
-//    }
+
+	QLine dist_line(pos().x(), pos().y(), target_->pos().x(), target_->pos().y());
+	qreal angle = qRadiansToDegrees( qAtan2(dist_line.dy(), dist_line.dx()));
+	dist_to_target_ = qSqrt(dist_line.dx()*dist_line.dx() + dist_line.dy()*dist_line.dy());
+	if(dist_to_target_ < TRACKING_DISTANCE_THRESHOLD)
+	{
+		caught_target_ = true;
+	}
+	else
+		setRotation(angle);
+	if(move_)
+	{
+		move();
+	}
 }
-
-//bool Specimen::getIsDead() const
-//{
-//    return isDead_;
-//}
-
-//void Specimen::setIsDead(bool isDead)
-//{
-//    isDead_ = isDead;
-//}
 
 State *Specimen::getCurrentState() const
 {
@@ -335,12 +278,12 @@ void Specimen::setCurrentNeed(const NeedType &currentNeed)
 
 bool Specimen::getNeedChanged() const
 {
-    return needChanged_;
+	return need_changed_;
 }
 
 void Specimen::setNeedChanged(bool value)
 {
-    needChanged_ = value;
+	need_changed_ = value;
 }
 
 qreal Specimen::getHp() const
@@ -389,7 +332,11 @@ void Specimen::move(){
 
 bool Specimen::shouldDie()
 {
-	if(hp_ <= 0 || needs_.getValue(NeedType::EAT) >= 100 || needs_.getValue(NeedType::DRINK) >= 100 || needs_.getValue(NeedType::SLEEP) >= 100 || needs_.getValue(NeedType::REPRODUCE) >= 100 )
+	if(hp_ <= 0 ||
+		needs_.getValue(NeedType::EAT) >= 100 ||
+		needs_.getValue(NeedType::DRINK) >= 100 ||
+		needs_.getValue(NeedType::SLEEP) >= 100 ||
+		needs_.getValue(NeedType::REPRODUCE) >= 100 )
 		return true;
     return false;
 }
@@ -398,7 +345,7 @@ void Specimen::chooseNeed()
 {
     NeedType old = currentNeed_;
     currentNeed_=needs_.mostImportant();
-    needChanged_ = (old != currentNeed_);
+	need_changed_ = (old != currentNeed_);
 }
 
 void Specimen::updateState()
@@ -440,11 +387,9 @@ void Specimen::setAttributesValues()
     addAttribute(AttributeType::SPEED, Attribute(genome_.getAttributeValue(AttributeType::SPEED)));
     addAttribute(AttributeType::STRENGTH, Attribute(genome_.getAttributeValue(AttributeType::STRENGTH)));
 
-	addAttribute(AttributeType::FOOD_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::ENDURANCE)+genome_.getAttributeEnchancement(AttributeType::STRENGTH)));
-	addAttribute(AttributeType::WATER_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
-	addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(1 + genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
-
-
+	addAttribute(AttributeType::FOOD_NECESSITY, Attribute(BASE_NECESSITY + genome_.getAttributeEnchancement(AttributeType::ENDURANCE)+genome_.getAttributeEnchancement(AttributeType::STRENGTH)));
+	addAttribute(AttributeType::WATER_NECESSITY, Attribute(BASE_NECESSITY + genome_.getAttributeEnchancement(AttributeType::HEARING_RANGE)+genome_.getAttributeEnchancement(AttributeType::SPEED)));
+	addAttribute(AttributeType::SLEEP_NECESSITY, Attribute(BASE_NECESSITY + genome_.getAttributeEnchancement(AttributeType::SIGHT_ANGLE)+genome_.getAttributeEnchancement(AttributeType::SIGHT_RANGE)));
 }
 
 void Specimen::updateNeeds()
@@ -453,8 +398,6 @@ void Specimen::updateNeeds()
 	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/60);
 	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/60);
     needs_.modifyValue(NeedType::REPRODUCE, 0.016);
-
-
 }
 
 void Specimen::checkBorders()
@@ -560,12 +503,12 @@ void Specimen::setInterrupted(bool interrupted)
 
 bool Specimen::getProduceNewSpecimen() const
 {
-    return produce_new_specimen;
+	return produce_new_specimen_;
 }
 
 void Specimen::setProduceNewSpecimen(bool value)
 {
-    produce_new_specimen = value;
+	produce_new_specimen_ = value;
 }
 
 Genome Specimen::getGenome() const
@@ -624,15 +567,3 @@ void Specimen::setNeeds(const Needs &needs)
 {
     needs_ = needs;
 }
-
-
-//qreal Specimen::getReproduce() const
-//{
-//    return reproduce_;
-//}
-
-//void Specimen::setReproduce(const qreal &reproduce)
-//{
-//    reproduce_ = reproduce;
-//}
-

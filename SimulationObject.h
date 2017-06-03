@@ -10,9 +10,6 @@ class SimulationObject : public QObject, public QGraphicsItem
 public:
 	explicit SimulationObject(QObject *parent = 0);
 
-signals:
-
-public slots:
 };
 
 #endif // SIMULATIONOBJECT_H
