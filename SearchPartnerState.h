@@ -1,5 +1,6 @@
 #ifndef SEARCHPARTNERSTATE_H
 #define SEARCHPARTNERSTATE_H
+
 #include "State.h"
 #include "ReproduceState.h"
 
@@ -10,6 +11,7 @@ public:
     State* action(Specimen *specimen);
 	State* clone() const;
     void setFactors(Specimen* specimen);
+
 private:
     State* searchForPartner(Specimen *specimen);
     Specimen* nearestPartner(Specimen* specimen);

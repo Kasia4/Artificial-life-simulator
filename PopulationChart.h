@@ -4,8 +4,6 @@
 #include <QWidget>
 #include <QLabel>
 
-#include <iostream>
-
 #include "Specimen.h"
 
 namespace Ui {
@@ -28,7 +26,6 @@ private:
 
 	QMap<SpecimenType, unsigned> population_counts_;
 	QMap<SpecimenType, QLabel*> population_labels_;
-
 
 };
 

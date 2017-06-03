@@ -24,7 +24,7 @@
 #include "StateAttributeFactorMap.h"
 
 class State;
-#include "State.h"
+//#include "State.h"
 
 enum class SpecimenType : unsigned {
     HERBIVORE = 0,

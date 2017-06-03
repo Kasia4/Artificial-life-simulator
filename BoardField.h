@@ -11,13 +11,8 @@
 
 #include "SimulationObject.h"
 #include "ItemType.h"
+#include "FieldType.h"
 
-enum class FieldType : unsigned{
-    GROUND = 0,
-    WATER,
-    BARREN,
-    VOID = 99
-};
 
 class BoardField : public SimulationObject
 {
@@ -42,10 +37,12 @@ public:
     bool getAvailable() const;
     void setAvailable(bool available);
     void lockField();
+
 protected:
     virtual void updateAvailable() = 0;
     virtual void advance(int step);
     bool available_;
+
 private:
     qreal size_;
     QPoint position_;

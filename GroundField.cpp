@@ -4,7 +4,7 @@ const Range GroundField::GRASS_RANGE = Range(0,25);
 
 GroundField::GroundField(qreal overgrow_level)
     :overgrow_level_(overgrow_level)
-	,overgrowing_speed_(0.02)
+    ,overgrowing_speed_(BASE_OVERGROW_SPEED)
 {
     updateAvailable();
 }

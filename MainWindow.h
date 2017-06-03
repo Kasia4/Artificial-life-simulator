@@ -7,12 +7,14 @@
 
 #include <QMainWindow>
 #include <QGraphicsView>
+
 #include "SimulationEngine.h"
 #include "InitDialog.h"
 #include "PopulationChart.h"
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow

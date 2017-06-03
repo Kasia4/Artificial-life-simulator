@@ -6,7 +6,11 @@
 #include "AttributeType.h"
 #include <iostream>
 
-enum GenePosition : unsigned {A = 0, B};
+enum GenePosition : unsigned
+{
+    A = 0,
+    B
+};
 
 class Gene
 {
@@ -36,8 +40,6 @@ public:
     void randomize();
 
     void print(int length);
-
-
 
 private:
     qreal base_[2];

@@ -104,7 +104,6 @@ void Gene::randomize()
     setBase(dis(Randomizer::rand_gen()));
     setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
     setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
-    std::cout<<"values\t"<<getValue(GenePosition::A)<<"\t"<<getValue(GenePosition::B)<<"\n";
 }
 
 void Gene::print(int length)

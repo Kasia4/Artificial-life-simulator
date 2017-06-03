@@ -10,8 +10,6 @@
 #include <QVector>
 #include <QPoint>
 
-#include "WaterField.h"
-#include "GroundField.h"
 #include "FieldFactory.h"
 
 typedef QVector< BoardField*> MapColumn;
@@ -22,7 +20,6 @@ typedef QVector< MapColumn > MapTable;
 class Board : public SimulationObject
 {
     Q_OBJECT
-
 
 public:
     Board(const QPoint& size, const QPointF &surface_size);

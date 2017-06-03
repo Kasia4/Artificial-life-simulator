@@ -109,7 +109,8 @@ HEADERS  += \
     States.h \
     StateAttributeFactorMap.h \
     StateType.h \
-    SimulationObject.h
+    SimulationObject.h \
+    FieldType.h
 
 FORMS    += \
     SpecimenWidget.ui \

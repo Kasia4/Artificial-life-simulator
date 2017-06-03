@@ -4,7 +4,6 @@
 #include <QMap>
 #include <QList>
 #include <QSharedPointer>
-
 #include <exception>
 
 #include "Gene.h"
@@ -35,7 +34,6 @@ public:
 
 private:
     void addAttributeToGene(AttributeType type, QSharedPointer<Gene> gene, GenePosition pos);
-
 
     QMap<AttributeType, AttributeConditioning> conditionings_;
     AttributeRange ranges_;

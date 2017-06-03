@@ -34,7 +34,7 @@ State* SearchFoodState::searchForFood(Specimen *specimen)
         specimen->setTarget(nearest_food);
     }
 
-    if(specimen->getCaughtTarget() /*&& specimen->getTarget()->scene()*/)
+    if(specimen->getCaughtTarget())
        return new EatState();
     return this;
 }

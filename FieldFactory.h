@@ -7,7 +7,6 @@
 #define FIELDFACTORY_H
 
 #include <QMap>
-#include <iostream>
 
 #include "GroundField.h"
 #include "WaterField.h"
@@ -22,11 +21,11 @@ public:
     BoardField* create(FieldType type, const QPoint& position);
 
 private:
-    QMap<FieldType, BoardField*> prototypes_;
-
     FieldFactory();
     FieldFactory( const FieldFactory & ) = delete;
     FieldFactory& operator=(const FieldFactory&) = delete;
+
+    QMap<FieldType, BoardField*> prototypes_;
 };
 
 #endif // FIELDFACTORY_H

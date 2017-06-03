@@ -5,8 +5,6 @@
 #include <QPushButton>
 #include <QMap>
 
-#include <iostream>
-
 #include "BoardField.h"
 
 namespace Ui {
@@ -24,6 +22,7 @@ public:
 
 public slots:
 	void changeFieldType(QAbstractButton* btn);
+
 private:
 	Ui::BoardEditor *ui;
 	QMap<QAbstractButton*, FieldType> buttons_map_;

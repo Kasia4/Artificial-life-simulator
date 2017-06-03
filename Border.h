@@ -1,7 +1,9 @@
 #ifndef BORDER_H
 #define BORDER_H
-#include "ItemType.h"
+
 #include <QGraphicsItem>
+
+#include "ItemType.h"
 
 class Border : public QGraphicsItem
 {

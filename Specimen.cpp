@@ -1,4 +1,5 @@
 #include "Specimen.h"
+#include "State.h"
 
 const Range Specimen::SIZE_RANGE = Range(10,15);
 QRectF Specimen::moving_rect;

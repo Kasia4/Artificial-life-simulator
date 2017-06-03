@@ -2,11 +2,8 @@
 #define COLLIDER_H
 #include <QGraphicsItem>
 #include <QPainter>
-#include <iostream>
 
 #include "ItemType.h"
-
-
 
 class Collider : public QGraphicsItem
 {
@@ -17,7 +14,6 @@ public:
     void setVisiblity(bool is_visible);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QList<QGraphicsItem *> collidingItems(ItemType type);
-
 
 protected:
     QPainterPath shape_;

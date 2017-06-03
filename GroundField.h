@@ -14,6 +14,7 @@ class GroundField : public BoardField
 public:
     static const Range GRASS_RANGE;
     static constexpr qreal OVERGROW_THRESHOLD = 10;
+    static constexpr qreal BASE_OVERGROW_SPEED = 0.02;
 
     GroundField(qreal overgrow_level = 0);
     FieldType getFieldType() const { return FieldType::GROUND; }

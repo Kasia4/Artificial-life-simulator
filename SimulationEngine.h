@@ -27,14 +27,12 @@ public:
 
 	SimulationScene* getScene();
 
-
 public slots:
     void startWork();
     void pause();
     void resume();
     void addSpecimen(Specimen* specimen);
     void removeSpecimen(Specimen* specimen);
-private slots:
 
 private:
     QTimer timer_;
@@ -42,7 +40,6 @@ private:
     bool is_started_;
     SimulationScene scene_;
     Border* border;
-
 
 };
 
