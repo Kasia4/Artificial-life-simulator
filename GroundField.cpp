@@ -1,10 +1,10 @@
 #include "GroundField.h"
 
-const Range GroundField::GRASS_RANGE = Range(0,50);
+const Range GroundField::GRASS_RANGE = Range(0,25);
 
 GroundField::GroundField(qreal overgrow_level)
     :overgrow_level_(overgrow_level)
-	,overgrowing_speed_(0.05)
+	,overgrowing_speed_(0.02)
 {
     updateAvailable();
 }
@@ -40,7 +40,7 @@ BoardField *GroundField::clone() const
 
 QColor GroundField::getColor() const
 {
-	return QColor(200-overgrow_level_*4,150,0);
+	return QColor(200-overgrow_level_*(200/GRASS_RANGE.end()),150,0);
 }
 
 void GroundField::setOvergrow(const qreal& overgrow_level)
