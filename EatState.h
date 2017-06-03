@@ -8,6 +8,7 @@ public:
     EatState();
 	State* action(Specimen *specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 private:
     State* eat(Specimen* specimen);
 };

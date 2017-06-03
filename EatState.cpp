@@ -18,7 +18,12 @@ State* EatState::action(Specimen *specimen)
 
 State* EatState::clone() const
 {
-	return new EatState(*this);
+    return new EatState(*this);
+}
+
+void EatState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::EAT));
 }
 
 State* EatState::eat(Specimen *specimen)

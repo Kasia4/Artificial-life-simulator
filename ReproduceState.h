@@ -9,6 +9,7 @@ public:
     ReproduceState();
     State* action(Specimen *specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 private:
     State* reproduce(Specimen* specimen);
 };

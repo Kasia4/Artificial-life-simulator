@@ -16,7 +16,13 @@ State* SearchWaterState::action(Specimen *specimen)
 
 State* SearchWaterState::clone() const
 {
-	return new SearchWaterState(*this);
+    return new SearchWaterState(*this);
+}
+
+void SearchWaterState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::SEARCH_WATER));
+
 }
 
 State *SearchWaterState::searchForWater(Specimen *specimen)

@@ -10,6 +10,7 @@ public:
     SearchWaterState();
     State* action(Specimen *specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 private:
     State* searchForWater(Specimen *specimen);
     BoardField* nearestWater(Specimen* specimen);

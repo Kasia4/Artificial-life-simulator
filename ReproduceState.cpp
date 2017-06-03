@@ -15,7 +15,12 @@ State* ReproduceState::action(Specimen *specimen)
 
 State* ReproduceState::clone() const
 {
-	return new ReproduceState(*this);
+    return new ReproduceState(*this);
+}
+
+void ReproduceState::setFactors(Specimen* specimen)
+{
+    specimen->setAttributesStateFactors(StateAttributeFactorMap::getInstance().getAttFactorsMap(StateType::REPRODUCE));
 }
 
 State *ReproduceState::reproduce(Specimen *specimen)

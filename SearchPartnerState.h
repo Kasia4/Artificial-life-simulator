@@ -9,6 +9,7 @@ public:
     SearchPartnerState();
     State* action(Specimen *specimen);
 	State* clone() const;
+    void setFactors(Specimen* specimen);
 private:
     State* searchForPartner(Specimen *specimen);
     Specimen* nearestPartner(Specimen* specimen);
