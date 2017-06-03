@@ -17,9 +17,9 @@ StateAttributeFactorMap::StateAttributeFactorMap()
     map_[StateType::REPRODUCE].insert(AttributeType::FOOD_NECESSITY, 1.1);
     map_[StateType::REPRODUCE].insert(AttributeType::WATER_NECESSITY, 1.1);
     map_[StateType::REPRODUCE].insert(AttributeType::SLEEP_NECESSITY, 1.1);
-    map_[StateType::RUN_AWAY].insert(AttributeType::FOOD_NECESSITY, 1.25);
-    map_[StateType::RUN_AWAY].insert(AttributeType::WATER_NECESSITY, 1.25);
-    map_[StateType::RUN_AWAY].insert(AttributeType::SLEEP_NECESSITY, 1.25);
+    map_[StateType::RUN_AWAY].insert(AttributeType::FOOD_NECESSITY, 1.2);
+    map_[StateType::RUN_AWAY].insert(AttributeType::WATER_NECESSITY, 1.2);
+    map_[StateType::RUN_AWAY].insert(AttributeType::SLEEP_NECESSITY, 1.2);
     map_[StateType::SEARCH_FOOD].insert(AttributeType::FOOD_NECESSITY, 1.2);
     map_[StateType::SEARCH_FOOD].insert(AttributeType::WATER_NECESSITY, 1.2);
     map_[StateType::SEARCH_FOOD].insert(AttributeType::SLEEP_NECESSITY, 1.2);
