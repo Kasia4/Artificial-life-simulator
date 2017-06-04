@@ -6,7 +6,7 @@ InitDialog::InitDialog(QWidget *parent) :
     ,ui(new Ui::InitDialog)
 {
     ui->setupUi(this);
-    this->setSizeGripEnabled(false);
+	this->setSizeGripEnabled(false);
 }
 
 InitDialog::~InitDialog()
@@ -26,5 +26,20 @@ int InitDialog::getHerbivoreCount() const
 
 int InitDialog::getCarnivoreCount() const
 {
-    return ui->carnivoreBox->value();
+	return ui->carnivoreBox->value();
+}
+
+bool InitDialog::getStatsStoreBoxValue() const
+{
+	return ui->stats_store_box->checkState() == Qt::Checked;
+}
+
+int InitDialog::getTimestepValue() const
+{
+	return ui->timestep_slider->value()*1000;
+}
+
+void InitDialog::on_timestep_slider_valueChanged(int value)
+{
+	ui->timestep_value->setText(QString::number(value) + "s");
 }

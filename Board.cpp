@@ -125,7 +125,7 @@ void Board::resize(const QPoint& size)
     {
         fields_[x].resize(size_.y());
         for(int y = 0; y < size_.y(); ++y){
-            GroundField* field = new GroundField();
+			GroundField* field = new GroundField(10);
             field->setPosition(QPoint(x,y));
             fields_[x][y] = field;
             placeField(QPoint(x,y));

@@ -18,9 +18,13 @@ public:
     QPoint getBoardSize() const;
     int getHerbivoreCount() const;
     int getCarnivoreCount() const;
+	bool getStatsStoreBoxValue() const;
+	int getTimestepValue() const;
+private slots:
+	void on_timestep_slider_valueChanged(int value);
 
 private:
-    Ui::InitDialog *ui;
+	Ui::InitDialog *ui;
 };
 
 #endif // INITDIALOG_H

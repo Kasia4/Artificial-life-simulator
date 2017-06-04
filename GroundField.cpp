@@ -1,6 +1,7 @@
 #include "GroundField.h"
 
-const Range GroundField::GRASS_RANGE = Range(0,25);
+const Range GroundField::GRASS_RANGE = Range(0,50);
+const Range GroundField::GROWTH_RATE_RANGE = Range(0.01, 0.03);
 
 GroundField::GroundField(qreal overgrow_level)
     :overgrow_level_(overgrow_level)
@@ -58,6 +59,11 @@ void GroundField::modifyOvergrow(qreal value)
 void GroundField::advance(int phase)
 {
     if(!phase)return;
-    modifyOvergrow(overgrowing_speed_);
-    updateAvailable();
+	modifyOvergrow(growthRate());
+	updateAvailable();
+}
+
+qreal GroundField::growthRate()
+{
+	return overgrowing_speed_*GROWTH_RATE_RANGE.transform(overgrow_level_, GRASS_RANGE);
 }

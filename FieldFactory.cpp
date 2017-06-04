@@ -2,7 +2,7 @@
 
 FieldFactory::FieldFactory()
 {
-    registerField(FieldType::GROUND, new GroundField);
+	registerField(FieldType::GROUND, new GroundField);
     registerField(FieldType::WATER, new WaterField);
     registerField(FieldType::BARREN, new BarrenField);
 }

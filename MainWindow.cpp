@@ -51,6 +51,11 @@ void MainWindow::initiateSimulation()
     setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
 	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
 
+	if(init_dialog_->getStatsStoreBoxValue())
+	{
+		population_chart_->setStoreTimer(init_dialog_->getTimestepValue());
+	}
+
 	engine_->startWork();
     for(;carnivores;--carnivores)
 		engine_->getScene()->addRandomSpecimen(SpecimenType::CARNIVORE);

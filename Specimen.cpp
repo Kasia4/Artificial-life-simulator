@@ -364,7 +364,7 @@ void Specimen::generateGenome()
     genome_.addAttributesPair(AttributeType::ENDURANCE, AttributeType::STRENGTH);
     genome_.addAttributesPair(AttributeType::SIGHT_ANGLE,AttributeType::SIGHT_RANGE);
     genome_.addAttributesPair(AttributeType::HEARING_RANGE,AttributeType::SPEED);
-    genome_.setAttributeRange(AttributeType::ENDURANCE, Range(10,40));
+	genome_.setAttributeRange(AttributeType::ENDURANCE, Range(20,70));
 	genome_.setAttributeRange(AttributeType::STRENGTH, Range(2,4));
     genome_.setAttributeRange(AttributeType::SIGHT_ANGLE, Range(10,90));
 	genome_.setAttributeRange(AttributeType::SIGHT_RANGE, Range(50,100));
@@ -395,10 +395,10 @@ void Specimen::setAttributesValues()
 
 void Specimen::updateNeeds()
 {
-	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/60);
-	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/60);
-	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/60);
-    needs_.modifyValue(NeedType::REPRODUCE, 0.016);
+	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/30);
+	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/30);
+	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/30);
+	needs_.modifyValue(NeedType::REPRODUCE, 0.01);
 }
 
 void Specimen::checkBorders()

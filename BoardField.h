@@ -44,8 +44,8 @@ protected:
     bool available_;
 
 private:
-    qreal size_;
-    QPoint position_;
+	QPoint position_;
+	qreal size_;
 
 };
 
