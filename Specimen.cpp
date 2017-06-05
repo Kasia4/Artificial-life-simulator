@@ -336,8 +336,7 @@ bool Specimen::shouldDie()
 	if(hp_ <= 0 ||
 		needs_.getValue(NeedType::EAT) >= 100 ||
 		needs_.getValue(NeedType::DRINK) >= 100 ||
-		needs_.getValue(NeedType::SLEEP) >= 100 ||
-		needs_.getValue(NeedType::REPRODUCE) >= 100 )
+		needs_.getValue(NeedType::SLEEP) >= 100)
 		return true;
     return false;
 }
@@ -398,7 +397,7 @@ void Specimen::updateNeeds()
 	needs_.modifyValue(NeedType::DRINK, getAttributeValue(AttributeType::WATER_NECESSITY)/30);
 	needs_.modifyValue(NeedType::EAT, getAttributeValue(AttributeType::FOOD_NECESSITY)/30);
 	needs_.modifyValue(NeedType::SLEEP, getAttributeValue(AttributeType::SLEEP_NECESSITY)/30);
-	needs_.modifyValue(NeedType::REPRODUCE, 0.01);
+	needs_.modifyValue(NeedType::REPRODUCE, 0.03);
 }
 
 void Specimen::checkBorders()

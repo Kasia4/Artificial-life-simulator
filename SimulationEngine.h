@@ -22,11 +22,12 @@ class SimulationEngine: public QObject
 {
     Q_OBJECT
 public:
-    SimulationEngine(Board* board);
+	SimulationEngine();
     virtual ~SimulationEngine() {};
 
 	SimulationScene* getScene();
 
+	void initializeScene(const QPoint& board_size, const QPointF& board_surface_size);
 public slots:
     void startWork();
     void pause();

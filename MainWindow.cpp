@@ -28,10 +28,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::start()
+void MainWindow::start(SimulationEngine* engine)
 {
     show();
 
+	setSimulationEngine(engine);
     init_dialog_ = new InitDialog;
 	connect(init_dialog_, SIGNAL(accepted()), this, SLOT(initiateSimulation()));
 	connect(init_dialog_, SIGNAL(rejected()), this, SLOT(close()));
@@ -48,14 +49,15 @@ void MainWindow::initiateSimulation()
     int herbivores = init_dialog_->getHerbivoreCount();
     QSize view_size = ui->boardView->size();
     QPointF surface_size(view_size.width(), view_size.height());
-    setSimulationEngine(new SimulationEngine(new Board(board_size, surface_size)));
-	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
+
 
 	if(init_dialog_->getStatsStoreBoxValue())
 	{
 		population_chart_->setStoreTimer(init_dialog_->getTimestepValue());
 	}
 
+	engine_->initializeScene(board_size, surface_size);
+	connect(engine_->getScene(), &SimulationScene::populationChanged, population_chart_, &PopulationChart::updatePopulation);
 	engine_->startWork();
     for(;carnivores;--carnivores)
 		engine_->getScene()->addRandomSpecimen(SpecimenType::CARNIVORE);

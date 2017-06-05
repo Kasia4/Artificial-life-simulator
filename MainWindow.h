@@ -27,7 +27,7 @@ public:
     void setBoardView(SimulationScene *scene);
     ~MainWindow();
 
-    void start();
+	void start(SimulationEngine* engine);
 
 protected:
 private slots:

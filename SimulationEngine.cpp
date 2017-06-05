@@ -1,23 +1,22 @@
 #include "SimulationEngine.h"
 
-SimulationEngine::SimulationEngine(Board* board)
+SimulationEngine::SimulationEngine()
    :is_started_(false)
+{ }
+
+void SimulationEngine::initializeScene(const QPoint& board_size, const QPointF& board_surface_size)
 {
-    scene_.setBoard(board);
-    connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
+	scene_.setBoard(new Board(board_size, board_surface_size));
+	connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
 
-    border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());
-    QPen pen = QPen(Qt::black);
+	border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());
+	QPen pen = QPen(Qt::black);
 
-    scene_.addLine(*(border->getTopLine()),pen);
-    scene_.addLine(*(border->getLeftLine()),pen);
-    scene_.addLine(*(border->getRightLine()),pen);
-    scene_.addLine(*(border->getBottomLine()),pen);
-
-
+	scene_.addLine(*(border->getTopLine()),pen);
+	scene_.addLine(*(border->getLeftLine()),pen);
+	scene_.addLine(*(border->getRightLine()),pen);
+	scene_.addLine(*(border->getBottomLine()),pen);
 }
-
-
 
 SimulationScene* SimulationEngine::getScene()
 {
@@ -30,20 +29,6 @@ void SimulationEngine::startWork()
     if(is_started_)return;
     is_started_ = true;
     timer_.start(1000/30);
-
-    /*
-    while(true)
-    {
-        if((deltaTime = timer->nsecsElapsed()) < STEP_TIME)continue;
-        timer->restart();
-        deltaTimeSec = (double)deltaTime/TIME_DIVISOR;
-        for(Specimen* specimen : specimens_){
-
-            specimen->move(deltaTimeSec);
-        }
-        if(!is_started_)break;
-    }*/
-
 }
 
 void SimulationEngine::pause()
