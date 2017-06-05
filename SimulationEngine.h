@@ -39,8 +39,7 @@ private:
     QTimer timer_;
     Board* board_;
     bool is_started_;
-    SimulationScene scene_;
-    Border* border;
+	SimulationScene scene_;
 
 };
 

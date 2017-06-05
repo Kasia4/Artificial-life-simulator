@@ -8,14 +8,6 @@ void SimulationEngine::initializeScene(const QPoint& board_size, const QPointF& 
 {
 	scene_.setBoard(new Board(board_size, board_surface_size));
 	connect(&timer_, SIGNAL(timeout()), &scene_, SLOT(advance()));
-
-	border = new Border(scene_.sceneRect().topLeft(), scene_.sceneRect().topRight(), scene_.sceneRect().bottomLeft(), scene_.sceneRect().bottomRight());
-	QPen pen = QPen(Qt::black);
-
-	scene_.addLine(*(border->getTopLine()),pen);
-	scene_.addLine(*(border->getLeftLine()),pen);
-	scene_.addLine(*(border->getRightLine()),pen);
-	scene_.addLine(*(border->getBottomLine()),pen);
 }
 
 SimulationScene* SimulationEngine::getScene()
