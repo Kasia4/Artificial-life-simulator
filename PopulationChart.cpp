@@ -28,7 +28,6 @@ void PopulationChart::setStoreTimer(qreal rate)
 	store_timer_.start(rate);
 	output_file_.setFileName("myfile.txt");
 	output_file_.open(QIODevice::WriteOnly | QIODevice::Truncate);
-	std::cout<<"elo"<<std::endl;
 	connect(&store_timer_, SIGNAL(timeout()), this, SLOT(storePopulation()));
 }
 
@@ -43,8 +42,6 @@ void PopulationChart::storePopulation()
 {
 	if(output_file_.isOpen())
 	{
-		std::cout<<"no juz"<<std::endl;
-
 		QTextStream out(&output_file_);
 		out<<population_counts_.value(SpecimenType::CARNIVORE)<<"\t"<<population_counts_.value(SpecimenType::HERBIVORE)<<"\n";
 	}

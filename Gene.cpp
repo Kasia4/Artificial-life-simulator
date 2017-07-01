@@ -7,7 +7,8 @@ bool Gene::compareAttributes(const Gene &a, const Gene &b)
 
 Gene Gene::crossing(const Gene &a, const Gene &b)
 {
-    if(!compareAttributes(a,b))throw(std::invalid_argument("incompatible genes"));
+	if(!compareAttributes(a,b))
+		throw(std::invalid_argument("incompatible genes"));
 
     Gene new_gene;
     qreal new_sigma = (a.sigma_ + b.sigma_)/2;
@@ -32,11 +33,11 @@ Gene::Gene()
 Gene::Gene(const Gene &other)
     :sigma_(other.sigma_)
 {
-    setBase( other.getBase(GenePosition::A) , GenePosition::A);
-    setEnhancement(other.getEnhancement(GenePosition::A), GenePosition::A);
-    setEnhancement(other.getEnhancement(GenePosition::B), GenePosition::B);
-    setAttribute(other.getAttribute(GenePosition::A), GenePosition::A);
-    setAttribute(other.getAttribute(GenePosition::B), GenePosition::B);
+	setBase( other.getBase(GenePosition::A), GenePosition::A);
+	setEnhancement( other.getEnhancement(GenePosition::A), GenePosition::A);
+	setEnhancement( other.getEnhancement(GenePosition::B), GenePosition::B);
+	setAttribute( other.getAttribute(GenePosition::A), GenePosition::A);
+	setAttribute( other.getAttribute(GenePosition::B), GenePosition::B);
 }
 
 Gene::Gene(const Gene &a, const Gene &b)
@@ -101,30 +102,37 @@ void Gene::randomize()
 {
     std::uniform_real_distribution<> dis(0,1);
     std::normal_distribution<double> g_dis(0, sigma_);
-    setBase(dis(Randomizer::rand_gen()));
-    setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::A);
-    setEnhancement(g_dis(Randomizer::rand_gen()), GenePosition::B);
+	setBase( dis(Randomizer::rand_gen()) );
+	setEnhancement( g_dis(Randomizer::rand_gen()), GenePosition::A );
+	setEnhancement( g_dis(Randomizer::rand_gen()), GenePosition::B );
 }
 
 void Gene::print(int length)
 {
-    int ast1 = (int)(getValue(GenePosition::A)*length);
-    int ast2 = (int)(getValue(GenePosition::B)*length);
+	int ast1 = length*getValue(GenePosition::A);
+	int ast2 = length*getValue(GenePosition::B);
     int i;
-    std::cout<<"cecha1\t|";
-    for(i = 0; i < ast1 && i < length-1; ++i)
+
+	std::cout<<"Attribute1\t|";
+
+	for(i = 0; i < ast1 && i < length-1; ++i)
         std::cout<<"-";
     std::cout<<"*";
     for(++i; i < length; ++i)
         std::cout<<"-";
-    std::cout<<"|\n base: "<<getBase(GenePosition::A)<<"\t odchylenie: "<<enhancement_[GenePosition::A]<<"\t wartosc: "<<getValue(GenePosition::A)<<std::endl;
-    std::cout<<"cecha2\t|";
-    for(i = 0; i < ast2 && i < length-1; ++i)
+
+	std::cout<<"|\n base: "<<getBase(GenePosition::A)<<"\t enhancement: "<<enhancement_[GenePosition::A]<<"\t value: "<<getValue(GenePosition::A)<<std::endl;
+
+
+	std::cout<<"Attribute2\t|";
+
+	for(i = 0; i < ast2 && i < length-1; ++i)
         std::cout<<"-";
     std::cout<<"*";
     for(++i; i < length; ++i)
         std::cout<<"-";
-    std::cout<<"|\n base: "<<getBase(GenePosition::B)<<"\t odchylenie: "<<enhancement_[GenePosition::B]<<"\t wartosc: "<<getValue(GenePosition::B)<<std::endl;
+
+	std::cout<<"|\n base: "<<getBase(GenePosition::B)<<"\t enhancement: "<<enhancement_[GenePosition::B]<<"\t value: "<<getValue(GenePosition::B)<<std::endl;
 
 }
 
