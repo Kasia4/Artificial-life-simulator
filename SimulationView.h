@@ -23,13 +23,11 @@ protected:
 public slots:
     void addHerbivore();
     void addCarnivore();
-    void setShowColliders(bool enable);
-	void setEditorFieldType(FieldType type);
+	void setShowColliders(bool enable);
 
 private:
     SimulationScene* simulation_scene_;
 	BoardEditor* board_editor_;
-	FieldType editor_field_type_;
 
 signals:
 	void fieldModified(const QPoint& position);

@@ -4,6 +4,7 @@
 BoardEditor::BoardEditor(QWidget *parent) :
     QWidget(parent)
     ,ui(new Ui::BoardEditor)
+	,current_type_(FieldType::VOID)
 {
 	ui->setupUi(this);
 	connect(ui->FieldsButtonsGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(changeFieldType(QAbstractButton*)));
@@ -25,7 +26,7 @@ FieldType BoardEditor::getCurrentFieldType() const
 
 void BoardEditor::changeFieldType(QAbstractButton* btn)
 {
-	emit fieldTypeChanged(buttons_map_.value(btn));
+	current_type_ = buttons_map_.value(btn);
 }
 
 void BoardEditor::updateLastField(const QPoint& position)
@@ -36,5 +37,10 @@ void BoardEditor::updateLastField(const QPoint& position)
 QPoint BoardEditor::getLastField() const
 {
 	return last_field_;
+}
+
+void BoardEditor::setFieldType(FieldType type)
+{
+	current_type_ = type;
 }
 

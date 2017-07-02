@@ -6,6 +6,7 @@
 #include <QMap>
 
 #include "BoardField.h"
+#include <iostream>
 
 namespace Ui {
 class BoardEditor;
@@ -21,6 +22,8 @@ public:
 	
 	FieldType getCurrentFieldType() const;
 	QPoint getLastField() const;
+
+	void setFieldType(FieldType type);
 	
 public slots:
 	void changeFieldType(QAbstractButton* btn);
@@ -31,9 +34,6 @@ private:
 	FieldType current_type_;
 	QPoint last_field_;
 	QMap<QAbstractButton*, FieldType> buttons_map_;
-
-signals:
-	void fieldTypeChanged(FieldType type);
 };
 
 #endif // BOARDEDITOR_H

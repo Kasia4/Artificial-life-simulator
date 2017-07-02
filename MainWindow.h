@@ -43,8 +43,6 @@ private slots:
 
     void on_addCarnivoreButton_clicked();
 
-	void on_boardEditor_fieldTypeChanged(const FieldType &type);
-
 	void on_stats_button_clicked();
 
 private:

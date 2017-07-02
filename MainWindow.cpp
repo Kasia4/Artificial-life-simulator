@@ -95,11 +95,6 @@ void MainWindow::on_addCarnivoreButton_clicked()
     ui->boardView->addCarnivore();
 }
 
-void MainWindow::on_boardEditor_fieldTypeChanged(const FieldType &type)
-{
-	ui->boardView->setEditorFieldType(type);
-}
-
 void MainWindow::on_stats_button_clicked()
 {
 	population_chart_->show();

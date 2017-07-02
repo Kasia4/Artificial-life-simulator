@@ -2,8 +2,7 @@
 
 
 SimulationView::SimulationView(QWidget *parent)
-    :QGraphicsView(parent)
-	,editor_field_type_(FieldType::VOID)
+	:QGraphicsView(parent)
 {
     setOptimizationFlags(QGraphicsView::DontSavePainterState | QGraphicsView::DontClipPainter
                          | QGraphicsView::DontAdjustForAntialiasing);
@@ -33,7 +32,7 @@ void SimulationView::mousePressEvent(QMouseEvent *event)
 {
 	if(event->button() == Qt::RightButton)
 	{
-		editor_field_type_ = FieldType::VOID;
+		board_editor_->setFieldType(FieldType::VOID);
 	}
 	QGraphicsView::mousePressEvent(event);
 }
@@ -43,9 +42,10 @@ void SimulationView::mouseMoveEvent(QMouseEvent* event)
 	if(event->buttons() & Qt::LeftButton)
 	{
 		QPoint field_position = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());
-		if(editor_field_type_ != FieldType::VOID && board_editor_->getLastField() != field_position)
+		FieldType field_type = board_editor_->getCurrentFieldType();
+		if(field_type != FieldType::VOID && board_editor_->getLastField() != field_position)
 		{
-			simulation_scene_->getBoard()->replaceField(field_position, editor_field_type_);
+			simulation_scene_->getBoard()->replaceField(field_position, field_type);
 			emit fieldModified(field_position);
 		}
 	}
@@ -54,6 +54,7 @@ void SimulationView::mouseMoveEvent(QMouseEvent* event)
 
 void SimulationView::mouseReleaseEvent(QMouseEvent* event)
 {
+	Q_UNUSED(event);
 	emit fieldModified(QPoint(-1,-1));
 }
 
@@ -71,11 +72,6 @@ void SimulationView::addCarnivore()
 void SimulationView::setShowColliders(bool enable)
 {
 	simulation_scene_->setShowColliders(enable);
-}
-
-void SimulationView::setEditorFieldType(FieldType type)
-{
-	editor_field_type_ = type;
 }
 
 
