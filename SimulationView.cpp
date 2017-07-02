@@ -49,13 +49,15 @@ void SimulationView::mouseMoveEvent(QMouseEvent* event)
 			emit fieldModified(field_position);
 		}
 	}
-	QGraphicsView::mousePressEvent(event);
+	QGraphicsView::mouseMoveEvent(event);
 }
 
 void SimulationView::mouseReleaseEvent(QMouseEvent* event)
 {
 	Q_UNUSED(event);
 	emit fieldModified(QPoint(-1,-1));
+	QGraphicsView::mouseReleaseEvent(event);
+
 }
 
 
