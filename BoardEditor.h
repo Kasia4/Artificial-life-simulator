@@ -17,14 +17,19 @@ class BoardEditor : public QWidget
 
 public:
 	explicit BoardEditor(QWidget *parent = 0);
-	void registerField(QPushButton button, FieldType type);
 	~BoardEditor();
-
+	
+	FieldType getCurrentFieldType() const;
+	QPoint getLastField() const;
+	
 public slots:
 	void changeFieldType(QAbstractButton* btn);
+	void updateLastField(const QPoint& position);
 
 private:
 	Ui::BoardEditor *ui;
+	FieldType current_type_;
+	QPoint last_field_;
 	QMap<QAbstractButton*, FieldType> buttons_map_;
 
 signals:

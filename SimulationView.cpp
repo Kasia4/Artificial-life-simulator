@@ -18,7 +18,13 @@ SimulationView::SimulationView(SimulationScene *scene, QWidget *parent)
 void SimulationView::setScene(SimulationScene *scene)
 {
     simulation_scene_ = scene;
-    QGraphicsView::setScene(scene);
+	QGraphicsView::setScene(scene);
+}
+
+void SimulationView::setBoardEditor(BoardEditor* editor)
+{
+	board_editor_ = editor;
+	connect(this, &SimulationView::fieldModified, editor, &BoardEditor::updateLastField);
 }
 
 
@@ -29,16 +35,28 @@ void SimulationView::mousePressEvent(QMouseEvent *event)
 	{
 		editor_field_type_ = FieldType::VOID;
 	}
-	if(editor_field_type_ != FieldType::VOID)
-	{
-		QPoint field_coordinates = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());
-		simulation_scene_->getBoard()->replaceField(field_coordinates, editor_field_type_);
-	}
-	else
-	{
-		QGraphicsView::mousePressEvent(event);
-	}
+	QGraphicsView::mousePressEvent(event);
 }
+
+void SimulationView::mouseMoveEvent(QMouseEvent* event)
+{
+	if(event->buttons() & Qt::LeftButton)
+	{
+		QPoint field_position = simulation_scene_->getBoard()->getFieldPositionByPixel(event->pos());
+		if(editor_field_type_ != FieldType::VOID && board_editor_->getLastField() != field_position)
+		{
+			simulation_scene_->getBoard()->replaceField(field_position, editor_field_type_);
+			emit fieldModified(field_position);
+		}
+	}
+	QGraphicsView::mousePressEvent(event);
+}
+
+void SimulationView::mouseReleaseEvent(QMouseEvent* event)
+{
+	emit fieldModified(QPoint(-1,-1));
+}
+
 
 void SimulationView::addHerbivore()
 {

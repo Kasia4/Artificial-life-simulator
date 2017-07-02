@@ -79,6 +79,9 @@ QRectF Board::boundingRect() const
 
 void Board::replaceField(const QPoint &position, FieldType type)
 {
+	if(!onBoard(position))
+		return;
+
     BoardField* old_field = getField(position);
     BoardField* new_field = FieldFactory::getInstance().create(type, position);
     fields_[position.x()][position.y()] = new_field;

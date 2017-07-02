@@ -12,6 +12,7 @@ void MainWindow::setSimulationEngine(SimulationEngine *engine)
 {
     engine_ = engine;
 	setBoardView(engine_->getScene());
+
 }
 
 void MainWindow::setBoardView(SimulationScene *scene)
@@ -20,6 +21,8 @@ void MainWindow::setBoardView(SimulationScene *scene)
     ui->boardView->setFixedSize(602,602);
     ui->boardView->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
     ui->boardView->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+	ui->boardView->setBoardEditor( ui->boardEditor );
+
 }
 
 MainWindow::~MainWindow()

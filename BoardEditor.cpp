@@ -18,8 +18,23 @@ BoardEditor::~BoardEditor()
 	delete ui;
 }
 
+FieldType BoardEditor::getCurrentFieldType() const
+{
+	return current_type_;
+}
+
 void BoardEditor::changeFieldType(QAbstractButton* btn)
 {
 	emit fieldTypeChanged(buttons_map_.value(btn));
+}
+
+void BoardEditor::updateLastField(const QPoint& position)
+{
+	last_field_ = position;
+}
+
+QPoint BoardEditor::getLastField() const
+{
+	return last_field_;
 }
 
